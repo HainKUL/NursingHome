@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<style type="text/css">
 
 	::selection { background-color: #E13300; color: white; }
-	::-moz-selection { background-color: #cce16b; color: white; }
+	::-moz-selection { background-color: #dee1e1; color: white; }
 
 	body {
         background-image: url(photos/background_remy.jpg);
