@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	<style type="text/css">
 
 	::selection { background-color: #E13300; color: white; }
-	::-moz-selection { background-color: #E13300; color: white; }
+	::-moz-selection { background-color: #cce16b; color: white; }
 
 	body {
         background-image: url(photos/background_remy.jpg);
@@ -25,7 +25,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	}
 
 	h1 {
-		color: #444;
+		color: yellowgreen;
 		background-color: transparent;
 		border-bottom: 1px solid #D0D0D0;
 		font-size: 19px;
