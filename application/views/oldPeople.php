@@ -1,0 +1,9 @@
+<table>
+    {oldPeople}
+    <tr>
+        <td>{firstName}</td>
+        <td>{lastName}</td>
+        <td>{age}</td>
+    </tr>
+    {/oldPeople}
+</table>
