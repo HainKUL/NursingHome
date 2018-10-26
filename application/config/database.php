@@ -74,12 +74,12 @@ $active_group = 'default';
 $query_builder = TRUE;
 
 $db['default'] = array(
-	'dsn'	=> '',
-	'hostname' => 'mysql.studev.groept.be',
+	'dsn'	=> 'mysql:dbname=a18ux04;host=mysql.studev.groept.be',
+	'hostname' => '',
 	'username' => 'a18ux04',
 	'password' => '1d2r3tezbm',
-	'database' => 'a18ux04',
-	'dbdriver' => 'mysqli',
+	'database' => '',
+	'dbdriver' => 'pdo',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
 	'db_debug' => (ENVIRONMENT !== 'production'),

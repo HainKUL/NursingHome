@@ -2,8 +2,8 @@
     {oldPeople}
     <tr>
         <td>{firstName}</td>
-        <td>{lastName}</td>
-        <td>{age}</td>
+        <td>{name}</td>
+        <td>{dateOfBirth}</td>
     </tr>
     {/oldPeople}
 </table>
