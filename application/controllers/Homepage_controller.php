@@ -14,5 +14,4 @@ class Homepage_controller extends CI_Controller{
         $data['content'] = "<button>resident</button><button>caregiver</button>";
         $this->parser->parse('Homepage_view', $data);
     }
-
 }

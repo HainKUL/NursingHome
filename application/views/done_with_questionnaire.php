@@ -23,10 +23,6 @@
         {button_text}
     </div>
 
-
-
-
-
 </body>
 
 <footer>
