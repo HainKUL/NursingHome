@@ -25,7 +25,7 @@
 
 </form>
 
-<p>Forgot your password? <u style="color:blue;">Click Here!</u></p>
+<p>Forgot your password? <a href="http://localhost/a18ux04/index.php/Caregiver_controller/forgot">Click Here!</a></p>
 
 
 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
