@@ -22,7 +22,6 @@
 <main>
     <section>
         <h2>{content_title_1}</h2>
-        <h3>{content_title_2}</h3>
         {content}
     </section>
 </main>
