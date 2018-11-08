@@ -1,6 +1,6 @@
 <?php
 
-class Questionnairecontroller extends CI_Controller{
+class Questionnaire_controller extends CI_Controller{
 	public function __construct(){
 		parent::__construct();
 		$this->load->library('parser');
@@ -16,6 +16,6 @@ class Questionnairecontroller extends CI_Controller{
         $data = array_merge($data1, $data2);//merge two array
 
         //pass data to the view(the page)
-        $this->parser->parse('questionnairetemplate',$data);//variables sent to html content
+        $this->parser->parse('questionnaire',$data);//variables sent to html content
 	}
 }

@@ -23,4 +23,3 @@ class Caregiver_controller extends CI_Controller{
     }
 
 }
-?>

@@ -7,7 +7,7 @@
     <meta name="keywords" content="UXWD's course demo" />
     <meta name="description"
           content="This a demonstration site for the UXWD's course. But still... the question is... who will cook tonight?" />
-    <link href="https:/>/fonts.googleapis.com/css?family=Dosis:400,500,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Dosis:400,500,600,700" rel="stylesheet">
 
     <?php if(isset($jslibs_to_load)) foreach ($jslibs_to_load as $jslib) : ?>
         <script src="<?= base_url()?>assets/js/<?=$jslib?>"></script>
