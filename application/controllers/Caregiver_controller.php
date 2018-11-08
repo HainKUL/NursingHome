@@ -13,7 +13,6 @@ class Caregiver_controller extends CI_Controller{
         parent::__construct();
         $this->load->library('parser');
         $this->load->helper('url');
-
     }
 
     public function login(){
@@ -22,4 +21,11 @@ class Caregiver_controller extends CI_Controller{
         $this->load->view('caregiver_login_view',$data);
     }
 
+    public function forgot(){
+        $data['page_title'] = 'Wachtwoord Vergeten';
+        $data['head_message'] = 'Wachtwoord vergeten?';
+        $data['first_sentence'] = "Geen probleem! Geef uw e-mail adres in en er zal u een nieuw wachtwoord opgestuurd worden";
+        $data['button_text'] = "<button id='button'>Verstuur e-mail!</button>";
+        $this->parser->parse('password_forgot', $data);
+    }
 }
