@@ -1,0 +1,171 @@
+* {
+	/* depending on your browser (Chrome,IE,..) user-agent styling can be different*/
+	/* so remove margins and padding on all elements */
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: white;
+	font-family: 'Dosis', sans-serif;
+	/* font name as defined in the html link to google-fonts */
+	font-size: 15px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+header,body{
+	width: 900px;
+	height: 100px;
+	background-color: #ad88cc;
+}
+
+#category{
+	background-color: #cd6e00;
+}
+
+/*header {*/
+	/*margin-top: 30px;*/
+	/*height: 150px;*/
+	/*padding: 50px;*/
+	/*background: #cf4b56;*/
+	/*text-transform: uppercase;*/
+	/*display: flex;*/
+	/*flex-direction: row;*/
+	/*align-items: center;*/
+/*}*/
+
+/*main {*/
+	/*padding: 50px;*/
+	/*background: white;*/
+	/*display: flex;*/
+	/*flex-direction: row;*/
+/*}*/
+
+/*footer {*/
+	/*padding: 15px 0px;*/
+	/*/* top+bottom left+right*/*/
+	/*background: #ff4c51;*/
+	/*border-top: 2px solid #000000;*/
+	/*text-align: center;*/
+/*}*/
+
+/*h1,*/
+/*h2,*/
+/*h3 {*/
+	/*text-transform: uppercase;*/
+	/*font-weight: 500;*/
+/*}*/
+
+/*ul {*/
+	/*list-style: none;*/
+/*}*/
+
+/*p {*/
+	/*line-height: 180%;*/
+	/*margin-bottom: 1em;*/
+/*}*/
+
+/*a,*/
+/*strong {*/
+	/*color: #2C2C2C;*/
+/*}*/
+
+/*a:hover {*/
+	/*text-decoration: none;*/
+/*}*/
+
+/*#category {*/
+	/*flex-grow: 2;*/
+	/*color: black;*/
+/*}*/
+
+/*#logo h1 {*/
+	/*font-size: 3em;*/
+	/*font-weight: 300;*/
+/*}*/
+
+/*#logo h2 {*/
+	/*margin-top: -10px;*/
+	/*margin-left: 50px;*/
+	/*letter-spacing: 1px;*/
+	/*font-size: 1.2em;*/
+	/*font-weight: 300;*/
+/*}*/
+
+/*nav {*/
+	/*width: 300px;*/
+	/*display: flex;*/
+	/*flex-direction: row;*/
+	/*justify-content: space-between;*/
+/*}*/
+
+/*nav a {*/
+	/*letter-spacing: 1px;*/
+	/*text-decoration: none;*/
+	/*font-size: 11px;*/
+	/*font-weight: 300;*/
+	/*color: #FFFFFF;*/
+/*}*/
+
+/*nav a:hover, nav .active {*/
+	/*color: #000000;*/
+/*}*/
+
+/*section {*/
+	/*flex-grow: 2;*/
+/*}*/
+
+/*section h2 {*/
+	/*font-size: 2em;*/
+/*}*/
+
+/*aside {*/
+	/*padding-left: 40px;*/
+	/*width: 400px;*/
+	/*line-height: 2em;*/
+	/*display: flex;*/
+	/*flex-direction: column;*/
+/*}*/
+
+/*aside article {*/
+	/*margin-bottom: 20px;*/
+/*}*/
+
+/*aside h3 {*/
+	/*margin-left: -1em;*/
+/*}*/
+
+/*aside p {*/
+	/*line-height: normal;*/
+/*}*/
+
+/*@media (max-width: 900px) {*/
+	/*header,*/
+	/*main,*/
+	/*footer,*/
+	/*aside {*/
+		/*width: 100%;*/
+		/*margin-top: 0px;*/
+		/*padding: 20px;*/
+	/*}*/
+
+	/*section {*/
+		/*border-bottom: 1px solid #000000;*/
+	/*}*/
+
+	/*main {*/
+		/*flex-direction: column;*/
+	/*}*/
+/*}*/
+
+/*@media (max-width: 750px) {*/
+	/*#logo {*/
+		/*display: none;*/
+	/*}*/
+
+	/*header {*/
+		/*height: 1.5em;*/
+	/*}*/
+/*}*/
