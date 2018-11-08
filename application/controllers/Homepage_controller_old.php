@@ -1,6 +1,6 @@
 <?php
 
-class Homepage_controller extends CI_Controller{
+class Homepage_controller_old extends CI_Controller{
 
     public function __construct(){
         parent::__construct();
