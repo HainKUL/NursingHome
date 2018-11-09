@@ -4,8 +4,8 @@
 <html>
 <head>
     <title>Caregiver Login | Welcome</title>
-    <link href="http://localhost:8888/a18ux04/assets/css/caregiver_login.css" rel="stylesheet" type="text/css"/>
-    <!-- <link href="<?=base_url() ?>assets/css/main.css" rel="stylesheet" type="text/css"/> for on the actual site-->
+    <!-- <link href="http://localhost:8888/a18ux04/assets/css/caregiver_login.css" rel="stylesheet" type="text/css"/> for not on the actual site-->
+     <link href="<?=base_url() ?>assets/css/caregiver_login.css" rel="stylesheet" type="text/css"/>
 </head>
 
 
@@ -25,7 +25,7 @@
 
 </form>
 
-<p>Forgot your password? <a href="http://localhost/a18ux04/index.php/Caregiver_controller/forgot">Click Here!</a></p>
+<p>Forgot your password? <a href="<?=base_url() ?>index.php/Caregiver_controller/forgot">Click Here!</a></p>
 
 
 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
