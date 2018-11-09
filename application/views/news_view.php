@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta name="keywords" content="UXWD's course demo" />
 
-</head>
+</head>i
     <h4>Het Laatste Nieuws</h4>
     <button type="button" ><a href="https://www.hln.be">KLIK HIER</a></button>
     <h4>Het Nieuwsblad </h4>
