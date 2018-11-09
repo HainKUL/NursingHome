@@ -38,13 +38,33 @@ class Homepage_controller extends CI_Controller{
     }
     public function nieuws() {
         $nieuws = $data3['nieuws']=$this->Menu_model->get_menuitems();
-        $data['page_title']='UXWD nieuws pagina';
+        $data['page_title']=' nieuws pagina';
         $data['content_title_1']='Ontdek hier alle nieuwtjes van vandaag';
         $data['content_title_2']='Welke krant wilt u bekijken?';
         $data3['nieuws'] = $nieuws;
         $data['content'] = $this->parser->parse('news_view', $data3, true);
         $data['menu_items'] = $this->Menu_model->get_menuitems('nieuws');
-        $this->parser->parse('Homepage_view',$data);
+        $this->parser->parse('news_view',$data);
+    }
+    public function hln() {
+
+        $data['page_title']='Het Laatste Nieuws nieuwspagina';
+        $this->parser->parse('hln_view',$data);
+    }
+    public function nieuwsblad() {
+
+        $data['page_title']=' Het Nieuwsblad nieuwspagina';
+        $this->parser->parse('nieuwsblad_view',$data);
+    }
+    public function standard() {
+
+        $data['page_title']='De Standard nieuwspagina';
+        $this->parser->parse('standard_view',$data);
+    }
+    public function dm() {
+
+        $data['page_title']='De Morgen nieuwspagina';
+        $this->parser->parse('dm_view',$data);
     }
 
 }
