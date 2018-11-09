@@ -8,6 +8,7 @@
 
 
 class Question_model extends CI_Model{
+
     public function get_questions(){
         $query=$this->db->query("SELECT * FROM a18ux04.Questions WHERE idQuestions=1;");//select only one colume for test here
         foreach ($query->result_array() as $row)
