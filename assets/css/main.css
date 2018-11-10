@@ -16,6 +16,7 @@ body {
     align-items: center;
 }
 
+
 header,
 main,
 footer {
@@ -168,6 +169,7 @@ aside p {
         height: 1.5em;
     }
 }
+
 
 Code snippets
 potluck.html

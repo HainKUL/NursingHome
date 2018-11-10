@@ -38,7 +38,7 @@ class Homepage_controller extends CI_Controller{
     }
     public function nieuws() {
         $nieuws = $data3['nieuws']=$this->Menu_model->get_menuitems();
-        $data['page_title']=' nieuws pagina';
+        $data['page_title']=' Nieuwspagina';
         $data['content_title_1']='Ontdek hier alle nieuwtjes van vandaag';
         $data['content_title_2']='Welke krant wilt u bekijken?';
         $data3['nieuws'] = $nieuws;
