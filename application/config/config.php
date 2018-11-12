@@ -35,7 +35,7 @@ $config['base_url'] = 'https://a18ux04.studev.groept.be/';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = '';
+$config['index_page'] = 'index.php';
 
 /*
 |--------------------------------------------------------------------------
