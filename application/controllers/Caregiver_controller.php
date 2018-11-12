@@ -28,4 +28,9 @@ class Caregiver_controller extends CI_Controller{
         $data['button_text'] = "<button id='button'>Verstuur e-mail!</button>";
         $this->parser->parse('password_forgot', $data);
     }
+
+    public function dashboard(){
+        $data['page_title'] = 'dashboard';
+        $this->parser->parse('dashboard', $data);
+    }
 }
