@@ -9,9 +9,9 @@
           content="This a demonstration site for the UXWD's course. But still... the question is... who will cook tonight?" />
     <link href="https:/>/fonts.googleapis.com/css?family=Dosis:400,500,600,700" rel="stylesheet">
 
-<!--    --><?php //if(isset($jslibs_to_load)) foreach ($jslibs_to_load as $jslib) : ?>
-<!--        <script src="--><?//= base_url()?><!--assets/js/--><?//=$jslib?><!--"></script>-->
-<!--    --><?php //endforeach; ?>
+    <!--    --><?php //if(isset($jslibs_to_load)) foreach ($jslibs_to_load as $jslib) : ?>
+    <!--        <script src="--><?//= base_url()?><!--assets/js/--><?//=$jslib?><!--"></script>-->
+    <!--    --><?php //endforeach; ?>
 
     <!--  <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js">
       </script> -->
@@ -27,7 +27,7 @@
 
 </header>
 <main>
-	<section>
+    <section>
         <h2>How do you agree with the following statement:</h2>
         <h1>{question}</h1>
         <div>
@@ -39,10 +39,10 @@
         </div>
 
         <h3>{progress}</h3>
-	</section>
-	<aside>
+    </section>
+    <aside>
         <a href="">{return}</a>
-	</aside>
+    </aside>
 </main>
 
 </body>
