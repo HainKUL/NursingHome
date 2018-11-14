@@ -16,7 +16,6 @@ class Caregiver_controller extends CI_Controller{
     }
 
     public function login(){
-
         $data['head_message'] = 'Caregiver Login | Welcome';
         $this->load->view('caregiver_login_view',$data);
     }
