@@ -10,14 +10,11 @@
 
 body{
     font-family: 'Open Sans', sans-serif;
-
-    background-image: url('photos/background_remy_blur_export.jpg');
     background-color: whitesmoke;
 
     text-align:center;
     margin: 20px 0 20px 0;
 }
-
 p{
     font-size:12px;
     text-decoration: none;

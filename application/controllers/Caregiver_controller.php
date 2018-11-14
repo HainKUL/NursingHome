@@ -33,4 +33,9 @@ class Caregiver_controller extends CI_Controller{
         $data['page_title'] = 'dashboard';
         $this->parser->parse('dashboard', $data);
     }
+
+    public function registration(){
+        $data['page_title'] = 'registration';
+        $this->parser->parse('registration', $data);
+    }
 }
