@@ -34,7 +34,7 @@ class Question_model extends CI_Model{
         $sql = "UPDATE `a18ux04`.`Questions` SET `isAnswered`='1' WHERE `idQuestions`=" . $idQuestion;
 
         if ($conn->query($sql) === TRUE) {
-            echo "New record created successfully";
+
         } else {
             echo "Error: " . $sql . "<br>" . $conn->error;
         }
