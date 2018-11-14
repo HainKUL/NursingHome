@@ -230,7 +230,7 @@
 
     <tr>
         <td>PROVINCE</td>
-        <td><input type="text" name="State" maxlength="30" />
+        <td><input type="text" name="Province" maxlength="30" />
         </td>
     </tr>
 
@@ -239,6 +239,19 @@
         <td><input type="text" name="Nationality" value="Belgium" readonly="readonly" /></td>
     </tr>
 
+    <tr>
+        <br/>
+        <td>LANGUAGE PREFERENCE</td>
+        <td>
+            Dutch
+            <input type="radio" name="Dutch" value="Dutch">
+            English
+            <input type="radio" name="English" value="English">
+            French
+            <input type="radio" name="French" value="French">
+        </td>
+        </td>
+    </tr>
 
     <tr>
         <td>FLOOR</td>
@@ -256,7 +269,7 @@
 
     <tr>
         <td colspan="2" align="center">
-            <input type="submit" value="Submit">
+            <input type="submit" value="Save">
             <input type="reset" value="Reset">
         </td>
     </tr>
