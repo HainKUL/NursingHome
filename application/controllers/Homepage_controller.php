@@ -46,11 +46,7 @@ class Homepage_controller extends CI_Controller{
         $data['menu_items'] = $this->Menu_model->get_menuitems('nieuws');
         $this->parser->parse('news_view',$data);
     }
-    public function hln() {
 
-        $data['page_title']='Het Laatste Nieuws nieuwspagina';
-        $this->parser->parse('hln_view',$data);
-    }
     public function nieuwsblad() {
 
         $data['page_title']=' Het Nieuwsblad nieuwspagina';
