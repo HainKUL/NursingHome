@@ -67,4 +67,5 @@ class Homepage_controller extends CI_Controller{
         $this->parser->parse('dm_view',$data);
     }
 
+
 }

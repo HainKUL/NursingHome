@@ -13,26 +13,27 @@
     }
     .titel1 {
         font-size: 40px;
-        text-align: center;
+        /*text-align: center;*/
     }
     .titel2 {
-        font-size: 38px;
-        text-align: center;
+        font-size: 35px;
+        /*text-align: center;*/
     }
     .content1
     {
-        font-size: 30px;
-        text-align: center;
+
+        font-size: 28px;
+        text-align: left;
     }
     .button1
     {
         display: block;
-        margin: auto; /* put button in the middle */
-        padding: 15px 25px; /*make button bigger than text*/
-        font-size: 24px;
+        /*margin: auto; /* put button in the middle */
+        padding: 10px 20px; /*make button bigger than text*/
+        font-size: 20px;
         text-align: center;
         color: #fff;
-        background-color: grey;
+        background-color: #d5d5d5;
         border-radius: 15px;
 
     }
@@ -48,31 +49,28 @@
     }
     .image1
     {
-        width:60px;
-        height:60px;
-        display: block;
+        width:70px;
+        height:70px;
+        display: inline-block;
         position: relative;
-        margin-left: auto;
-        margin-right: auto;
+
 
     }
     .image2
     {
-        width:100px;
-        height:60px;
-        display: block;
+        width:90px;
+        height:50px;
+        display: inline-block;
         position: relative;
-        margin-left: auto;
-        margin-right: auto;
+
     }
     .image3
     {
         width:140px;
-        height:40px;
-        display: block;
+        height:35px;
+        display: inline-block;
         position: relative;
-        margin-left: auto;
-        margin-right: auto;
+
     }
 </style>
 
@@ -80,16 +78,16 @@
 <p class ="titel1">{content_title_1}</p>
 <p class="titel2">{content_title_2}</p>
 
-    <p class = "content1"><img src="http://localhost:8888/a18ux04/assets/photos/hln.jpg" class="image1">Het Laatste Nieuws</p>
+    <!--<p class = "content1"><img src="http://localhost:8888/a18ux04/assets/photos/hln.jpg" class="image1">Het Laatste Nieuws</p>
     <button type="button" class="button1"><a class="link1" href="http://localhost:8888/a18ux04/index.php/Homepage_controller/hln">KLIK HIER</a></button>
-
-    <p class = "content1" ><img src="http://localhost:8888/a18ux04/assets/photos/nieuwsblad.jpg" class="image1">Het Nieuwsblad </p>
+-->
+    <img src="http://localhost:8888/a18ux04/assets/photos/nieuwsblad.jpg" class="image1">
     <button type="button" class="button1"><a class="link1" href="http://localhost:8888/a18ux04/index.php/Homepage_controller/nieuwsblad">KLIK HIER</a></button>
 
-    <p class = "content1"><img src="http://localhost:8888/a18ux04/assets/photos/standaard.jpg" class="image2">De Standaard </p>
+    <img src="http://localhost:8888/a18ux04/assets/photos/standaard.jpg" class="image2">
     <button type="button" class="button1"><a class="link1" href="http://localhost:8888/a18ux04/index.php/Homepage_controller/standard">KLIK HIER</a></button>
 
-    <p class = "content1"><img src="http://localhost:8888/a18ux04/assets/photos/demorgen.png" class="image3" >De Morgen</p>
+    <img src="http://localhost:8888/a18ux04/assets/photos/demorgen.png" class="image3" >
     <button type="button"class="button1" ><a class="link1" href="http://localhost:8888/a18ux04/index.php/Homepage_controller/dm">KLIK HIER</a></button>
 </body>
 
