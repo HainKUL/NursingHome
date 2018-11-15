@@ -3,22 +3,35 @@
     /* so remove margins and padding on all elements */
     margin: 0;
     padding: 0;
-    background-color: yellow;
-
-
 }
+
+.container{
+    background-color: lemonchiffon;
+}
+
 
 #title {
-    font-size: 60px;
+    font-size: 80px;
     display: flex;
     flex-direction: column;
+    font-family: sans-serif;
 }
 
+
 #text {
-    font-size: 60px;
+    font-size: 50px;
     display: flex;
     flex-direction: column;
-    margin-top:60px;
+    font-family: serif;
+    background-color: lemonchiffon;
+}
+
+#category {
+    font-size: 40px;
+    display: flex;
+    flex-direction: column;
+    font-family: serif;
+    background-color: lemonchiffon;
 }
 
 #button{
@@ -26,14 +39,58 @@
     display: flex;
     flex-direction: column;
     margin-top:40px;
+    align-content: center;
+    text-align:center;
+    border: thin solid silver;
+    border-radius: 5px;
+}
+
+#button_quit{
+    font-size: 40px;
+    display: flex;
+    flex-direction: column;
+    border: thin solid silver;
+    border-radius: 5px;
+}
+
+.answer_button{
+    font-size: 50px;
+    display: flex;
+    flex-direction: column;
+    border: thin solid silver;
+    border-radius: 5px;
+}
+
+#button_div{
+    text-align:center;
+    margin:auto;
+    align-content: center;
+    display: flex;
+    justify-content: center;
+}
+
+#progress{
+    font-size: 40px;
+    display: flex;
+    flex-direction: column;
+    font-family: sans-serif;
+    margin-top: 30px;
+}
+
+#return{
+    font-size: 25px;
+    display: flex;
+    flex-direction: column;
+    font-family: sans-serif;
+    margin-top: 30px;
 }
 
 footer{
     display: flex;
     flex-direction: column;
-
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
+    background-color: lemonchiffon;
 }

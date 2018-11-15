@@ -15,8 +15,20 @@ class Questionnaire_controller extends CI_Controller{
 
         $data = array_merge($data1, $data2);//merge two array
 
+        // text
+        $data['page_title'] = 'Care for you';
+        $data['button_text'] = "Quit!";
+        $data['agree'] = 'How do you agree with the following statement:';
+
+        $data['button_never'] = "Quit!";
+        $data['button_rarely'] = "Quit!";
+        $data['button_sometimes'] = "Quit!";
+        $data['button_mostly'] = "Quit!";
+        $data['button_always'] = "Quit!";
+
         //pass data to the view(the page)
         $this->parser->parse('questionnaire',$data);//variables sent to html content
+
 	}
 
     public function forgot(){
