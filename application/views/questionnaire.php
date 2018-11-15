@@ -14,7 +14,7 @@
       </script> -->
     <script type="text/javascript">
         function reload(id) {
-            let url="http://localhost:8888/a18ux04/index.php/Questionnaire_controller/update/".concat(id);
+            let url="http://localhost/a18ux04/index.php/Questionnaire_controller/update/".concat(id);
             window.location.href = url;
         }
 
