@@ -53,7 +53,7 @@ class Homepage_controller extends CI_Controller{
     public function standard() {
 
         $data['page_title']='De Standard nieuwspagina';
-        $data['content_title_1']='De Standard';
+        $data['content_title_1']='De Standaard';
         $data['buttonBack']='Ik wil terug';
         $this->parser->parse('standard_view',$data);
     }
