@@ -6,7 +6,6 @@ class Homepage_controller extends CI_Controller{
         parent::__construct();
         $this->load->library('parser');
         $this->load->helper('url');
-        $this->load->model('Menu_model');
     }
 
     public function home(){

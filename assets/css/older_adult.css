@@ -3,7 +3,7 @@
     /* so remove margins and padding on all elements */
     margin: 0;
     padding: 0;
-    background-color: lightgrey;
+    background-color: yellow;
 
 
 }
@@ -12,14 +12,12 @@
     font-size: 60px;
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 #text {
     font-size: 60px;
     display: flex;
     flex-direction: column;
-    align-items: center;
     margin-top:60px;
 }
 
@@ -27,14 +25,12 @@
     font-size: 80px;
     display: flex;
     flex-direction: column;
-    align-items: center;
     margin-top:40px;
 }
 
 footer{
     display: flex;
     flex-direction: column;
-    align-items: center;
 
     position: fixed;
     left: 0;
