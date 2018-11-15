@@ -183,16 +183,9 @@
     </tr>
 
     <tr>
-        <td>PASSWORD1</td>
+        <td>PASSWORD</td>
         <td>
-            <input type="text" name="password_1" maxlength="30" />
-        </td>
-    </tr>
-
-    <tr>
-        <td>PASSWORD2</td>
-        <td>
-            <input type="text" name="password_2" maxlength="30" />
+            <input type="text" name="password" maxlength="30" />
         </td>
     </tr>
 
