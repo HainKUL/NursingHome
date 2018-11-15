@@ -17,7 +17,6 @@ class Homepage_controller extends CI_Controller{
 
     public function residentHome(){
 
-        $data['menu_items'] = $this->Menu_model->get_menuitems('Nieuws');
         $data['page_title'] = 'UXWD home page';
         $data['content_title_1'] = 'residents homepage';
         $data['content_title_2'] = 'Welcome to the residents homepage';
@@ -36,16 +35,11 @@ class Homepage_controller extends CI_Controller{
         $this->parser->parse('Homepage_view', $data);
     }
     public function nieuws() {
-        $nieuws = $data3['nieuws']=$this->Menu_model->get_menuitems();
         $data['page_title']=' Nieuwspagina';
         $data['content_title_1']='Ontdek hier alle nieuwtjes van vandaag';
         $data['content_title_2']='Welke krant wilt u bekijken?';
         $data['buttonClickHere']='KLIK HIER';
         $data['buttonBack']='Ik wil terug';
-
-        $data3['nieuws'] = $nieuws;
-        $data['content'] = $this->parser->parse('news_view', $data3, true);
-        $data['menu_items'] = $this->Menu_model->get_menuitems('nieuws');
         $this->parser->parse('news_view',$data);
     }
 
