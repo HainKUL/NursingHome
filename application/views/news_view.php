@@ -81,14 +81,16 @@
     <!--<p class = "content1"><img src="http://localhost:8888/a18ux04/assets/photos/hln.jpg" class="image1">Het Laatste Nieuws</p>
     <button type="button" class="button1"><a class="link1" href="http://localhost:8888/a18ux04/index.php/Homepage_controller/hln">KLIK HIER</a></button>
 -->
-    <img src="http://localhost:8888/a18ux04/assets/photos/nieuwsblad.jpg" class="image1">
-    <button type="button" class="button1"><a class="link1" href="http://localhost:8888/a18ux04/index.php/Homepage_controller/nieuwsblad">KLIK HIER</a></button>
+    <img src="assets/photos/nieuwsblad.jpg" class="image1">
+    <button type="button" class="button1"><a class="link1" href="/index.php/Homepage_controller/nieuwsblad">KLIK HIER</a></button>
 
     <img src="http://localhost:8888/a18ux04/assets/photos/standaard.jpg" class="image2">
-    <button type="button" class="button1"><a class="link1" href="http://localhost:8888/a18ux04/index.php/Homepage_controller/standard">KLIK HIER</a></button>
+    <button type="button" class="button1"><a class="link1" href="/index.php/Homepage_controller/standard">KLIK HIER</a></button>
 
     <img src="http://localhost:8888/a18ux04/assets/photos/demorgen.png" class="image3" >
-    <button type="button"class="button1" ><a class="link1" href="http://localhost:8888/a18ux04/index.php/Homepage_controller/dm">KLIK HIER</a></button>
+    <button type="button"class="button1" ><a class="link1" href="/index.php/Homepage_controller/dm">KLIK HIER</a></button>
+
+    <button type="button"class="button1" ><a class="link1" href="/index.php/Homepage_controller/residentHome">Ga terug</a></button>
 </body>
 
 </html>
