@@ -20,11 +20,11 @@ class Questionnaire_controller extends CI_Controller{
         $data['button_text'] = "Quit!";
         $data['agree'] = 'How do you agree with the following statement:';
 
-        $data['button_never'] = "Quit!";
-        $data['button_rarely'] = "Quit!";
-        $data['button_sometimes'] = "Quit!";
-        $data['button_mostly'] = "Quit!";
-        $data['button_always'] = "Quit!";
+        $data['button_never'] = "Never";
+        $data['button_rarely'] = "Rarely";
+        $data['button_sometimes'] = "Sometimes";
+        $data['button_mostly'] = "Mostly";
+        $data['button_always'] = "Always";
 
         //pass data to the view(the page)
         $this->parser->parse('questionnaire',$data);//variables sent to html content
