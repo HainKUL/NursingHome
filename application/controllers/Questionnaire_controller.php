@@ -5,19 +5,29 @@ class Questionnaire_controller extends CI_Controller{
 		parent::__construct();
 		$this->load->library('parser');
 		$this->load->helper('url');
-        $this->load->model('question_model');
+        $this->load->model('Question_model');
 	}
 
 	public function question(){
-        $data1['jslibs_to_load'] = array('jquery-3.3.1.min.js','myjs.js');
+        $data1['jslibs_to_load'] = array('jquery-3.3.1.min.js');
+        //$data1['jslibs_to_load'] = array('jquery-3.3.1.min.js','myjs.js');
+
         //load data(question info) to the controller
-        $data2 = $this->question_model->get_questions();//id,category,question
+        $data2 = $this->Question_model->get_questions();//id,category,question
 
         $data = array_merge($data1, $data2);//merge two array
-
         //pass data to the view(the page)
         $this->parser->parse('questionnaire',$data);//variables sent to html content
 	}
+
+	public function update($idQuestion)
+    {
+        //send confimation to db;
+        $this->Question_model->send_confirmation($idQuestion);
+
+        //reload page
+        $this->question();
+    }
 
     public function forgot(){
         $data['page_title'] = 'Wachtwoord Vergeten';

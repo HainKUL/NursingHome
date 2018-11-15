@@ -15,6 +15,12 @@
 
     <!--  <script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js">
       </script> -->
+    <script type="text/javascript">
+        function reload(id) {
+            let url="http://localhost/a18ux04/index.php/Questionnaire_controller/update/".concat(id);
+            window.location.href = url;
+        }
+    </script>
 </head>
 
 <body>
@@ -24,25 +30,26 @@
     </div>
     <button id="quit">Quit</button>
 
-
 </header>
 <main>
 	<section>
         <h4>How do you agree with the following statement:</h4>
         <h1>{question}</h1>
         <div>
-            <button id="never">Never</button>
-            <button id="rarely" > Rarely </button>
-            <button id="sometimes">Sometimes</button>
-            <button id="mostly">Mostly</button>
-            <button id="always">Always</button>
+            <button id="never" onclick="reload({progress})">Never</button>
+            <button id="rarely" onclick="reload({progress})"> Rarely </button>
+            <button id="sometimes" onclick="reload({progress})">Sometimes</button>
+            <button id="mostly" onclick="reload({progress})">Mostly</button>
+            <button id="always" onclick="reload({progress})">Always</button>
         </div>
-        <h3>{progress}</h3>
+
+        <h3>{progress}/52</h3>
 	</section>
 	<aside>
         <a href="">Return</a>
 	</aside>
 </main>
+
 
 </body>
 </html>
