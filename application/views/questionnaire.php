@@ -6,6 +6,15 @@
     <meta charset="UTF-8" />
     <link href="https://fonts.googleapis.com/css?family=Dosis:400,500,600,700" rel="stylesheet">
 
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <!-- Custom CSS one for localhost, the other for on the server-->
+    <link href="http://localhost/a18ux04/assets/css/older_adult.css" rel="stylesheet" type="text/css"/>
+    <!--
+    <link href="<?=base_url() ?>assets/css/older_adult.css" rel="stylesheet" type="text/css"/> for on the actual site-->
+
     <?php if(isset($jslibs_to_load)) foreach ($jslibs_to_load as $jslib) : ?>
         <script src="<?= base_url()?>assets/js/<?=$jslib?>"></script>
     <?php endforeach; ?>
@@ -27,6 +36,8 @@
 </head>
 
 <body>
+
+
 <header>
     <div id="category">
         <h1>{category}</h1>
