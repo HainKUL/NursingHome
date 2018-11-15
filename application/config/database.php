@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> 'mysql:dbname=a18ux04;host=mysql.studev.groept.be',
-	'hostname' => '',
+	'hostname' => 'mysql.studev.groept.be',
 	'username' => 'a18ux04',
 	'password' => '1d2r3tezbm',
-	'database' => '',
+	'database' => 'a18ux04',
 	'dbdriver' => 'pdo',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
