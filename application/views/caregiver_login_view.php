@@ -46,7 +46,7 @@
 
 </form>
 
-<p>Forgot your password? <a href="/index.php/Caregiver_controller/forgot">Click Here!</a></p>
+<p>Forgot your password? <a href="forgot">Click Here!</a></p>
 
 
 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
