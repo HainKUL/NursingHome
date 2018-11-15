@@ -20,6 +20,12 @@
             let url="http://localhost/a18ux04/index.php/Questionnaire_controller/update/".concat(id);
             window.location.href = url;
         }
+
+        function residentHome() {
+            let url="http://localhost/a18ux04/index.php/Homepage_controller/residentHome"
+            window.location.href = url;
+        }
+
     </script>
 </head>
 
@@ -28,7 +34,7 @@
     <div id="category">
         <h1>{category}</h1>
     </div>
-    <button id="quit">Quit</button>
+    <button id="quit" onclick="residentHome()">Quit</button>
 
 </header>
 <main>
@@ -46,7 +52,7 @@
         <h3>{progress}/52</h3>
 	</section>
 	<aside>
-        <a href="">Return</a>
+        <a href="#">Return</a>
 	</aside>
 </main>
 
