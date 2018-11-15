@@ -42,6 +42,23 @@
         box-shadow: 0 5px #666;
         transform: translateY(4px);
     }
+    .button2
+    {
+        display: block;
+        margin: auto; /* put button in the middle */
+        padding: 10px 20px; /*make button bigger than text*/
+        font-size: 20px;
+        text-align: center;
+        color: #fff;
+        background-color: #d5d5d5;
+        border-radius: 15px;
+
+    }
+    .button2:active { /* to show button being pressed*/
+        background-color: grey;
+        box-shadow: 0 5px #666;
+        transform: translateY(4px);
+    }
     .link1{
         color: black;
         text-decoration: none;
@@ -75,22 +92,24 @@
 </style>
 
 <body>
-<p class ="titel1">{content_title_1}</p>
+<p class ="titel1">{content_title_1}<button type="button"class="button2" ><a class="link1" href="residentHome">{buttonBack}</a></button></p>
 <p class="titel2">{content_title_2}</p>
 
     <!--<p class = "content1"><img src="http://localhost:8888/a18ux04/assets/photos/hln.jpg" class="image1">Het Laatste Nieuws</p>
     <button type="button" class="button1"><a class="link1" href="http://localhost:8888/a18ux04/index.php/Homepage_controller/hln">KLIK HIER</a></button>
 -->
-    <img src="assets/photos/nieuwsblad.jpg" class="image1">
-    <button type="button" class="button1"><a class="link1" href="/index.php/Homepage_controller/nieuwsblad">KLIK HIER</a></button>
+
+
+    <img src="http://localhost:8888/a18ux04/assets/photos/nieuwsblad.jpg" class="image1">
+    <button type="button" class="button1"><a class="link1" href="nieuwsblad">{buttonClickHere}</a></button>
 
     <img src="http://localhost:8888/a18ux04/assets/photos/standaard.jpg" class="image2">
-    <button type="button" class="button1"><a class="link1" href="/index.php/Homepage_controller/standard">KLIK HIER</a></button>
+    <button type="button" class="button1"><a class="link1" href="standard">{buttonClickHere}</a></button>
 
     <img src="http://localhost:8888/a18ux04/assets/photos/demorgen.png" class="image3" >
-    <button type="button"class="button1" ><a class="link1" href="/index.php/Homepage_controller/dm">KLIK HIER</a></button>
+    <button type="button"class="button1" ><a class="link1" href="dm">{buttonClickHere}</a></button>
 
-    <button type="button"class="button1" ><a class="link1" href="/index.php/Homepage_controller/residentHome">Ga terug</a></button>
+
 </body>
 
 </html>

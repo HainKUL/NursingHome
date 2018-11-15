@@ -41,6 +41,9 @@ class Homepage_controller extends CI_Controller{
         $data['page_title']=' Nieuwspagina';
         $data['content_title_1']='Ontdek hier alle nieuwtjes van vandaag';
         $data['content_title_2']='Welke krant wilt u bekijken?';
+        $data['buttonClickHere']='KLIK HIER';
+        $data['buttonBack']='Ik wil terug';
+
         $data3['nieuws'] = $nieuws;
         $data['content'] = $this->parser->parse('news_view', $data3, true);
         $data['menu_items'] = $this->Menu_model->get_menuitems('nieuws');
@@ -50,17 +53,38 @@ class Homepage_controller extends CI_Controller{
     public function nieuwsblad() {
 
         $data['page_title']=' Het Nieuwsblad nieuwspagina';
+        $data['content_title_1']='Het Nieuwsblad';
+        $data['buttonBack']='Ik wil terug';
         $this->parser->parse('nieuwsblad_view',$data);
     }
     public function standard() {
 
         $data['page_title']='De Standard nieuwspagina';
+        $data['content_title_1']='De Standard';
+        $data['buttonBack']='Ik wil terug';
         $this->parser->parse('standard_view',$data);
     }
     public function dm() {
 
         $data['page_title']='De Morgen nieuwspagina';
+        $data['content_title_1']='De Morgen';
+        $data['buttonBack']='Ik wil terug';
         $this->parser->parse('dm_view',$data);
+    }
+
+    public function weathers() {
+
+        $data['page_title']='Het weer voor deze week';
+        $data['content_title_1']='Het weer voor deze week';
+        $data['buttonBack']='Ik wil terug';
+        $this->parser->parse('weathers',$data);
+    }
+    public function sportsnews() {
+
+        $data['page_title']='Sportnieuws';
+        $data['content_title_1']='Sportnieuws voor vandaag';
+        $data['buttonBack']='Ik wil terug';
+        $this->parser->parse('sportsnews',$data);
     }
 
 
