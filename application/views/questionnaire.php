@@ -23,7 +23,7 @@
       </script> -->
     <script type="text/javascript">
         function reload(id) {
-            let url="http://localhost:8888/a18ux04/index.php/Questionnaire_controller/update/".concat(id);
+            let url="http://localhost/a18ux04/index.php/Questionnaire_controller/update/".concat(id);
             window.location.href = url;
         }
 
@@ -37,33 +37,118 @@
 
 <body>
 
+<div class="container">
 
-<header>
-    <div id="category">
-        <h1>{category}</h1>
-    </div>
-    <button id="quit" onclick="residentHome()">Quit</button>
-
-</header>
-<main>
-	<section>
-        <h4>How do you agree with the following statement:</h4>
-        <h1>{question}</h1>
-        <div>
-            <button id="never" onclick="reload({progress})">{button_never}</button>
-            <button id="rarely" onclick="reload({progress})"> {button_rarely}</button>
-            <button id="sometimes" onclick="reload({progress})">{button_sometimes}</button>
-            <button id="mostly" onclick="reload({progress})">{button_mostly}</button>
-            <button id="always" onclick="reload({progress})">{button_always}</button>
+    <div class="row " id="top_row">
+        <div class="col-3">
+            <div id="category">
+                <p>{category}</p>
+            </div>
         </div>
 
-        <h3>{progress}/52</h3>
-	</section>
-	<aside>
-        <a href="#">Return</a>
-	</aside>
-</main>
+        <div class="col-6">
 
+        </div>
+
+        <div class="col-2" id ="test">
+            <button id="quit" onclick="residentHome()">Quit</button>
+        </div>
+
+    </div>
+
+    <div class="row" id="second_row">
+
+        <div class="col-3">
+        </div>
+
+        <div class="col-8">
+            <div id ="text">
+                <p>{agree}</p>
+            </div>
+        </div>
+
+        <div class="col-1" id ="test">
+        </div>
+
+    </div>
+
+    <div class="row" id="third_row">
+
+        <div class="col-3">
+        </div>
+
+        <div class="col-8">
+            <div id="text">
+                <p>{question}</p>
+            </div>
+        </div>
+
+        <div class="col-1" id ="test">
+        </div>
+    </div>
+
+    <div class="row" id="fourth_row">
+
+        <div class="col-2">
+            <button id="never" onclick="reload({progress})" class="answer_button" >{button_never}</button>
+        </div>
+
+        <div class="col-2">
+            <button id="rarely" onclick="reload({progress})" class="answer_button">{button_rarely}</button>
+        </div>
+
+
+        <div class="col-3">
+            <button id="sometimes" onclick="reload({progress})" class="answer_button">{button_sometimes}</button>
+        </div>
+
+        <div class="col-2">
+            <button id="mostly" onclick="reload({progress})" class="answer_button">{button_mostly}</button>
+        </div>
+
+        <div class="col-2">
+            <button id="always" onclick="reload({progress})" class="answer_button">{button_always}</button>
+        </div>
+
+        <div class="col-0">
+        </div>
+
+    </div>
+
+    <div class="row" id="fifth_row">
+
+        <div class="col-5">
+
+        </div>
+
+        <div class="col-7">
+            <div id="progress">
+                <p>{progress}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" id="last_row">
+
+
+
+        <div class="col-0">
+            <div id="return">
+                <a href="">Return</a>
+            </div>
+        </div>
+
+        <div class="col-12">
+
+        </div>
+    </div>
+
+
+    <aside>
+
+    </aside>
+</div>
 
 </body>
 </html>
+
