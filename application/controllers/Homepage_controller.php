@@ -11,7 +11,7 @@ class Homepage_controller extends CI_Controller{
     public function home(){
         $data['page_title'] = 'homepage';
         $data['content_title_1'] = 'Who are you?';
-        $data['content'] = "<button>resident</button><button>caregiver</button>";
+        $data['content'] = "<button>resident</button><a href=\"/index.php/Caregiver_controller/login\">caregiver</a>";
         $this->parser->parse('Homepage_view', $data);
     }
 
