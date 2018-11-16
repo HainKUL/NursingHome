@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Elderly Registration Form</title>
-    <link href="<?=base_url() ?>assets/css/main.css" rel="stylesheet" type="text/css"/>
+    <link href="<?=base_url() ?>assets/css/password_forgot.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
