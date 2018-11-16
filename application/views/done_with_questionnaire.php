@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <!-- Custom CSS one for localhost, the other for on the server-->
-    <link href="http://localhost:8888/a18ux04/assets/css/older_adult.css" rel="stylesheet" type="text/css"/>
+    <link href="http://localhost/a18ux04/assets/css/older_adult.css" rel="stylesheet" type="text/css"/>
     <!-- Custom CSS
     <link href="<?=base_url() ?>assets/css/older_adult.css" rel="stylesheet" type="text/css"/> for on the actual site-->
 
