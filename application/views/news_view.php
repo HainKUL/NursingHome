@@ -100,13 +100,13 @@
 -->
 
 
-    <img src="http://localhost/a18ux04/assets/photos/nieuwsblad.jpg" class="image1">
+    <img src="http://localhost:8888/a18ux04/assets/photos/nieuwsblad.jpg" class="image1">
     <button type="button" class="button1"><a class="link1" href="nieuwsblad">{buttonClickHere}</a></button>
 
-    <img src="http://localhost/a18ux04/assets/photos/standaard.jpg" class="image2">
+    <img src="http://localhost:8888/a18ux04/assets/photos/standaard.jpg" class="image2">
     <button type="button" class="button1"><a class="link1" href="standard">{buttonClickHere}</a></button>
 
-    <img src="http://localhost/a18ux04/assets/photos/demorgen.png" class="image3" >
+    <img src="http://localhost:8888/a18ux04/assets/photos/demorgen.png" class="image3" >
     <button type="button"class="button1" ><a class="link1" href="dm">{buttonClickHere}</a></button>
 
 
