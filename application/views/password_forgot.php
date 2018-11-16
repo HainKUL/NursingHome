@@ -4,7 +4,6 @@
 <html>
 <head>
     <title>{page_title}</title>
-    <!--<link href="http://localhost/a18ux04/assets/css/password_forgot.css" rel="stylesheet" type="text/css"/>-->
     <link href="<?=base_url() ?>assets/css/password_forgot.css" rel="stylesheet" type="text/css"/>
 </head>
 
