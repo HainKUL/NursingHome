@@ -95,8 +95,8 @@
 <p class ="titel1">{content_title_1}<button type="button"class="button2" ><a class="link1" href="residentHome">{buttonBack}</a></button></p>
 <p class="titel2">{content_title_2}</p>
 
-    <!--<p class = "content1"><img src="http://localhost:8888/a18ux04/assets/photos/hln.jpg" class="image1">Het Laatste Nieuws</p>
-    <button type="button" class="button1"><a class="link1" href="http://localhost:8888/a18ux04/index.php/Homepage_controller/hln">KLIK HIER</a></button>
+    <!--<p class = "content1"><img src="http://localhost/a18ux04/assets/photos/hln.jpg" class="image1">Het Laatste Nieuws</p>
+    <button type="button" class="button1"><a class="link1" href="http://localhost/a18ux04/index.php/Homepage_controller/hln">KLIK HIER</a></button>
 -->
 
 
