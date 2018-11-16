@@ -5,16 +5,16 @@
     padding: 0;
 }
 
-.container{
+.container-fluid{
     background-color: lemonchiffon;
+    height: 100vh;
 }
-
 
 #title {
     font-size: 80px;
     display: flex;
     flex-direction: column;
-    font-family: sans-serif;
+    font-family: Helvetica;
 }
 
 
@@ -22,9 +22,10 @@
     font-size: 50px;
     display: flex;
     flex-direction: column;
-    font-family: serif;
+    font-family: "Palatino";
     background-color: lemonchiffon;
 }
+
 
 #text_question{
     margin-top: 40px;
@@ -34,35 +35,39 @@
     font-size: 40px;
     display: flex;
     flex-direction: column;
-    font-family: serif;
+    font-family: "Palatino";
     background-color: lemonchiffon;
 }
 
 #button{
-    font-size: 80px;
+    font-size: 30px;
     display: flex;
     flex-direction: column;
     margin-top:40px;
     align-content: center;
     text-align:center;
     border: thin solid silver;
-    border-radius: 5px;
+    border-radius: 15px;
+    padding: 10px 20px;
 }
 
 #quit{
-    font-size: 40px;
+    font-size: 30px;
     display: flex;
     flex-direction: column;
     border: thin solid silver;
-    border-radius: 5px;
+    border-radius: 15px;
+    padding: 10px 20px;
 }
 
 .answer_button{
-    font-size: 50px;
+    font-size: 30px;
     display: flex;
     flex-direction: column;
     border: thin solid silver;
-    border-radius: 5px;
+    border-radius: 15px;
+    padding: 10px 20px;
+    width:200px;
 }
 
 #button_div{
@@ -77,16 +82,16 @@
     font-size: 40px;
     display: flex;
     flex-direction: column;
-    font-family: sans-serif;
-    margin-top: 30px;
+    font-family: "Palatino";
+    margin-top: 4%;
+    align-items: center;
 }
 
 #return{
     font-size: 25px;
     display: flex;
     flex-direction: column;
-    font-family: sans-serif;
-    margin-top: 30px;
+    font-family: "Palatino";
 }
 
 footer{

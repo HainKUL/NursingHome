@@ -37,7 +37,7 @@
 
 <body>
 
-<div class="container">
+<div class="container-fluid">
 
     <div class="row " id="top_row">
         <div class="col-8">
@@ -94,6 +94,9 @@
 
     <div class="row" id="fourth_row">
 
+        <div class="col-1">
+        </div>
+
         <div class="col-2">
             <button id="never" onclick="reload({progress})" class="answer_button" >{button_never}</button>
         </div>
@@ -103,7 +106,7 @@
         </div>
 
 
-        <div class="col-3">
+        <div class="col-2">
             <button id="sometimes" onclick="reload({progress})" class="answer_button">{button_sometimes}</button>
         </div>
 
@@ -115,18 +118,14 @@
             <button id="always" onclick="reload({progress})" class="answer_button">{button_always}</button>
         </div>
 
-        <div class="col-0">
+        <div class="col-1">
         </div>
 
     </div>
 
     <div class="row" id="fifth_row">
 
-        <div class="col-5">
-
-        </div>
-
-        <div class="col-7">
+        <div class="col-12">
             <div id="progress">
                 <p>{progress}/52</p>
             </div>
