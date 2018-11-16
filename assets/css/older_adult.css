@@ -18,12 +18,16 @@
 }
 
 
-#text {
+#text, #text_question {
     font-size: 50px;
     display: flex;
     flex-direction: column;
     font-family: serif;
     background-color: lemonchiffon;
+}
+
+#text_question{
+    margin-top: 40px;
 }
 
 #category {

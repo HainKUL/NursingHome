@@ -40,13 +40,13 @@
 <div class="container">
 
     <div class="row " id="top_row">
-        <div class="col-3">
+        <div class="col-8">
             <div id="category">
                 <p>{category}</p>
             </div>
         </div>
 
-        <div class="col-6">
+        <div class="col-2">
 
         </div>
 
@@ -58,30 +58,35 @@
 
     <div class="row" id="second_row">
 
-        <div class="col-3">
-        </div>
 
-        <div class="col-8">
-            <div id ="text">
+        <div class="col-12">
+            <div id ="text_question">
                 <p>{agree}</p>
             </div>
         </div>
+        <div class="col-0">
+        </div>
 
-        <div class="col-1" id ="test">
+
+
+        <div class="col-0" id ="test">
         </div>
 
     </div>
 
     <div class="row" id="third_row">
 
-        <div class="col-3">
-        </div>
 
         <div class="col-8">
             <div id="text">
                 <p>{question}</p>
             </div>
         </div>
+
+        <div class="col-3">
+        </div>
+
+
 
         <div class="col-1" id ="test">
         </div>
