@@ -14,12 +14,12 @@
       </script> -->
     <script type="text/javascript">
         function reload(id) {
-            let url="http://localhost/a18ux04/index.php/Questionnaire_controller/update/".concat(id);
+            let url="<?=base_url()?>index.php/Questionnaire_controller/update/".concat(id);
             window.location.href = url;
         }
 
         function residentHome() {
-            let url="http://localhost/a18ux04/index.php/Homepage_controller/residentHome"
+            let url="<?=base_url()?>index.php/Homepage_controller/residentHome"
             window.location.href = url;
         }
 
