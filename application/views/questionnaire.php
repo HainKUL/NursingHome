@@ -124,7 +124,7 @@
 
         <div class="col-7">
             <div id="progress">
-                <p>{progress}</p>
+                <p>{progress}/52</p>
             </div>
         </div>
     </div>
