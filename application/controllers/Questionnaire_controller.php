@@ -6,6 +6,7 @@ class Questionnaire_controller extends CI_Controller{
 		$this->load->library('parser');
 		$this->load->helper('url');
         $this->load->model('Question_model');
+        $this->load->library('session');
 	}
 
 	public function question(){

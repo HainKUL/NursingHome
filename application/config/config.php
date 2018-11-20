@@ -101,7 +101,7 @@ $config['charset'] = 'UTF-8';
 | setting this variable to TRUE (boolean).  See the user guide for details.
 |
 */
-$config['enable_hooks'] = FALSE;
+$config['enable_hooks'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------
@@ -121,6 +121,7 @@ $config['subclass_prefix'] = 'MY_';
 |--------------------------------------------------------------------------
 | Composer auto-loading
 |--------------------------------------------------------------------------
+|
 |
 | Enabling this setting will tell CodeIgniter to look for a Composer
 | package auto-loader script in application/vendor/autoload.php.

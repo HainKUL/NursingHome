@@ -13,6 +13,7 @@ class Caregiver_controller extends CI_Controller{
         parent::__construct();
         $this->load->library('parser');
         $this->load->helper('url');
+        $this->load->library('session');
         $this->load->model("login_model", "caregiver_login_view");
     }
 
@@ -32,7 +33,6 @@ class Caregiver_controller extends CI_Controller{
                 //if user not in database, so login is failed and back again to login page
             }
         }
-
         $this->load->view("caregiver_login_view");
     }
 
@@ -50,5 +50,6 @@ class Caregiver_controller extends CI_Controller{
         $this->parser->parse('registration', $data);
     }
 
-
 }
+
+
