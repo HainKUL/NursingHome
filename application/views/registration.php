@@ -243,7 +243,6 @@
             French
             <input type="radio" name="French" value="French">
         </td>
-        </td>
     </tr>
 
     <tr>
@@ -268,7 +267,6 @@
     </tr>
 </table>
 
-</form>
 
 </body>
 </html>

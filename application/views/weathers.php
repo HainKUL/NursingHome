@@ -31,10 +31,9 @@
 </style>
 
 <body>
-<p class ="titel1">{content_title_1}</p>
 <button type="button"class="button1" ><a class="link1" href="residentHome">{buttonBack}</a></button>
 
 <!--<iframe scrolling="no" width="334" height ="175" frameborder="0" marginwidth="0" marginheight="0" src="https://www.meteo.be/services/widget/.?postcode=3000&nbDay=2&type=4&lang=nl&bgImageId=1&bgColor=567cd2&scrolChoice=0&colorTempMax=A5D6FF&colorTempMin=ffffff"></iframe>-->
-<iframe scrolling="no" width="1950" height ="700" frameborder="0" marginwidth="0" marginheight="0" src="https://www.meteo.be/services/widget/.?postcode=3000&nbDay=2&type=11&lang=nl&bgImageId=1&bgColor=567cd2&scrolChoice=2&colorTempMax=ffffff&colorTempMin=ffffff"></iframe>
+<iframe scrolling="no" width="1800" height ="900" frameborder="0" marginwidth="0" marginheight="0" src="https://www.meteo.be/services/widget/.?postcode=3000&nbDay=2&type=11&lang=nl&bgImageId=1&bgColor=567cd2&scrolChoice=2&colorTempMax=ffffff&colorTempMin=ffffff"></iframe>
 </body>
 </html>

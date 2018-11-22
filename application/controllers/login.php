@@ -33,7 +33,8 @@ if ($result->num_rows == 1) { //TODO deal with multiple entries in db with same 
     echo "email not registered";
 }
 
-mysqli_close($db
+mysqli_close($db);
+
 
 
 
