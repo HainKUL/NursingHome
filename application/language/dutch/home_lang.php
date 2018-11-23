@@ -5,9 +5,9 @@
  * Date: 11/20/18
  * Time: 00:55
  */
-$lang['home_er'] = 'Edouard Remy';
-$lang['home_u'] = 'UXWD\'s demosite';
-$lang['home_page'] = 'Startpagina';
+
+$lang['home_page'] = 'Startpagina | GraceAge';
+$lang['home_er'] = 'Welkom bij Edouard Remy';
 $lang['home_who'] = 'Wie ben je?';
-$lang['home_resident'] = 'inwoner';
-$lang['home_caregiver'] = 'verzorger';
+$lang['home_resident'] = 'Inwoner';
+$lang['home_caregiver'] = 'Verzorger';

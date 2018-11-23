@@ -26,7 +26,7 @@ class Homepage_controller extends CI_Controller
         $data['content_title_1'] = 'residents homepage';
         $data['content_title_2'] = 'Welcome to the residents homepage';
         $data['content'] = 'content';
-        $this->parser->parse('Homepage_view', $data);
+        $this->parser->parse('olderadultmenu', $data);
     }
 
     public function caregiverHome()
