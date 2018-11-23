@@ -91,37 +91,12 @@
     <div class="row" id="fourth_row">
 
         <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
-            <input type="submit" name="never" value="never">
-            <input type="submit" name="rarely" value="rarely">
-            <input type="submit" name="sometimes" value="sometimes">
-            <input type="submit" name="mostly" value="mostly">
-            <input type="submit" name="always" value="always">
+            <input type="submit" name="never" value="never" id="never">
+            <input type="submit" name="rarely" value="rarely" id="rarely">
+            <input type="submit" name="sometimes" value="sometimes" id="sometimes">
+            <input type="submit" name="mostly" value="mostly" id="mostly">
+            <input type="submit" name="always" value="always" id="always">
         </form>
-
-        <div class="col-2">
-            <button id="never" onclick="reload({progress})" class="answer_button" >{button_never}</button>
-        </div>
-
-        <div class="col-2">
-            <button id="rarely" onclick="reload({2})" class="answer_button">{button_rarely}</button>
-        </div>
-
-
-        <div class="col-3">
-            <button id="sometimes" onclick="reload({3})" class="answer_button">{button_sometimes}</button>
-        </div>
-
-        <div class="col-2">
-            <button id="mostly" onclick="reload({4})" class="answer_button">{button_mostly}</button>
-        </div>
-
-        <div class="col-2">
-            <button id="always" onclick="reload({5})" class="answer_button">{button_always}</button>
-        </div>
-
-        <div class="col-0">
-        </div>
-
     </div>
 
     <div class="row" id="fifth_row">

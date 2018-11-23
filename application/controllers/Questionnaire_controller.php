@@ -70,8 +70,10 @@ class Questionnaire_controller extends CI_Controller{
         else if(isset($_GET['sometimes']))  $this->Question_model->send_confirmation($nextQuestion, 3, $_SESSION["idSubmission"]);
         else if(isset($_GET['mostly']))     $this->Question_model->send_confirmation($nextQuestion, 4, $_SESSION["idSubmission"]);
         else if(isset($_GET['always']))     $this->Question_model->send_confirmation($nextQuestion, 5, $_SESSION["idSubmission"]);
+        //TODO FIX PREVIOUS BUTTON (return)
+        //TODO FIX LAYOUT
+        //TODO catch refresh (don't go to next question on F5)
         //reload page
-        //TODO deal with end of questionnaire/category
         $this->question($nextQuestion);
     }
 
