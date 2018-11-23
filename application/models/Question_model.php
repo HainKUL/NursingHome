@@ -21,7 +21,7 @@ class Question_model extends CI_Model{
         $db = mysqli_connect('mysql.studev.groept.be', 'a18ux04', '1d2r3tezbm', 'a18ux04');
         // Check connection
         if ($db->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
+            die("Connection failed: " . $db->connect_error);
         }
         //TODO cleaner sql, fix "off by 1"-error
         $query = "INSERT INTO Responses (question, answer, submission) VALUES('$idQuestion', '$idAnswer', '$idSubmission')";
