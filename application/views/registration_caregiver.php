@@ -7,7 +7,11 @@
 </head>
 
 <body>
-<h3>ELDERLY REGISTRATION FORM</h3>
+<?php if(isset($_SESSION)) {
+    echo $this->session->flashdata('flash_data');
+} ?>
+
+<h3>CAREGIVER REGISTRATION FORM</h3>
 <form method="post" action="<?= site_url('Caregiver_controller/registration_caregiver') ?>">
     <table align="center" cellpadding = "10">
     registration_cargiver.php

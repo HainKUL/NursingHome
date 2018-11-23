@@ -100,19 +100,17 @@ class Caregiver_controller extends CI_Controller{
             if (empty($email)) { array_push($errors, "Email is required"); }
             if (empty($password_1)) { array_push($errors, "Password is required"); }
             if ($password_1 != $password_2) {
-                array_push($errors, "The two passwords do not match");
+                $this->session->set_flashdata('flash_data', 'the two passwords do not match');
+                redirect('Caregiver_controller/registration_caregiver');
             }
 
             // first check the database to make sure
             // a user does not already exist with the same username and/or email
             $user_check_query = "SELECT * FROM Caregivers WHERE email='$email' LIMIT 1";
             $result = mysqli_query($db, $user_check_query);
-            $user = mysqli_fetch_assoc($result);
-
-            if ($user) { // if user exists
-                if ($user['email'] === $email) {
-                    array_push($errors, "email already registered");
-                }
+            if($result->num_rows > 0) {
+                $this->session->set_flashdata('flash_data', 'Email is already registered');
+                redirect('Caregiver_controller/registration_caregiver');
             }
 
             // Finally, register user if there are no errors in the form

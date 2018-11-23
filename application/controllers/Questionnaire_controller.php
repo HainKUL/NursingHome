@@ -8,12 +8,13 @@ class Questionnaire_controller extends CI_Controller{
         $this->load->model('Question_model');
 	}
 
-	public function question(){
+	public function question($question){
         $data1['jslibs_to_load'] = array('jquery-3.3.1.min.js');
         //$data1['jslibs_to_load'] = array('jquery-3.3.1.min.js','myjs.js');
 
         //load data(question info) to the controller
-        $data2 = $this->Question_model->get_questions();//id,category,question
+        $idSubmission = 1;//TODO plug in submission
+        $data2 = $this->Question_model->get_question($idSubmission, $question);//submission, question
 
         $data = array_merge($data1, $data2);//merge two array
 
@@ -32,13 +33,24 @@ class Questionnaire_controller extends CI_Controller{
         $this->parser->parse('questionnaire',$data);//variables sent to html content
 	}
 
-	public function update($idQuestion)
+	public function update()
     {
-        //send confimation to db;
-        $this->Question_model->send_confirmation($idQuestion);
+        $idSubmission = 1;        //TODO replace last parameter with submission id
+        $db = mysqli_connect('mysql.studev.groept.be', 'a18ux04', '1d2r3tezbm', 'a18ux04');
+        $sql = "SELECT nextQuestion FROM Submissions WHERE idSubmissions = '$idSubmission';";
+        $result = $db->query($sql);
+        $row = $result->fetch_assoc();
+        $nextQuestion = $row['nextQuestion'];
 
+        //send confimation to db;
+        if(isset($_GET['never']))           $this->Question_model->send_confirmation($nextQuestion, 1, $idSubmission);
+        else if(isset($_GET['rarely']))     $this->Question_model->send_confirmation($nextQuestion, 2, $idSubmission);
+        else if(isset($_GET['sometimes']))  $this->Question_model->send_confirmation($nextQuestion, 3, $idSubmission);
+        else if(isset($_GET['mostly']))     $this->Question_model->send_confirmation($nextQuestion, 4, $idSubmission);
+        else if(isset($_GET['always']))     $this->Question_model->send_confirmation($nextQuestion, 5, $idSubmission);
         //reload page
-        $this->question();
+        //TODO deal with end of questionnaire/category
+        $this->question($nextQuestion);
     }
 
     public function forgot(){

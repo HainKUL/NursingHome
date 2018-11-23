@@ -1,16 +1,9 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: Haien
- * Date: 11/2/2018
- * Time: 12:55
- */
-
 class Question_model extends CI_Model{
 
-    public function get_questions(){
-        $query=$this->db->query("SELECT * FROM a18ux04.Questions WHERE isAnswered=0 LIMIT 1;");
-        foreach ($query->result_array() as $row)
+    public function get_question($idSubmission, $question){
+        $query=$this->db->query("SELECT * FROM a18ux04.Questions WHERE idQuestions = $question");
+        foreach ($query->result_array() as $row) //TODO de-stupify (foreach over 1 element??)
         {
             $data['question'] = $row['question'];
             $data['category'] = $row['category'];
@@ -19,27 +12,20 @@ class Question_model extends CI_Model{
         return $data;
     }
 
-    public function send_confirmation($idQuestion){//send info to db that the question has been answered
-        $hostname = 'mysql.studev.groept.be';
-        $username = "a18ux04";
-        $password = "1d2r3tezbm";
-        $dbname = "a18ux04";
+    public function send_confirmation($idQuestion, $idAnswer, $idSubmission){//send info to db that the question has been answered
         // Create connection
-        $conn = new mysqli($hostname, $username, $password, $dbname);
+        $db = mysqli_connect('mysql.studev.groept.be', 'a18ux04', '1d2r3tezbm', 'a18ux04');
         // Check connection
-        if ($conn->connect_error) {
+        if ($db->connect_error) {
             die("Connection failed: " . $conn->connect_error);
         }
-
-        $sql = "UPDATE `a18ux04`.`Questions` SET `isAnswered`='1' WHERE `idQuestions`=" . $idQuestion;
-
-        if ($conn->query($sql) === TRUE) {
-
-        } else {
-            echo "Error: " . $sql . "<br>" . $conn->error;
-        }
-
-        $conn->close();
+        //TODO cleaner sql, fix "off by 1"-error
+        $query = "INSERT INTO Responses (question, answer, submission) VALUES('$idQuestion', '$idAnswer', '$idSubmission')";
+        mysqli_query($db, $query);
+        $nextQuestion = $idQuestion + 1;
+        $sql = "UPDATE `a18ux04`.`Submissions` SET `nextQuestion`='$nextQuestion' WHERE `idSubmissions`='$idSubmission';";
+        mysqli_query($db, $sql);
+        $db->close();
     }
 }
 
