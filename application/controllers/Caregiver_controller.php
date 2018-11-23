@@ -72,6 +72,44 @@ class Caregiver_controller extends CI_Controller{
         $this->parser->parse('registration', $data);
     }
 
+
+public function add_note(){ //TODO extract method
+        $data['page_title'] = 'add note';
+        //session_start();
+
+        // initializing variables
+        $userid = "";
+        $note    = "";
+
+        // connect to the database
+        $db = mysqli_connect('mysql.studev.groept.be', 'a18ux04', '1d2r3tezbm', 'a18ux04');
+
+        if ($db->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        // ADD NOTE
+        if ($_POST) {
+            // receive all input values from the form
+            $userid = (int) $_POST['id'];
+            $note = mysqli_real_escape_string($db, $_POST['note']);
+
+            // form validation: ensure that the form is correctly filled ...
+            // by adding (array_push()) corresponding error unto $errors array
+            if (empty($userID) || empty($note)) { /*TODO*/ }
+
+            $query = "INSERT INTO Notes (noteText, author, context)
+                  VALUES('$note', '$userid', '0')";
+            mysqli_query($db, $query);
+            header('location: index.php');
+            redirect('Caregiver_controller/add_note');
+        }
+
+        $this->parser->parse('add_note', $data);
+
+    }
+
+
     public function registration_caregiver(){
         $data['page_title'] = 'registration_caregiver';
         //session_start();
