@@ -10,7 +10,7 @@
 <h3>ELDERLY REGISTRATION FORM</h3>
 
 <table align="center" cellpadding = "10">
-
+registration.php
     <tr>
         <td>FIRST NAME</td>
         <td><input type="text" name="firstname" maxlength="30"/>

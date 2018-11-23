@@ -20,7 +20,7 @@
         <h1>Caregiver Login </h1>
 
         <p>
-            <label>Username:</label>
+            <label>Email:</label>
             <input type="text" name="email" id="email" class="form-control" name="email" />
         </p>
         <p>
@@ -32,7 +32,7 @@
         </p>
 
 
-        <!--<input type="username" name="username" value="username" onFocus="field_focus(this, 'username');" onblur="field_blur(this, 'username');" class="username" />
+        <!--<input type="email" name="email" value="email" onFocus="field_focus(this, 'email');" onblur="field_blur(this, 'email');" class="email" />
 
         <input type="password" name="password" value="password" onFocus="field_focus(this, 'password');" onblur="field_blur(this, 'password');" class="password" />
 <a href="/a18ux04/index.php/Caregiver_controller/dashboard">dev login</a>

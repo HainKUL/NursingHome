@@ -1,6 +1,7 @@
 <?php
-
+session_start();
 class Questionnaire_controller extends CI_Controller{
+
 	public function __construct(){
 		parent::__construct();
 		$this->load->library('parser');
@@ -8,13 +9,35 @@ class Questionnaire_controller extends CI_Controller{
         $this->load->model('Question_model');
 	}
 
-	public function question(){
+	public function questionnaire_start($userID){
+
+	    $db = mysqli_connect('mysql.studev.groept.be', 'a18ux04', '1d2r3tezbm', 'a18ux04');
+        if ($db->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $query = "INSERT INTO Submissions (idResident, completed) VALUES('$userID', 0)";
+        mysqli_query($db, $query);
+        $_SESSION["idSubmission"] = mysqli_insert_id($db);
+        $id = $_SESSION["idSubmission"];
+        $sql = "SELECT nextQuestion FROM Submissions WHERE idSubmissions = '$id';";
+        $result = $db->query($sql);
+        $row = $result->fetch_assoc();
+        $nextQuestion = $row['nextQuestion'];
+
+        $this->question($nextQuestion, $_SESSION["idSubmission"]);
+	}
+
+	public function question($question){
         $data1['jslibs_to_load'] = array('jquery-3.3.1.min.js');
         //$data1['jslibs_to_load'] = array('jquery-3.3.1.min.js','myjs.js');
 
         //load data(question info) to the controller
-        $data2 = $this->Question_model->get_questions();//id,category,question
-
+        $data2 = $this->Question_model->get_question($_SESSION["idSubmission"], $question);//submission, question
+        if($data2 == 0) {
+            $this->Question_model->set_submission_complete($_SESSION["idSubmission"]);
+            redirect('/Homepage_controller/residentHome');
+        }
         $data = array_merge($data1, $data2);//merge two array
 
         // text
@@ -32,13 +55,26 @@ class Questionnaire_controller extends CI_Controller{
         $this->parser->parse('questionnaire',$data);//variables sent to html content
 	}
 
-	public function update($idQuestion)
+	public function update()
     {
-        //send confimation to db;
-        $this->Question_model->send_confirmation($idQuestion);
+        $db = mysqli_connect('mysql.studev.groept.be', 'a18ux04', '1d2r3tezbm', 'a18ux04');
+        $id = $_SESSION["idSubmission"];
+        $sql = "SELECT nextQuestion FROM Submissions WHERE idSubmissions = '$id';";
+        $result = $db->query($sql);
+        $row = $result->fetch_assoc();
+        $nextQuestion = $row['nextQuestion'];
 
+        //send confimation to db;
+        if(isset($_GET['never']))           $this->Question_model->send_confirmation($nextQuestion, 1, $_SESSION["idSubmission"]);
+        else if(isset($_GET['rarely']))     $this->Question_model->send_confirmation($nextQuestion, 2, $_SESSION["idSubmission"]);
+        else if(isset($_GET['sometimes']))  $this->Question_model->send_confirmation($nextQuestion, 3, $_SESSION["idSubmission"]);
+        else if(isset($_GET['mostly']))     $this->Question_model->send_confirmation($nextQuestion, 4, $_SESSION["idSubmission"]);
+        else if(isset($_GET['always']))     $this->Question_model->send_confirmation($nextQuestion, 5, $_SESSION["idSubmission"]);
+        //TODO FIX PREVIOUS BUTTON (return)
+        //TODO FIX LAYOUT
+        //TODO catch refresh (don't go to next question on F5)
         //reload page
-        $this->question();
+        $this->question($nextQuestion);
     }
 
     public function forgot(){
