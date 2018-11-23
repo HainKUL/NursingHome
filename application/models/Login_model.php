@@ -14,11 +14,7 @@ class Login_model extends CI_Model
         $this->load->database();
         $this->load->library('session');
     }
-    public function validate_user($data) {
-        $this->db->where('email', $data['email']);
-        $this->db->where('passwordHash', md5($data['password']));
-        return $this->db->get('Caregivers')->row();
-    }
+
     function __destruct() {
         $this->db->close();
     }
