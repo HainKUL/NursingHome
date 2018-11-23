@@ -36,7 +36,7 @@ class Questionnaire_controller extends CI_Controller{
         $data2 = $this->Question_model->get_question($_SESSION["idSubmission"], $question);//submission, question
         if($data2 == 0) {
             $this->Question_model->set_submission_complete($_SESSION["idSubmission"]);
-            redirect('/Caregiver_controller/login'); //TODO set to proper url
+            redirect('/Homepage_controller/residentHome');
         }
         $data = array_merge($data1, $data2);//merge two array
 
