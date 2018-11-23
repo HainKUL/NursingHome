@@ -13,7 +13,7 @@ class Questionnaire_controller extends CI_Controller{
 	public function questionnaire_start($userID){
 	    $db = mysqli_connect('mysql.studev.groept.be', 'a18ux04', '1d2r3tezbm', 'a18ux04');
         if ($db->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
+            die("Connection failed: " . $db->connect_error);
         }
 
         $query = "INSERT INTO Submissions (idResident, completed) VALUES('$userID', 0)";
