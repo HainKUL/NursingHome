@@ -1,6 +1,7 @@
 <?php
-
+session_start();
 class Questionnaire_controller extends CI_Controller{
+
 	public function __construct(){
 		parent::__construct();
 		$this->load->library('parser');
@@ -8,13 +9,31 @@ class Questionnaire_controller extends CI_Controller{
         $this->load->model('Question_model');
 	}
 
+	public function questionnaire_start($userID){
+
+	    $db = mysqli_connect('mysql.studev.groept.be', 'a18ux04', '1d2r3tezbm', 'a18ux04');
+        if ($db->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $query = "INSERT INTO Submissions (idResident )VALUES('$userID')";
+        mysqli_query($db, $query);
+        $_SESSION["idSubmission"] = mysqli_insert_id($db);
+        $id = $_SESSION["idSubmission"];
+        $sql = "SELECT nextQuestion FROM Submissions WHERE idSubmissions = '$id';";
+        $result = $db->query($sql);
+        $row = $result->fetch_assoc();
+        $nextQuestion = $row['nextQuestion'];
+
+        $this->question($nextQuestion, $_SESSION["idSubmission"]);
+	}
+
 	public function question($question){
         $data1['jslibs_to_load'] = array('jquery-3.3.1.min.js');
         //$data1['jslibs_to_load'] = array('jquery-3.3.1.min.js','myjs.js');
 
         //load data(question info) to the controller
-        $idSubmission = 1;//TODO plug in submission
-        $data2 = $this->Question_model->get_question($idSubmission, $question);//submission, question
+        $data2 = $this->Question_model->get_question($_SESSION["idSubmission"], $question);//submission, question
 
         $data = array_merge($data1, $data2);//merge two array
 
@@ -35,19 +54,19 @@ class Questionnaire_controller extends CI_Controller{
 
 	public function update()
     {
-        $idSubmission = 1;        //TODO replace last parameter with submission id
         $db = mysqli_connect('mysql.studev.groept.be', 'a18ux04', '1d2r3tezbm', 'a18ux04');
-        $sql = "SELECT nextQuestion FROM Submissions WHERE idSubmissions = '$idSubmission';";
+        $id = $_SESSION["idSubmission"];
+        $sql = "SELECT nextQuestion FROM Submissions WHERE idSubmissions = '$id';";
         $result = $db->query($sql);
         $row = $result->fetch_assoc();
         $nextQuestion = $row['nextQuestion'];
 
         //send confimation to db;
-        if(isset($_GET['never']))           $this->Question_model->send_confirmation($nextQuestion, 1, $idSubmission);
-        else if(isset($_GET['rarely']))     $this->Question_model->send_confirmation($nextQuestion, 2, $idSubmission);
-        else if(isset($_GET['sometimes']))  $this->Question_model->send_confirmation($nextQuestion, 3, $idSubmission);
-        else if(isset($_GET['mostly']))     $this->Question_model->send_confirmation($nextQuestion, 4, $idSubmission);
-        else if(isset($_GET['always']))     $this->Question_model->send_confirmation($nextQuestion, 5, $idSubmission);
+        if(isset($_GET['never']))           $this->Question_model->send_confirmation($nextQuestion, 1, $_SESSION["idSubmission"]);
+        else if(isset($_GET['rarely']))     $this->Question_model->send_confirmation($nextQuestion, 2, $_SESSION["idSubmission"]);
+        else if(isset($_GET['sometimes']))  $this->Question_model->send_confirmation($nextQuestion, 3, $_SESSION["idSubmission"]);
+        else if(isset($_GET['mostly']))     $this->Question_model->send_confirmation($nextQuestion, 4, $_SESSION["idSubmission"]);
+        else if(isset($_GET['always']))     $this->Question_model->send_confirmation($nextQuestion, 5, $_SESSION["idSubmission"]);
         //reload page
         //TODO deal with end of questionnaire/category
         $this->question($nextQuestion);
