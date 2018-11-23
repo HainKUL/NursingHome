@@ -3,6 +3,10 @@ class Question_model extends CI_Model{
 
     public function get_question($idSubmission, $question){
         $query=$this->db->query("SELECT * FROM a18ux04.Questions WHERE idQuestions = $question");
+        if(count($query->result_array()) == 0) {
+            return 0;
+        }
+
         foreach ($query->result_array() as $row) //TODO de-stupify (foreach over 1 element??)
         {
             $data['question'] = $row['question'];
@@ -27,5 +31,19 @@ class Question_model extends CI_Model{
         mysqli_query($db, $sql);
         $db->close();
     }
+
+
+     public function set_submission_complete($idSubmission){//send info to db that the question has been answered
+         // Create connection
+         $db = mysqli_connect('mysql.studev.groept.be', 'a18ux04', '1d2r3tezbm', 'a18ux04');
+         // Check connection
+         if ($db->connect_error) {
+             die("Connection failed: " . $conn->connect_error);
+         }
+         //TODO cleaner sql, fix "off by 1"-error
+         $sql = "UPDATE `a18ux04`.`Submissions` SET `completed`='1' WHERE `idSubmissions`='$idSubmission';";
+         mysqli_query($db, $sql);
+         $db->close();
+     }
 }
 

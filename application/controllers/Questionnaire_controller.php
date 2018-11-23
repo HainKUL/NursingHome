@@ -16,7 +16,7 @@ class Questionnaire_controller extends CI_Controller{
             die("Connection failed: " . $conn->connect_error);
         }
 
-        $query = "INSERT INTO Submissions (idResident )VALUES('$userID')";
+        $query = "INSERT INTO Submissions (idResident, completed) VALUES('$userID', 0)";
         mysqli_query($db, $query);
         $_SESSION["idSubmission"] = mysqli_insert_id($db);
         $id = $_SESSION["idSubmission"];
@@ -34,7 +34,10 @@ class Questionnaire_controller extends CI_Controller{
 
         //load data(question info) to the controller
         $data2 = $this->Question_model->get_question($_SESSION["idSubmission"], $question);//submission, question
-
+        if($data2 == 0) {
+            $this->Question_model->set_submission_complete($_SESSION["idSubmission"]);
+            redirect('/Caregiver_controller/login'); //TODO set to proper url
+        }
         $data = array_merge($data1, $data2);//merge two array
 
         // text
