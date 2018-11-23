@@ -6,12 +6,13 @@ class Homepage_controller extends CI_Controller{
         parent::__construct();
         $this->load->library('parser');
         $this->load->helper('url');
+        $this->load->library('session');
     }
 
     public function home(){
         $data['page_title'] = 'homepage';
-        $data['content_title_1'] = 'Who are you?';
-        $data['content'] = "<button>resident</button><a href=\"/a18ux04/index.php/Caregiver_controller/login\">caregiver</a>";
+        #$data['content_title_1'] = 'Who are you?';
+        #$data['content'] = "<button>resident</button><a href=\"/a18ux04/index.php/Caregiver_controller/login\">caregiver</a>";
         $this->parser->parse('Homepage_view', $data);
     }
 

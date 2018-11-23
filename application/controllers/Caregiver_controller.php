@@ -13,6 +13,7 @@ class Caregiver_controller extends CI_Controller{
         parent::__construct();
         $this->load->library('parser');
         $this->load->helper('url');
+        $this->load->library('session');
         $this->load->model("login_model", "caregiver_login_view");
         $this->load->database();
         $this->load->library('session');
@@ -53,7 +54,6 @@ class Caregiver_controller extends CI_Controller{
             }
             mysqli_close($db);
         }
-
         $this->load->view("caregiver_login_view");
     }
 
@@ -72,6 +72,7 @@ class Caregiver_controller extends CI_Controller{
         $this->parser->parse('registration', $data);
     }
 
+}
 
 public function add_note(){ //TODO extract method
         $data['page_title'] = 'add note';
