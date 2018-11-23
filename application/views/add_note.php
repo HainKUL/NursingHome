@@ -24,7 +24,7 @@
         <tr>
             <td>NOTE</td>
             <td>
-                <input type="text" name="note" maxlength="100" /> //TODO change to db max, define somewhere
+                <input type="text" name="note" maxlength="1023" />
             </td>
         </tr>
 

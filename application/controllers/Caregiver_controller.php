@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Weihao
- * Date: 11/8/18
- * Time: 17:36
- */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Caregiver_controller extends CI_Controller{

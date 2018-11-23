@@ -9,8 +9,8 @@ class Questionnaire_controller extends CI_Controller{
         $this->load->model('Question_model');
 	}
 
-	public function questionnaire_start($userID){
 
+	public function questionnaire_start($userID){
 	    $db = mysqli_connect('mysql.studev.groept.be', 'a18ux04', '1d2r3tezbm', 'a18ux04');
         if ($db->connect_error) {
             die("Connection failed: " . $conn->connect_error);
@@ -24,9 +24,9 @@ class Questionnaire_controller extends CI_Controller{
         $result = $db->query($sql);
         $row = $result->fetch_assoc();
         $nextQuestion = $row['nextQuestion'];
-
         $this->question($nextQuestion, $_SESSION["idSubmission"]);
 	}
+
 
 	public function question($question){
         $data1['jslibs_to_load'] = array('jquery-3.3.1.min.js');
@@ -65,17 +65,21 @@ class Questionnaire_controller extends CI_Controller{
         $nextQuestion = $row['nextQuestion'];
 
         //send confimation to db;
+        $submit = 1;
         if(isset($_GET['never']))           $this->Question_model->send_confirmation($nextQuestion, 1, $_SESSION["idSubmission"]);
         else if(isset($_GET['rarely']))     $this->Question_model->send_confirmation($nextQuestion, 2, $_SESSION["idSubmission"]);
         else if(isset($_GET['sometimes']))  $this->Question_model->send_confirmation($nextQuestion, 3, $_SESSION["idSubmission"]);
         else if(isset($_GET['mostly']))     $this->Question_model->send_confirmation($nextQuestion, 4, $_SESSION["idSubmission"]);
         else if(isset($_GET['always']))     $this->Question_model->send_confirmation($nextQuestion, 5, $_SESSION["idSubmission"]);
+        else $submit = 0;
         //TODO FIX PREVIOUS BUTTON (return)
         //TODO FIX LAYOUT
         //TODO catch refresh (don't go to next question on F5)
         //reload page
-        $this->question($nextQuestion);
+        if($submit == 1) $this->question($nextQuestion);
+        else $this->question($nextQuestion - 2);
     }
+
 
     public function forgot(){
         $data['page_title'] = 'Wachtwoord Vergeten';
@@ -84,6 +88,7 @@ class Questionnaire_controller extends CI_Controller{
         $data['button_text'] = "<button id='button'>Verstuur e-mail!</button>";
         $this->parser->parse('password_forgot', $data);
     }
+
 
     public function done(){
         $data['page_title'] = 'Klaar!';

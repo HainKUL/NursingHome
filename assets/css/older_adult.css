@@ -18,7 +18,7 @@
 }
 
 
-#text {
+#text, #text_question {
     font-size: 50px;
     display: flex;
     flex-direction: column;

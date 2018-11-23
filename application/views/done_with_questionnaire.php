@@ -25,14 +25,15 @@
 
     <div class="row" id="top_row">
 
-        <div class="col-2">
-        </div>
 
         <div class="col-8">
 
             <div id="title">
                 <p>{head_message}</p>
             </div>
+
+        <div class="col-2">
+        </div>
 
         </div>
 
@@ -43,9 +44,6 @@
 
     <div class="row">
 
-        <div class="col-2">
-        </div>
-
         <div class="col-10">
 
             <div id="text">
@@ -54,6 +52,11 @@
             </div>
         </div>
 
+        <div class="col-2">
+        </div>
+
+
+
         <div class="col-0">
         </div>
 
@@ -61,12 +64,14 @@
 
     <div class="row">
 
-        <div class="col-4">
-        </div>
-
         <div class="col-6">
             <button id="button_done" href="#">{button_text}</button>
         </div>
+
+        <div class="col-4">
+        </div>
+
+
 
         <div class="col-2">
         </div>
