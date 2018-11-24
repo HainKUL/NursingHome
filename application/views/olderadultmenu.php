@@ -4,6 +4,8 @@
 <html lang="en">
 <head>
     <title>{page_title}</title>
+    <link rel="icon" href="<?=base_url()?>/assets/photos/favicon.png" type="image/gif" sizes="16x16">
+
     <link href="assets/css/older_adult.css" rel="stylesheet" type="text/css"/>
     <!-- Required meta tags -->
     <meta charset="utf-8">
