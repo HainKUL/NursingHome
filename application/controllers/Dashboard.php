@@ -10,7 +10,7 @@ class Dashboard extends CI_Controller
 {
     function __construct() {
         parent::__construct();
-
+        $this->load->library('session');
         //if(empty($this->session->userdata('idCaregivers'))) {
         //    $this->session->set_flashdata('flash_data', 'You don\'t have access!');
         //    redirect('Caregiver_controller/login');

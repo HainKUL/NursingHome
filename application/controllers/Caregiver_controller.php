@@ -47,7 +47,6 @@ class Caregiver_controller extends CI_Controller{
             }
             mysqli_close($db);
         }
-
         $this->load->view("caregiver_login_view");
     }
 
