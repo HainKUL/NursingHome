@@ -11,9 +11,13 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <!-- Custom CSS-->
+    <select onchange="javascript:window.location.href='<?php echo base_url(); ?>MultiLanguageSwitcher/switcher/'+this.value;">
+        <option value="english" <?php if($this->session->userdata('site_lang') == 'english') echo 'selected="selected"'; ?>>English</option>
+        <option value="dutch" <?php if($this->session->userdata('site_lang') == 'dutch') echo 'selected="selected"'; ?>>Dutch</option>
+    </select>
 </head>
 <body>
-<div class="container">
+<div class="container-fluid">
 
 
     <div class="row">
@@ -22,9 +26,9 @@
         <div class="col-7 border-left border-top border-right">
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <a class="nav-item nav-link active" id="nav-questionnaire-tab" data-toggle="tab" href="#nav-Questionnaire" role="tab" aria-controls="nav-Questionnaire" aria-selected="true">Questionnaire</a>
-                    <a class="nav-item nav-link" id="nav-poll-tab" data-toggle="tab" href="#nav-Poll" role="tab" aria-controls="nav-Poll" aria-selected="false">Poll</a>
-                    <a class="nav-item nav-link" id="nav-personal-tab" data-toggle="tab" href="#nav-Personal" role="tab" aria-controls="nav-Personal" aria-selected="false">Personal</a>
+                    <a class="nav-item nav-link active" id="nav-questionnaire-tab" data-toggle="tab" href="#nav-Questionnaire" role="tab" aria-controls="nav-Questionnaire" aria-selected="true"><?php echo $this->lang->line('dash_questionnaire'); ?></a>
+                    <a class="nav-item nav-link" id="nav-poll-tab" data-toggle="tab" href="#nav-Poll" role="tab" aria-controls="nav-Poll" aria-selected="false"><?php echo $this->lang->line('dash_poll'); ?></a>
+                    <a class="nav-item nav-link" id="nav-personal-tab" data-toggle="tab" href="#nav-Personal" role="tab" aria-controls="nav-Personal" aria-selected="false"><?php echo $this->lang->line('dash_personal'); ?></a>
                 </div>
             </nav>
         </div>
@@ -38,21 +42,21 @@
 
     <div class="row">
         <div class="col-3 border-bottom border-left">
-            <h5>notes about Jan</h5>
-            <button type="button" class="btn btn-light">add</button>
+            <h5><p><?php echo $this->lang->line('dash_notes'); ?></p></h5>
+            <button type="button" class="btn btn-light"><p><?php echo $this->lang->line('dash_add'); ?></p></button>
             <div class="accordion" id="accordionNotes">
                 <div class="card">
                     <div class="card-header" id="headingToday">
                         <h5 class="mb-0">
                             <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseToday" aria-expanded="true" aria-controls="collapseToday">
-                                Today
+                                <p><?php echo $this->lang->line('dash_today'); ?></p>
                             </button>
                         </h5>
                     </div>
 
                     <div id="collapseToday" class="collapse show" aria-labelledby="headingToday" data-parent="#accordionNotes">
                         <div class="card-body">
-                            Today's notes go here...
+                            <p><?php echo $this->lang->line('dash_today_note'); ?></p>
                         </div>
                     </div>
                 </div>
@@ -60,13 +64,13 @@
                     <div class="card-header" id="headingWeek">
                         <h5 class="mb-0">
                             <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseWeek" aria-expanded="false" aria-controls="collapseWeek">
-                                This week
+                                <p><?php echo $this->lang->line('dash_this_week'); ?></p>
                             </button>
                         </h5>
                     </div>
                     <div id="collapseWeek" class="collapse" aria-labelledby="headingWeek" data-parent="#accordionNotes">
                         <div class="card-body">
-                            This weeks notes go here...
+                            <p><?php echo $this->lang->line('dash_this_week_note'); ?></p>
                         </div>
                     </div>
                 </div>
@@ -74,13 +78,13 @@
                     <div class="card-header" id="headingAll">
                         <h5 class="mb-0">
                             <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseAll" aria-expanded="false" aria-controls="collapseAll">
-                                Archive
+                                <p><?php echo $this->lang->line('dash_archive'); ?></p>
                             </button>
                         </h5>
                     </div>
                     <div id="collapseAll" class="collapse" aria-labelledby="headingAll" data-parent="#accordionNotes">
                         <div class="card-body">
-                            The notes archive goes here...
+                            <p><?php echo $this->lang->line('dash_archive_note'); ?></p>
                         </div>
                     </div>
                 </div>
@@ -101,7 +105,7 @@
                             <div class="card-header" id="headingProfile">
                                 <h5 class="mb-0">
                                     <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseProfile" aria-expanded="true" aria-controls="collapseProfile">
-                                        Jan's profile
+                                        <p><?php echo $this->lang->line('dash_profile'); ?></p>
                                     </button>
                                 </h5>
                             </div>
@@ -116,7 +120,7 @@
                             <div class="card-header" id="headingOutliers">
                                 <h5 class="mb-0">
                                     <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOutliers" aria-expanded="false" aria-controls="collapseOutliers">
-                                        Outliers
+                                        <p><?php echo $this->lang->line('dash_outliers'); ?></p>
                                     </button>
                                 </h5>
                             </div>
@@ -130,7 +134,7 @@
                             <div class="card-header" id="headingAnswers">
                                 <h5 class="mb-0">
                                     <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseAnswers" aria-expanded="false" aria-controls="collapseAnswers">
-                                        Full answers
+                                        <p><?php echo $this->lang->line('dash_answers'); ?></p>
                                     </button>
                                 </h5>
                             </div>
@@ -143,14 +147,14 @@
                     </div>
                 </div>
                 <div class="tab-pane fade" id="nav-Poll" role="tabpanel" aria-labelledby="nav-Poll-tab">Poll</div>
-                <div class="tab-pane fade" id="nav-Personal" role="tabpanel" aria-labelledby="nav-contact-tab">Personal</div>
+                <div class="tab-pane fade" id="nav-Personal" role="tabpanel" aria-labelledby="nav-contact-tab"><p><?php echo $this->lang->line('dash_personal'); ?></p></div>
             </div>
         </div>
         <div class="col-2 border-bottom border-right">
-            <h5>floor</h5>
+            <h5><p><?php echo $this->lang->line('dash_floor'); ?></p></h5>
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    floor
+                    <p><?php echo $this->lang->line('dash_floor'); ?></p>
                 </button>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuFloor">
                     <button class="dropdown-item" type="button">1</button>
@@ -161,7 +165,7 @@
                     <button class="dropdown-item" type="button">6</button>
                 </div>
             </div>
-            <h5>Person</h5>
+            <h5><p><?php echo $this->lang->line('dash_person'); ?></p></h5>
             <input type="search" class="form-control ds-input" id="search-input" placeholder="Search..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" style="position: relative; vertical-align: top;" dir="auto">
             <div class="btn-group-vertical" role="group" aria-label="Basic example">
                 <button type="button" class="btn btn-light">Jan</button>
@@ -183,6 +187,6 @@
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-<a href="<?= site_url('Caregiver_controller/login') ?>">Logout</a>
+<a href="<?= site_url('Caregiver_controller/login') ?>"><p><?php echo $this->lang->line('dash_logout'); ?></p></a>
 </body>
 </html>

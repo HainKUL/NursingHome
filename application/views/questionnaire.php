@@ -23,16 +23,21 @@
       </script> -->
     <script type="text/javascript">
         function reload(id) {
-            let url="<?=base_url()?>index.php/Questionnaire_controller/update/".concat(id);
+            let url="<?=base_url()?>".concat("index.php/Questionnaire_controller/update/").concat(id);
             window.location.href = url;
+            //console.log("<?=base_url()?>");
         }
 
         function residentHome() {
-            let url="<?=base_url()?>index.php/Questionnaire_controller/menu"
+            let url="<?=base_url()?>".concat("index.php/Homepage_controller/residentHome")
             window.location.href = url;
         }
 
     </script>
+    <select onchange="javascript:window.location.href='<?php echo base_url(); ?>MultiLanguageSwitcher/switcher/'+this.value;">
+        <option value="english" <?php if($this->session->userdata('site_lang') == 'english') echo 'selected="selected"'; ?>>English</option>
+        <option value="dutch" <?php if($this->session->userdata('site_lang') == 'dutch') echo 'selected="selected"'; ?>>Dutch</option>
+    </select>
 </head>
 
 <body>
@@ -80,40 +85,37 @@
             </div>
         </div>
 
-        <div class="row" id="fourth_row">
-            <div class="col-1">
-            </div>
-            <div class="col-2">
-                <button id="never" onclick="reload({progress})" class="answer_button" >{button_never}</button>
-            </div>
-            <div class="col-2">
-                <button id="rarely" onclick="reload({progress})" class="answer_button">{button_rarely}</button>
-            </div>
-            <div class="col-2">
-                <button id="sometimes" onclick="reload({progress})" class="answer_button">{button_sometimes}</button>
-            </div>
-            <div class="col-2">
-                <button id="mostly" onclick="reload({progress})" class="answer_button">{button_mostly}</button>
-            </div>
-            <div class="col-2">
-                <button id="always" onclick="reload({progress})" class="answer_button">{button_always}</button>
-            </div>
-            <div class="col-1">
-            </div>
+    <div class="row" id="fourth_row">
+
+        <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
+            <input type="submit" name="never" value="never" id="never">
+            <input type="submit" name="rarely" value="rarely" id="rarely">
+            <input type="submit" name="sometimes" value="sometimes" id="sometimes">
+            <input type="submit" name="mostly" value="mostly" id="mostly">
+            <input type="submit" name="always" value="always" id="always">
+        </form>
+    </div>
+
+    <div class="row" id="fifth_row">
+
+        <div class="col-5">
+
         </div>
 
-        <div class="row" id="fifth_row">
-            <div class="col-12">
-                <div id="progress">
-                    <p>{progress}/52</p>
-                </div>
+        <div class="col-7">
+            <div id="progress">
+                <p>{progress}/52</p>
             </div>
         </div>
-        <div class="row" id="last_row">
-            <div class="col-1">
-                <div id="return">
-                    <a href="">Return</a>
-                </div>
+    </div>
+
+    <div class="row" id="last_row">
+
+
+
+        <div class="col-0">
+            <div id="return">
+                <a href="">Return</a>
             </div>
             <div class="col-11">
             </div>
