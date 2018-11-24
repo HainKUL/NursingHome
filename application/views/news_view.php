@@ -47,7 +47,7 @@
     }
     .button2
     {
-        display: block;
+        display: inline-block;
         margin: auto; /* put button in the middle */
         padding: 10px 20px; /*make button bigger than text*/
         font-size: 20px;

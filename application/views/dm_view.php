@@ -20,6 +20,7 @@
          color: #fff;
          background-color: #d5d5d5;
          border-radius: 15px;
+         font-family: Helvetica;
 
      }
     .button1:active { /* to show button being pressed*/
