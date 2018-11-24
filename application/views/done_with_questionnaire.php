@@ -61,7 +61,7 @@
         <div class="row">
 
             <div class="col-12">
-                <a href="<?=base_url()?>index.php/Homepage_controller/residentHome\">
+                <a href="<?=base_url()?>index.php/Questionnaire_controller/menu\">
                     <button id="button" class="button_done">{button_text}</button>
                 </a>
             </div>

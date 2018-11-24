@@ -64,12 +64,10 @@ body {
 }
 
 #menu_text{
-    font-size: 50px;
     display: flex;
     flex-direction: column;
     font-family: Helvetica, Arial, sans-serif;
     color: var(--shadeOfBlack);
-    padding: 2.5vh; /*not good when screen gets smaller*/
 }
 
 #text, #text_question, #text_1, #text_2 {
@@ -151,8 +149,14 @@ body {
     left: 8px;
 }
 
+#menu_icon{
+    width: 64px;
+    height: 64px;
+}
+
 #quit_text, #logout_text{
     text-align: center;
+    color: var(--shadeOfBlack);
 }
 
 .answer_button{

@@ -28,7 +28,7 @@
         }
 
         function residentHome() {
-            let url="<?=base_url()?>index.php/Homepage_controller/residentHome"
+            let url="<?=base_url()?>index.php/Questionnaire_controller/menu"
             window.location.href = url;
         }
 
