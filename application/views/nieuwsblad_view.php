@@ -2,40 +2,37 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <meta name="keywords" content="UXWD's course demo" />
     <title>{page_title}</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="<?=base_url() ?>assets/css/features.css" rel="stylesheet" type="text/css"/>
     <select onchange="javascript:window.location.href='<?php echo base_url(); ?>MultiLanguageSwitcher/switcher/'+this.value;">
         <option value="english" <?php if($this->session->userdata('site_lang') == 'english') echo 'selected="selected"'; ?>>English</option>
         <option value="dutch" <?php if($this->session->userdata('site_lang') == 'dutch') echo 'selected="selected"'; ?>>Dutch</option>
     </select>
 </head>
-<style>
-    .titel1 {
-        font-size: 40px;
-        /*text-align: center;*/
-    }
-    .button1
-    {
-        display: block;
-        /*margin: auto; /* put button in the middle */
-        padding: 10px 20px; /*make button bigger than text*/
-        font-size: 20px;
-        text-align: center;
-        color: #fff;
-        background-color: #d5d5d5;
-        border-radius: 15px;
 
-    }
-    .button1:active { /* to show button being pressed*/
-        background-color: grey;
-        box-shadow: 0 5px #666;
-        transform: translateY(4px);
-    }
-</style>
 <body>
-<p class ="titel1">{content_title_1}</p>
-<button type="button"class="button1" ><a class="link1" href="nieuws">{buttonBack}</a></button>
-<iframe width="100%" height="750" frameborder="0" class="rssdog" src="https://www.rssdog.com/index.php?url=http%3A%2F%2Ffeeds.nieuwsblad.be%2Fnieuws%2Fsnelnieuws&mode=html&showonly=&maxitems=7&showdescs=1&desctrim=0&descmax=0&tabwidth=100%25&excltitle=1&linktarget=_blank&textsize=xx-large&bordercol=white&headbgcol=blue&headtxtcol=white&titlebgcol=white&titletxtcol=black&itembgcol=white&itemtxtcol=black&ctl=0"></iframe>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-10">
+        </div>
+        <div class="col-md-2" style="padding-bottom:10px" >
+            <a class="link1" href="news">
+                <button type="button" class ="btn btn-default button1 float-right" >
+                    {buttonBack}
+                </button>
+            </a>
+        </div>
+    </div>
+    <div class="row">
 
+        <div class = "col-md-12"">
+        <h1 class="h1">
+            {content_title_1}
+        </h1>
+    </div>
+<iframe width="100%" height="750" frameborder="0" class="rssdog" src="https://www.rssdog.com/index.php?url=http%3A%2F%2Ffeeds.nieuwsblad.be%2Fnieuws%2Fsnelnieuws&mode=html&showonly=&maxitems=7&showdescs=1&desctrim=0&descmax=0&tabwidth=100%25&excltitle=1&linktarget=_blank&textsize=xx-large&bordercol=%23FFF0D1&headbgcol=blue&headtxtcol=white&titlebgcol=%23FFF0D1&titletxtcol=%23282828&itembgcol=%23FFF0D1&itemtxtcol=%23282828&ctl=0"></iframe>
+</div>
 </body>
 </html>

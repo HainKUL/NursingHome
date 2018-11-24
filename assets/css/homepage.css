@@ -3,7 +3,6 @@ body {
     height: 100%;
 }
 body {
-    /*background-color: #fae2bf;*/
     height: 100%;
     font-family: Helvetica,Arial;
     align-items: center;
@@ -12,6 +11,15 @@ body {
     width: 100%;
 }
 
+.button1{
+    font-size: 20px;
+    font-family: Helvetica,Arial;
+    background-color: #d1c0bf;
+}
+.link1
+{
+    color: #221E1D;
+}
 
 
 

@@ -41,7 +41,7 @@ class Homepage_controller extends CI_Controller
         $this->parser->parse('Homepage_view', $data);
     }
 
-    public function nieuws()
+    public function news()
     {
         $data['page_title'] = ' Nieuwspagina';
         $data['content_title_1'] = 'Ontdek hier alle nieuwtjes van vandaag';
@@ -95,4 +95,5 @@ class Homepage_controller extends CI_Controller
         $data['buttonBack'] = 'Ik wil terug';
         $this->parser->parse('sportsnews', $data);
     }
+
 }
