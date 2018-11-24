@@ -24,7 +24,6 @@
         <h1><?php echo $this->lang->line('login_title'); ?> </h1>
 
         <p>
-            <label>Email:</label>
             <label><?php echo $this->lang->line('login_username'); ?>:</label>
             <input type="text" name="email" id="email" class="form-control" name="email" />
         </p>

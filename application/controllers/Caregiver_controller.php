@@ -66,7 +66,8 @@ class Caregiver_controller extends CI_Controller{
     }
 
 
-public function add_note(){ //TODO extract method
+
+    public function add_note(){ //TODO extract method
         $data['page_title'] = 'add note';
         //session_start();
 
@@ -99,7 +100,6 @@ public function add_note(){ //TODO extract method
         }
 
         $this->parser->parse('add_note', $data);
-
     }
 
 
