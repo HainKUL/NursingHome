@@ -51,6 +51,8 @@ class Questionnaire_controller extends CI_Controller{
         $data['button_mostly'] = "Mostly";
         $data['button_always'] = "Always";
 
+        $data['quit'] = "Quit!";
+
         //pass data to the view(the page)
         $this->parser->parse('questionnaire',$data);//variables sent to html content
 	}
@@ -95,7 +97,18 @@ class Questionnaire_controller extends CI_Controller{
         $data['head_message'] = 'Goed gedaan! 😊';
         $data['first_sentence'] = "U heeft al de vragen ingevuld!";
         $data['second_sentence'] = "Klik op de onderstaande knop om terug te gaan naar het beginscherm";
-        $data['button_text'] = "<button id='button'>Klik hier!</button>";
+        $data['button_text'] = "Klik hier!";
         $this->parser->parse('done_with_questionnaire', $data);
+    }
+
+    public function menu(){
+        $data['page_title'] = 'Menu';
+        $data['first'] = "Vragenlijst invullen";
+        $data['second'] = "Vragen van verzorgsters";
+        $data['third'] = "Nieuws van de dag";
+        $data['fourth'] = "TV gids";
+        $data['fifth'] = "Familiefoto's";
+        $data['logout'] = "Afmelden";
+        $this->parser->parse('olderadultmenu', $data);
     }
 }
