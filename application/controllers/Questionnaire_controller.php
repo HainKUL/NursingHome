@@ -1,13 +1,14 @@
 <?php
-session_start();
+//session_start();
 class Questionnaire_controller extends CI_Controller{
 
 	public function __construct(){
 		parent::__construct();
+        $this->load->library('session');
 		$this->load->library('parser');
 		$this->load->helper('url');
         $this->load->model('Question_model');
-        $this->load->library('session');
+
 	}
 
 
