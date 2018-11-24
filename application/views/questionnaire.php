@@ -92,18 +92,26 @@
         </form>
     </div>
 
-        <div class="row" id="fifth_row">
-            <div class="col-12">
-                <div id="progress">
-                    <p>{progress}/52</p>
-                </div>
+    <div class="row" id="fifth_row">
+
+        <div class="col-5">
+
+        </div>
+
+        <div class="col-7">
+            <div id="progress">
+                <p>{progress}/52</p>
             </div>
         </div>
-        <div class="row" id="last_row">
-            <div class="col-1">
-                <div id="return">
-                    <a href="">Return</a>
-                </div>
+    </div>
+
+    <div class="row" id="last_row">
+
+
+
+        <div class="col-0">
+            <div id="return">
+                <a href="">Return</a>
             </div>
             <div class="col-11">
             </div>
