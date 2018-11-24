@@ -72,7 +72,7 @@ class Caregiver_controller extends CI_Controller{
         $this->parser->parse('registration', $data);
     }
 
-}
+
 
 public function add_note(){ //TODO extract method
         $data['page_title'] = 'add note';
