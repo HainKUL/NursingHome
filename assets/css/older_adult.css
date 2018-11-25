@@ -156,13 +156,14 @@ body {
 }
 
 .answer_button{
-    font-size: 30px;
+    font-size: 5vh;
     display: flex;
     flex-direction: column;
     border: thin solid var(--shadeOfBlack);
     border-radius: 15px;
-    padding: 10px 20px;
-    width:200px;
+    padding: 2vw 4vh;
+    width: 15vw;
+    /*width:200px; */
     font-family: Helvetica, Arial, sans-serif;
     margin-top: 5%;
     background-color: var(--buttonColor);
