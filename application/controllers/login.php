@@ -1,7 +1,7 @@
 <?php
 
 // connect to the database
-$db = mysqli_connect(' mysql.studev.groept.be', 'a18ux04', '1d2r3tezbm', 'a18ux04');
+$db = mysqli_connect('mysql.studev.groept.be', 'a18ux04', '1d2r3tezbm', 'a18ux04');
 
 if (!$db) {
     die('Could not connect: ' . mysqli_error());

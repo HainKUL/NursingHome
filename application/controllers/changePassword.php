@@ -34,7 +34,7 @@ if (isset($_POST['reg_user'])) {
 
 
     $sql = "SELECT passwordHash FROM Caregivers WHERE email = $email;";
-    $result = $db->query($sql);
+    $result = $this->db->query($sql);
 
     if ($result->num_rows == 1) {
         $row = $result->fetch_assoc();
