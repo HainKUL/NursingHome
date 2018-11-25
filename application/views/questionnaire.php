@@ -87,22 +87,46 @@
 
     <div class="row" id="fourth_row">
 
-        <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
-            <input type="submit" name="never" value="never" id="never">
-            <input type="submit" name="rarely" value="rarely" id="rarely">
-            <input type="submit" name="sometimes" value="sometimes" id="sometimes">
-            <input type="submit" name="mostly" value="mostly" id="mostly">
-            <input type="submit" name="always" value="always" id="always">
-        </form>
+        <div class="col-1">
+        </div>
+        <div class="col-2">
+            <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
+                <input type="submit" name="never" value="never" id="never" class="answer_button">
+            </form>
+        </div>
+
+        <div class="col-2">
+            <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
+                <input type="submit" name="rarely" value="rarely" id="rarely" class="answer_button">
+            </form>
+        </div>
+
+        <div class="col-2">
+            <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
+                <input type="submit" name="sometimes" value="sometimes" id="sometime" class="answer_button">
+            </form>
+        </div>
+
+        <div class="col-2">
+            <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
+                <input type="submit" name="mostly" value="mostly" id="mostly" class="answer_button">
+            </form>
+        </div>
+
+        <div class="col-2">
+            <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
+                <input type="submit" name="always" value="always" id="always" class="answer_button">
+            </form>
+        </div>
+
+        <div class="col-1">
+        </div>
+
     </div>
 
     <div class="row" id="fifth_row">
 
-        <div class="col-5">
-
-        </div>
-
-        <div class="col-7">
+        <div class="col-12">
             <div id="progress">
                 <p>{progress}/52</p>
             </div>
@@ -113,7 +137,7 @@
 
 
 
-        <div class="col-0">
+        <div class="col-1">
             <div id="return">
                 <a href="">Return</a>
             </div>
