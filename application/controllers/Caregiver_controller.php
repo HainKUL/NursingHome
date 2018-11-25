@@ -63,6 +63,7 @@ class Caregiver_controller extends CI_Controller{
     public function registration(){
         $data['page_title'] = 'registration';
         $this->parser->parse('registration', $data);
+        //TODO link with backend...
     }
 
 
