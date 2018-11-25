@@ -11,6 +11,7 @@ class Face_Login_controller extends CI_Controller{
         parent::__construct();
         $this->load->library('parser');
         $this->load->helper('url');
+        $this->load->library('session');
         //$this->load->model('Question_model');
     }
 
