@@ -22,12 +22,7 @@
         font-size: 35px;
         /*text-align: center;*/
     }
-    .content1
-    {
 
-        font-size: 28px;
-        text-align: left;
-    }
     .button1
     {
         display: block;
