@@ -122,6 +122,7 @@ body {
     border-radius: 15px;
     padding: 10px 20px;
     background-color: var(--buttonColor);
+    min-width: 50vw;
 }
 
 .button_done{
@@ -144,15 +145,16 @@ body {
     background-color: var(--buttonColor);
 }
 
-#quit_icon, #logout_icon{
+#quit_icon, #logout_icon, #menu_icon{
     width: 64px;
     height: 64px;
     position: relative;
-    left: 8px;
+    left: 1vw;
 }
 
 #quit_text, #logout_text{
     text-align: center;
+    color: var(--shadeOfBlack);
 }
 
 .answer_button{
