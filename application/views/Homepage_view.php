@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8" />
+    <link rel="icon" href="<?=base_url()?>assets/photos/favicon.png" type="image/gif" sizes="16x16">
     <title><?php echo $this->lang->line('home_page'); ?></title>
 <!--    css file -->
     <!-- Bootstrap CSS -->
@@ -12,7 +13,7 @@
 <!-- language changer -->
     <select onchange="javascript:window.location.href='<?php echo base_url(); ?>MultiLanguageSwitcher/switcher/'+this.value;">
         <option value="english" <?php if($this->session->userdata('site_lang') == 'english') echo 'selected="selected"'; ?>>English</option>
-        <option value="dutch" <?php if($this->session->userdata('site_lang') == 'dutch') echo 'selected="selected"'; ?>>Dutch</option>
+        <option value="dutch" <?php if($this->session->userdata('site_lang') == 'dutch') echo 'selected="selected"'; ?>>Nederlands</option>
     </select>
 </head>
 
@@ -47,8 +48,8 @@
         <div class = "col-md-3">
         </div>
         <div class = "col-md-1">
-            <a href=<?=base_url()?>index.php/Homepage_controller/residenthome style="color: #221E1D">
-                <button type="button" class ="btn btn-default" style="font-size: 20px; font-family: Helvetica,Arial;background-color: #d1c0bf" >
+            <a href=<?=base_url()?>index.php/Homepage_controller/residenthome class="link1">
+                <button type="button" class ="btn btn-default button1"  >
                     <?php echo $this->lang->line('home_resident'); ?>
                 </button>
             </a>
@@ -57,8 +58,8 @@
         <div class = "col-md-4">
         </div>
         <div class = "col-md-1">
-         <a  href=<?=base_url()?>index.php/Caregiver_controller/login style="color: #221E1D">
-                <button type="button" class="btn btn-default" style="font-size: 20px; font-family: Helvetica,Arial;background-color: #d1c0bf">
+         <a  href=<?=base_url()?>index.php/Caregiver_controller/login class="link1">
+                <button type="button" class="btn btn-default button1" >
                 <?php echo $this->lang->line('home_caregiver'); ?>
                 </button>
          </a>
