@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Camera</title>
-    <link rel="icon" href="<?=base_url()?>/assets/photos/favicon.png" type="image/gif" sizes="16x16">
+    <link rel="icon" href="<?=base_url()?>assets/photos/favicon.png" type="image/gif" sizes="16x16">
 
     <style>
         video{

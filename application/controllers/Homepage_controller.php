@@ -23,8 +23,14 @@ class Homepage_controller extends CI_Controller
     {
 
         $data['page_title'] = 'UXWD home page';
-        $data['content_title_1'] = 'residents homepage';
-        $data['content_title_2'] = 'Welcome to the residents homepage';
+        $data['content_title_1'] = 'Vragenlijst';
+        $data['content_title_2'] = 'Extra vragen';
+        $data['content_title_3'] = 'Krant';
+        $data['content_title_4'] = 'Sportuitslagen';
+        $data['content_title_5'] = 'Het weer';
+        $data['logout'] = 'Klik om uit te loggen';
+
+
         $data['content'] = 'content';
         $this->parser->parse('olderadultmenu', $data);
     }

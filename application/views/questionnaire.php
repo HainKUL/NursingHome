@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Care for you</title>
-    <link rel="icon" href="<?=base_url()?>/assets/photos/favicon.png" type="image/gif" sizes="16x16">
+    <link rel="icon" href="<?=base_url()?>assets/photos/favicon.png" type="image/gif" sizes="16x16">
 
     <link href="<?= base_url()?>assets/css/older_adult.css" rel="stylesheet" type="text/css"/>
     <meta charset="UTF-8" />
