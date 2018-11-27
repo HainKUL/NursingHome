@@ -35,6 +35,7 @@
             {content_title_1}
         </h1>
     </div>
-<script src="//rss.bloople.net/?url=https%3A%2F%2Fsportmagazine.knack.be%2Fsport%2Ffeed.rss&showtitle=false&type=js"></script>
+    <iframe width="100%" height="750" frameborder="0" class="rssdog" src="https://www.rssdog.com/index.php?url=https%3A%2F%2Fsportmagazine.knack.be%2Fsport%2Ffeed.rss&mode=html&showonly=&maxitems=0&showdescs=1&desctrim=0&descmax=0&tabwidth=100%25&linktarget=_blank&textsize=xx-large&bordercol=transparent&headbgcol=%232585858&headtxtcol=%23ffffff&titlebgcol=%232585858&titletxtcol=%23000000&itembgcol=%232585858&itemtxtcol=%23000000&ctl=0"></iframe>
 </body>
+
 </html>

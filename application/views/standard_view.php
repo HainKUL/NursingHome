@@ -40,4 +40,9 @@
 <iframe width="100%" height="850" frameborder="0" class="rssdog" src="https://www.rssdog.com/index.php?url=http%3A%2F%2Fwww.standaard.be%2Frss%2Fsection%2F1f2838d4-99ea-49f0-9102-138784c7ea7c&mode=html&showonly=&maxitems=7&showdescs=1&desctrim=0&descmax=0&tabwidth=100%25&excltitle=1&linktarget=_blank&textsize=xx-large&bordercol=transparent&headbgcol=blue&headtxtcol=white&titlebgcol=%2585858&titletxtcol=%23282828&itembgcol=%2585858&itemtxtcol=%23282828&ctl=0"></iframe>
 </div>
 </body>
+<footer>
+    <p><?php echo $this->lang->line('text_copyright_footer'); ?>
+        <a href="#"><?php echo $this->lang->line('text_copyright_privacy'); ?></a> | <a href="#"><?php echo $this->lang->line('text_copyright_term'); ?></a>
+    </p>
+</footer>
 </html>
