@@ -34,122 +34,126 @@
         }
 
     </script>
+    <select onchange="javascript:window.location.href='<?php echo base_url(); ?>MultiLanguageSwitcher/switcher/'+this.value;">
+        <option value="english" <?php if($this->session->userdata('site_lang') == 'english') echo 'selected="selected"'; ?>>English</option>
+        <option value="dutch" <?php if($this->session->userdata('site_lang') == 'dutch') echo 'selected="selected"'; ?>>Dutch</option>
+    </select>
 </head>
 
 <body>
 
-<div class="container">
+<div class="container-fluid">
 
-    <div class="row " id="top_row">
-        <div class="col-3">
-            <div id="category">
-                <p>{category}</p>
+    <div id="card">
+
+        <div class="row " id="top_row">
+            <div class="col-8">
+                <div id="category">
+                    <p>{category}</p>
+                </div>
+            </div>
+            <div class="col-3">
+            </div>
+            <div class="col-1" id ="test">
+                <a href="menu">
+                    <img id="quit_icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAALfSURBVGhD7Zpfb9JQGMbxK6nfwms/hYBOHf678ELvdIsJqLTQliUDNqZmcdkmmmwCJiZeuItplkjYNF5vjsSR6M3reWoPPSt/7Kn10My+yRP68p73vM8PSgbtEnHEEYd8UIJOzV4onp1JWuejJHhyLP45AMGaFpkoippNlqqO1fHhvBO0rpWp06pFSmvME7zdT5fOOHZHx72kdQ6L997W6MfXZ5ESPMEbPDp2R8eJBvneeUqNcpXqxbJSNSsVe3ZoIICYSVmUS5tKhZmACQ1k5dE8ZdMW7V/XlAozMTsGiUFCljqQmzod5hZp/4bneRmx3m5+iQ5uFQZqykAA8fPbLh29bgWDYT1HG017D8B46+reEcGINIyPXnUgEAxtNuRgfEBAakEgGRifEJB6EEiE2WwONyhCjFojaDIg0DijkhDQ5ECgYYYDQECTBYFE4+wxCAQ0eRBIgAkCAYUD8qZKvR2Deh/y9PxBMRgIM98HYVBBQDAbHuAFnqRBdl/p1Nt+bEsaRIA4dmpJwvRBHB/wJA3SeclehSAgHgjb+LDnhvV65AWBJzUg4wwHgJkMiGiU/WEcatTPGkHqQWCQfd3wZVBirVoQGQgunz3qQIJAcIm9Iz4zykC6c8vBILgEmMPswkBdGcjBbYO61nIwCC7Wa/9cZj+bvTVlIP9aMQhCFuRzRqOtq+4VkPa0TtvTbr7DjiGeo9bOuKcReveuDZ5WkFKQtaki5VJmP1+6ZJCedvPyRdMWz1HDGp6jF3vwXFToIA2zcOwidmmKGbvDPux3NVrNGPZAHEO1KwZpzDjP5y+btniOGtbwHL3YA8fYE3uLF7ExOzSQ7nsGYxVo/eFvtebczb9s5OndgvtNuV3XaeuJm39c0W3xHLV2Xevn6MUePMfefA5mYjav/TVIVPR/gvCboWtZgz690CKl1Zxhg/i6GYrALWA0RFIps+LY9BfR/IcB87RjL4444pCKROIXinxKROhJMmAAAAAASUVORK5CYII=" alt="Quit">
+                    <p id="quit_text" href="menu">{quit}</p>
+                </a>
             </div>
         </div>
 
-        <div class="col-6">
-
-        </div>
-
-        <div class="col-2" id ="test">
-            <button id="quit" onclick="residentHome()">Quit</button>
-        </div>
-
-    </div>
-
-    <div class="row" id="second_row">
-
-        <div class="col-3">
-        </div>
-
-        <div class="col-8">
-            <div id ="text">
-                <p>{agree}</p>
+        <div class="row" id="second_row">
+            <div class="col-12">
+                <div id ="text_question">
+                    <!-- <p>{agree}</p> -->
+                </div>
             </div>
         </div>
 
-        <div class="col-1" id ="test">
-        </div>
-
-    </div>
-
-    <div class="row" id="third_row">
-
-        <div class="col-3">
-        </div>
-
-        <div class="col-8">
-            <div id="text">
-                <p>{question}</p>
+        <div class="row" id="third_row">
+            <!--
+            <div class="col-12">
+                <div id="text">
+                    <p>{question}</p>
+                </div>
+            </div>
+            -->
+            <div class="col-12">
+                <div id="text">
+                    <p>{question}</p>
+                </div>
             </div>
         </div>
 
-        <div class="col-1" id ="test">
-        </div>
-    </div>
+        <div class="row" id="fourth_row">
 
-    <div class="row" id="fourth_row">
-
-        <div class="col-2">
-            <button id="never" onclick="reload({progress})" class="answer_button" >{button_never}</button>
-        </div>
-
-        <div class="col-2">
-            <button id="rarely" onclick="reload({progress})" class="answer_button">{button_rarely}</button>
-        </div>
-
-
-        <div class="col-3">
-            <button id="sometimes" onclick="reload({progress})" class="answer_button">{button_sometimes}</button>
-        </div>
-
-        <div class="col-2">
-            <button id="mostly" onclick="reload({progress})" class="answer_button">{button_mostly}</button>
-        </div>
-
-        <div class="col-2">
-            <button id="always" onclick="reload({progress})" class="answer_button">{button_always}</button>
-        </div>
-
-        <div class="col-0">
-        </div>
-
-    </div>
-
-    <div class="row" id="fifth_row">
-
-        <div class="col-5">
-
-        </div>
-
-        <div class="col-7">
-            <div id="progress">
-                <p>{progress}</p>
+            <div class="col-1">
             </div>
+            <div class="col-2">
+                <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
+                    <input type="submit" name="never" value="never" id="never" class="answer_button">
+                </form>
+            </div>
+
+            <div class="col-2">
+                <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
+                    <input type="submit" name="rarely" value="rarely" id="rarely" class="answer_button">
+                </form>
+            </div>
+
+            <div class="col-2">
+                <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
+                    <input type="submit" name="sometimes" value="sometimes" id="sometime" class="answer_button">
+                </form>
+            </div>
+
+            <div class="col-2">
+                <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
+                    <input type="submit" name="mostly" value="mostly" id="mostly" class="answer_button">
+                </form>
+            </div>
+
+            <div class="col-2">
+                <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
+                    <input type="submit" name="always" value="always" id="always" class="answer_button">
+                </form>
+            </div>
+
+            <div class="col-1">
+            </div>
+
         </div>
-    </div>
 
-    <div class="row" id="last_row">
+        <div class="row" id="fifth_row">
 
-
-
-        <div class="col-0">
-            <div id="return">
-                <a href="">Return</a>
+            <div class="col-12">
+                <div id="progress">
+                    <p>{progress}/52</p>
+                </div>
             </div>
         </div>
 
-        <div class="col-12">
+        <div class="row" id="last_row">
 
+
+
+            <div class="col-1">
+                <div id="return">
+                    <a href="">Return</a>
+                </div>
+                <div class="col-11">
+                </div>
+            </div>
         </div>
     </div>
-
-
-    <aside>
-
-    </aside>
-</div>
 
 </body>
+<!--
+<footer>
+
+    icons from <a href="https://icons8.com">Icon pack by Icons8</a>
+
+</footer>
+-->
 </html>
 

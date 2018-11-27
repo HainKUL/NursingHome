@@ -4,7 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="keywords" content="UXWD's course demo" />
     <title>{page_title}</title>
-
+    <select onchange="javascript:window.location.href='<?php echo base_url(); ?>MultiLanguageSwitcher/switcher/'+this.value;">
+        <option value="english" <?php if($this->session->userdata('site_lang') == 'english') echo 'selected="selected"'; ?>>English</option>
+        <option value="dutch" <?php if($this->session->userdata('site_lang') == 'dutch') echo 'selected="selected"'; ?>>Dutch</option>
+    </select>
 </head>
 <style>
     .titel1 {
@@ -34,6 +37,10 @@
 <button type="button"class="button1" ><a class="link1" href="residentHome">{buttonBack}</a></button>
 
 <!--<iframe scrolling="no" width="334" height ="175" frameborder="0" marginwidth="0" marginheight="0" src="https://www.meteo.be/services/widget/.?postcode=3000&nbDay=2&type=4&lang=nl&bgImageId=1&bgColor=567cd2&scrolChoice=0&colorTempMax=A5D6FF&colorTempMin=ffffff"></iframe>-->
-<iframe scrolling="no" width="1800" height ="900" frameborder="0" marginwidth="0" marginheight="0" src="https://www.meteo.be/services/widget/.?postcode=3000&nbDay=2&type=11&lang=nl&bgImageId=1&bgColor=567cd2&scrolChoice=2&colorTempMax=ffffff&colorTempMin=ffffff"></iframe>
+<iframe scrolling="no" width="1800" height ="900" frameborder="0" marginwidth="0" marginheight="0" src="https://www.meteo.be/services/widget/.?postcode=3000&nbDay=2&type=11&lang=nl&bgImageId=1&bgColor=567cd2&scrolChoice=0&colorTempMax=ffffff&colorTempMin=ffffff"></iframe>
+<!--<script src="//www.powr.io/powr.js?external-type=html"></script>
+<div class="powr-weather" id="2ca6ab20_1542708558"></div>-->
+
+
 </body>
 </html>

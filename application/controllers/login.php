@@ -34,9 +34,3 @@ if ($result->num_rows == 1) { //TODO deal with multiple entries in db with same 
 }
 
 mysqli_close($db);
-
-
-
-
-
-}

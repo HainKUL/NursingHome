@@ -4,13 +4,17 @@
 <head>
     <title>Elderly Registration Form</title>
     <link href="<?=base_url() ?>assets/css/password_forgot.css" rel="stylesheet" type="text/css"/>
+    <select onchange="javascript:window.location.href='<?php echo base_url(); ?>MultiLanguageSwitcher/switcher/'+this.value;">
+        <option value="english" <?php if($this->session->userdata('site_lang') == 'english') echo 'selected="selected"'; ?>>English</option>
+        <option value="dutch" <?php if($this->session->userdata('site_lang') == 'dutch') echo 'selected="selected"'; ?>>Dutch</option>
+    </select>
 </head>
 
 <body>
 <h3>ELDERLY REGISTRATION FORM</h3>
 
 <table align="center" cellpadding = "10">
-
+registration.php
     <tr>
         <td>FIRST NAME</td>
         <td><input type="text" name="firstname" maxlength="30"/>

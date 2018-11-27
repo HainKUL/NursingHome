@@ -1,13 +1,11 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: Weihao
- * Date: 11/15/18
- * Time: 17:37
+ * User: Martijn
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Login_model extends CI_Model
+class Register_caregiver_model extends CI_Model
 {
     function __construct() {
         parent::__construct();
