@@ -249,7 +249,6 @@ registration.php
             French
             <input type="radio" name="French" value="French">
         </td>
-        </td>
     </tr>
 
     <tr>
@@ -274,7 +273,6 @@ registration.php
     </tr>
 </table>
 
-</form>
 
 </body>
 </html>
