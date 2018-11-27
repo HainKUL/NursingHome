@@ -15,8 +15,9 @@
 
 
 
-<body>
-<div class="container-fluid">
+<body >
+<div class="row" style="padding-top: 5%"></div>
+<div class="container card" >
     <div class="row">
         <div class="col-md-10">
         </div>
@@ -30,14 +31,15 @@
     </div>
     <div class="row">
 
-            <div class = "col-md-12"">
+            <div class = "col-md-12">
             <h1 class="h1">
                 <?php echo $this->lang->line('news_h1'); ?>
             </h1>
         </div>
     </div>
     <div class ="row">
-        <div class = "col-md-6">
+
+        <div class = "col-md-12">
             <h2 class="h2">
                 <?php echo $this->lang->line('news_h2'); ?>
             </h2>
@@ -45,6 +47,8 @@
     </div>
 
     <div class="row" style="padding-top: 20px;padding-bottom: 20px">
+        <div class = "col-md-3">
+        </div>
         <div class = "col-md-6">
             <a class="link1" href="nieuwsblad">
                 <button type="button" class="button2">
@@ -55,6 +59,8 @@
         </div>
     </div>
     <div class="row" style="padding-top: 20px;padding-bottom: 20px">
+        <div class = "col-md-3">
+        </div>
         <div class = "col-md-6">
             <a class="link1" href="standard">
                 <button type="button" class="button2">
@@ -65,6 +71,8 @@
         </div>
     </div>
     <div class="row" style="padding-top: 20px;padding-bottom: 20px">
+        <div class = "col-md-3">
+        </div>
         <div class = "col-md-6">
             <a class="link1" href="dm">
                 <button type="button"class="button2" >

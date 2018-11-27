@@ -1,7 +1,8 @@
 html,
 body {
     height: 100%;
-    background-color: rgba(255, 240, 209, 0.63);
+    background-color: #F9F5F7;
+    /*FFF0D1*/
 }
 
 head{
@@ -16,18 +17,31 @@ body {
 }
 .h1{
     color: #282828;
+    text-align: center;
 }
 .h2{
     color: #282828;
+    text-align: center;
+}
+.card{
+    background-color: #F9F5F7;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    border-radius:15px;
+    box-shadow: 10px 10px #eae6e8;
 }
 .button1
 {
+    display: block;
     padding: 10px 20px; /*make button bigger than text*/
     font-size: 20px;
+    align-items: center;
     text-align: center;
     color: #282828;
-    background-color: white;
+    background-color: #F9F5F7;
     border-radius: 15px;
+    border-color: rgba(88, 88, 88, 0.44);
+    box-shadow: 5px 5px #eae6e8;
 
 }
 .button1:active { /* to show button being pressed*/
@@ -40,12 +54,14 @@ body {
 {
     display: block;
     height: 100px;
-    width: 400px;
+    width:100%;
     font-size: 20px;
     text-align: center;
     color: #282828;
-    background-color: white;
+    background-color: #F9F5F7;
     border-radius: 15px;
+    border-color: rgba(88, 88, 88, 0.44);
+    box-shadow: 5px 5px #eae6e8;
 
 }
 .button2:active { /* to show button being pressed*/

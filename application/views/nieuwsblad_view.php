@@ -34,7 +34,7 @@
             {content_title_1}
         </h1>
     </div>
-<iframe width="100%" height="750" frameborder="0" class="rssdog" src="https://www.rssdog.com/index.php?url=http%3A%2F%2Ffeeds.nieuwsblad.be%2Fnieuws%2Fsnelnieuws&mode=html&showonly=&maxitems=7&showdescs=1&desctrim=0&descmax=0&tabwidth=100%25&excltitle=1&linktarget=_blank&textsize=xx-large&bordercol=%23FFF0D1&headbgcol=blue&headtxtcol=white&titlebgcol=%23FFF0D1&titletxtcol=%23282828&itembgcol=%23FFF0D1&itemtxtcol=%23282828&ctl=0"></iframe>
+<iframe width="100%" height="750" frameborder="0" class="rssdog" src="https://www.rssdog.com/index.php?url=http%3A%2F%2Ffeeds.nieuwsblad.be%2Fnieuws%2Fsnelnieuws&mode=html&showonly=&maxitems=7&showdescs=1&desctrim=0&descmax=0&tabwidth=100%25&excltitle=1&linktarget=_blank&textsize=xx-large&bordercol=transparent&headbgcol=blue&headtxtcol=white&titlebgcol=%585858&titletxtcol=%23282828&itembgcol=%585858&itemtxtcol=%23282828&ctl=0"></iframe>
 </div>
 </body>
 </html>

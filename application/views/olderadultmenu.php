@@ -72,13 +72,13 @@
 
         <div class="row" id="third_row_m">
             <div class="col-1">
-                <a href="<?=base_url()?>index.php/Homepage_controller/nieuws">
+                <a href="<?=base_url()?>index.php/Homepage_controller/news">
                     <img id="menu_icon" src="data:image/png;base64,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" alt="nieuws">
                 </a>
             </div>
 
             <div class="col-8" id="menu_text">
-                <a href="<?=base_url()?>index.php/Homepage_controller/nieuws">
+                <a href="<?=base_url()?>index.php/Homepage_controller/news">
                     <button id="menu_button" onclick="#">{third}</button>
                 </a>
             </div>
