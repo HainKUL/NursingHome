@@ -3,33 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Camera</title>
-    <style>
-        video{
-            height: 400px;
-            width: 400px;
-            border: thin solid silver;
-        }
-    </style>
+    <link rel="stylesheet" href="../../assets/css/face_login.css">
 </head>
 
 <body>
 <h2>{welcome}</h2>
 <h1>{login}</h1>
 
-<button id="capture">{capture}</button>
-<video autoplay></video>
-<div id="loadInfo"></div>
+<div class="booth">
+    <video id="video" width="400" height="300"></video>
+    <a href="#" id="capture" class="booth-caputre-button">Take Photo</a>
+    <button onClick="saveFile(filename);" >Download</button>
 
-<script>
-document.getElementById("capture").addEventListener('click',capture)
-    function capture() {
-        navigator.mediaDevices.getUserMedia({video:true, audio:false})
-            .then(function (stream) {
-                const video =document.querySelector("video")
-                video.srcObject = stream
-            })
-        .catch(e => console.log("error "+e))
-    }
-</script>
+    <canvas id="canvas" width="400" height="300"></canvas>
+    <img id="photo" src="../../assets/photos/login.png">
+</div>
+
+<script src="../../assets/js/photo.js"></script>
+
 </body>
 </html>
