@@ -1,5 +1,5 @@
 <?php
-//session_start();
+
 class Questionnaire_controller extends CI_Controller{
 
 	public function __construct(){
@@ -8,31 +8,24 @@ class Questionnaire_controller extends CI_Controller{
 		$this->load->library('parser');
 		$this->load->helper('url');
         $this->load->model('Question_model');
-
 	}
 
 
-	public function questionnaire_start($userID){
-	    $db = mysqli_connect('mysql.studev.groept.be', 'a18ux04', '1d2r3tezbm', 'a18ux04');
-        if ($db->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
+	public function questionnaire_start($userID){ //TODO get next unanswered question with SQL instead
+        $query = "INSERT INTO Submissions (idResident, completed) VALUES(".$this->db->escape($userID).", 0)";
+        $this->db->query($query);
+        $id = $this->db->insert_id();
+        $_SESSION["idSubmission"] = $id;
 
-        $query = "INSERT INTO Submissions (idResident, completed) VALUES('$userID', 0)";
-        mysqli_query($db, $query);
-        $_SESSION["idSubmission"] = mysqli_insert_id($db);
-        $id = $_SESSION["idSubmission"];
         $sql = "SELECT nextQuestion FROM Submissions WHERE idSubmissions = '$id';";
-        $result = $db->query($sql);
-        $row = $result->fetch_assoc();
-        $nextQuestion = $row['nextQuestion'];
+        $result = $this->db->query($sql);
+        $nextQuestion = $result->result_array()[0]['nextQuestion'];
         $this->question($nextQuestion, $_SESSION["idSubmission"]);
 	}
 
 
 	public function question($question){
         $data1['jslibs_to_load'] = array('jquery-3.3.1.min.js');
-        //$data1['jslibs_to_load'] = array('jquery-3.3.1.min.js','myjs.js');
 
         //load data(question info) to the controller
         $data2 = $this->Question_model->get_question($_SESSION["idSubmission"], $question);//submission, question
@@ -61,13 +54,10 @@ class Questionnaire_controller extends CI_Controller{
 
 	public function update()
     {
-        $db = mysqli_connect('mysql.studev.groept.be', 'a18ux04', '1d2r3tezbm', 'a18ux04');
         $id = $_SESSION["idSubmission"];
         $sql = "SELECT nextQuestion FROM Submissions WHERE idSubmissions = '$id';";
-        $result = $db->query($sql);
-        $row = $result->fetch_assoc();
-        $nextQuestion = $row['nextQuestion'];
-
+        $result = $this->db->query($sql);
+        $nextQuestion = $result->result_array()[0]['nextQuestion'];
         //send confimation to db;
         $submit = 1;
         if(isset($_GET['never']))           $this->Question_model->send_confirmation($nextQuestion, 1, $_SESSION["idSubmission"]);
@@ -77,7 +67,6 @@ class Questionnaire_controller extends CI_Controller{
         else if(isset($_GET['always']))     $this->Question_model->send_confirmation($nextQuestion, 5, $_SESSION["idSubmission"]);
         else $submit = 0;
         //TODO FIX PREVIOUS BUTTON (return)
-        //TODO FIX LAYOUT
         //TODO catch refresh (don't go to next question on F5)
         //reload page
         if($submit == 1) $this->question($nextQuestion);

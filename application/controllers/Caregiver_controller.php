@@ -15,37 +15,27 @@ class Caregiver_controller extends CI_Controller{
 
     public function login(){
         $data['head_message'] = 'Caregiver Login | Welcome';
-        $db = mysqli_connect('mysql.studev.groept.be', 'a18ux04', '1d2r3tezbm', 'a18ux04');
-        if (!$db) die('Could not connect: ' . mysqli_error());
 
         if($_POST) {
-            $email = mysqli_real_escape_string($db, $_POST['email']);
-            $password = mysqli_real_escape_string($db, $_POST['password']);
+            $email = $this->db->escape($_POST['email']);
+            $query = "SELECT passwordHash, idCaregivers, email FROM Caregivers WHERE email = $email LIMIT 1;";
+            $result = $this->db->query($query);
 
-            if (empty($name)) { array_push($errors, "email is required"); }
-            if (empty($password)) { array_push($errors, "Password is required"); }
-
-            $sql = "SELECT passwordHash FROM Caregivers WHERE email = '$email';";
-            //$sql = "SELECT passwordHash FROM Caregivers WHERE email = '$email';";
-
-            $result = $db->query($sql);
-
-            if ($result->num_rows == 1) { //TODO deal with multiple entries in db with same email (probably fix this in registration)
-                $hash = $result->fetch_assoc();
-                if(password_verify($password, implode(", ", $hash))) {
-                    $data = array('id_Caregivers' => $result->id_Caregivers, 'email' => $result->email);
-                    $this->session->set_userdata($data);
-                    redirect('Dashboard/dashboard');
-                } else {
-                    $this->session->set_flashdata('flash_data', 'Password incorrect!');
-                    redirect('Caregiver_controller/login');
-                    //if user not in database, so login is failed and back again to login page
-                }
-            } else {
-                $this->session->set_flashdata('flash_data', 'User not registered!');
+            if($result->num_rows() === 0)   {
+                $this->session->set_flashdata('flash_data', 'Email or password incorrect!');
                 redirect('Caregiver_controller/login');
             }
-            mysqli_close($db);
+
+            $hash = $result->result()[0]->passwordHash;
+
+            if(password_verify($_POST['password'], $hash)) { //TODO verify guaranteed forward compatibility with crypt()
+                $data = array('id_Caregivers' => $result->result()[0]->idCaregivers, 'email' => $result->result()[0]->email);
+                $this->session->set_userdata($data);
+                redirect('Dashboard/dashboard');
+            } else {
+                $this->session->set_flashdata('flash_data', 'Email or password incorrect!');
+                redirect('Caregiver_controller/login');
+            }
         }
         $this->load->view("caregiver_login_view");
     }
@@ -66,7 +56,8 @@ class Caregiver_controller extends CI_Controller{
     }
 
 
-    public function add_note(){ //TODO extract method
+
+    public function add_note(){
         $data['page_title'] = 'add note';
         //session_start();
 
@@ -74,30 +65,22 @@ class Caregiver_controller extends CI_Controller{
         $userid = "";
         $note    = "";
 
-        // connect to the database
-        $db = mysqli_connect('mysql.studev.groept.be', 'a18ux04', '1d2r3tezbm', 'a18ux04');
-
-        if ($db->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
 
         // ADD NOTE
         if ($_POST) {
             // receive all input values from the form
             $userid = (int) $_POST['id'];
-            $note = mysqli_real_escape_string($db, $_POST['note']);
-
-            // form validation: ensure that the form is correctly filled ...
-            // by adding (array_push()) corresponding error unto $errors array
+            $query = "SELECT passwordHash FROM Caregivers WHERE email = ".$this->db->escape($_POST['note'])." LIMIT 1;";
+            // form validation
             if (empty($userID) || empty($note)) { /*TODO*/ }
 
-            $query = "INSERT INTO Notes (noteText, author, context)
-                  VALUES('$note', '$userid', '0')";
-            mysqli_query($db, $query);
+            $query = "INSERT INTO Notes (noteText, author, context) VALUES(".$this->db->escape($_POST['note']).", '$userid', '0')";
+            if(!($this->db->query($query)))    {
+                //TODO deal with error
+            }
             header('location: index.php');
             redirect('Caregiver_controller/add_note');
         }
-
         $this->parser->parse('add_note', $data);
     }
 
@@ -111,56 +94,58 @@ class Caregiver_controller extends CI_Controller{
         $email    = "";
         $errors = array();
 
-        // connect to the database
-        $db = mysqli_connect('mysql.studev.groept.be', 'a18ux04', '1d2r3tezbm', 'a18ux04');
-
-        // REGISTER USER
+        // REGISTER USER //TODO show ***** for password in form in stead of plaintext
         if ($_POST) {
-            // receive all input values from the form
-            $name = mysqli_real_escape_string($db, $_POST['name']);
-            $firstname = mysqli_real_escape_string($db, $_POST['firstname']);
-            $email = mysqli_real_escape_string($db, $_POST['email']);
-            $password_1 = mysqli_real_escape_string($db, $_POST['password_1']);
-            $password_2 = mysqli_real_escape_string($db, $_POST['password_2']);
+            // receive & sanitize all input values from the form
+            $name = $this->db->escape($_POST['name']);
+            $firstname = $this->db->escape($_POST['firstname']);
+            $email = $this->db->escape($_POST['email']);
+            $password_1 = $_POST['password_1'];
+            $password_2 = $_POST['password_2'];
 
             // form validation: ensure that the form is correctly filled ...
             // by adding (array_push()) corresponding error unto $errors array
-            if (empty($name)) { array_push($errors, "name is required"); }
-            if (empty($firstname)) { array_push($errors, "firstname is required"); } //TODO remove this restriction!
-            if (empty($email)) { array_push($errors, "Email is required"); }
-            if (empty($password_1)) { array_push($errors, "Password is required"); }
-            if ($password_1 != $password_2) {
-                $this->session->set_flashdata('flash_data', 'the two passwords do not match');
-                redirect('Caregiver_controller/registration_caregiver');
+            if (empty($_POST['name']))       array_push($errors, "name is required");
+            if (empty($_POST['firstname']))  array_push($errors, "firstname is required"); //TODO remove this restriction!
+            if (empty($_POST['email']))      array_push($errors, "Email is required");
+            if (empty($_POST['password_1'])) array_push($errors, "Password is required");
+            if ($password_1 != $password_2)  array_push($errors, "Passwords do not match");
+            //TODO enforce minimum password strength
+            if (count($errors) !== 0)   {
+                $errorstring = "";
+                foreach($errors as $err)    {
+                    $errorstring = $errorstring.$err.".   ";
+                }
+                $this->session->set_flashdata('flash_data', $errorstring);
+                redirect('Caregiver_controller/registration_caregiver'); //TODO keep form data after refresh
             }
 
             // first check the database to make sure
             // a user does not already exist with the same username and/or email
-            $user_check_query = "SELECT * FROM Caregivers WHERE email='$email' LIMIT 1";
-            $result = mysqli_query($db, $user_check_query);
-            if($result->num_rows > 0) {
+            $query = "SELECT * FROM Caregivers WHERE email = $email LIMIT 1;";
+            $result = $this->db->query($query);
+            if($result->num_rows() > 0) {
                 $this->session->set_flashdata('flash_data', 'Email is already registered');
                 redirect('Caregiver_controller/registration_caregiver');
             }
 
-            // Finally, register user if there are no errors in the form
-            if (count($errors) == 0) {
-                // generate a 16-character salt string
-                $salt = substr(str_replace('+','.',base64_encode(md5(mt_rand(), true))),0,16);
-                // how many times the string will be hashed
-                $rounds = 10000;
-                // pass in the password, the number of rounds, and the salt
-                $passhash =  crypt($password_1, sprintf('$6$rounds=%d$%s$', $rounds, $salt));
+            // Finally, register user
 
-                $query = "INSERT INTO Caregivers (name, firstName, email, passwordHash, passwordSalt)
-          			  VALUES('$name', '$firstname', '$email', '$passhash', '$salt')";
-                mysqli_query($db, $query);
-                $_SESSION['username'] = $email;
-                $_SESSION['success'] = "You are now logged in";
-                header('location: index.php');
+            // generate a 16-character salt string
+            $salt = substr(str_replace('+','.',base64_encode(md5(mt_rand(), true))),0,16);
+            // how many times the string will be hashed
+            $rounds = 10000;
+            // pass in the password, the number of rounds, and the salt
+            $passhash =  crypt($password_1, sprintf('$6$rounds=%d$%s$', $rounds, $salt));
+
+            $query = "INSERT INTO Caregivers (name, firstName, email, passwordHash, passwordSalt) VALUES($name, $firstname, $email, '$passhash', '$salt')";
+            if(!($this->db->query($query))) { //TODO don't store salt in DB, unnecessary
+                //TODO errorcheck
             }
+            $_SESSION['username'] = $email; //TODO security (now everyone can register and log in with full access to website)
+            $_SESSION['success'] = "You are now logged in";
+            //redirect('Dashboard/dashboard');
         }
-
         $this->parser->parse('registration_caregiver', $data);
 
     }
