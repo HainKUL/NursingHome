@@ -41,6 +41,18 @@ class Caregiver_controller extends CI_Controller{
     }
 
 
+    public function getnotes($context, $time1, $time2){
+        $query = "SELECT noteText, author, timestamp FROM Notes WHERE timestamp >= $time1 AND timestamp < $time2;";
+        $result = $this->db->query($query);
+
+        foreach ($result->result_array() as $row) {
+            ... = $row['noteText'];
+            ... = $row['author'];
+            ... = $row['timestamp'];
+        }
+    }
+
+
     public function forgot(){
         $data['page_title'] = 'Wachtwoord Vergeten';
         $data['head_message'] = 'Wachtwoord vergeten?';
