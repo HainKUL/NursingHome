@@ -7,6 +7,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="<?=base_url()?>assets/photos/favicon.png" type="image/gif" sizes="16x16">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -65,7 +66,7 @@
         <div class="row">
 
             <div class="col-12">
-                <a href="<?=base_url()?>index.php/Homepage_controller/residentHome\">
+                <a href="<?=base_url()?>index.php/questionnaire_controller/menu\">
                     <button id="button" class="button_done">{button_text}</button>
                 </a>
             </div>

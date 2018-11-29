@@ -96,9 +96,9 @@ class Questionnaire_controller extends CI_Controller{
         $data['page_title'] = 'Menu';
         $data['first'] = "Vragenlijst invullen";
         $data['second'] = "Vragen van verzorgsters";
-        $data['third'] = "Nieuws van de dag";
-        $data['fourth'] = "TV gids";
-        $data['fifth'] = "Familiefoto's";
+        $data['third'] = "Nieuws van vandaag";
+        $data['fourth'] = "Sportnieuws";
+        $data['fifth'] = "Het weer";
         $data['logout'] = "Afmelden";
         $this->parser->parse('olderadultmenu', $data);
     }
