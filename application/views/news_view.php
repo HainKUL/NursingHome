@@ -5,7 +5,10 @@
     <link href="<?=base_url()?>assets/css/older_adult.css" rel="stylesheet" type="text/css"/>
     <meta charset="UTF-8" />
     <meta name="keywords" content="UXWD's course demo" />
-
+    <select onchange="javascript:window.location.href='<?php echo base_url(); ?>MultiLanguageSwitcher/switcher/'+this.value;">
+        <option value="english" <?php if($this->session->userdata('site_lang') == 'english') echo 'selected="selected"'; ?>>English</option>
+        <option value="dutch" <?php if($this->session->userdata('site_lang') == 'dutch') echo 'selected="selected"'; ?>>Dutch</option>
+    </select>
 </head>
 <style> /* should be in css*/
     p {
@@ -19,12 +22,7 @@
         font-size: 35px;
         /*text-align: center;*/
     }
-    .content1
-    {
 
-        font-size: 28px;
-        text-align: left;
-    }
     .button1
     {
         display: block;
@@ -44,7 +42,7 @@
     }
     .button2
     {
-        display: block;
+        display: inline-block;
         margin: auto; /* put button in the middle */
         padding: 10px 20px; /*make button bigger than text*/
         font-size: 20px;
@@ -95,18 +93,18 @@
 <p class ="titel1">{content_title_1}<button type="button"class="button2" ><a class="link1" href="residentHome">{buttonBack}</a></button></p>
 <p class="titel2">{content_title_2}</p>
 
-    <!--<p class = "content1"><img src="http://localhost:8888/a18ux04/assets/photos/hln.jpg" class="image1">Het Laatste Nieuws</p>
-    <button type="button" class="button1"><a class="link1" href="http://localhost:8888/a18ux04/index.php/Homepage_controller/hln">KLIK HIER</a></button>
+    <!--<p class = "content1"><img src="http://localhost/a18ux04/assets/photos/hln.jpg" class="image1">Het Laatste Nieuws</p>
+    <button type="button" class="button1"><a class="link1" href="http://localhost/a18ux04/index.php/Homepage_controller/hln">KLIK HIER</a></button>
 -->
 
 
-    <img src="http://localhost:8888/a18ux04/assets/photos/nieuwsblad.jpg" class="image1">
+    <img src="<?=base_url()?>assets/photos/nieuwsblad.jpg" class="image1">
     <button type="button" class="button1"><a class="link1" href="nieuwsblad">{buttonClickHere}</a></button>
 
-    <img src="http://localhost:8888/a18ux04/assets/photos/standaard.jpg" class="image2">
+    <img src="<?=base_url()?>assets/photos/standaard.jpg" class="image2">
     <button type="button" class="button1"><a class="link1" href="standard">{buttonClickHere}</a></button>
 
-    <img src="http://localhost:8888/a18ux04/assets/photos/demorgen.png" class="image3" >
+    <img src="<?=base_url()?>assets/photos/demorgen.png" class="image3" >
     <button type="button"class="button1" ><a class="link1" href="dm">{buttonClickHere}</a></button>
 
 

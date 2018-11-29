@@ -44,7 +44,7 @@ main {
 }
 
 footer {
-    padding: 15px 0px;
+    padding: 15px;
     /* top+bottom left+right*/
     background: white;
     border-top: 2px solid #000000;
@@ -147,7 +147,6 @@ aside p {
     footer,
     aside {
         width: 100%;
-        margin-top: 0px;
         padding: 20px;
     }
 
@@ -171,9 +170,4 @@ aside p {
 }
 
 
-Code snippets
-potluck.html
-main.css
-menu_items
-Create Events table
 
