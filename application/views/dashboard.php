@@ -18,6 +18,14 @@
     </select>
 </head>
 <body>
+
+<?php
+$this->load->database();
+$query = "SELECT noteText, author, timestamp FROM Notes;";
+$result = $this->db->query($query);
+?>
+
+
 <div class="container-fluid">
 
 
@@ -44,7 +52,9 @@
     <div class="row">
         <div class="col-3 border-bottom border-left">
             <h5><p><?php echo $this->lang->line('dash_notes'); ?></p></h5>
-            <button type="button" class="btn btn-light"><p><?php echo $this->lang->line('dash_add'); ?></p></button>
+            <a  href=<?=base_url()?>index.php/Caregiver_controller/add_note class="link1">
+                <button type="button" class="btn btn-light"><p><?php echo $this->lang->line('dash_add'); ?></p></button>
+            </a>
             <div class="accordion" id="accordionNotes">
                 <div class="card">
                     <div class="card-header" id="headingToday">
@@ -57,7 +67,21 @@
 
                     <div id="collapseToday" class="collapse show" aria-labelledby="headingToday" data-parent="#accordionNotes">
                         <div class="card-body">
-                            <p><?php echo $this->lang->line('dash_today_note'); ?></p>
+                            <p>
+                                <?php
+                                foreach ($result->result_array() as $row) {
+                                    if((time()+3600)-strtotime($row['timestamp']) < 86400){
+                                        echo $row['noteText'];
+                                        ?><br><?php
+                                        echo $row['author'];
+                                        echo str_repeat('&nbsp;', 5);
+                                        echo $row['timestamp'];
+                                        $time = strtotime($row['timestamp']);
+                                        ?><br><br><?php
+                                    }
+                                }
+                                ?>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -71,7 +95,21 @@
                     </div>
                     <div id="collapseWeek" class="collapse" aria-labelledby="headingWeek" data-parent="#accordionNotes">
                         <div class="card-body">
-                            <p><?php echo $this->lang->line('dash_this_week_note'); ?></p>
+                            <p>
+                                <?php
+                                foreach ($result->result_array() as $row) {
+                                    if((time()+3600)-strtotime($row['timestamp']) < 604800){
+                                        echo $row['noteText'];
+                                        ?><br><?php
+                                        echo $row['author'];
+                                        echo str_repeat('&nbsp;', 5);
+                                        echo $row['timestamp'];
+                                        $time = strtotime($row['timestamp']);
+                                        ?><br><br><?php
+                                    }
+                                }
+                                ?>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -85,7 +123,18 @@
                     </div>
                     <div id="collapseAll" class="collapse" aria-labelledby="headingAll" data-parent="#accordionNotes">
                         <div class="card-body">
-                            <p><?php echo $this->lang->line('dash_archive_note'); ?></p>
+                            <p>
+                                <?php
+                                foreach ($result->result_array() as $row) {
+                                echo $row['noteText'];
+                                ?><br><?php
+                                echo $row['author'];
+                                echo str_repeat('&nbsp;', 5);
+                                echo $row['timestamp'];
+                                ?><br><br><?php
+                                }
+                                ?>
+                            </p>
                         </div>
                     </div>
                 </div>
