@@ -15,7 +15,8 @@
     <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="//d3js.org/d3.v4.min.js"></script>
 
-    <script src="https://d3js.org/d3.v4.min.js"></script>
+<!--    <script src="--><?//= base_url()?><!--assets/js/trail.js"></script>-->
+
 
 
     <style>
@@ -27,6 +28,7 @@
             text-align: center;
             text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
             cursor: default;
+            /*cursor:url(http://www.rw-designer.com/cursor-view/104989.png), auto;*/
         }
         .bar {
             fill: #2f996e;
