@@ -25,7 +25,11 @@
 <body>
 <h2>{welcome}</h2>
 <h1>{login}</h1>
-
+    <a href="<?=base_url()?>Homepage_controller/residenthome">
+    <button style="button" class="button1">
+        {skip}
+    </button>
+    </a>
 <button style="button" class="button1">
     {capture}
 </button>

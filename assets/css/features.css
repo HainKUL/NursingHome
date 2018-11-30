@@ -102,6 +102,6 @@ footer{
     /*make it stand at the bottom at all times */
     position: absolute;
     bottom: 0;
-    padding: 1rem;
+    /*padding: 1rem;*/
     text-align: center;
 }
