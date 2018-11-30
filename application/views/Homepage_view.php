@@ -48,7 +48,7 @@
         <div class = "col-md-3">
         </div>
         <div class = "col-md-1">
-            <a href=<?=base_url()?>index.php/Homepage_controller/residentHome class="link1">
+            <a href=<?=base_url()?>Homepage_controller/residentHome class="link1">
                 <button type="button" class ="btn btn-default button1"  >
                     <?php echo $this->lang->line('home_resident'); ?>
                 </button>
@@ -58,7 +58,7 @@
         <div class = "col-md-4">
         </div>
         <div class = "col-md-1">
-         <a  href=<?=base_url()?>index.php/Caregiver_controller/login class="link1">
+         <a  href=<?=base_url()?>Caregiver_controller/login class="link1">
                 <button type="button" class="btn btn-default button1" >
                 <?php echo $this->lang->line('home_caregiver'); ?>
                 </button>
