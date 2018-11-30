@@ -30,9 +30,9 @@ $result = $this->db->query($query);
 
 
     <div class="row">
-        <div class="col-3 border-left border-top">
+        <div class="col-3" style="background-color:#00948A">
         </div>
-        <div class="col-7 border-left border-top border-right">
+        <div class="col-7">
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                     <a class="nav-item nav-link active" id="nav-questionnaire-tab" data-toggle="tab" href="#nav-Questionnaire" role="tab" aria-controls="nav-Questionnaire" aria-selected="true"><?php echo $this->lang->line('dash_questionnaire'); ?></a>
@@ -41,7 +41,7 @@ $result = $this->db->query($query);
                 </div>
             </nav>
         </div>
-        <div class="col-2 border-right border-top">
+        <div class="col-2" style="background-color:#C7DE6E">
         </div>
 
 
@@ -50,10 +50,10 @@ $result = $this->db->query($query);
 
 
     <div class="row">
-        <div class="col-3 border-bottom border-left">
+        <div class="col-3" style="background-color:#00948A">
             <h5><p><?php echo $this->lang->line('dash_notes'); ?></p></h5>
             <a  href=<?=base_url()?>index.php/Caregiver_controller/add_note class="link1">
-                <button type="button" class="btn btn-light"><p><?php echo $this->lang->line('dash_add'); ?></p></button>
+                <button type="button" class="btn btn-light" style="background-color:#C7DE6E"><p><?php echo $this->lang->line('dash_add'); ?></p></button>
             </a>
             <div class="accordion" id="accordionNotes">
                 <div class="card">
@@ -140,7 +140,7 @@ $result = $this->db->query($query);
                 </div>
             </div>
         </div>
-        <div class="col-7 border-bottom border-left border-right">
+        <div class="col-7">
             <nav>
                 <!--<div class="nav nav-tabs" id="nav-tab" role="tablist">
                     <a class="nav-item nav-link active" id="nav-questionnaire-tab" data-toggle="tab" href="#nav-Questionnaire" role="tab" aria-controls="nav-Questionnaire" aria-selected="true">Questionnaire</a>
@@ -200,7 +200,7 @@ $result = $this->db->query($query);
                 <div class="tab-pane fade" id="nav-Personal" role="tabpanel" aria-labelledby="nav-contact-tab"><p><?php echo $this->lang->line('dash_personal'); ?></p></div>
             </div>
         </div>
-        <div class="col-2 border-bottom border-right">
+        <div class="col-2" style="background-color:#C7DE6E">
             <h5><p><?php echo $this->lang->line('dash_floor'); ?></p></h5>
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
