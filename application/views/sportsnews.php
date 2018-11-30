@@ -21,7 +21,7 @@
         <div class="col-md-10">
         </div>
         <div class="col-md-2" style="padding-bottom:10px" >
-            <a class="link1" href="news">
+            <a class="link1" href="residenthome">
                 <button type="button" class ="btn btn-default button1 float-right" >
                     {buttonBack}
                 </button>

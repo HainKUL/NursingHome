@@ -25,7 +25,11 @@
 <body>
 <h2>{welcome}</h2>
 <h1>{login}</h1>
-
+    <a href="<?=base_url()?>Homepage_controller/residenthome">
+    <button style="button" class="button1">
+        {skip}
+    </button>
+    </a>
 <button style="button" class="button1">
     {capture}
 </button>
@@ -44,9 +48,5 @@ document.getElementById("capture").addEventListener('click',capture)
     }
 </script>
 </body>
-<footer>
-    <p><?php echo $this->lang->line('text_copyright_footer'); ?>
-        <a href="#"><?php echo $this->lang->line('text_copyright_privacy'); ?></a> | <a href="#"><?php echo $this->lang->line('text_copyright_term'); ?></a>
-    </p>
-</footer>
+
 </html>

@@ -66,7 +66,7 @@
         <div class="row">
 
             <div class="col-12">
-                <a href="<?=base_url()?>index.php/questionnaire_controller/menu\">
+                <a href="<?=base_url()?>questionnaire_controller/menu\">
                     <button id="button" class="button_done">{button_text}</button>
                 </a>
             </div>
@@ -79,12 +79,6 @@
 
 </body>
 
-<footer>
-    <!--
-    <p>Copyright © 2018 UXWD. Groep T All Rights Reserved.
-        <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a>
-    </p>
-    -->
-</footer>
+
 
 </html>

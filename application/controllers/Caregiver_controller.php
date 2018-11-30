@@ -31,10 +31,10 @@ class Caregiver_controller extends CI_Controller{
             if(password_verify($_POST['password'], $hash)) { //TODO verify guaranteed forward compatibility with crypt()
                 $data = array('id_Caregivers' => $result->result()[0]->idCaregivers, 'email' => $result->result()[0]->email);
                 $this->session->set_userdata($data);
-                redirect('Dashboard/dashboard');
+                redirect('Dashboard/dashboard'); // Has something to do with not being able to remove index.php in url
             } else {
                 $this->session->set_flashdata('flash_data', 'Email or password incorrect!');
-                redirect('Caregiver_controller/login');
+                redirect('Caregiver_controller/login'); // Has something to do with not being able to remove index.php in url
             }
         }
         $this->load->view("caregiver_login_view");
