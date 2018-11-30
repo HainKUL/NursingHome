@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="<?=base_url()?>assets/photos/favicon.png" type="image/gif" sizes="16x16">
+    <link rel="icon" href="<?=base_url()?>assets/photos/favicon3.ico" type="image/gif" sizes="16x16">
     <title><?php echo $this->lang->line('home_page'); ?></title>
 <!--    css file -->
     <!-- Bootstrap CSS -->
@@ -19,25 +19,23 @@
 
 
 
-<body background="<?=base_url() ?>assets/photos/background_remy_blur_export.jpg">
+<body background="<?=base_url() ?>assets/photos/background_remy.png">
 <div class="row" style="padding-top: 15%"></div>
 <div class="container" style="width: 60% ;background-color: #F9F5F7/*fff6e0*/; box-shadow: 10px 10px #e7d6d5; opacity: 0.95; padding-top: 50px; padding-bottom: 50px; border-radius:12px">
 
     <div class = "row" >
-        <div class = "col-md-3">
-        </div>
-        <div class = "col-md-8"">
-            <h1 >
+
+        <div class = "col-md-12">
+            <h1 style="text-align: center" >
                 <?php echo $this->lang->line('home_er'); ?>
             </h1>
         </div>
 
     </div>
     <div class="row" style="padding-bottom: 40px">
-        <div class = "col-md-5">
-        </div>
-        <div class = "col-md-6">
-            <h2 >
+
+        <div class = "col-md-12">
+            <h2 style="text-align: center">
                 <?php echo $this->lang->line('home_who'); ?>
             </h2>
         </div>
@@ -47,18 +45,18 @@
 
         <div class = "col-md-3">
         </div>
-        <div class = "col-md-1">
-            <a href=<?=base_url()?>index.php/Homepage_controller/residenthome class="link1">
-                <button type="button" class ="btn btn-default button1"  >
+        <div class = "col-md-3">
+            <a  href=<?=base_url()?>Homepage_controller/residenthome class="link1">
+                <button type="button" class="btn btn-default button1" >
                     <?php echo $this->lang->line('home_resident'); ?>
                 </button>
             </a>
 
         </div>
-        <div class = "col-md-4">
-        </div>
         <div class = "col-md-1">
-         <a  href=<?=base_url()?>index.php/Caregiver_controller/login class="link1">
+        </div>
+        <div class = "col-md-3">
+         <a  href=<?=base_url()?>Caregiver_controller/login class="link1">
                 <button type="button" class="btn btn-default button1" >
                 <?php echo $this->lang->line('home_caregiver'); ?>
                 </button>

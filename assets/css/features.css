@@ -30,7 +30,7 @@ body {
     border-radius:15px;
     box-shadow: 10px 10px #eae6e8;
 }
-.button1
+.button1 /*to go back */
 {
     display: block;
     padding: 10px 20px; /*make button bigger than text*/
@@ -50,7 +50,7 @@ body {
     transform: translateY(4px);
 }
 
-.button2
+.button2 /* menu buttons */
 {
     display: block;
     height: 100px;
@@ -97,11 +97,20 @@ body {
 .link1{
     color: whitesmoke;
 }
+#progress{
+    font-size: 40px;
+    display: flex;
+    flex-direction: column;
+    font-family: Canapé, Palanquin, "Times New Roman", serif;
+    margin-top: 7%;
+    align-items: center;
+    color: var(--shadeOfBlack);
+}
 footer{
     font-family: Helvetica,Arial;
     /*make it stand at the bottom at all times */
     position: absolute;
     bottom: 0;
-    padding: 1rem;
+    /*padding: 1rem;*/
     text-align: center;
 }

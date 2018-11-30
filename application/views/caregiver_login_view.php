@@ -6,7 +6,8 @@
     <meta charset="UTF-8">
     <title>Caregiver Login | Welcome</title>
     <link href="<?=base_url()?>assets/css/caregiver_login.css" rel="stylesheet" type="text/css"/>
-    <link rel="icon" href="<?=base_url()?>assets/photos/favicon.png" type="image/gif" sizes="16x16">
+    <link rel="icon" href="<?=base_url()?>assets/photos/favicon3.ico" type="image/gif" sizes="16x16">
+
 
     <!-- <link href="<?=base_url() ?>assets/css/main.css" rel="stylesheet" type="text/css"/> for on the actual site-->
     <select onchange="javascript:window.location.href='<?php echo base_url(); ?>MultiLanguageSwitcher/switcher/'+this.value;">
@@ -22,6 +23,7 @@
 
 <!--<form method="post" action="index.html">-->
 <form method="post" action="<?= site_url('Caregiver_controller/login') ?>">
+                    <!-- action="<?=base_url()?>Caregiver_controller/login">
     <!--<div class="box">-->
         <h1><?php echo $this->lang->line('login_title'); ?> </h1>
 
