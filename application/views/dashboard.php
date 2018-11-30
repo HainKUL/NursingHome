@@ -50,20 +50,28 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-        <!-- Custom CSS-->
+    <!-- Custom CSS-->
     <select onchange="javascript:window.location.href='<?php echo base_url(); ?>MultiLanguageSwitcher/switcher/'+this.value;">
         <option value="english" <?php if($this->session->userdata('site_lang') == 'english') echo 'selected="selected"'; ?>>English</option>
         <option value="dutch" <?php if($this->session->userdata('site_lang') == 'dutch') echo 'selected="selected"'; ?>>Dutch</option>
     </select>
 </head>
 <body>
+
+<?php
+$this->load->database();
+$query = "SELECT noteText, author, timestamp FROM Notes;";
+$result = $this->db->query($query);
+?>
+
+
 <div class="container-fluid">
 
 
     <div class="row">
-        <div class="col-3 border-left border-top">
+        <div class="col-3" style="background-color:#00948A">
         </div>
-        <div class="col-7 border-left border-top border-right">
+        <div class="col-7">
             <nav>
                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                     <a class="nav-item nav-link active" id="nav-questionnaire-tab" data-toggle="tab" href="#nav-Questionnaire" role="tab" aria-controls="nav-Questionnaire" aria-selected="true"><?php echo $this->lang->line('dash_questionnaire'); ?></a>
@@ -72,7 +80,7 @@
                 </div>
             </nav>
         </div>
-        <div class="col-2 border-right border-top">
+        <div class="col-2" style="background-color:#C7DE6E">
         </div>
 
 
@@ -81,9 +89,11 @@
 
 
     <div class="row">
-        <div class="col-3 border-bottom border-left">
+        <div class="col-3" style="background-color:#00948A">
             <h5><p><?php echo $this->lang->line('dash_notes'); ?></p></h5>
-            <button type="button" class="btn btn-light"><p><?php echo $this->lang->line('dash_add'); ?></p></button>
+            <a  href=<?=base_url()?>index.php/Caregiver_controller/add_note class="link1">
+                <button type="button" class="btn btn-light" style="background-color:#C7DE6E"><p><?php echo $this->lang->line('dash_add'); ?></p></button>
+            </a>
             <div class="accordion" id="accordionNotes">
                 <div class="card">
                     <div class="card-header" id="headingToday">
@@ -96,7 +106,21 @@
 
                     <div id="collapseToday" class="collapse show" aria-labelledby="headingToday" data-parent="#accordionNotes">
                         <div class="card-body">
-                            <p><?php echo $this->lang->line('dash_today_note'); ?></p>
+                            <p>
+                                <?php
+                                foreach ($result->result_array() as $row) {
+                                    if((time()+3600)-strtotime($row['timestamp']) < 86400){
+                                        echo $row['noteText'];
+                                        ?><br><?php
+                                        echo $row['author'];
+                                        echo str_repeat('&nbsp;', 5);
+                                        echo $row['timestamp'];
+                                        $time = strtotime($row['timestamp']);
+                                        ?><br><br><?php
+                                    }
+                                }
+                                ?>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -110,7 +134,21 @@
                     </div>
                     <div id="collapseWeek" class="collapse" aria-labelledby="headingWeek" data-parent="#accordionNotes">
                         <div class="card-body">
-                            <p><?php echo $this->lang->line('dash_this_week_note'); ?></p>
+                            <p>
+                                <?php
+                                foreach ($result->result_array() as $row) {
+                                    if((time()+3600)-strtotime($row['timestamp']) < 604800){
+                                        echo $row['noteText'];
+                                        ?><br><?php
+                                        echo $row['author'];
+                                        echo str_repeat('&nbsp;', 5);
+                                        echo $row['timestamp'];
+                                        $time = strtotime($row['timestamp']);
+                                        ?><br><br><?php
+                                    }
+                                }
+                                ?>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -124,13 +162,24 @@
                     </div>
                     <div id="collapseAll" class="collapse" aria-labelledby="headingAll" data-parent="#accordionNotes">
                         <div class="card-body">
-                            <p><?php echo $this->lang->line('dash_archive_note'); ?></p>
+                            <p>
+                                <?php
+                                foreach ($result->result_array() as $row) {
+                                    echo $row['noteText'];
+                                    ?><br><?php
+                                    echo $row['author'];
+                                    echo str_repeat('&nbsp;', 5);
+                                    echo $row['timestamp'];
+                                    ?><br><br><?php
+                                }
+                                ?>
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-7 border-bottom border-left border-right">
+        <div class="col-7">
             <nav>
                 <!--<div class="nav nav-tabs" id="nav-tab" role="tablist">
                     <a class="nav-item nav-link active" id="nav-questionnaire-tab" data-toggle="tab" href="#nav-Questionnaire" role="tab" aria-controls="nav-Questionnaire" aria-selected="true">Questionnaire</a>
@@ -228,63 +277,66 @@
                             <div id="collapseOutliers" class="collapse" aria-labelledby="headingOutliers" data-parent="#accordionQuestionnaire">
                                 <div class="card-body">
 
-                                    </div>
-
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
                                 </div>
+
+                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
                             </div>
                         </div>
-                        <div class="card">
-                            <div class="card-header" id="headingAnswers">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseAnswers" aria-expanded="false" aria-controls="collapseAnswers">
-                                        <p><?php echo $this->lang->line('dash_answers'); ?></p>
-                                    </button>
-                                </h5>
-                            </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header" id="headingAnswers">
+                            <h5 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseAnswers" aria-expanded="false" aria-controls="collapseAnswers">
+                                    <p><?php echo $this->lang->line('dash_answers'); ?></p>
+                                </button>
+                            </h5>
+                        </div>
 
-                            <div id="collapseAnswers" class="collapse" aria-labelledby="headingAnswers" data-parent="#accordionQuestionnaire">
-                                <div class="card-body">
-                                    <h3><?php echo $this->lang->line('category_title2'); ?></h3>
+                        <div id="collapseAnswers" class="collapse" aria-labelledby="headingAnswers" data-parent="#accordionQuestionnaire">
+                            <div class="card-body">
+                                <h3><?php echo $this->lang->line('category_title2'); ?></h3>
 
-                                    <div class='container'>
-                                        <div class='row'>
-                                            <div class='radio'>
-                                                <label class='radio-inline'>
-                                                    <input type="radio" name="gender" value="category_1" onclick='change(this.value)'> category1
-                                                </label>
-                                                <label class='radio-inline'>
-                                                    <input type="radio" name="gender" value="category_2" onclick='change(this.value)'> category2
-                                                </label>
-                                                <label class='radio-inline'>
-                                                    <input type="radio" name="gender" value="category_3" onclick='change(this.value)'> category3
-                                                </label>
-                                                <label class='radio-inline'>
-                                                    <input type="radio" name="gender" value="category_4" onclick='change(this.value)'> category4
-                                                </label>
-                                                <label class='radio-inline'>
-                                                    <input type="radio" name="gender" value="category_5" onclick='change(this.value)'> category5
-                                                </label>
-                                                <label class='radio-inline'>
-                                                    <input type="radio" name="gender" value="category_6" onclick='change(this.value)'> category6
-                                                </label>
-                                                <label class='radio-inline'>
-                                                    <input type="radio" name="gender" value="category_7" onclick='change(this.value)'> category7
-                                                </label>
-                                                <label class='radio-inline'>
-                                                    <input type="radio" name="gender" value="category_8" onclick='change(this.value)'> category8
-                                                </label>
-                                                <label class='radio-inline'>
-                                                    <input type="radio" name="gender" value="category_9" onclick='change(this.value)'> category9
-                                                </label>
-                                                <label class='radio-inline'>
-                                                    <input type="radio" name="gender" value="category_10" onclick='change(this.value)'> category10
-                                                </label>
+                                <div class='container'>
+                                    <div class='row'>
+                                        <div class='radio'>
+                                            <label class='radio-inline'>
+                                                <input type="radio" name="gender" value="categoryA" onclick='change(this.value)'>categoryA
+                                            </label>
+                                            <label class='radio-inline'>
+                                                <input type="radio" name="gender" value="categoryB" onclick='change(this.value)'>categoryB
+                                            </label>
+                                            <label class='radio-inline'>
+                                                <input type="radio" name="gender" value="categoryC" onclick='change(this.value)'>categoryC
+                                            </label>
+                                            <label class='radio-inline'>
+                                                <input type="radio" name="gender" value="categoryD" onclick='change(this.value)'>categoryD
+                                            </label>
+                                            <label class='radio-inline'>
+                                                <input type="radio" name="gender" value="categoryE" onclick='change(this.value)'>categoryE
+                                            </label>
+                                            <label class='radio-inline'>
+                                                <input type="radio" name="gender" value="categoryF" onclick='change(this.value)'>categoryF
+                                            </label>
+                                            <label class='radio-inline'>
+                                                <input type="radio" name="gender" value="categoryG" onclick='change(this.value)'>categoryG
+                                            </label>
+                                            <label class='radio-inline'>
+                                                <input type="radio" name="gender" value="categoryH" onclick='change(this.value)'>categoryH
+                                            </label>
+                                            <label class='radio-inline'>
+                                                <input type="radio" name="gender" value="categoryI" onclick='change(this.value)'>categoryI
+                                            </label>
+                                            <label class='radio-inline'>
+                                                <input type="radio" name="gender" value="categoryJ" onclick='change(this.value)'>categoryJ
+                                            </label>
+                                            <label class='radio-inline'>
+                                                <input type="radio" name="gender" value="categoryK" onclick='change(this.value)'>categoryK
+                                            </label>
 
-                                            </div>
-                                            <svg class='chart'>
-                                            </svg>
                                         </div>
+                                        <svg class='chart'>
+                                        </svg>
+                                    </div>
                                     Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
                                 </div>
                             </div>
@@ -295,7 +347,7 @@
                 <div class="tab-pane fade" id="nav-Personal" role="tabpanel" aria-labelledby="nav-contact-tab"><p><?php echo $this->lang->line('dash_personal'); ?></p></div>
             </div>
         </div>
-        <div class="col-2 border-bottom border-right">
+        <div class="col-2" style="background-color:#C7DE6E">
             <h5><p><?php echo $this->lang->line('dash_floor'); ?></p></h5>
             <div class="dropdown">
                 <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -334,96 +386,542 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <a href="<?= site_url('Caregiver_controller/login') ?>"><p><?php echo $this->lang->line('dash_logout'); ?></p></a>
 </body>
+
 <script>
     //set up data
     var bothData = [
         {
-            "viewer_gender": "category_1",
-            "viewer_age": "question 1",
+            "categoryType": "categoryA",
+            "questionNum": "question 1",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "3.3",
-            "watch_time_minutes": "2"
+            "scores": "2"
         },
         {
-            "viewer_gender": "category_1",
-            "viewer_age": "question 2",
+            "categoryType": "categoryA",
+            "questionNum": "question 2",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "12.8",
-            "watch_time_minutes": "5"
+            "scores": "5"
         },
         {
-            "viewer_gender": "category_1",
-            "viewer_age": "question 3",
+            "categoryType": "categoryB",
+            "questionNum": "question 1",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "7.1",
-            "watch_time_minutes": "1"
+            "scores": "1"
         },
         {
-            "viewer_gender": "category_1",
-            "viewer_age": "question 4",
+            "categoryType": "categoryB",
+            "questionNum": "question 2",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "37.1",
-            "watch_time_minutes": "4"
+            "scores": "4"
         },
         {
-            "viewer_gender": "category_1",
-            "viewer_age": "question 5",
+            "categoryType": "categoryB",
+            "questionNum": "question 3",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "2.7",
-            "watch_time_minutes": "3"
+            "scores": "3"
         },
         {
-            "viewer_gender": "category_1",
-            "viewer_age": "question 6",
+            "categoryType": "categoryB",
+            "questionNum": "question 4",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "23.5",
-            "watch_time_minutes": "5"
+            "scores": "5"
         },
         {
-            "viewer_gender": "category_1",
-            "viewer_age": "question 7",
+            "categoryType": "categoryB",
+            "questionNum": "question 5",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "1.0",
-            "watch_time_minutes": "2"
+            "scores": "2"
         },
-
+        {
+            "categoryType": "categoryC",
+            "questionNum": "question 1",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "3.3",
+            "scores": "2"
+        },
+        {
+            "categoryType": "categoryC",
+            "questionNum": "question 2",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "12.8",
+            "scores": "5"
+        },
+        {
+            "categoryType": "categoryC",
+            "questionNum": "question 3",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "7.1",
+            "scores": "1"
+        },
+        {
+            "categoryType": "categoryD",
+            "questionNum": "question 1",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "7.1",
+            "scores": "1"
+        },
+        {
+            "categoryType": "categoryD",
+            "questionNum": "question 2",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "37.1",
+            "scores": "4"
+        },
+        {
+            "categoryType": "categoryD",
+            "questionNum": "question 3",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "2.7",
+            "scores": "3"
+        },
+        {
+            "categoryType": "categoryD",
+            "questionNum": "question 4",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "23.5",
+            "scores": "5"
+        },
+        {
+            "categoryType": "categoryD",
+            "questionNum": "question 5",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "1.0",
+            "scores": "2"
+        },
+        {
+            "categoryType": "categoryE",
+            "questionNum": "question 1",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "7.1",
+            "scores": "1"
+        },
+        {
+            "categoryType": "categoryE",
+            "questionNum": "question 2",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "37.1",
+            "scores": "4"
+        },
+        {
+            "categoryType": "categoryE",
+            "questionNum": "question 3",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "2.7",
+            "scores": "3"
+        },
+        {
+            "categoryType": "categoryE",
+            "questionNum": "question 4",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "23.5",
+            "scores": "5"
+        },
+        {
+            "categoryType": "categoryE",
+            "questionNum": "question 5",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "1.0",
+            "scores": "2"
+        },
+        {
+            "categoryType": "categoryE",
+            "questionNum": "question 6",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "23.5",
+            "scores": "5"
+        },
+        {
+            "categoryType": "categoryE",
+            "questionNum": "question 7",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "1.0",
+            "scores": "2"
+        },
+        {
+            "categoryType": "categoryF",
+            "questionNum": "question 1",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "7.1",
+            "scores": "1"
+        },
+        {
+            "categoryType": "categoryF",
+            "questionNum": "question 2",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "37.1",
+            "scores": "4"
+        },
+        {
+            "categoryType": "categoryF",
+            "questionNum": "question 3",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "2.7",
+            "scores": "3"
+        },
+        {
+            "categoryType": "categoryF",
+            "questionNum": "question 4",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "23.5",
+            "scores": "5"
+        },
+        {
+            "categoryType": "categoryG",
+            "questionNum": "question 1",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "7.1",
+            "scores": "1"
+        },
+        {
+            "categoryType": "categoryG",
+            "questionNum": "question 2",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "37.1",
+            "scores": "4"
+        },
+        {
+            "categoryType": "categoryG",
+            "questionNum": "question 3",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "2.7",
+            "scores": "3"
+        },
+        {
+            "categoryType": "categoryG",
+            "questionNum": "question 4",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "23.5",
+            "scores": "5"
+        },
+        {
+            "categoryType": "categoryG",
+            "questionNum": "question 5",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "1.0",
+            "scores": "2"
+        },
+        {
+            "categoryType": "categoryG",
+            "questionNum": "question 6",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "23.5",
+            "scores": "5"
+        },
+        {
+            "categoryType": "categoryG",
+            "questionNum": "question 7",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "1.0",
+            "scores": "2"
+        },
+        {
+            "categoryType": "categoryH",
+            "questionNum": "question 1",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "7.1",
+            "scores": "1"
+        },
+        {
+            "categoryType": "categoryH",
+            "questionNum": "question 2",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "37.1",
+            "scores": "4"
+        },
+        {
+            "categoryType": "categoryH",
+            "questionNum": "question 3",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "2.7",
+            "scores": "3"
+        },
+        {
+            "categoryType": "categoryH",
+            "questionNum": "question 4",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "23.5",
+            "scores": "5"
+        },
+        {
+            "categoryType": "categoryH",
+            "questionNum": "question 5",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "1.0",
+            "scores": "2"
+        },
+        {
+            "categoryType": "categoryH",
+            "questionNum": "question 6",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "23.5",
+            "scores": "5"
+        },
+        {
+            "categoryType": "categoryI",
+            "questionNum": "question 1",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "7.1",
+            "scores": "1"
+        },
+        {
+            "categoryType": "categoryI",
+            "questionNum": "question 2",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "37.1",
+            "scores": "4"
+        },
+        {
+            "categoryType": "categoryI",
+            "questionNum": "question 3",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "2.7",
+            "scores": "2"
+        },
+        {
+            "categoryType": "categoryI",
+            "questionNum": "question 4",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "23.5",
+            "scores": "5"
+        },
+        {
+            "categoryType": "categoryI",
+            "questionNum": "question 5",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "1.0",
+            "scores": "5"
+        },
+        {
+            "categoryType": "categoryI",
+            "questionNum": "question 6",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "23.5",
+            "scores": "5"
+        },
+        {
+            "categoryType": "categoryJ",
+            "questionNum": "question 1",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "7.1",
+            "scores": "1"
+        },
+        {
+            "categoryType": "categoryJ",
+            "questionNum": "question 2",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "37.1",
+            "scores": "4"
+        },
+        {
+            "categoryType": "categoryJ",
+            "questionNum": "question 3",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "2.7",
+            "scores": "2"
+        },
+        {
+            "categoryType": "categoryJ",
+            "questionNum": "question 4",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "23.5",
+            "scores": "5"
+        },
+        {
+            "categoryType": "categoryJ",
+            "questionNum": "question 5",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "1.0",
+            "scores": "5"
+        },
+        {
+            "categoryType": "categoryK",
+            "questionNum": "question 1",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "7.1",
+            "scores": "5"
+        },
+        {
+            "categoryType": "categoryK",
+            "questionNum": "question 2",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "37.1",
+            "scores": "4"
+        },
+        {
+            "categoryType": "categoryK",
+            "questionNum": "question 3",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "2.7",
+            "scores": "3"
+        },
+        {
+            "categoryType": "categoryK",
+            "questionNum": "question 4",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "23.5",
+            "scores": "5"
+        },
+        {
+            "categoryType": "categoryK",
+            "questionNum": "question 5",
+            "channel_display_name": "syncopika",
+            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
+            "views": "1.0",
+            "scores": "3"
+        },
     ];
 
-    var maleData = [];
-    var femaleData = [];
+    // var maleData = [];
+    // var femaleData = [];
+    var data_1 = [];
+    var data_2 = [];
+    var data_3 = [];
+    var data_4 = [];
+    var data_5 = [];
+    var data_6 = [];
+    var data_7 = [];
+    var data_8 = [];
+    var data_9 = [];
+    var data_10 = [];
+    var data_11 = [];
 
     for(var i = 0; i < bothData.length; i++){
-        if(bothData[i]["viewer_gender"] === "MALE"){
-            maleData.push(bothData[i]);
-        }else{
-            femaleData.push(bothData[i]);
+        if(bothData[i]["categoryType"] === "categoryA"){
+            data_1.push(bothData[i]);
+        }else if(bothData[i]["categoryType"] === "categoryB"){
+            data_2.push(bothData[i]);
+        }
+        else if(bothData[i]["categoryType"] === "categoryC"){
+            data_3.push(bothData[i]);
+        }
+        else if(bothData[i]["categoryType"] === "categoryD"){
+            data_4.push(bothData[i]);
+        }
+        else if(bothData[i]["categoryType"] === "categoryE"){
+            data_5.push(bothData[i]);
+        }
+        else if(bothData[i]["categoryType"] === "categoryF"){
+            data_6.push(bothData[i]);
+        }
+        else if(bothData[i]["categoryType"] === "categoryG"){
+            data_7.push(bothData[i]);
+        }
+        else if(bothData[i]["categoryType"] === "categoryH"){
+            data_8.push(bothData[i]);
+        }
+        else if(bothData[i]["categoryType"] === "categoryI"){
+            data_9.push(bothData[i]);
+        }
+        else if(bothData[i]["categoryType"] === "categoryJ"){
+            data_10.push(bothData[i]);
+        }
+        else if(bothData[i]["categoryType"] === "categoryK"){
+            data_11.push(bothData[i]);
         }
     }
 
     //functions for toggling between data
     function change(value){
 
-        if(value === 'male'){
-            update(maleData);
-        }else if(value === 'female'){
-            update(femaleData);
-        }else{
-            update(bothData);
+        if(value === 'categoryA'){
+            update(data_1);
+        }else if(value === 'categoryB'){
+            update(data_2);
+        }else if(value === 'categoryC'){
+            update(data_3);
+        }
+        else if(value === 'categoryD'){
+            update(data_4);
+        }
+        else if(value === 'categoryE'){
+            update(data_5);
+        }
+        else if(value === 'categoryF'){
+            update(data_6);
+        }
+        else if(value === 'categoryG'){
+            update(data_7);
+        }
+        else if(value === 'categoryH'){
+            update(data_8);
+        }
+        else if(value === 'categoryI'){
+            update(data_9);
+        }
+        else if(value === 'categoryJ'){
+            update(data_10);
+        }
+        else{
+            update(data_11);
         }
     }
 
     function update(data){
         //set domain for the x axis
-        xChart.domain(data.map(function(d){ return d.viewer_age; }) );
+        xChart.domain(data.map(function(d){ return d.questionNum; }) );
         //set domain for y axis
-        yChart.domain( [0, d3.max(data, function(d){ return +d.watch_time_minutes; })] );
+        yChart.domain( [0, d3.max(data, function(d){ return +d.scores; })] );
 
         //get the width of each bar
         var barWidth = width / data.length;
@@ -439,14 +937,41 @@
             .append("rect")
             .attr("class", "bar")
             .attr("x", function(d, i){ return i * barWidth + 1 })
-            .attr("y", function(d){ return yChart( d.watch_time_minutes); })
-            .attr("height", function(d){ return height - yChart(d.watch_time_minutes); })
+            .attr("y", function(d){ return yChart( d.scores); })
+            .attr("height", function(d){ return height - yChart(d.scores); })
             .attr("width", barWidth - 1)
             .attr("fill", function(d){
-                if(d.viewer_gender === "FEMALE"){
+                if(d.categoryType === "categoryB"){
                     return "rgb(251,180,174)";
-                }else{
+                }else if(d.categoryType === "categoryB"){
                     return "rgb(179,205,227)";
+                }
+                else if(d.categoryType === "categoryC"){
+                    return "rgb(251,180,174)";
+                }
+                else if(d.categoryType === "categoryD"){
+                    return "rgb(179,205,227)";
+                }
+                else if(d.categoryType === "categoryE"){
+                    return "rgb(251,180,174)";
+                }
+                else if(d.categoryType === "categoryF"){
+                    return "rgb(179,205,227)";
+                }
+                else if(d.categoryType === "categoryG"){
+                    return "rgb(251,180,174)";
+                }
+                else if(d.categoryType === "categoryH"){
+                    return "rgb(179,205,227)";
+                }
+                else if(d.categoryType === "categoryI"){
+                    return "rgb(251,180,174)";
+                }
+                else if(d.categoryType === "categoryJ"){
+                    return "rgb(179,205,227)";
+                }
+                else {
+                    return "rgb(251,180,174)";
                 }
             });
         //left axis
@@ -468,7 +993,7 @@
 
     //set up chart
     var margin = {top: 20, right: 20, bottom: 95, left: 50};
-    var width = 400;
+    var width =500;
     var height = 400;
 
     var chart = d3.select(".chart")
@@ -516,8 +1041,78 @@
         .attr("transform", "translate(" + (width/2) + "," + (height + margin.bottom - 5) + ")")
         .text("Answers");
 
+
     //use bothData to begin with
-    update(bothData);
+    //update(bothData);
+    xChart.domain(bothData.map(function(d){ return d.categoryType; }) );
+    //set domain for y axis
+    yChart.domain( [0, d3.max(bothData, function(d){ return +d.scores; })] );
+
+    //get the width of each bar
+    var barWidth = width / bothData.length;
+
+    //select all bars on the graph, take them out, and exit the previous data set.
+    //then you can add/enter the new data set
+    var bars = chart.selectAll(".bar")
+        .remove()
+        .exit()
+        .data(bothData)
+    //now actually give each rectangle the corresponding data
+    bars.enter()
+        .append("rect")
+        .attr("class", "bar")
+        .attr("x", function(d, i){ return i * barWidth + 1 })
+        .attr("y", function(d){ return yChart( d.scores); })
+        .attr("height", function(d){ return height - yChart(d.scores); })
+        .attr("width", barWidth - 1)
+        .attr("fill", function(d){
+            if(d.categoryType === "categoryB"){
+                return "rgb(251,180,174)";
+            }else if(d.categoryType === "categoryB"){
+                return "rgb(204,153,255)";
+            }
+            else if(d.categoryType === "categoryC"){
+                return "rgb(251,180,174)";
+            }
+            else if(d.categoryType === "categoryD"){
+                return "rgb(179,205,227)";
+            }
+            else if(d.categoryType === "categoryE"){
+                return "rgb(251,180,174)";
+            }
+            else if(d.categoryType === "categoryF"){
+                return "rgb(179,205,227)";
+            }
+            else if(d.categoryType === "categoryG"){
+                return "rgb(251,180,174)";
+            }
+            else if(d.categoryType === "categoryH"){
+                return "rgb(179,205,227)";
+            }
+            else if(d.categoryType === "categoryI"){
+                return "rgb(251,180,174)";
+            }
+            else if(d.categoryType === "categoryJ"){
+                return "rgb(179,205,227)";
+            }
+            else {
+                return "rgb(251,180,174)";
+            }
+        });
+    //left axis
+    chart.select('.y')
+        .call(yAxis)
+    //bottom axis
+    chart.select('.xAxis')
+        .attr("transform", "translate(0," + height + ")")
+        .call(xAxis)
+        .selectAll("text")
+        .style("text-anchor", "end")
+        .attr("dx", "-.8em")
+        .attr("dy", ".15em")
+        .attr("transform", function(d){
+            return "rotate(-65)";
+        });
 </script>
 
 
