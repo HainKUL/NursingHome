@@ -32,7 +32,6 @@ function startWebcam() {
     }
 }
 
-
 //---------------------
 // TAKE A SNAPSHOT CODE
 //---------------------
@@ -65,16 +64,26 @@ function snapshot() {
         },
         "processData": false,
         "data": datad
-    }
+    };
+
     $.ajax(settings).done(function (response) {
         var m = response;
-        //console.log("hello");
-        //console.log(JSON.stringify(m).indexOf("success"));//if not exist, return -1; else return the index of first occurance
-        //console.log("world");
         if(JSON.stringify(m).indexOf("success") > -1) {//obj found
             Materialize.toast('User Identfied. Name : ' +JSON.stringify(m.images[0].candidates[0].subject_id), 6000);
-            //console.log(m.images[0].candidates[0].subject_id);//Haien
+            console.log(m.images[0].candidates[0].subject_id);//Haien
 
+            //switch to next page
+            var base_url = window.location.origin.concat("/a18ux04");
+            //need to match name with id in db, or alternatively send query with name instead of id
+            let userName = m.images[0].candidates[0].subject_id;
+            let newUrl = base_url.concat("/index.php/Questionnaire_controller/questionnaire_start/").concat(userName);
+
+            console.log(newUrl);
+            //set a timer
+            setTimeout(myFunc,1000);
+            function myFunc() {
+                window.location.href = newUrl;
+            }
         }
         else{
             Materialize.toast('User Not identified');

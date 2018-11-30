@@ -10,9 +10,15 @@ class Questionnaire_controller extends CI_Controller{
         $this->load->model('Question_model');
 	}
 
+	public function questionnaire_start($userName){ //TODO get next unanswered question with SQL instead
 
-	public function questionnaire_start($userID){ //TODO get next unanswered question with SQL instead
-        $query = "INSERT INTO Submissions (idResident, completed) VALUES(".$this->db->escape($userID).", 0)";
+	    //translate userName into userID; we must ensure userName unique as well
+        $sql = "SELECT idResidents FROM a18ux04.Residents Where firstName=" . "\"" . $userName . "\"";
+        $result=$this->db->query($sql);
+        $userID = $result->result_array()[0]['idResidents'];
+
+//        $query = "INSERT INTO Submissions (idResident, completed) VALUES(".$this->db->escape($userID).", 0)";
+        $query = "INSERT INTO Submissions (idResident, completed) VALUES($userID, 0)";
         $this->db->query($query);
         $id = $this->db->insert_id();
         $_SESSION["idSubmission"] = $id;
@@ -20,7 +26,7 @@ class Questionnaire_controller extends CI_Controller{
         $sql = "SELECT nextQuestion FROM Submissions WHERE idSubmissions = '$id';";
         $result = $this->db->query($sql);
         $nextQuestion = $result->result_array()[0]['nextQuestion'];
-        $this->question($nextQuestion, $_SESSION["idSubmission"]);
+        $this->question($nextQuestion, $_SESSION["idSubmission"]);//TODO why pass two params since the function takes only one?
 	}
 
 

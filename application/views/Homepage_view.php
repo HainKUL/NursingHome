@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8" />
+    <?php echo base_url()?>
     <link rel="icon" href="<?=base_url()?>assets/photos/favicon3.ico" type="image/gif" sizes="16x16">
     <title><?php echo $this->lang->line('home_page'); ?></title>
 <!--    css file -->
@@ -16,8 +17,6 @@
         <option value="dutch" <?php if($this->session->userdata('site_lang') == 'dutch') echo 'selected="selected"'; ?>>Nederlands</option>
     </select>
 </head>
-
-
 
 <body background="<?=base_url() ?>assets/photos/background_remy.png">
 <div class="row" style="padding-top: 15%"></div>
@@ -42,16 +41,14 @@
 
     </div>
     <div class="row">
-
         <div class = "col-md-3">
         </div>
         <div class = "col-md-3">
-            <a  href=<?=base_url()?>Homepage_controller/residenthome class="link1">
+            <a  href=<?=base_url()?>index.php/Face_Login_controller/face_test class="link1">
                 <button type="button" class="btn btn-default button1" >
                     <?php echo $this->lang->line('home_resident'); ?>
                 </button>
             </a>
-
         </div>
         <div class = "col-md-1">
         </div>
