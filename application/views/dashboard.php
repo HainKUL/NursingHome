@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Dashboard</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/ >
+    <link rel="icon" href="<?=base_url()?>assets/photos/favicon3.ico" type="image/gif" sizes="16x16">
 
     <!-- Google fonts -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
@@ -15,7 +16,7 @@
     <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="//d3js.org/d3.v4.min.js"></script>
 
-<!--    <script src="--><?//= base_url()?><!--assets/js/trail.js"></script>-->
+    <script src="<?= base_url()?>assets/js/trail.js"></script>
 
 
 
@@ -27,8 +28,8 @@
             fill: #242424;
             text-align: center;
             text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
-            cursor: default;
-            /*cursor:url(http://www.rw-designer.com/cursor-view/104989.png), auto;*/
+            /*cursor: default;*/
+            cursor:url(http://www.rw-designer.com/cursor-view/104989.png), auto;
         }
         .bar {
             fill: #2f996e;

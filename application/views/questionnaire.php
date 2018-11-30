@@ -2,7 +2,7 @@
 <html>
 <head>
     <title> Questionnaire</title>
-    <link rel="icon" href="<?=base_url()?>assets/photos/favicon.png" type="image/gif" sizes="16x16">
+    <link rel="icon" href="<?=base_url()?>assets/photos/favicon3.ico" type="image/gif" sizes="16x16">
 
     <link href="<?= base_url()?>assets/css/features.css" rel="stylesheet" type="text/css"/>
     <meta charset="UTF-8" />
