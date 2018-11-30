@@ -13,7 +13,7 @@ class MultiLanguageLoader
             $ci->lang->load('login',$siteLang);
             $ci->lang->load('dashboard',$siteLang);
             $ci->lang->load('home',$siteLang);
-            $ci->lang->load('category',$siteLang);
+            $ci->lang->load('news',$siteLang);
 
         } else {
             // default language files
@@ -21,7 +21,7 @@ class MultiLanguageLoader
             $ci->lang->load('login','english');
             $ci->lang->load('dashboard','english');
             $ci->lang->load('home','english');
-            $ci->lang->load('category','english');
+            $ci->lang->load('news','english');
         }
     }
 }

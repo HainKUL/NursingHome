@@ -1,9 +1,9 @@
 :root {
-    --colorInsideCard: #ECEAE0;
-    --colorOutsideOfCard: #221E1D;
+    --colorInsideCard: #F9F5F7;
+    --colorOutsideOfCard: #F9F5F7;
     --shadeOfBlack: #2F3335;
     --shadeOfWhite: #FFFFFF;
-    --buttonColor: #E9633B;
+    --buttonColor: #F9F5F7;
 }
 
 * {
@@ -15,14 +15,19 @@
 
 html,
 body {
-    width: 100%;
     height: 100%;
-    margin: 0;
+    background-color: #F9F5F7;
+    align-items: center;
 }
 
 #card{
-    background-color: var(--colorInsideCard);
-    height: 90vh;
+    /*background-color: var(--colorInsideCard);
+    height: 90vh;*/
+    background-color: #F9F5F7;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    border-radius:15px;
+    box-shadow: 10px 10px #eae6e8;
 }
 
 #card_menu{
@@ -41,6 +46,7 @@ body {
     display: flex;
     align-items: center;
     margin-left: 0.2%;
+    border-color: rgba(88, 88, 88, 0.44);
 }
 
 #bigtest{
@@ -70,6 +76,7 @@ body {
     font-family: Helvetica, Arial, sans-serif;
     color: var(--shadeOfBlack);
     padding: 2.5vh; /*not good when screen gets smaller*/
+    border-color: rgba(88, 88, 88, 0.44);
 }
 
 #text, #text_question, #text_1, #text_2 {
@@ -200,11 +207,12 @@ body {
     bottom: 5vh;
 }
 
+
 footer{
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    left: 0;
+    font-family: Helvetica,Arial;
+    /*make it stand at the bottom at all times */
+    position: absolute;
     bottom: 0;
-    width: 100%;
+    padding: 1rem;
+    text-align: center;
 }
