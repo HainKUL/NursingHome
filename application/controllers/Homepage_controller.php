@@ -22,9 +22,6 @@ class Homepage_controller extends CI_Controller
     public function residentHome()
     {
 
-        $data['page_title'] = 'UXWD home page';
-        $data['content_title_1'] = 'residents homepage';
-        $data['content_title_2'] = 'Welcome to the residents homepage';
         $data['content'] = 'content';
         $this->parser->parse('olderadultmenu', $data);
     }
@@ -41,12 +38,8 @@ class Homepage_controller extends CI_Controller
         $this->parser->parse('Homepage_view', $data);
     }
 
-    public function nieuws()
+    public function news()
     {
-        $data['page_title'] = ' Nieuwspagina';
-        $data['content_title_1'] = 'Ontdek hier alle nieuwtjes van vandaag';
-        $data['content_title_2'] = 'Welke krant wilt u bekijken?';
-        $data['buttonClickHere'] = 'KLIK HIER';
         $data['buttonBack'] = 'Ik wil terug';
         $this->parser->parse('news_view', $data);
     }
@@ -95,4 +88,5 @@ class Homepage_controller extends CI_Controller
         $data['buttonBack'] = 'Ik wil terug';
         $this->parser->parse('sportsnews', $data);
     }
+
 }

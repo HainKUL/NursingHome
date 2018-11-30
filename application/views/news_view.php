@@ -1,114 +1,93 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{page_title}</title>
-    <link href="<?=base_url()?>assets/css/older_adult.css" rel="stylesheet" type="text/css"/>
     <meta charset="UTF-8" />
-    <meta name="keywords" content="UXWD's course demo" />
+    <title><?php echo $this->lang->line('news_title'); ?></title>
+    <link rel="icon" href="<?=base_url()?>assets/photos/favicon.png" type="image/gif" sizes="16x16">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link href="<?=base_url() ?>assets/css/features.css" rel="stylesheet" type="text/css"/>
+    <!-- language changer -->
     <select onchange="javascript:window.location.href='<?php echo base_url(); ?>MultiLanguageSwitcher/switcher/'+this.value;">
         <option value="english" <?php if($this->session->userdata('site_lang') == 'english') echo 'selected="selected"'; ?>>English</option>
-        <option value="dutch" <?php if($this->session->userdata('site_lang') == 'dutch') echo 'selected="selected"'; ?>>Dutch</option>
+        <option value="dutch" <?php if($this->session->userdata('site_lang') == 'dutch') echo 'selected="selected"'; ?>>Nederlands</option>
     </select>
 </head>
-<style> /* should be in css*/
-    p {
-        color: black;
-    }
-    .titel1 {
-        font-size: 40px;
-        /*text-align: center;*/
-    }
-    .titel2 {
-        font-size: 35px;
-        /*text-align: center;*/
-    }
-
-    .button1
-    {
-        display: block;
-        /*margin: auto; /* put button in the middle */
-        padding: 10px 20px; /*make button bigger than text*/
-        font-size: 20px;
-        text-align: center;
-        color: #fff;
-        background-color: #d5d5d5;
-        border-radius: 15px;
-
-    }
-    .button1:active { /* to show button being pressed*/
-        background-color: grey;
-        box-shadow: 0 5px #666;
-        transform: translateY(4px);
-    }
-    .button2
-    {
-        display: inline-block;
-        margin: auto; /* put button in the middle */
-        padding: 10px 20px; /*make button bigger than text*/
-        font-size: 20px;
-        text-align: center;
-        color: #fff;
-        background-color: #d5d5d5;
-        border-radius: 15px;
-
-    }
-    .button2:active { /* to show button being pressed*/
-        background-color: grey;
-        box-shadow: 0 5px #666;
-        transform: translateY(4px);
-    }
-    .link1{
-        color: black;
-        text-decoration: none;
-
-    }
-    .image1
-    {
-        width:70px;
-        height:70px;
-        display: inline-block;
-        position: relative;
 
 
-    }
-    .image2
-    {
-        width:90px;
-        height:50px;
-        display: inline-block;
-        position: relative;
 
-    }
-    .image3
-    {
-        width:140px;
-        height:35px;
-        display: inline-block;
-        position: relative;
+<body >
+<div class="row" style="padding-top: 5%"></div>
+<div class="container card" >
+    <div class="row">
+        <div class="col-md-10">
+        </div>
+        <div class="col-md-2" style="padding-bottom:10px" >
+            <a class="link1" href="residentHome">
+            <button type="button" class ="btn btn-default button1 float-right" >
+                <?php echo $this->lang->line('buttonBack'); ?>
+            </button>
+            </a>
+        </div>
+    </div>
+    <div class="row">
 
-    }
-</style>
+            <div class = "col-md-12">
+            <h1 class="h1">
+                <?php echo $this->lang->line('news_h1'); ?>
+            </h1>
+        </div>
+    </div>
+    <div class ="row">
 
-<body>
-<p class ="titel1">{content_title_1}<button type="button"class="button2" ><a class="link1" href="residentHome">{buttonBack}</a></button></p>
-<p class="titel2">{content_title_2}</p>
+        <div class = "col-md-12">
+            <h2 class="h2">
+                <?php echo $this->lang->line('news_h2'); ?>
+            </h2>
+        </div>
+    </div>
 
-    <!--<p class = "content1"><img src="http://localhost/a18ux04/assets/photos/hln.jpg" class="image1">Het Laatste Nieuws</p>
-    <button type="button" class="button1"><a class="link1" href="http://localhost/a18ux04/index.php/Homepage_controller/hln">KLIK HIER</a></button>
--->
+    <div class="row" style="padding-top: 20px;padding-bottom: 20px">
+        <div class = "col-md-3">
+        </div>
+        <div class = "col-md-6">
+            <a class="link1" href="nieuwsblad">
+                <button type="button" class="button2">
+                    <img src="<?=base_url()?>assets/photos/nieuwsblad.jpg"  class="image1">
+                    <?php echo $this->lang->line('buttonClickHere'); ?>
+                </button>
+            </a>
+        </div>
+    </div>
+    <div class="row" style="padding-top: 20px;padding-bottom: 20px">
+        <div class = "col-md-3">
+        </div>
+        <div class = "col-md-6">
+            <a class="link1" href="standard">
+                <button type="button" class="button2">
+                    <img src="<?=base_url()?>assets/photos/standaard.jpg" class="image2">
+                    <?php echo $this->lang->line('buttonClickHere'); ?>
+                </button>
+            </a>
+        </div>
+    </div>
+    <div class="row" style="padding-top: 20px;padding-bottom: 20px">
+        <div class = "col-md-3">
+        </div>
+        <div class = "col-md-6">
+            <a class="link1" href="dm">
+                <button type="button"class="button2" >
+                    <img src="<?=base_url()?>assets/photos/demorgen.png" class="image3" >
+                    <?php echo $this->lang->line('buttonClickHere'); ?>
+                </button>
+            </a>
+        </div>
+    </div>
 
-
-    <img src="<?=base_url()?>assets/photos/nieuwsblad.jpg" class="image1">
-    <button type="button" class="button1"><a class="link1" href="nieuwsblad">{buttonClickHere}</a></button>
-
-    <img src="<?=base_url()?>assets/photos/standaard.jpg" class="image2">
-    <button type="button" class="button1"><a class="link1" href="standard">{buttonClickHere}</a></button>
-
-    <img src="<?=base_url()?>assets/photos/demorgen.png" class="image3" >
-    <button type="button"class="button1" ><a class="link1" href="dm">{buttonClickHere}</a></button>
-
-
+</div>
 </body>
+
 
 </html>
 
