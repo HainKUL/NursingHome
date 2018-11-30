@@ -54,8 +54,26 @@ class Questionnaire_controller extends CI_Controller{
 
 	public function update()
     {
-        $id = $_SESSION["idSubmission"];
-        $sql = "SELECT nextQuestion FROM Submissions WHERE idSubmissions = '$id';";
+        //$idSubmissions = $_SESSION["idSubmission"];
+        //$userID = $_SESSION["idUser"];
+
+
+
+        $userID = 0;
+
+        $sql = "SELECT idSubmissions FROM Submissions WHERE completed <> 1 LIMIT 1";
+        $submission = $this->db->query($sql)->result_array()[0][idSubmissions];
+
+        $sql = "SELECT * FROM Questions WHERE NOT EXISTS".
+            "(SELECT * FROM Responses WHERE Questions.idQuestions = Responses.question AND submission = '$submission');";
+        $result = $this->db->query($sql);
+        if($result->num_rows() === 0) {
+            //completed! => redirect
+        }
+        $nextQuestion = $result->result_array()[0][idQuestions];
+
+
+        $sql = "SELECT nextQuestion FROM Submissions WHERE idSubmissions = '$idSubmission';";
         $result = $this->db->query($sql);
         $nextQuestion = $result->result_array()[0]['nextQuestion'];
         //send confimation to db;
