@@ -41,9 +41,4 @@
 
 </body>
 
-<footer>
-    <p><?php echo $this->lang->line('text_copyright_footer'); ?>
-        <a href="#"><?php echo $this->lang->line('text_copyright_privacy'); ?></a> | <a href="#"><?php echo $this->lang->line('text_copyright_term'); ?></a>
-    </p>
-</footer>
 </html>

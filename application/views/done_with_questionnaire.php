@@ -79,12 +79,6 @@
 
 </body>
 
-<footer>
-    <!--
-    <p>Copyright © 2018 UXWD. Groep T All Rights Reserved.
-        <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a>
-    </p>
-    -->
-</footer>
+
 
 </html>
