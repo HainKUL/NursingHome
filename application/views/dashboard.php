@@ -479,6 +479,10 @@ $result = $this->db->query($query);
                                     <div class='row'>
                                         <div class='radio'>
                                             <label class='radio-inline'>
+                                                <input type="radio" name="gender" value="all" onclick='change(this.value)'><?php echo $this->lang->line('category_all'); ?>
+                                            </label>
+                                        </br>
+                                            <label class='radio-inline'>
                                                 <input type="radio" name="gender" value="categoryA" onclick='change(this.value)'><?php echo $this->lang->line('category_0'); ?>
                                             </label>
                                             <label class='radio-inline'>
@@ -517,9 +521,7 @@ $result = $this->db->query($query);
                                                 <input type="radio" name="gender" value="categoryK" onclick='change(this.value)'><?php echo $this->lang->line('category_10'); ?>
                                             </label>
                                             </br>
-                                            <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="all" onclick='change(this.value)'><?php echo $this->lang->line('category_all'); ?>
-                                            </label>
+
 
                                         </div>
                                         <svg class='chart'>
@@ -1126,37 +1128,37 @@ $result = $this->db->query($query);
                 .attr("height", function(d){ return height - yChart(d.scores); })
                 .attr("width", barWidth - 1)
                 .attr("fill", function(d){
-                    if(d.categoryType === "categoryB"){
-                        return "rgb(251,180,174)";
+                    if(d.categoryType === "categoryA"){
+                        return "rgb(216,230,173)";
                     }else if(d.categoryType === "categoryB"){
-                        return "rgb(204,153,255)";
+                        return "rgb(173,216,230)";
                     }
                     else if(d.categoryType === "categoryC"){
-                        return "rgb(244, 65, 124)";
+                        return "rgb(230,187,173)";
                     }
                     else if(d.categoryType === "categoryD"){
-                        return "rgb(244, 103, 65)";
+                        return "rgb(238,249,240)";
                     }
                     else if(d.categoryType === "categoryE"){
-                        return "rgb(244, 202, 65)";
+                        return "rgb(200,235,208)";
                     }
                     else if(d.categoryType === "categoryF"){
-                        return "rgb(65, 244, 181)";
+                        return "rgb(227,243,246)";
                     }
                     else if(d.categoryType === "categoryG"){
-                        return "rgb(65, 139, 244)";
+                        return "rgb(187,187,187)";
                     }
                     else if(d.categoryType === "categoryH"){
-                        return "rgb(190, 65, 244)";
+                        return "rgb(193,226,204)";
                     }
                     else if(d.categoryType === "categoryI"){
-                        return "rgb(244, 65, 121)";
+                        return "rgb(234,245,152)";
                     }
                     else if(d.categoryType === "categoryJ"){
-                        return "rgb(244, 65, 65)";
+                        return "rgb(252,244,244)";
                     }
                     else {
-                        return "rgb(65, 226, 244)";
+                        return "rgb(204,204,204)";
                     }
                 });
             //left axis
@@ -1200,37 +1202,37 @@ $result = $this->db->query($query);
             .attr("height", function(d){ return height - yChart(d.scores); })
             .attr("width", barWidth - 1)
             .attr("fill", function(d){
-                if(d.categoryType === "categoryB"){
-                    return "rgb(251,180,174)";
+                if(d.categoryType === "categoryA"){
+                    return "rgb(216,230,173)";
                 }else if(d.categoryType === "categoryB"){
-                    return "rgb(204,153,255)";
+                    return "rgb(173,216,230)";
                 }
                 else if(d.categoryType === "categoryC"){
-                    return "rgb(244, 65, 124)";
+                    return "rgb(230,187,173)";
                 }
                 else if(d.categoryType === "categoryD"){
-                    return "rgb(244, 103, 65)";
+                    return "rgb(238,249,240)";
                 }
                 else if(d.categoryType === "categoryE"){
-                    return "rgb(244, 202, 65)";
+                    return "rgb(200,235,208)";
                 }
                 else if(d.categoryType === "categoryF"){
-                    return "rgb(65, 244, 181)";
+                    return "rgb(227,243,246)";
                 }
                 else if(d.categoryType === "categoryG"){
-                    return "rgb(65, 139, 244)";
+                    return "rgb(187,187,187)";
                 }
                 else if(d.categoryType === "categoryH"){
-                    return "rgb(190, 65, 244)";
+                    return "rgb(193,226,204)";
                 }
                 else if(d.categoryType === "categoryI"){
-                    return "rgb(244, 65, 121)";
+                    return "rgb(234,245,152)";
                 }
                 else if(d.categoryType === "categoryJ"){
-                    return "rgb(244, 65, 65)";
+                    return "rgb(252,244,244)";
                 }
                 else {
-                    return "rgb(65, 226, 244)";
+                    return "rgb(204,204,204)";
                 }
             });
         //left axis
@@ -1325,37 +1327,37 @@ $result = $this->db->query($query);
         .attr("height", function(d){ return height - yChart(d.scores); })
         .attr("width", barWidth - 1)
         .attr("fill", function(d){
-            if(d.categoryType === "categoryB"){
-                return "rgb(251,180,174)";
+            if(d.categoryType === "categoryA"){
+                return "rgb(216,230,173)";
             }else if(d.categoryType === "categoryB"){
-                return "rgb(204,153,255)";
+                return "rgb(173,216,230)";
             }
             else if(d.categoryType === "categoryC"){
-                return "rgb(244, 65, 124)";
+                return "rgb(230,187,173)";
             }
             else if(d.categoryType === "categoryD"){
-                return "rgb(244, 103, 65)";
+                return "rgb(238,249,240)";
             }
             else if(d.categoryType === "categoryE"){
-                return "rgb(244, 202, 65)";
+                return "rgb(200,235,208)";
             }
             else if(d.categoryType === "categoryF"){
-                return "rgb(65, 244, 181)";
+                return "rgb(227,243,246)";
             }
             else if(d.categoryType === "categoryG"){
-                return "rgb(65, 139, 244)";
+                return "rgb(187,187,187)";
             }
             else if(d.categoryType === "categoryH"){
-                return "rgb(190, 65, 244)";
+                return "rgb(193,226,204)";
             }
             else if(d.categoryType === "categoryI"){
-                return "rgb(244, 65, 121)";
+                return "rgb(234,245,152)";
             }
             else if(d.categoryType === "categoryJ"){
-                return "rgb(244, 65, 65)";
+                return "rgb(252,244,244)";
             }
             else {
-                return "rgb(65, 226, 244)";
+                return "rgb(204,204,204)";
             }
         });
     //left axis
