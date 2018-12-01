@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Dashboard</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/ >
+    <title>Smoothed D3.js Radar Chart</title>
+
+    <title>Dashboard</title>
+
 
     <!-- Google fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 
     <!-- D3.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/1.3.0/d3-legend.js" charset="utf-8"></script>
-    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+
+
+   <!-- <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="//d3js.org/d3.v4.min.js"></script>
-
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-
+    <script src="https://d3js.org/d3.v4.min.js"></script>-->
 
     <style>
         body {
@@ -28,17 +30,12 @@
             text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
             cursor: default;
         }
-        .bar {
-            fill: #2f996e;
-        }
-
         .tooltip {
             fill: #333333;
         }
         .radio{
-            text-align: center;
+            text-align:left;
         }
-
     </style>
 
 
@@ -207,43 +204,219 @@ $result = $this->db->query($query);
 
                                     <script src="../../assets/js/radarChart.js"></script>
                                     <script>
+                                        //////////////////////////////////////////////////////////////
+                                        //////////////////////// Set-Up //////////////////////////////
+                                        //////////////////////////////////////////////////////////////
 
-                                        var margin = {top: 30, right: 100, bottom: 100, left: 100},
-                                            legendPosition = {x: 25, y: 25},
+                                        var margin = {top: 100, right: 70, bottom: 100, left: 100},
+                                            legendPosition = {x: 300, y: 15},
                                             width = Math.min(500, window.innerWidth - 10) - margin.left - margin.right,
                                             height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20);
-
-                                        var data = [
-                                            [
-                                                {axis:"<?php echo $this->lang->line('category_0'); ?>",value:2},
-                                                {axis:"<?php echo $this->lang->line('category_1'); ?>",value:4.3},
-                                                {axis:"<?php echo $this->lang->line('category_2'); ?>",value:5},
-                                                {axis:"<?php echo $this->lang->line('category_3'); ?>",value:2.1},
-                                                {axis:"<?php echo $this->lang->line('category_4'); ?>",value:4.5},
-                                                {axis:"<?php echo $this->lang->line('category_5'); ?>",value:3.3},
-                                                {axis:"<?php echo $this->lang->line('category_6'); ?>",value:5},
-                                                {axis:"<?php echo $this->lang->line('category_7'); ?>",value:3},
-                                                {axis:"<?php echo $this->lang->line('category_8'); ?>",value:1},
-                                                {axis:"<?php echo $this->lang->line('category_9'); ?>",value:4},
-                                                {axis:"<?php echo $this->lang->line('category_10'); ?>",value:2}
-
-                                            ],[
-                                                {axis:"<?php echo $this->lang->line('category_0'); ?>",value:3},
-                                                {axis:"<?php echo $this->lang->line('category_1'); ?>",value:4},
-                                                {axis:"<?php echo $this->lang->line('category_2'); ?>",value:5},
-                                                {axis:"<?php echo $this->lang->line('category_3'); ?>",value:3.6},
-                                                {axis:"<?php echo $this->lang->line('category_4'); ?>",value:2.1},
-                                                {axis:"<?php echo $this->lang->line('category_5'); ?>",value:1.3},
-                                                {axis:"<?php echo $this->lang->line('category_6'); ?>",value:4},
-                                                {axis:"<?php echo $this->lang->line('category_7'); ?>",value:5},
-                                                {axis:"<?php echo $this->lang->line('category_8'); ?>",value:3},
-                                                {axis:"<?php echo $this->lang->line('category_9'); ?>",value:2},
-                                                {axis:"<?php echo $this->lang->line('category_10'); ?>",value:4}
-                                            ]
-                                        ];
+                                        //////////////////////////////////////////////////////////////
+                                        //////////////////// Draw the Chart //////////////////////////
+                                        //////////////////////////////////////////////////////////////
 
                                         var color = d3.scale.ordinal()
-                                            .range(["#82686a","#2f996e"]);
+                                            .range(["#42f4b0","#41b2f4","#00A0B0"]);
+                                        var data = [
+                                            {
+                                                "key":"<?php echo $this->lang->line('category_time2'); ?>",
+                                                "values":[
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_0'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time2'); ?>",
+                                                        "value":4
+
+                                                    },
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_1'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time2'); ?>",
+                                                        "value":3
+                                                    },
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_2'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time2'); ?>",
+                                                        "value":2
+                                                    },
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_3'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time2'); ?>",
+                                                        "value":4
+                                                    },
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_4'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time2'); ?>",
+                                                        "value":3
+                                                    },
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_5'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time2'); ?>",
+                                                        "value":1
+                                                    },
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_6'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time2'); ?>",
+                                                        "value":3
+                                                    },
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_7'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time2'); ?>",
+                                                        "value":4
+                                                    },
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_8'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time2'); ?>",
+                                                        "value":3
+                                                    },
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_8'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time2'); ?>",
+                                                        "value":3
+                                                    },
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_9'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time2'); ?>",
+                                                        "value":4
+                                                    },
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_10'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time2'); ?>",
+                                                        "value":3
+                                                    },
+                                                ]
+                                            },
+                                            {
+                                                "key":"<?php echo $this->lang->line('category_time1'); ?>",
+                                                "values":[
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_0'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time1'); ?>",
+                                                        "value":3
+                                                    },
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_1'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time1'); ?>",
+                                                        "value":1
+                                                    },
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_2'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time1'); ?>",
+                                                        "value":4
+                                                    },
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_3'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time1'); ?>",
+                                                        "value":3
+                                                    },
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_4'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time1'); ?>",
+                                                        "value":5
+                                                    },
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_5'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time1'); ?>",
+                                                        "value":3
+                                                    },
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_6'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time1'); ?>",
+                                                        "value":3
+                                                    },
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_7'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time1'); ?>",
+                                                        "value":2
+                                                    },
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_8'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time1'); ?>",
+                                                        "value":5
+                                                    },
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_9'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time1'); ?>",
+                                                        "value":3
+                                                    },
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_9'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time1'); ?>",
+                                                        "value":2
+                                                    },
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_10'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time1'); ?>",
+                                                        "value":5
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "key":"<?php echo $this->lang->line('category_time3'); ?>",
+                                                "values":[
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_0'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time3'); ?>",
+                                                        "value":5
+                                                    },
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_1'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time3'); ?>",
+                                                        "value":3
+                                                    },
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_2'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time3'); ?>",
+                                                        "value":5
+                                                    },
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_3'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time3'); ?>",
+                                                        "value":3
+                                                    },
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_4'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time3'); ?>",
+                                                        "value":5
+                                                    },
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_5'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time3'); ?>",
+                                                        "value":5
+                                                    },
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_6'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time3'); ?>",
+                                                        "value":4
+                                                    },
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_7'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time3'); ?>",
+                                                        "value":2
+                                                    },
+                                                    {
+                                                        "reason": "<?php echo $this->lang->line('category_8'); ?>",
+                                                        "device": "<?php echo $this->lang->line('category_time3'); ?>",
+                                                        "value": 5
+                                                    },
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_8'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time3'); ?>",
+                                                        "value":4
+                                                    },
+                                                    {
+                                                        "reason":"<?php echo $this->lang->line('category_9'); ?>",
+                                                        "device":"<?php echo $this->lang->line('category_time3'); ?>",
+                                                        "value":2
+                                                    },
+                                                    {
+                                                        "reason": "<?php echo $this->lang->line('category_10'); ?>",
+                                                        "device": "<?php echo $this->lang->line('category_time3'); ?>",
+                                                        "value": 5
+                                                    }
+
+                                                ]
+                                            }
+                                        ]
 
                                         var radarChartOptions = {
                                             w: width,
@@ -251,16 +424,20 @@ $result = $this->db->query($query);
                                             margin: margin,
                                             legendPosition: legendPosition,
                                             maxValue: 0.5,
-                                            wrapWidth: 50,
+                                            wrapWidth: 60,
                                             levels: 5,
                                             roundStrokes: true,
                                             color: color,
-                                            axisName: "category",
-                                            areaName: "times",
+                                            axisName: "reason",
+                                            areaName: "device",
                                             value: "value"
                                         };
-                                        //Call function to draw the Radar chart
+
+                                        //Load the data and Call function to draw the Radar chart
                                         RadarChart(".radarChart", data, radarChartOptions);
+
+
+
                                     </script>
                                     Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
                                 </div>
@@ -295,42 +472,53 @@ $result = $this->db->query($query);
                         <div id="collapseAnswers" class="collapse" aria-labelledby="headingAnswers" data-parent="#accordionQuestionnaire">
                             <div class="card-body">
                                 <h3><?php echo $this->lang->line('category_title2'); ?></h3>
-
+                                <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+                                <script src="//d3js.org/d3.v4.min.js"></script>
+                                <script src="https://d3js.org/d3.v4.min.js"></script>
                                 <div class='container'>
                                     <div class='row'>
                                         <div class='radio'>
                                             <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryA" onclick='change(this.value)'>categoryA
+                                                <input type="radio" name="gender" value="categoryA" onclick='change(this.value)'><?php echo $this->lang->line('category_0'); ?>
                                             </label>
                                             <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryB" onclick='change(this.value)'>categoryB
+                                                <input type="radio" name="gender" value="categoryB" onclick='change(this.value)'><?php echo $this->lang->line('category_1'); ?>
                                             </label>
                                             <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryC" onclick='change(this.value)'>categoryC
+                                                <input type="radio" name="gender" value="categoryC" onclick='change(this.value)'><?php echo $this->lang->line('category_2'); ?>
+                                            </label>
+                                            </br>
+                                            <label class='radio-inline'>
+                                                <input type="radio" name="gender" value="categoryD" onclick='change(this.value)'><?php echo $this->lang->line('category_3'); ?>
                                             </label>
                                             <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryD" onclick='change(this.value)'>categoryD
+                                                <input type="radio" name="gender" value="categoryE" onclick='change(this.value)'><?php echo $this->lang->line('category_4'); ?>
                                             </label>
                                             <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryE" onclick='change(this.value)'>categoryE
+                                                <input type="radio" name="gender" value="categoryF" onclick='change(this.value)'><?php echo $this->lang->line('category_5'); ?>
+                                            </label>
+                                            </br>
+                                            <label class='radio-inline'>
+                                                <input type="radio" name="gender" value="categoryG" onclick='change(this.value)'><?php echo $this->lang->line('category_6'); ?>
+                                            </label>
+                                            </br>
+                                            <label class='radio-inline'>
+                                                <input type="radio" name="gender" value="categoryH" onclick='change(this.value)'><?php echo $this->lang->line('category_7'); ?>
+                                            </label>
+                                            </br>
+                                            <label class='radio-inline'>
+                                                <input type="radio" name="gender" value="categoryI" onclick='change(this.value)'><?php echo $this->lang->line('category_8'); ?>
                                             </label>
                                             <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryF" onclick='change(this.value)'>categoryF
+                                                <input type="radio" name="gender" value="categoryJ" onclick='change(this.value)'><?php echo $this->lang->line('category_9'); ?>
                                             </label>
+                                            </br>
                                             <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryG" onclick='change(this.value)'>categoryG
+                                                <input type="radio" name="gender" value="categoryK" onclick='change(this.value)'><?php echo $this->lang->line('category_10'); ?>
                                             </label>
+                                            </br>
                                             <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryH" onclick='change(this.value)'>categoryH
-                                            </label>
-                                            <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryI" onclick='change(this.value)'>categoryI
-                                            </label>
-                                            <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryJ" onclick='change(this.value)'>categoryJ
-                                            </label>
-                                            <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryK" onclick='change(this.value)'>categoryK
+                                                <input type="radio" name="gender" value="all" onclick='change(this.value)'><?php echo $this->lang->line('category_all'); ?>
                                             </label>
 
                                         </div>
@@ -392,7 +580,7 @@ $result = $this->db->query($query);
     var bothData = [
         {
             "categoryType": "categoryA",
-            "questionNum": "question 1",
+            "questionNum": "I can be alone when I wish.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "3.3",
@@ -400,7 +588,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryA",
-            "questionNum": "question 2",
+            "questionNum": "My privacy is respected when people care for me",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "12.8",
@@ -408,7 +596,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryB",
-            "questionNum": "question 1",
+            "questionNum": "I get my favorite foods here.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "7.1",
@@ -416,7 +604,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryB",
-            "questionNum": "question 2",
+            "questionNum": "I can eat when I want.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "37.1",
@@ -424,7 +612,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryB",
-            "questionNum": "question 3",
+            "questionNum": "I have enough variety in my meals.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "2.7",
@@ -432,7 +620,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryB",
-            "questionNum": "question 4",
+            "questionNum": "I enjoy mealtimes.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "23.5",
@@ -440,7 +628,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryB",
-            "questionNum": "question 5",
+            "questionNum": "Food is the right temperature when I get to eat it.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "1.0",
@@ -448,7 +636,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryC",
-            "questionNum": "question 1",
+            "questionNum": "If I need help right away, I can get it.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "3.3",
@@ -456,7 +644,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryC",
-            "questionNum": "question 2",
+            "questionNum": "I feel my possessions are secure.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "12.8",
@@ -464,7 +652,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryC",
-            "questionNum": "question 3",
+            "questionNum": "feel safe when I am alone.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "7.1",
@@ -472,7 +660,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryD",
-            "questionNum": "question 1",
+            "questionNum": "get the services I need.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "7.1",
@@ -480,7 +668,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryD",
-            "questionNum": "question 2",
+            "questionNum": "would recommend this site or organization to others.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "37.1",
@@ -488,7 +676,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryD",
-            "questionNum": "question 3",
+            "questionNum": "This place feels like home to me.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "2.7",
@@ -496,7 +684,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryD",
-            "questionNum": "question 4",
+            "questionNum": "I can easily go outdoors if I want.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "23.5",
@@ -504,7 +692,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryD",
-            "questionNum": "question 5",
+            "questionNum": "I am bothered by the noise here.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "1.0",
@@ -512,7 +700,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryE",
-            "questionNum": "question 1",
+            "questionNum": "I can have a bath or shower as often as I want.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "7.1",
@@ -520,7 +708,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryE",
-            "questionNum": "question 2",
+            "questionNum": "I decide when to get up.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "37.1",
@@ -528,7 +716,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryE",
-            "questionNum": "question 3",
+            "questionNum": "I decide when to go to bed.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "2.7",
@@ -536,7 +724,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryE",
-            "questionNum": "question 4",
+            "questionNum": "I can go where I want on the “spur of the moment.”",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "23.5",
@@ -544,7 +732,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryE",
-            "questionNum": "question 5",
+            "questionNum": "I control who comes into my room.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "1.0",
@@ -552,7 +740,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryE",
-            "questionNum": "question 6",
+            "questionNum": "I decide which clothes to wear.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "23.5",
@@ -560,7 +748,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryE",
-            "questionNum": "question 7",
+            "questionNum": "decide how to spend my time.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "1.0",
@@ -568,7 +756,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryF",
-            "questionNum": "question 1",
+            "questionNum": "I am treated with respect by staff.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "7.1",
@@ -576,7 +764,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryF",
-            "questionNum": "question 2",
+            "questionNum": "Staff pay attention to me.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "37.1",
@@ -584,7 +772,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryF",
-            "questionNum": "question 3",
+            "questionNum": "I can express my opinion without fear of consequences.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "2.7",
@@ -592,7 +780,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryF",
-            "questionNum": "question 4",
+            "questionNum": "Staff respect what I like and dislike.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "23.5",
@@ -600,7 +788,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryG",
-            "questionNum": "question 1",
+            "questionNum": "The care and support I get help me live my life the way I want.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "7.1",
@@ -608,7 +796,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryG",
-            "questionNum": "question 2",
+            "questionNum": "Staff respond quickly when I ask for assistance.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "37.1",
@@ -616,7 +804,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryG",
-            "questionNum": "question 3",
+            "questionNum": "staff respond to my suggestions.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "2.7",
@@ -624,7 +812,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryG",
-            "questionNum": "question 4",
+            "questionNum": "I get the health services I need.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "23.5",
@@ -632,7 +820,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryG",
-            "questionNum": "question 5",
+            "questionNum": "I get the health services I need.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "1.0",
@@ -640,7 +828,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryG",
-            "questionNum": "question 6",
+            "questionNum": "Staff know what they are doing.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "23.5",
@@ -648,7 +836,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryG",
-            "questionNum": "question 7",
+            "questionNum": "My services are delivered when I want them.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "1.0",
@@ -656,7 +844,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryH",
-            "questionNum": "question 1",
+            "questionNum": "Some of the staff know the story of my life.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "7.1",
@@ -664,7 +852,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryH",
-            "questionNum": "question 2",
+            "questionNum": "consider a staff member my friend.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "37.1",
@@ -672,7 +860,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryH",
-            "questionNum": "question 3",
+            "questionNum": "I have a special relationship with a staff member.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "2.7",
@@ -680,7 +868,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryH",
-            "questionNum": "question 4",
+            "questionNum": "Staff take the time to have a friendly conversation with me.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "23.5",
@@ -688,7 +876,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryH",
-            "questionNum": "question 5",
+            "questionNum": "Staff ask how my needs can be met.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "1.0",
@@ -696,7 +884,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryH",
-            "questionNum": "question 6",
+            "questionNum": "Staff ask how my needs can be met.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "23.5",
@@ -704,7 +892,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryI",
-            "questionNum": "question 1",
+            "questionNum": "I have enjoyable things to do here on weekends.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "7.1",
@@ -712,7 +900,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryI",
-            "questionNum": "question 2",
+            "questionNum": "I have enjoyable things to do here in the evenings.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "37.1",
@@ -720,7 +908,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryI",
-            "questionNum": "question 3",
+            "questionNum": "participate in meaningful activities.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "2.7",
@@ -728,7 +916,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryI",
-            "questionNum": "question 4",
+            "questionNum": "If I want, I can participate in religious activities that have meaning to me.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "23.5",
@@ -736,7 +924,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryI",
-            "questionNum": "question 5",
+            "questionNum": "I have opportunities to spend time with other like-minded residents.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "1.0",
@@ -744,7 +932,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryI",
-            "questionNum": "question 6",
+            "questionNum": "I have the opportunity to explore new skills and interests.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "23.5",
@@ -752,7 +940,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryJ",
-            "questionNum": "question 1",
+            "questionNum": "Another resident here is my close friend.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "7.1",
@@ -760,7 +948,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryJ",
-            "questionNum": "question 2",
+            "questionNum": "People ask for my help or advice.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "37.1",
@@ -768,7 +956,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryJ",
-            "questionNum": "question 3",
+            "questionNum": "I have opportunities for affection or romance.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "2.7",
@@ -776,7 +964,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryJ",
-            "questionNum": "question 4",
+            "questionNum": "It is easy to make friends here.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "23.5",
@@ -784,7 +972,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryJ",
-            "questionNum": "question 5",
+            "questionNum": "have people who want to do things together with me.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "1.0",
@@ -792,7 +980,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryK",
-            "questionNum": "question 1",
+            "questionNum": "I am part of a couple.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "7.1",
@@ -800,7 +988,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryK",
-            "questionNum": "question 2",
+            "questionNum": "My gender is",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "37.1",
@@ -808,7 +996,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryK",
-            "questionNum": "question 3",
+            "questionNum": "My age in years is . .",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "2.7",
@@ -816,7 +1004,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryK",
-            "questionNum": "question 4",
+            "questionNum": "My health is",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "23.5",
@@ -824,7 +1012,7 @@ $result = $this->db->query($query);
         },
         {
             "categoryType": "categoryK",
-            "questionNum": "question 5",
+            "questionNum": "I have lived at",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "1.0",
@@ -912,8 +1100,79 @@ $result = $this->db->query($query);
         else if(value === 'categoryJ'){
             update(data_10);
         }
-        else{
+        else if(value === 'categoryK'){
             update(data_11);
+        }
+        else {
+            xChart.domain(bothData.map(function(d){ return d.categoryType; }) );
+            //set domain for y axis
+            yChart.domain( [0, d3.max(bothData, function(d){ return +d.scores; })] );
+
+            //get the width of each bar
+            var barWidth = width / bothData.length;
+
+            //select all bars on the graph, take them out, and exit the previous data set.
+            //then you can add/enter the new data set
+            var bars = chart.selectAll(".bar")
+                .remove()
+                .exit()
+                .data(bothData)
+            //now actually give each rectangle the corresponding data
+            bars.enter()
+                .append("rect")
+                .attr("class", "bar")
+                .attr("x", function(d, i){ return i * barWidth + 1 })
+                .attr("y", function(d){ return yChart( d.scores); })
+                .attr("height", function(d){ return height - yChart(d.scores); })
+                .attr("width", barWidth - 1)
+                .attr("fill", function(d){
+                    if(d.categoryType === "categoryB"){
+                        return "rgb(251,180,174)";
+                    }else if(d.categoryType === "categoryB"){
+                        return "rgb(204,153,255)";
+                    }
+                    else if(d.categoryType === "categoryC"){
+                        return "rgb(244, 65, 124)";
+                    }
+                    else if(d.categoryType === "categoryD"){
+                        return "rgb(244, 103, 65)";
+                    }
+                    else if(d.categoryType === "categoryE"){
+                        return "rgb(244, 202, 65)";
+                    }
+                    else if(d.categoryType === "categoryF"){
+                        return "rgb(65, 244, 181)";
+                    }
+                    else if(d.categoryType === "categoryG"){
+                        return "rgb(65, 139, 244)";
+                    }
+                    else if(d.categoryType === "categoryH"){
+                        return "rgb(190, 65, 244)";
+                    }
+                    else if(d.categoryType === "categoryI"){
+                        return "rgb(244, 65, 121)";
+                    }
+                    else if(d.categoryType === "categoryJ"){
+                        return "rgb(244, 65, 65)";
+                    }
+                    else {
+                        return "rgb(65, 226, 244)";
+                    }
+                });
+            //left axis
+            chart.select('.y')
+                .call(yAxis)
+            //bottom axis
+            chart.select('.xAxis')
+                .attr("transform", "translate(0," + height + ")")
+                .call(xAxis)
+                .selectAll("text")
+                .style("text-anchor", "end")
+                .attr("dx", "-.8em")
+                .attr("dy", ".15em")
+                .attr("transform", function(d){
+                    return "rotate(-65)";
+                });
         }
     }
 
@@ -944,34 +1203,34 @@ $result = $this->db->query($query);
                 if(d.categoryType === "categoryB"){
                     return "rgb(251,180,174)";
                 }else if(d.categoryType === "categoryB"){
-                    return "rgb(179,205,227)";
+                    return "rgb(204,153,255)";
                 }
                 else if(d.categoryType === "categoryC"){
-                    return "rgb(251,180,174)";
+                    return "rgb(244, 65, 124)";
                 }
                 else if(d.categoryType === "categoryD"){
-                    return "rgb(179,205,227)";
+                    return "rgb(244, 103, 65)";
                 }
                 else if(d.categoryType === "categoryE"){
-                    return "rgb(251,180,174)";
+                    return "rgb(244, 202, 65)";
                 }
                 else if(d.categoryType === "categoryF"){
-                    return "rgb(179,205,227)";
+                    return "rgb(65, 244, 181)";
                 }
                 else if(d.categoryType === "categoryG"){
-                    return "rgb(251,180,174)";
+                    return "rgb(65, 139, 244)";
                 }
                 else if(d.categoryType === "categoryH"){
-                    return "rgb(179,205,227)";
+                    return "rgb(190, 65, 244)";
                 }
                 else if(d.categoryType === "categoryI"){
-                    return "rgb(251,180,174)";
+                    return "rgb(244, 65, 121)";
                 }
                 else if(d.categoryType === "categoryJ"){
-                    return "rgb(179,205,227)";
+                    return "rgb(244, 65, 65)";
                 }
                 else {
-                    return "rgb(251,180,174)";
+                    return "rgb(65, 226, 244)";
                 }
             });
         //left axis
@@ -992,7 +1251,7 @@ $result = $this->db->query($query);
     }//end update
 
     //set up chart
-    var margin = {top: 20, right: 20, bottom: 95, left: 50};
+    var margin = {top: 20, right: 20, bottom: 195, left: 50};
     var width =500;
     var height = 400;
 
@@ -1072,31 +1331,31 @@ $result = $this->db->query($query);
                 return "rgb(204,153,255)";
             }
             else if(d.categoryType === "categoryC"){
-                return "rgb(251,180,174)";
+                return "rgb(244, 65, 124)";
             }
             else if(d.categoryType === "categoryD"){
-                return "rgb(179,205,227)";
+                return "rgb(244, 103, 65)";
             }
             else if(d.categoryType === "categoryE"){
-                return "rgb(251,180,174)";
+                return "rgb(244, 202, 65)";
             }
             else if(d.categoryType === "categoryF"){
-                return "rgb(179,205,227)";
+                return "rgb(65, 244, 181)";
             }
             else if(d.categoryType === "categoryG"){
-                return "rgb(251,180,174)";
+                return "rgb(65, 139, 244)";
             }
             else if(d.categoryType === "categoryH"){
-                return "rgb(179,205,227)";
+                return "rgb(190, 65, 244)";
             }
             else if(d.categoryType === "categoryI"){
-                return "rgb(251,180,174)";
+                return "rgb(244, 65, 121)";
             }
             else if(d.categoryType === "categoryJ"){
-                return "rgb(179,205,227)";
+                return "rgb(244, 65, 65)";
             }
             else {
-                return "rgb(251,180,174)";
+                return "rgb(65, 226, 244)";
             }
         });
     //left axis
