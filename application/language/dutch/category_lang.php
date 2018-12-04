@@ -22,4 +22,6 @@ $lang['category_10'] = 'Informatie vanuit het woonzorgcentrum';
 $lang['category_time1'] ='recente tijd';
 $lang['category_time2'] ='laatste keer';
 $lang['category_time3'] ='de tijd vóór de vorige keer';
-$lang['category_all'] ='allemaal';
+$lang['category_all'] ='OVERZICHT';
+$lang['category_ans'] ='Antwoord';
+$lang['category_score'] ='Score van de vragen';

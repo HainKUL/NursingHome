@@ -23,4 +23,6 @@ $lang['category_10'] = 'Information from the residential care center';
 $lang['category_time1'] ='recent time';
 $lang['category_time2'] ='last time';
 $lang['category_time3'] ='the time before last time';
-$lang['category_all'] ='all';
+$lang['category_all'] ='OVERVIEW';
+$lang['category_ans'] ='Answer';
+$lang['category_score'] ='Score of the questions';

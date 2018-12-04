@@ -2,8 +2,6 @@
 <html lang="en">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/ >
-    <title>Smoothed D3.js Radar Chart</title>
-
     <title>Dashboard</title>
 
 
@@ -29,13 +27,56 @@
             text-align: center;
             text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
             cursor: default;
+
         }
         .tooltip {
             fill: #333333;
         }
         .radio{
-            text-align:left;
+            text-align: end;
         }
+        .form-radio
+        {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            display: inline-block;
+            position: relative;
+            background-color: #f1f1f1;
+            color: #666;
+            top: 10px;
+            height: 30px;
+            width: 30px;
+            border: 0;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-right: 7px;
+            outline: none;
+        }
+        .form-radio:checked::before
+        {
+            position: absolute;
+            font: 13px/1 'Open Sans', sans-serif;
+            left: 11px;
+            top: 7px;
+            content: '\02143';
+            transform: rotate(40deg);
+        }
+        .form-radio:hover
+        {
+            background-color: #f7f7f7;
+        }
+        .form-radio:checked
+        {
+            background-color: #f1f1f1;
+        }
+        label
+        {
+            font: 300 16px/1.7 'Open Sans', sans-serif;
+            color: #666;
+            cursor: pointer;
+        }
+
     </style>
 
 
@@ -53,6 +94,7 @@
         <option value="dutch" <?php if($this->session->userdata('site_lang') == 'dutch') echo 'selected="selected"'; ?>>Dutch</option>
     </select>
 </head>
+
 <body>
 
 <?php
@@ -208,7 +250,7 @@ $result = $this->db->query($query);
                                         //////////////////////// Set-Up //////////////////////////////
                                         //////////////////////////////////////////////////////////////
 
-                                        var margin = {top: 100, right: 70, bottom: 100, left: 100},
+                                        var margin = {top: 150, right: 70, bottom: 100, left: 100},
                                             legendPosition = {x: 300, y: 15},
                                             width = Math.min(500, window.innerWidth - 10) - margin.left - margin.right,
                                             height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20);
@@ -439,7 +481,7 @@ $result = $this->db->query($query);
 
 
                                     </script>
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                    <!--Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.-->
                                 </div>
                             </div>
                         </div>
@@ -488,6 +530,7 @@ $result = $this->db->query($query);
                                             <label class='radio-inline'>
                                                 <input type="radio" name="gender" value="categoryB" onclick='change(this.value)'><?php echo $this->lang->line('category_1'); ?>
                                             </label>
+
                                             <label class='radio-inline'>
                                                 <input type="radio" name="gender" value="categoryC" onclick='change(this.value)'><?php echo $this->lang->line('category_2'); ?>
                                             </label>
@@ -495,6 +538,7 @@ $result = $this->db->query($query);
                                             <label class='radio-inline'>
                                                 <input type="radio" name="gender" value="categoryD" onclick='change(this.value)'><?php echo $this->lang->line('category_3'); ?>
                                             </label>
+
                                             <label class='radio-inline'>
                                                 <input type="radio" name="gender" value="categoryE" onclick='change(this.value)'><?php echo $this->lang->line('category_4'); ?>
                                             </label>
@@ -502,10 +546,11 @@ $result = $this->db->query($query);
                                                 <input type="radio" name="gender" value="categoryF" onclick='change(this.value)'><?php echo $this->lang->line('category_5'); ?>
                                             </label>
                                             </br>
+
                                             <label class='radio-inline'>
                                                 <input type="radio" name="gender" value="categoryG" onclick='change(this.value)'><?php echo $this->lang->line('category_6'); ?>
                                             </label>
-                                            </br>
+
                                             <label class='radio-inline'>
                                                 <input type="radio" name="gender" value="categoryH" onclick='change(this.value)'><?php echo $this->lang->line('category_7'); ?>
                                             </label>
@@ -517,17 +562,12 @@ $result = $this->db->query($query);
                                                 <input type="radio" name="gender" value="categoryJ" onclick='change(this.value)'><?php echo $this->lang->line('category_9'); ?>
                                             </label>
                                             </br>
-                                            <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryK" onclick='change(this.value)'><?php echo $this->lang->line('category_10'); ?>
-                                            </label>
-                                            </br>
-
 
                                         </div>
                                         <svg class='chart'>
                                         </svg>
                                     </div>
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                    <!--Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.-->
                                 </div>
                             </div>
                         </div>
@@ -583,57 +623,36 @@ $result = $this->db->query($query);
         {
             "categoryType": "categoryA",
             "questionNum": "I can be alone when I wish.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "3.3",
             "scores": "2"
         },
         {
             "categoryType": "categoryA",
             "questionNum": "My privacy is respected when people care for me",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "12.8",
             "scores": "5"
         },
         {
             "categoryType": "categoryB",
             "questionNum": "I get my favorite foods here.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "7.1",
             "scores": "1"
         },
         {
             "categoryType": "categoryB",
             "questionNum": "I can eat when I want.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "37.1",
             "scores": "4"
         },
         {
             "categoryType": "categoryB",
             "questionNum": "I have enough variety in my meals.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "2.7",
             "scores": "3"
         },
         {
             "categoryType": "categoryB",
             "questionNum": "I enjoy mealtimes.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "23.5",
             "scores": "5"
         },
         {
             "categoryType": "categoryB",
             "questionNum": "Food is the right temperature when I get to eat it.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "1.0",
             "scores": "2"
         },
         {
@@ -641,7 +660,6 @@ $result = $this->db->query($query);
             "questionNum": "If I need help right away, I can get it.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "3.3",
             "scores": "2"
         },
         {
@@ -649,7 +667,6 @@ $result = $this->db->query($query);
             "questionNum": "I feel my possessions are secure.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "12.8",
             "scores": "5"
         },
         {
@@ -657,7 +674,6 @@ $result = $this->db->query($query);
             "questionNum": "feel safe when I am alone.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "7.1",
             "scores": "1"
         },
         {
@@ -665,7 +681,6 @@ $result = $this->db->query($query);
             "questionNum": "get the services I need.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "7.1",
             "scores": "1"
         },
         {
@@ -673,7 +688,6 @@ $result = $this->db->query($query);
             "questionNum": "would recommend this site or organization to others.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "37.1",
             "scores": "4"
         },
         {
@@ -681,7 +695,6 @@ $result = $this->db->query($query);
             "questionNum": "This place feels like home to me.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "2.7",
             "scores": "3"
         },
         {
@@ -689,7 +702,6 @@ $result = $this->db->query($query);
             "questionNum": "I can easily go outdoors if I want.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "23.5",
             "scores": "5"
         },
         {
@@ -697,7 +709,6 @@ $result = $this->db->query($query);
             "questionNum": "I am bothered by the noise here.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "1.0",
             "scores": "2"
         },
         {
@@ -705,7 +716,6 @@ $result = $this->db->query($query);
             "questionNum": "I can have a bath or shower as often as I want.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "7.1",
             "scores": "1"
         },
         {
@@ -713,14 +723,11 @@ $result = $this->db->query($query);
             "questionNum": "I decide when to get up.",
             "channel_display_name": "syncopika",
             "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "37.1",
             "scores": "4"
         },
         {
             "categoryType": "categoryE",
             "questionNum": "I decide when to go to bed.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
             "views": "2.7",
             "scores": "3"
         },
@@ -728,8 +735,6 @@ $result = $this->db->query($query);
             "categoryType": "categoryE",
             "questionNum": "I can go where I want on the “spur of the moment.”",
             "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "23.5",
             "scores": "5"
         },
         {
@@ -980,46 +985,6 @@ $result = $this->db->query($query);
             "views": "1.0",
             "scores": "5"
         },
-        {
-            "categoryType": "categoryK",
-            "questionNum": "I am part of a couple.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "7.1",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryK",
-            "questionNum": "My gender is",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "37.1",
-            "scores": "4"
-        },
-        {
-            "categoryType": "categoryK",
-            "questionNum": "My age in years is . .",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "2.7",
-            "scores": "3"
-        },
-        {
-            "categoryType": "categoryK",
-            "questionNum": "My health is",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "23.5",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryK",
-            "questionNum": "I have lived at",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "1.0",
-            "scores": "3"
-        },
     ];
 
     // var maleData = [];
@@ -1034,7 +999,7 @@ $result = $this->db->query($query);
     var data_8 = [];
     var data_9 = [];
     var data_10 = [];
-    var data_11 = [];
+
 
     for(var i = 0; i < bothData.length; i++){
         if(bothData[i]["categoryType"] === "categoryA"){
@@ -1065,9 +1030,6 @@ $result = $this->db->query($query);
         }
         else if(bothData[i]["categoryType"] === "categoryJ"){
             data_10.push(bothData[i]);
-        }
-        else if(bothData[i]["categoryType"] === "categoryK"){
-            data_11.push(bothData[i]);
         }
     }
 
@@ -1101,9 +1063,6 @@ $result = $this->db->query($query);
         }
         else if(value === 'categoryJ'){
             update(data_10);
-        }
-        else if(value === 'categoryK'){
-            update(data_11);
         }
         else {
             xChart.domain(bothData.map(function(d){ return d.categoryType; }) );
@@ -1253,7 +1212,7 @@ $result = $this->db->query($query);
     }//end update
 
     //set up chart
-    var margin = {top: 20, right: 20, bottom: 195, left: 50};
+    var margin = {top: 20, right: 20, bottom: 320, left: 75};
     var width =500;
     var height = 400;
 
@@ -1266,17 +1225,25 @@ $result = $this->db->query($query);
     var xChart = d3.scaleBand()
         .range([0, width]);
 
-    var yChart = d3.scaleLinear()
+    var yChart;
+    yChart = d3.scaleLinear()
         .range([height, 0]);
 
+
     var xAxis = d3.axisBottom(xChart);
-    var yAxis = d3.axisLeft(yChart);
+
+    var yAxis = d3.axisLeft(yChart)
+        .ticks(5)
+        .tickValues([0,1, 2, 3,4,5]);
+
 
     //set up axes
     //left axis
     chart.append("g")
         .attr("class", "y axis")
         .call(yAxis)
+
+
 
     //bottom axis
     chart.append("g")
@@ -1295,18 +1262,19 @@ $result = $this->db->query($query);
     chart
         .append("text")
         .attr("transform", "translate(-35," +  (height+margin.bottom)/2 + ") rotate(-90)")
-        .text("score of answer");
+        .text("<?php echo $this->lang->line('category_score'); ?>");
 
     chart
         .append("text")
         .attr("transform", "translate(" + (width/2) + "," + (height + margin.bottom - 5) + ")")
-        .text("Answers");
+        .text("<?php echo $this->lang->line('category_ans'); ?>");
 
 
     //use bothData to begin with
     //update(bothData);
     xChart.domain(bothData.map(function(d){ return d.categoryType; }) );
     //set domain for y axis
+    //yChart.domain( [0, d3.max(bothData, function(d){ return +d.scores; },)] );
     yChart.domain( [0, d3.max(bothData, function(d){ return +d.scores; })] );
 
     //get the width of each bar
@@ -1360,9 +1328,11 @@ $result = $this->db->query($query);
                 return "rgb(204,204,204)";
             }
         });
+
     //left axis
     chart.select('.y')
         .call(yAxis)
+
     //bottom axis
     chart.select('.xAxis')
         .attr("transform", "translate(0," + height + ")")
@@ -1374,6 +1344,7 @@ $result = $this->db->query($query);
         .attr("transform", function(d){
             return "rotate(-65)";
         });
+
 </script>
 
 
