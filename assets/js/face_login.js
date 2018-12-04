@@ -50,7 +50,7 @@ function snapshot() {
     img1.src = canvas.toDataURL();
     // var x = document.getElementById("myAudio");
     // x.play();
-    datad = "{\r\n    \"image\":\"" + img1.src+ "\",\r\n    \"gallery_name\":\"Arti\"\r\n}"
+    datad = "{\r\n    \"image\":\"" + img1.src+ "\",\r\n    \"gallery_name\":\"Demo\"\r\n}"
     var settings = {
         "async": true,
         "crossDomain": true,
@@ -68,15 +68,17 @@ function snapshot() {
 
     $.ajax(settings).done(function (response) {
         var m = response;
-        if(JSON.stringify(m).indexOf("success") > -1) {//obj found
-            Materialize.toast('User Identfied. Name : ' +JSON.stringify(m.images[0].candidates[0].subject_id), 6000);
-            console.log(m.images[0].candidates[0].subject_id);//Haien
 
-            //switch to next page
+        //if user verified
+        if(JSON.stringify(m).indexOf("success") > -1) {
+            Materialize.toast('User Identfied. ID : ' +JSON.stringify(m.images[0].candidates[0].subject_id), 6000);
+            console.log(m.images[0].candidates[0].subject_id);//show the id returned from the cloud
+
+            //switch to user page
             var base_url = window.location.origin.concat("/a18ux04");
             //need to match name with id in db, or alternatively send query with name instead of id
-            let userName = m.images[0].candidates[0].subject_id;
-            let newUrl = base_url.concat("/index.php/Questionnaire_controller/questionnaire_start/").concat(userName);
+            let userID = m.images[0].candidates[0].subject_id;
+            let newUrl = base_url.concat("/index.php/Questionnaire_controller/questionnaire_start/").concat(userID);
 
             console.log(newUrl);
             //set a timer
@@ -85,8 +87,9 @@ function snapshot() {
                 window.location.href = newUrl;
             }
         }
+        //if user not identified
         else{
-            Materialize.toast('User Not identified');
+            Materialize.toast('Sorry, please try again ☹');
         }
     });
 }

@@ -15,8 +15,8 @@
     <div class="nav-wrapper">
         <a href="#" class="brand-logo center">{welcome}</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li class="active"><a href="#">{train}</a></li>
-            <li><a href="<?=base_url()?>index.php/Face_Login_controller/face_test">{test}</a></li>
+            <li class="active"><a href="#">{registration}</a></li>
+            <li><a href="<?=base_url()?>index.php/Face_Login_controller/face_login">{login}</a></li>
         </ul>
     </div>
 </nav>
@@ -25,11 +25,16 @@
     <div class="card center">
         <div class="card-content">
             <div class="card-action">
+                <form action="face_registration.php" method="post">
+<!--                TODO the info below needs to be store in our databse-->
+                    firstName:  <input type="text">
+                    lastName:   <input type="text">
+                    birthday:   <input type="text">
+                    ID:         <input type="text" class="validate" id="ip">
+                </form>
+
                 <button onclick="startWebcam();">{start}</button>
                 <button onclick="snapshot();">{capture}</button>
-            </div>
-            <div class="input-field col s6">
-                <input placeholder="Enter Name" type="text" class="validate" id="ip">
             </div>
 
             <div>
@@ -40,5 +45,5 @@
     </div>
 </div>
 </body>
-<script src="../../assets/js/face_train.js"></script>
+<script src="../../assets/js/face_registration.js"></script>
 </html>

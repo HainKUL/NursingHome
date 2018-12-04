@@ -16,10 +16,10 @@
 <script type="text/javascript" src="../../assets/js/materialize.min.js"></script>
 <nav>
     <div class="nav-wrapper">
-        <a href="#" class="brand-logo center">Hello, Welcome 😊</a>
+        <a href="#" class="brand-logo center">{welcome}</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="#">Train</a></li>
-            <li class="active"><a href="#">Test</a></li>
+<!--            <li><a href="#">{registration}</a></li>-->
+            <li class="active"><a href="#">{login}</a></li>
         </ul>
     </div>
 </nav>
@@ -30,8 +30,8 @@
         <div class="card-content">
             <div class="card-action">
                 <div class="card-action">
-                    <button onclick="startWebcam();">Start Camera</button>
-                    <button onclick="snapshot();">Take Picture</button>
+                    <button onclick="startWebcam();">{start}</button>
+                    <button onclick="snapshot();">{capture}</button>
                 </div>
             </div>
 
@@ -47,7 +47,7 @@
     </div>
 </div>
 </body>
-<script src="../../assets/js/face_test.js"></script>
+<script src="../../assets/js/face_login.js"></script>
 </html>
 
 
