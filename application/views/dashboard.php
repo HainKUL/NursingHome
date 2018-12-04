@@ -29,6 +29,9 @@
             cursor: default;
 
         }
+        .bar:hover{
+            fill: red;
+        }
         .tooltip {
             fill: #333333;
         }
@@ -70,6 +73,7 @@
         {
             background-color: #f1f1f1;
         }
+
         label
         {
             font: 300 16px/1.7 'Open Sans', sans-serif;
@@ -250,8 +254,8 @@ $result = $this->db->query($query);
                                         //////////////////////// Set-Up //////////////////////////////
                                         //////////////////////////////////////////////////////////////
 
-                                        var margin = {top: 150, right: 70, bottom: 100, left: 100},
-                                            legendPosition = {x: 300, y: 15},
+                                        var margin = {top: 150, right: 80, bottom: 120, left: 80},
+                                            legendPosition = {x: 250, y: 15},
                                             width = Math.min(500, window.innerWidth - 10) - margin.left - margin.right,
                                             height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20);
                                         //////////////////////////////////////////////////////////////
@@ -477,7 +481,9 @@ $result = $this->db->query($query);
 
                                         //Load the data and Call function to draw the Radar chart
                                         RadarChart(".radarChart", data, radarChartOptions);
-
+                                        //d3.json("data.json", function(error, data){
+                                        //    RadarChart(".radarChart", data, radarChartOptions);
+                                        //});
 
 
                                     </script>
@@ -621,9 +627,10 @@ $result = $this->db->query($query);
     //set up data
     var bothData = [
         {
-            "categoryType": "categoryA",
-            "questionNum": "I can be alone when I wish.",
-            "scores": "2"
+            "categoryType": "categoryA",//id category //table question
+            "questionNum": "I can be alone when I wish.",//id question //table question
+            "scores": "2" //id answer //table response
+            //residence id //table submission
         },
         {
             "categoryType": "categoryA",
@@ -1134,6 +1141,8 @@ $result = $this->db->query($query);
                 .attr("transform", function(d){
                     return "rotate(-65)";
                 });
+
+
         }
     }
 
@@ -1208,6 +1217,7 @@ $result = $this->db->query($query);
             .attr("transform", function(d){
                 return "rotate(-65)";
             });
+
 
     }//end update
 
@@ -1346,7 +1356,5 @@ $result = $this->db->query($query);
         });
 
 </script>
-
-
 
 </html>
