@@ -1,7 +1,7 @@
 <?php if(!isset($_SESSION['username']))
 {
-    header("Location:./index.php?msg=YouMustLoginFirst");
 
+    header("Location:./index.php?msg=YouMustLoginFirst");
     exit();
 }
 ?>
@@ -10,6 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/ >
 
     <!-- Google fonts -->
@@ -23,6 +24,7 @@
     <script src="//d3js.org/d3.v4.min.js"></script>
 
     <script src="https://d3js.org/d3.v4.min.js"></script>
+<!--    <script src="--><?//= base_url()?><!--assets/js/trail.js"></script>-->
 
 
     <style>
@@ -32,8 +34,8 @@
             font-weight: 300;
             fill: #242424;
             text-align: center;
-            text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
-            cursor: default;
+            /*text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;*/
+            /*cursor:url(http://www.rw-designer.com/cursor-view/104989.png), auto;*/
         }
         .bar {
             fill: #2f996e;
@@ -62,245 +64,130 @@
         <option value="english" <?php if($this->session->userdata('site_lang') == 'english') echo 'selected="selected"'; ?>>English</option>
         <option value="dutch" <?php if($this->session->userdata('site_lang') == 'dutch') echo 'selected="selected"'; ?>>Dutch</option>
     </select>
+    <link href="<?= base_url()?>assets/css/dashboard.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 
 <?php
 $this->load->database();
-$query = "SELECT noteText, author, timestamp FROM Notes;";
+$query = "SELECT Notes.noteText, Notes.author, Notes.timestamp, Caregivers.firstName FROM Notes INNER JOIN Caregivers on Notes.author = Caregivers.idCaregivers;";
 $result = $this->db->query($query);
+$query = "SELECT firstName, name, idResidents, YEAR(CURRENT_TIMESTAMP) - YEAR(dateOfBirth) - (RIGHT(CURRENT_TIMESTAMP, 5) < RIGHT(dateOfBirth, 5)) as age FROM Residents;";
+$residents = $this->db->query($query);
 ?>
 
 
 <div class="container-fluid">
 
 
-    <div class="row">
-        <div class="col-3" style="background-color:#00948A">
-        </div>
-        <div class="col-7">
-            <nav>
-                <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <a class="nav-item nav-link active" id="nav-questionnaire-tab" data-toggle="tab" href="#nav-Questionnaire" role="tab" aria-controls="nav-Questionnaire" aria-selected="true"><?php echo $this->lang->line('dash_questionnaire'); ?></a>
-                    <a class="nav-item nav-link" id="nav-poll-tab" data-toggle="tab" href="#nav-Poll" role="tab" aria-controls="nav-Poll" aria-selected="false"><?php echo $this->lang->line('dash_poll'); ?></a>
-                    <a class="nav-item nav-link" id="nav-personal-tab" data-toggle="tab" href="#nav-Personal" role="tab" aria-controls="nav-Personal" aria-selected="false"><?php echo $this->lang->line('dash_personal'); ?></a>
-                </div>
-            </nav>
-        </div>
-        <div class="col-2" style="background-color:#C7DE6E">
-        </div>
+    <div class="row" style="height:100vh;">
+        <div class="col-3" style="background-color:#009489;padding:0;">
+            <div style="height:5%;"></div>
+            <div class="searchdiv" style="text-align:center;margin:15px;">
+                <h2 class="floornumber"><?php echo $this->lang->line('dash_floor'); ?> 1</h2><input type="search" placeholder="<?php echo $this->lang->line('search'); ?>" style="width:100%;height:40px;"></div>
+            <div style="height:5%;"></div>
+            <div style="overflow-y:scroll;max-height:73vh;">
+                <div class="btn-group-vertical btn-group-lg" role="group" style="width:100%;">
+                    <?php
+                    foreach ($residents->result_array() as $row) {
+                        ?><button class="btn btn-primary btn-resident" id="<?php echo $row['idResidents']?>" type="button" onclick="loadResident(this.id)">
+                        <div class="resident-button">
+                            <img class="profilePic" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
+                        <span class="resident-nameage"><div class="button-name"><?php
+                        echo $row['firstName'];
+                        ?></div><div class="button-age"><?php
+                        echo $row['age'] ?></div>
+                            <?php
+                            ?></span></div></button><?php
+                    }
+                    ?>
 
-
-    </div>
-
-
-
-    <div class="row">
-        <div class="col-3" style="background-color:#00948A">
-            <h5><p><?php echo $this->lang->line('dash_notes'); ?></p></h5>
-            <a  href=<?=base_url()?>index.php/Caregiver_controller/add_note class="link1">
-                <button type="button" class="btn btn-light" style="background-color:#C7DE6E"><p><?php echo $this->lang->line('dash_add'); ?></p></button>
-            </a>
-            <div class="accordion" id="accordionNotes">
-                <div class="card">
-                    <div class="card-header" id="headingToday">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseToday" aria-expanded="true" aria-controls="collapseToday">
-                                <p><?php echo $this->lang->line('dash_today'); ?></p>
-                            </button>
-                        </h5>
-                    </div>
-
-                    <div id="collapseToday" class="collapse show" aria-labelledby="headingToday" data-parent="#accordionNotes">
-                        <div class="card-body">
-                            <p>
-                                <?php
-                                foreach ($result->result_array() as $row) {
-                                    if((time()+3600)-strtotime($row['timestamp']) < 86400){
-                                        echo $row['noteText'];
-                                        ?><br><?php
-                                        echo $row['author'];
-                                        echo str_repeat('&nbsp;', 5);
-                                        echo $row['timestamp'];
-                                        $time = strtotime($row['timestamp']);
-                                        ?><br><br><?php
-                                    }
-                                }
-                                ?>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header" id="headingWeek">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseWeek" aria-expanded="false" aria-controls="collapseWeek">
-                                <p><?php echo $this->lang->line('dash_this_week'); ?></p>
-                            </button>
-                        </h5>
-                    </div>
-                    <div id="collapseWeek" class="collapse" aria-labelledby="headingWeek" data-parent="#accordionNotes">
-                        <div class="card-body">
-                            <p>
-                                <?php
-                                foreach ($result->result_array() as $row) {
-                                    if((time()+3600)-strtotime($row['timestamp']) < 604800){
-                                        echo $row['noteText'];
-                                        ?><br><?php
-                                        echo $row['author'];
-                                        echo str_repeat('&nbsp;', 5);
-                                        echo $row['timestamp'];
-                                        $time = strtotime($row['timestamp']);
-                                        ?><br><br><?php
-                                    }
-                                }
-                                ?>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-header" id="headingAll">
-                        <h5 class="mb-0">
-                            <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseAll" aria-expanded="false" aria-controls="collapseAll">
-                                <p><?php echo $this->lang->line('dash_archive'); ?></p>
-                            </button>
-                        </h5>
-                    </div>
-                    <div id="collapseAll" class="collapse" aria-labelledby="headingAll" data-parent="#accordionNotes">
-                        <div class="card-body">
-                            <p>
-                                <?php
-                                foreach ($result->result_array() as $row) {
-                                    echo $row['noteText'];
-                                    ?><br><?php
-                                    echo $row['author'];
-                                    echo str_repeat('&nbsp;', 5);
-                                    echo $row['timestamp'];
-                                    ?><br><br><?php
-                                }
-                                ?>
-                            </p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
-        <div class="col-7">
-            <nav>
-                <!--<div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <a class="nav-item nav-link active" id="nav-questionnaire-tab" data-toggle="tab" href="#nav-Questionnaire" role="tab" aria-controls="nav-Questionnaire" aria-selected="true">Questionnaire</a>
-                    <a class="nav-item nav-link" id="nav-poll-tab" data-toggle="tab" href="#nav-Poll" role="tab" aria-controls="nav-Poll" aria-selected="false">Poll</a>
-                    <a class="nav-item nav-link" id="nav-personal-tab" data-toggle="tab" href="#nav-Personal" role="tab" aria-controls="nav-Personal" aria-selected="false">Personal</a>
-                </div>-->
-            </nav>
-            <div class="tab-content" id="nav-tabContent">
-                <div class="tab-pane fade show active" id="nav-Questionnaire" role="tabpanel" aria-labelledby="nav-Questionnaire-tab">
-                    <div class="accordion" id="accordionQuestionnaire">
-                        <div class="card">
-                            <div class="card-header" id="headingProfile">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseProfile" aria-expanded="true" aria-controls="collapseProfile">
-                                        <p><?php echo $this->lang->line('dash_profile'); ?></p>
-                                    </button>
-                                </h5>
-                            </div>
-
-                            <div id="collapseProfile" class="collapse show" aria-labelledby="headingProfile" data-parent="#accordionQuestionnaire">
-                                <div class="card-body">
-                                    <h3><?php echo $this->lang->line('category_title'); ?></h3>
-
-                                    <div class="radarChart"></div>
-
-                                    <script src="../../assets/js/radarChart.js"></script>
-                                    <script>
-
-                                        var margin = {top: 30, right: 100, bottom: 100, left: 100},
-                                            legendPosition = {x: 25, y: 25},
-                                            width = Math.min(500, window.innerWidth - 10) - margin.left - margin.right,
-                                            height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20);
-
-                                        var data = [
-                                            [
-                                                {axis:"<?php echo $this->lang->line('category_0'); ?>",value:2},
-                                                {axis:"<?php echo $this->lang->line('category_1'); ?>",value:4.3},
-                                                {axis:"<?php echo $this->lang->line('category_2'); ?>",value:5},
-                                                {axis:"<?php echo $this->lang->line('category_3'); ?>",value:2.1},
-                                                {axis:"<?php echo $this->lang->line('category_4'); ?>",value:4.5},
-                                                {axis:"<?php echo $this->lang->line('category_5'); ?>",value:3.3},
-                                                {axis:"<?php echo $this->lang->line('category_6'); ?>",value:5},
-                                                {axis:"<?php echo $this->lang->line('category_7'); ?>",value:3},
-                                                {axis:"<?php echo $this->lang->line('category_8'); ?>",value:1},
-                                                {axis:"<?php echo $this->lang->line('category_9'); ?>",value:4},
-                                                {axis:"<?php echo $this->lang->line('category_10'); ?>",value:2}
-
-                                            ],[
-                                                {axis:"<?php echo $this->lang->line('category_0'); ?>",value:3},
-                                                {axis:"<?php echo $this->lang->line('category_1'); ?>",value:4},
-                                                {axis:"<?php echo $this->lang->line('category_2'); ?>",value:5},
-                                                {axis:"<?php echo $this->lang->line('category_3'); ?>",value:3.6},
-                                                {axis:"<?php echo $this->lang->line('category_4'); ?>",value:2.1},
-                                                {axis:"<?php echo $this->lang->line('category_5'); ?>",value:1.3},
-                                                {axis:"<?php echo $this->lang->line('category_6'); ?>",value:4},
-                                                {axis:"<?php echo $this->lang->line('category_7'); ?>",value:5},
-                                                {axis:"<?php echo $this->lang->line('category_8'); ?>",value:3},
-                                                {axis:"<?php echo $this->lang->line('category_9'); ?>",value:2},
-                                                {axis:"<?php echo $this->lang->line('category_10'); ?>",value:4}
-                                            ]
-                                        ];
-
-                                        var color = d3.scale.ordinal()
-                                            .range(["#82686a","#2f996e"]);
-
-                                        var radarChartOptions = {
-                                            w: width,
-                                            h: height,
-                                            margin: margin,
-                                            legendPosition: legendPosition,
-                                            maxValue: 0.5,
-                                            wrapWidth: 50,
-                                            levels: 5,
-                                            roundStrokes: true,
-                                            color: color,
-                                            axisName: "category",
-                                            areaName: "times",
-                                            value: "value"
-                                        };
-                                        //Call function to draw the Radar chart
-                                        RadarChart(".radarChart", data, radarChartOptions);
-                                    </script>
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-header" id="headingOutliers">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseOutliers" aria-expanded="false" aria-controls="collapseOutliers">
-                                        <p><?php echo $this->lang->line('dash_outliers'); ?></p>
-                                    </button>
-                                </h5>
-                            </div>
-                            <div id="collapseOutliers" class="collapse" aria-labelledby="headingOutliers" data-parent="#accordionQuestionnaire">
-                                <div class="card-body">
-
-                                </div>
-
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header" id="headingAnswers">
-                            <h5 class="mb-0">
-                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseAnswers" aria-expanded="false" aria-controls="collapseAnswers">
-                                    <p><?php echo $this->lang->line('dash_answers'); ?></p>
-                                </button>
-                            </h5>
-                        </div>
-
-                        <div id="collapseAnswers" class="collapse" aria-labelledby="headingAnswers" data-parent="#accordionQuestionnaire">
+        <div class="col-6" style="background-color:#f9f9f9;padding:0px;">
+            <div style="width:100%;">
+                <ul class="nav nav-tabs" style="text-align:center;border:none;">
+                    <li class="nav-item" style="width:33%;"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1" style="border:none;"><?php echo $this->lang->line('dash_questionnaire'); ?></a></li>
+                    <li class="nav-item" style="width:34%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2" style="border:none;"><?php echo $this->lang->line('dash_poll'); ?></a></li>
+                    <li class="nav-item" style="width:33%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3" style="border:none;"><?php echo $this->lang->line('dash_personal'); ?></a></li>
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane active" role="tabpanel" id="tab-1" style="padding:5%;max-height:94vh;overflow-y:scroll;">
+                        <div class="card questionnaire-card">
                             <div class="card-body">
+                                <h4 class="card-title" id="residentTitle"></h4>
+                                <p class="card-text">We're talking away. I don't know what. I'm to say I'll say it anyway. Today's another day to find you. Shying away. I'll be coming for your love, okay?. Take on me (take on me). Take me on (take on me). I'll be gone. In a day or two. So needless to say. I'm odds and ends. But I'll be stumbling away. Slowly learning that life is okay. Say after me. It's no better to be safe than sorry. Take on me (take on me). Take me on (take on me). I'll be gone. In a day or two.</p>
+                                <div class="radarChart"></div>
+
+                                <script src="../../assets/js/radarChart.js"></script>
+                                <script>
+
+                                    var margin = {top: 30, right: 100, bottom: 100, left: 100},
+                                        legendPosition = {x: 25, y: 25},
+                                        width = Math.min(500, window.innerWidth - 10) - margin.left - margin.right,
+                                        height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20);
+
+                                    var data = [
+                                        [
+                                            {axis:"<?php echo $this->lang->line('category_0'); ?>",value:2},
+                                            {axis:"<?php echo $this->lang->line('category_1'); ?>",value:4.3},
+                                            {axis:"<?php echo $this->lang->line('category_2'); ?>",value:5},
+                                            {axis:"<?php echo $this->lang->line('category_3'); ?>",value:2.1},
+                                            {axis:"<?php echo $this->lang->line('category_4'); ?>",value:4.5},
+                                            {axis:"<?php echo $this->lang->line('category_5'); ?>",value:3.3},
+                                            {axis:"<?php echo $this->lang->line('category_6'); ?>",value:5},
+                                            {axis:"<?php echo $this->lang->line('category_7'); ?>",value:3},
+                                            {axis:"<?php echo $this->lang->line('category_8'); ?>",value:1},
+                                            {axis:"<?php echo $this->lang->line('category_9'); ?>",value:4},
+                                            {axis:"<?php echo $this->lang->line('category_10'); ?>",value:2}
+
+                                        ],[
+                                            {axis:"<?php echo $this->lang->line('category_0'); ?>",value:3},
+                                            {axis:"<?php echo $this->lang->line('category_1'); ?>",value:4},
+                                            {axis:"<?php echo $this->lang->line('category_2'); ?>",value:5},
+                                            {axis:"<?php echo $this->lang->line('category_3'); ?>",value:3.6},
+                                            {axis:"<?php echo $this->lang->line('category_4'); ?>",value:2.1},
+                                            {axis:"<?php echo $this->lang->line('category_5'); ?>",value:1.3},
+                                            {axis:"<?php echo $this->lang->line('category_6'); ?>",value:4},
+                                            {axis:"<?php echo $this->lang->line('category_7'); ?>",value:5},
+                                            {axis:"<?php echo $this->lang->line('category_8'); ?>",value:3},
+                                            {axis:"<?php echo $this->lang->line('category_9'); ?>",value:2},
+                                            {axis:"<?php echo $this->lang->line('category_10'); ?>",value:4}
+                                        ]
+                                    ];
+
+                                    var color = d3.scale.ordinal()
+                                        .range(["#82686a","#2f996e"]);
+
+                                    var radarChartOptions = {
+                                        w: width,
+                                        h: height,
+                                        margin: margin,
+                                        legendPosition: legendPosition,
+                                        maxValue: 0.5,
+                                        wrapWidth: 50,
+                                        levels: 5,
+                                        roundStrokes: true,
+                                        color: color,
+                                        axisName: "category",
+                                        areaName: "times",
+                                        value: "value"
+                                    };
+                                    //Call function to draw the Radar chart
+                                    RadarChart(".radarChart", data, radarChartOptions);
+                                </script>
+                            </div>
+                        </div>
+                        <div class="card questionnaire-card">
+                            <div class="card-body">
+                                <h4 class="card-title"><?php echo $this->lang->line('dash_outliers'); ?></h4>
+                                <p class="card-text">Super trouper beams are gonna blind me. But I won't feel blue. Like I always do. 'Cause somewhere in the crowd there's you. I was sick and tired of everything. When I called you last night from Glasgow. All I do is eat and sleep and sing. Wishing every show was the last show (wishing every show was the last show). So imagine I was glad to hear you're coming (glad to hear you're coming). Suddenly I feel all right. (And suddenly it's gonna be). And it's gonna be so different. When I'm on the stage tonight. Tonight the super trouper lights are gonna find me. Shining like the sun (sup-p-per troup-p-per). Smiling, having fun (sup-p-per troup-p-per). Feeling like a number one. Tonight the super trouper beams are gonna blind me. But I won't feel blue (sup-p-per troup-p-per). Like I always do (sup-p-per troup-p-per). 'Cause somewhere in the crowd there's you.</p>
+                            </div>
+                        </div>
+                        <div class="card questionnaire-card">
+                            <div class="card-body">
+                                <h4 class="card-title"><?php echo $this->lang->line('dash_answers'); ?></h4>
                                 <h3><?php echo $this->lang->line('category_title2'); ?></h3>
 
                                 <div class='container'>
@@ -349,34 +236,110 @@ $result = $this->db->query($query);
                             </div>
                         </div>
                     </div>
+                    <div class="tab-pane" role="tabpanel" id="tab-2">
+                        <p>Content for tab 2.</p>
+                    </div>
+                    <div class="tab-pane" role="tabpanel" id="tab-3">
+                        <p>Content for tab 3.</p>
+                    </div>
                 </div>
-                <div class="tab-pane fade" id="nav-Poll" role="tabpanel" aria-labelledby="nav-Poll-tab">Poll</div>
-                <div class="tab-pane fade" id="nav-Personal" role="tabpanel" aria-labelledby="nav-contact-tab"><p><?php echo $this->lang->line('dash_personal'); ?></p></div>
             </div>
         </div>
-        <div class="col-2" style="background-color:#C7DE6E">
-            <h5><p><?php echo $this->lang->line('dash_floor'); ?></p></h5>
-            <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <p><?php echo $this->lang->line('dash_floor'); ?></p>
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuFloor">
-                    <button class="dropdown-item" type="button">1</button>
-                    <button class="dropdown-item" type="button">2</button>
-                    <button class="dropdown-item" type="button">3</button>
-                    <button class="dropdown-item" type="button">4</button>
-                    <button class="dropdown-item" type="button">5</button>
-                    <button class="dropdown-item" type="button">6</button>
+        <div class="col-3" style="background-color:#c7de6e;padding:0;">
+            <div style="height:5%;"></div>
+            <div class="searchdiv" style="text-align:center;margin:15px;">
+                <h2 class="notes-title"><?php echo $this->lang->line('dash_notes'); ?></h2>
+
+                <a  href=<?=base_url()?>index.php/Caregiver_controller/add_note class="link1">
+                <button class="btn btn-primary btn-lg" type="button" style="min-width:100%;background-color:#009489;border:none;"><?php echo $this->lang->line('dash_add'); ?></button></div>
+                </a>
+
+            <div style="height:2%;"></div>
+
+            <div role="tablist" id="accordion-1" style="border:none;text-align:right;">
+                <div class="card notes-card active">
+                    <div class="card-header notes-card-head" role="tab">
+                        <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-1 .item-1" href="div#accordion-1 .item-1" class="btn-notes">
+                                <?php echo $this->lang->line('dash_today'); ?></a><i class="fa fa-star"></i></h5>
+                    </div>
+                    <div class="collapse show item-1 notes-content" role="tabpanel" data-parent="#accordion-1">
+                        <div class="card-body">
+                            <?php
+                            foreach ($result->result_array() as $row) {
+                                if((time()+3600)-strtotime($row['timestamp']) < 86400){
+                                    ?><div class="note-box"><?php
+                                            ?><p class="note-heading"><b><?php
+                                                echo $row['firstName'];
+                                                ?></b><span class="note-timestamp"><?php
+                                                for($i = 0; $i < 11; $i++) {
+                                                    $row['timestamp'][$i] = ' ';
+                                                }
+                                                $row['timestamp'][16] = ' ';
+                                                $row['timestamp'][17] = ' ';
+                                                $row['timestamp'][18] = ' ';
+                                                    echo $row['timestamp'];
+                                                ?></span><?php
+                                            ?></p><?php
+                                        echo $row['noteText'];
+                                    ?></div><?php
+                                }
+                            }
+                            ?>
+                        </div>
+                    </div>
                 </div>
-            </div>
-            <h5><p><?php echo $this->lang->line('dash_person'); ?></p></h5>
-            <input type="search" class="form-control ds-input" id="search-input" placeholder="Search..." autocomplete="off" spellcheck="false" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-owns="algolia-autocomplete-listbox-0" style="position: relative; vertical-align: top;" dir="auto">
-            <div class="btn-group-vertical" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-light">Jan</button>
-                <button type="button" class="btn btn-light">Maria</button>
-                <button type="button" class="btn btn-light">Jef</button>
-                <button type="button" class="btn btn-light">Rene</button>
-                <button type="button" class="btn btn-light">Marie-Jean</button>
+                <div class="card notes-card">
+                    <div class="card-header notes-card-head" role="tab">
+                        <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-2" href="div#accordion-1 .item-2" class="btn-notes"><?php echo $this->lang->line('dash_this_week'); ?></a></h5>
+                    </div>
+                    <div class="collapse item-2 notes-content" role="tabpanel" data-parent="#accordion-1">
+                        <div class="card-body">
+                            <?php
+                            foreach ($result->result_array() as $row) {
+                                if((time()+3600)-strtotime($row['timestamp']) < 604800){
+                                    ?><div class="note-box"><?php
+                                    ?><p class="note-heading"><b><?php
+                                        echo $row['firstName'];
+                                        ?></b><span class="note-timestamp"><?php
+                                    for($i = 11; $i < 20; $i++) {
+                                        $row['timestamp'][$i] = ' ';
+                                    }
+                                    echo $row['timestamp'];
+                                    ?></span><?php
+                                    ?></p><?php
+                                    echo $row['noteText'];
+                                    ?></div><?php
+                                }
+                            }
+                            ?>
+                        </div>
+                    </div>
+                </div>
+                <div class="card notes-card">
+                    <div class="card-header notes-card-head" role="tab">
+                        <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-3" href="div#accordion-1 .item-3" class="btn-notes"><?php echo $this->lang->line('dash_archive'); ?></a></h5>
+                    </div>
+                    <div class="collapse item-3 notes-content" role="tabpanel" data-parent="#accordion-1">
+                        <div class="card-body">
+                            <?php
+                            foreach ($result->result_array() as $row) {
+                                ?><div class="note-box"><?php
+                                ?><p class="note-heading"><b><?php
+                                    echo $row['firstName'];
+                                    ?></b><span class="note-timestamp"><?php
+                                for($i = 11; $i < 20; $i++) {
+                                    $row['timestamp'][$i] = ' ';
+                                }
+                                echo $row['timestamp'];
+                                ?></span><?php
+                                ?></p><?php
+                                echo $row['noteText'];
+                                ?></div><?php
+                            }
+                            ?>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -393,6 +356,27 @@ $result = $this->db->query($query);
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 <a href="<?= site_url('Caregiver_controller/login') ?>"><p><?php echo $this->lang->line('dash_logout'); ?><?php unset($_SESSION['username']); ?></p></a>
 </body>
+
+
+<script>
+    function loadResident(id){
+        document.getElementById("residentTitle").innerText = id + "<?php echo $this->lang->line('dash_profile'); ?>"
+    }
+
+
+</script>
+
+<script>
+    // $('#accordion .panel-collapse').on('shown.bs.collapse', function () {
+    //     $(this).prev().find(".glyphicon").removeClass("glyphicon-chevron-right").addClass("glyphicon-chevron-down");
+    // });
+    //
+    // //The reverse of the above on hidden event:
+    //
+    // $('#accordion .panel-collapse').on('hidden.bs.collapse', function () {
+    //     $(this).prev().find(".glyphicon").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-right");
+    // });
+</script>
 
 <script>
     //set up data
