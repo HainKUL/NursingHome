@@ -106,6 +106,7 @@ body {
     align-items: center;
     color: var(--shadeOfBlack);
 }
+
 footer{
     font-family: Helvetica,Arial;
     /*make it stand at the bottom at all times */

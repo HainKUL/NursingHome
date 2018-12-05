@@ -30,6 +30,7 @@
         <p>
             <label><?php echo $this->lang->line('login_username'); ?>:</label>
             <input type="text" name="email" id="email" class="form-control" name="email" />
+            <?php $_SESSION['username']='email'; ?>
         </p>
         <p>
             <label><?php echo $this->lang->line('login_password'); ?>:</label>

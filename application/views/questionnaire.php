@@ -128,6 +128,7 @@
 
             <div class="col-12">
                 <div id="progress">
+                    <progress value={progress} max ="52"></progress>
                     <p>{progress}/52</p>
                 </div>
             </div>
