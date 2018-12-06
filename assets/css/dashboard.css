@@ -134,6 +134,11 @@ btn-notes {
 
 }
 
+.personal_text{
+    font-family: "Avenir Next Condensed";
+    font-weight: 400;
+    font-size: 30px;
+}
 
 
 html, body {

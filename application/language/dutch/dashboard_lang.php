@@ -26,3 +26,6 @@ $lang['dash_person'] = 'Persoon';
 $lang['dash_logout'] = 'Uitloggen';
 $lang['dash_add'] = 'notitie toevoegen';
 $lang['search'] = 'Zoeken...';
+$lang['dash_logout'] = "Afmelden";
+$lang['dash_chooselang'] = "Verander van taal:";
+$lang['hello'] = "Hallo, ";
