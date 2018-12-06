@@ -32,21 +32,21 @@
         <tr>
             <td>EMAIL</td>
             <td>
-                <input type="text" name="email" maxlength="30" />
+                <input type="email" name="email" maxlength="30" />
             </td>
         </tr>
 
         <tr>
             <td>PASSWORD</td>
             <td>
-                <input type="text" name="password_1" maxlength="30" />
+                <input type="password" name="password_1" maxlength="30" />
             </td>
         </tr>
 
         <tr>
             <td>PASSWORD CONFIRM</td>
             <td>
-                <input type="text" name="password_2" maxlength="30" />
+                <input type="password" name="password_2" maxlength="30" />
             </td>
         </tr>
 
