@@ -19,6 +19,8 @@ class Caregiver_controller extends CI_Controller{
         if($_POST) {
             $email = $this->db->escape($_POST['email']);
             $query = "SELECT passwordHash, idCaregivers, email FROM Caregivers WHERE email = $email LIMIT 1;";
+            $id= "SELECT idCaregivers FROM Caregivers WHERE email = $email";
+            $_SESSION['id']=$id;
             $result = $this->db->query($query);
 
             if($result->num_rows() === 0)   {

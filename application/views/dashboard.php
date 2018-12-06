@@ -1,10 +1,12 @@
-<?php if(!isset($_SESSION['username']))
+<?php if(!isset($_SESSION['id']))
 {
 
     header("Location:./index.php?msg=YouMustLoginFirst");
     exit();
 }
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -82,8 +84,8 @@ $residents = $this->db->query($query);
 
     <div class="row" style="height:100vh;">
         <div class="col-3" style="background-color:#009489;padding:0;">
-            <button class="btn btn-primary btn-lg" type="button" style="min-width:100%;background-color:#009489;border:none;">
-                <a href="<?= site_url('Caregiver_controller/login') ?>"><p><?php echo $this->lang->line('dash_logout'); ?><?php unset($_SESSION['username']); ?></p></a>
+            <button class="btn btn-primary btn-lg" type="button" style="min-width:100%;background-color:#009489;border:none;" >
+                <a href=logout><p><?php echo $this->lang->line('dash_logout'); ?></p></a>
             </button>
             <div style="height:5%;"></div>
             <div class="searchdiv" style="text-align:center;margin:15px;">
