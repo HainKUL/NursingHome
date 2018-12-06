@@ -24,17 +24,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | a PHP script and you can easily do that on your own.
 |
 */
-
-$local_list = ['127.0.0.1', '::1'];
-if (in_array($_SERVER['REMOTE_ADDR'], $local_list)) {
-    if (!(stristr($_SERVER['HTTP_USER_AGENT'], 'Mac') === FALSE))
-        $config['base_url'] = 'http://localhost:8888/a18ux04/';     //localhost, UNIX
-    else
-        $config['base_url'] = 'http://localhost/a18ux04/';          //localhost, Windows
-} else {
-        $config['base_url'] = 'https://a18ux04.studev.groept.be/';  //on server
-}
-
+#$config['base_url'] = 'https://a18ux04.studev.groept.be/';
+$config['base_url'] = 'http://localhost/a18ux04/';
+//#$config['base_url'] = 'http://localhost:8888/a18ux04/';
 /*
 |--------------------------------------------------------------------------
 | Index File

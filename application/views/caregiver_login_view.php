@@ -22,7 +22,7 @@
 } ?>
 
 <!--<form method="post" action="index.html">-->
-<form method="post" action="<?= site_url('Caregiver_controller/login') ?>">
+<form method="post" action="<?=base_url()?>Caregiver_controller/login">
                     <!-- action="<?=base_url()?>Caregiver_controller/login">
     <!--<div class="box">-->
         <h1><?php echo $this->lang->line('login_title'); ?> </h1>
