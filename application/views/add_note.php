@@ -1,4 +1,4 @@
-<?php if(!isset($_SESSION['username']))
+<?php if(!isset($_SESSION['id']))
 {
     header("Location:./index.php?msg=YouMustLoginFirst");
     exit();
