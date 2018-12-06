@@ -97,6 +97,16 @@ body {
 .link1{
     color: whitesmoke;
 }
+#progress{
+    font-size: 40px;
+    display: flex;
+    flex-direction: column;
+    font-family: Canapé, Palanquin, "Times New Roman", serif;
+    margin-top: 7%;
+    align-items: center;
+    color: var(--shadeOfBlack);
+}
+
 footer{
     font-family: Helvetica,Arial;
     /*make it stand at the bottom at all times */
