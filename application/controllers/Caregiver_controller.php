@@ -7,7 +7,7 @@ class Caregiver_controller extends CI_Controller{
         parent::__construct();
         $this->load->library('parser');
         $this->load->helper('url');
-        $this->load->model("login_model", "caregiver_login_view");
+        $this->load->model("login_model", "Our_chart_model","caregiver_login_view");
         $this->load->database();
         $this->load->library('session');
     }
@@ -168,6 +168,12 @@ class Caregiver_controller extends CI_Controller{
         }
         $this->parser->parse('registration_caregiver', $data);
 
+    }
+
+    public function test()
+    {
+        $data['post'] = $this->post->get_all_questions()->result_array();
+        echo json_encode($data);
     }
 
 }
