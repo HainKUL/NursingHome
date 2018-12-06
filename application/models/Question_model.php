@@ -17,14 +17,20 @@ class Question_model extends CI_Model{
     }
 
     public function send_confirmation($idQuestion, $idAnswer, $idSubmission){//send info to db that the question has been answered
-        $query = "INSERT INTO Responses (questionNum, answer, submission) VALUES('$idQuestion', '$idAnswer', '$idSubmission')";
-        $this->db->query($query);
+        $query = "UPDATE `a18ux04`.`Responses` SET `answer` = '$idAnswer' ".
+                    "WHERE (`submission`='$idSubmission' AND `questionNum`='$idQuestion');";
+        $result = $this->db->query($query);
+        if($this->db->affected_rows() === 0) {
+            $query = " INSERT INTO `a18ux04`.`Responses` (questionNum, answer, submission)".
+                            " VALUES('$idQuestion', '$idAnswer', '$idSubmission')";
+            $this->db->query($query);
+        }
     }
 
 
      public function set_submission_complete($idSubmission){//send info to db that all questions have been answered
-         $query = "UPDATE `a18ux04`.`Submissions` SET `completed`='1' WHERE `idSubmissions`='$idSubmission';";
+         $query = "UPDATE `a18ux04`.`Submissions` SET `completed`='1', `timestampCompleted`=now()".
+         " WHERE `idSubmissions`='$idSubmission';";
          $this->db->query($query);
      }
 }
-
