@@ -29,3 +29,4 @@ $lang['search'] = 'Zoeken...';
 $lang['dash_logout'] = "Afmelden";
 $lang['dash_chooselang'] = "Verander van taal:";
 $lang['hello'] = "Hallo, ";
+$lang['dash_email'] = "Jouw email adres: ";

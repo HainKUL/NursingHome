@@ -26,3 +26,4 @@ $lang['search'] = 'Search...';
 $lang['dash_logout'] = "Logout";
 $lang['dash_chooselang'] = "Change language:";
 $lang['hello'] = "Hello, ";
+$lang['dash_email'] = "Your email address: ";

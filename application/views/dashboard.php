@@ -74,8 +74,12 @@ $query = "SELECT Notes.noteText, Notes.author, Notes.timestamp, Caregivers.first
 $result = $this->db->query($query);
 $query = "SELECT firstName, name, idResidents, YEAR(CURRENT_TIMESTAMP) - YEAR(dateOfBirth) - (RIGHT(CURRENT_TIMESTAMP, 5) < RIGHT(dateOfBirth, 5)) as age FROM Residents;";
 $residents = $this->db->query($query);
-//$query = "SELECT firstName FROM Caregivers WHERE $currentID = Caregivers.idCaregivers";
-//$firstName = $this->db->query($query);
+/* to use when id is obtainable
+$query = "SELECT firstName FROM Caregivers WHERE $currentID = Caregivers.idCaregivers";
+$firstName = $this->db->query($query);
+$query = "SELECT email FROM Caregivers WHERE $currentID = Caregivers.idCaregivers";
+$email = $this->db->query($query);
+*/
 ?>
 
 
@@ -250,7 +254,7 @@ $residents = $this->db->query($query);
                         <div class="container" >
                             <div class="row" style="padding-top: 40px";>
                                 <div class="col-8">
-                                    <p class="personal_text"> <?php echo $this->lang->line('hello'); echo $_SESSION['id'] ?>.</p>
+                                    <p class="personal_text"> <?php echo $this->lang->line('hello'); echo $_SESSION['id'] ?>></p>
                                 </div>
                                 <div class="col-4">
                                     <img class="profilePic" style="width:130px;height:130px;" src="<?=base_url() ?>assets/photos/profilePicTest_caregiver.jpg" alt="Profielfoto">
@@ -267,9 +271,15 @@ $residents = $this->db->query($query);
                                     </select>
                                 </div>
                             </div>
+                                <div class="row" style="padding-top: 40px";>
+                                    <div class="col-12">
+                                        <p class="personal_text"> <?php echo $this->lang->line('dash_email'); echo $email ?>.</p>
+                                    </div>
+
+                                </div>
                             <div class="row" style="padding-top: 40px";>
                                 <div class="col-12">
-                                    <a href="<?=base_url()?>questionnaire_controller/questionnaire_start/1">
+                                    <a href="<?=base_url()?>Dashboard/logout">
                                         <button type = "button">
                                             <?php echo $this->lang->line('dash_logout'); ?>
                                         </button>
