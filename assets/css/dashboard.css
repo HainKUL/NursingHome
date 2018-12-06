@@ -1,0 +1,144 @@
+.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover {
+}
+
+.btn-group-vertical > .btn-group:not(:last-child) > .btn, .btn-group-vertical > .btn:not(:last-child):not(.dropdown-toggle) {
+}
+
+
+.btn-resident {
+    border:none;
+    height:11vh;
+    background-color:#009489;
+}
+
+.btn-resident:hover{
+    background-color: #1DA9A1;
+}
+
+
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    background-color:#f9f9f9;
+    color:#979090;
+}
+
+.nav-tabs .nav-link {
+    background-color:#F2F2F2;
+    color:#BFBCBC;
+    font-family: "Helvetica Neue";
+    font-weight: 100;
+}
+
+.questionnaire-card {
+      margin-bottom:4%;
+      box-shadow:1px 1px 7px lightgrey;
+}
+
+.notes-content {
+      text-align:left;
+      max-height: 50vh;
+      overflow-y:scroll;
+}
+
+.note-box{
+      background-color:#E6F0BE;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      padding-left: 10px;
+      padding-right: 10px;
+      padding-top: 5px;
+      padding-bottom: 5px;
+}
+
+
+.note-heading{
+      text-align: left;
+      margin-bottom: 1px;
+
+}
+
+.note-timestamp{
+    float: right;
+    color: grey;
+}
+
+.resident-button{
+    text-allign: left;
+    float:left;
+
+}
+
+.profilePic{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin: 0px;
+}
+
+.resident-nameage{
+    margin-left: 20px;
+    text-align: left;
+    float: right;
+    font-family: "Avenir Next Condensed";
+    font-weight: 100;
+}
+
+.button-age{
+    margin:-5px;
+    padding:1px;
+}
+
+.button-name{
+    margin:-5px;
+    padding: 1px;
+
+}
+
+.notes-card {
+      background:transparent;
+      border:none;
+}
+
+.notes-card-head {
+      background-color:transparent;
+      border-color:#E6F0BE;
+      margin-left:5%;
+      margin-right:5%;
+}
+
+btn-notes {
+    color:grey;
+}
+
+.btn-notes {
+    color:#222513;
+}
+
+.btn-resident .active {
+    background-color:black;
+}
+
+.floornumber{
+    text-align:left;
+    color:white;
+    font-family: "Avenir Next Condensed";
+
+    font-weight: 100;
+    font-size: 45px;
+}
+
+.notes-title{
+    text-align:left;
+    font-family: "Avenir Next Condensed";
+    font-weight: 400;
+    font-size: 30px;
+
+}
+
+
+
+html, body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: "Helvetica Neue";
+}

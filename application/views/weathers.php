@@ -2,16 +2,16 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <link rel="icon" href="<?=base_url()?>assets/photos/favicon.png" type="image/gif" sizes="16x16">
+    <link rel="icon" href="<?=base_url()?>assets/photos/favicon3.ico" type="image/gif" sizes="16x16">
 
-    <title>{page_title}</title>
+    <title><?php echo $this->lang->line('title'); ?></title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link href="<?=base_url() ?>assets/css/features.css" rel="stylesheet" type="text/css"/>
     <!-- language changer -->
     <select onchange="javascript:window.location.href='<?php echo base_url(); ?>MultiLanguageSwitcher/switcher/'+this.value;">
         <option value="english" <?php if($this->session->userdata('site_lang') == 'english') echo 'selected="selected"'; ?>>English</option>
-        <option value="dutch" <?php if($this->session->userdata('site_lang') == 'dutch') echo 'selected="selected"'; ?>>Dutch</option>
+        <option value="dutch" <?php if($this->session->userdata('site_lang') == 'dutch') echo 'selected="selected"'; ?>>Nederlands</option>
     </select>
 </head>
 
@@ -23,7 +23,7 @@
         </div>
         <div class="col-md-2" style="padding-bottom:10px" >
             <a class="link1" href="residentHome">
-                <button type="button"class="btn btn-default button1 float-right" >{buttonBack}</button>
+                <button type="button"class="btn btn-default button1 float-right" ><?php echo $this->lang->line('Back'); ?></button>
             </a>
         </div>
     </div>
@@ -41,9 +41,4 @@
 
 </body>
 
-<footer>
-    <p><?php echo $this->lang->line('text_copyright_footer'); ?>
-        <a href="#"><?php echo $this->lang->line('text_copyright_privacy'); ?></a> | <a href="#"><?php echo $this->lang->line('text_copyright_term'); ?></a>
-    </p>
-</footer>
 </html>

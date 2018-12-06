@@ -6,7 +6,8 @@
     <meta charset="UTF-8">
     <title>Caregiver Login | Welcome</title>
     <link href="<?=base_url()?>assets/css/caregiver_login.css" rel="stylesheet" type="text/css"/>
-    <link rel="icon" href="<?=base_url()?>assets/photos/favicon.png" type="image/gif" sizes="16x16">
+    <link rel="icon" href="<?=base_url()?>assets/photos/favicon3.ico" type="image/gif" sizes="16x16">
+
 
     <!-- <link href="<?=base_url() ?>assets/css/main.css" rel="stylesheet" type="text/css"/> for on the actual site-->
     <select onchange="javascript:window.location.href='<?php echo base_url(); ?>MultiLanguageSwitcher/switcher/'+this.value;">
@@ -29,6 +30,7 @@
         <p>
             <label><?php echo $this->lang->line('login_username'); ?>:</label>
             <input type="text" name="email" id="email" class="form-control" name="email" />
+            <?php $_SESSION['username']='email'; ?>
         </p>
         <p>
             <label><?php echo $this->lang->line('login_password'); ?>:</label>

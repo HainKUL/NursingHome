@@ -19,6 +19,7 @@ class Face_Login_controller extends CI_Controller{
         $data['welcome'] = 'Welcome 😊';
         $data['capture'] = 'Click to start';
         $data['login'] = 'Login';
+        $data['skip']='Skip';
 
         $this->parser->parse('face_login',$data);
         //$this->load->view('face_login');

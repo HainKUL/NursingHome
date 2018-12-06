@@ -41,6 +41,26 @@ class Caregiver_controller extends CI_Controller{
     }
 
 
+    public function getnotes($context, $time1, $time2){
+        //$query = "SELECT noteText, author, timestamp FROM Notes WHERE timestamp >= $time1 AND timestamp < $time2;";
+        $query = "SELECT noteText, author timestamp FROM Notes;";
+        $result = $this->db->query($query);
+
+//        foreach ($result->result_array() as $row) {
+//            $noteText = $row['noteText'];
+//            $noteAuthor = $row['author'];
+//            $noteTS = $row['timestamp'];
+//        }
+        return $result;
+    }
+
+    public function dashboard(){
+//        $result = $this->getnotes(0,0, time());
+//        $this->parser->parse('dashboard', $result);
+        $this->load->view('dashboard');
+    }
+
+
     public function forgot(){
         $data['page_title'] = 'Wachtwoord Vergeten';
         $data['head_message'] = 'Wachtwoord vergeten?';
@@ -79,7 +99,7 @@ class Caregiver_controller extends CI_Controller{
                 //TODO deal with error
             }
             header('location: index.php');
-            redirect('Caregiver_controller/add_note');
+            redirect('Caregiver_controller/dashboard');
         }
         $this->parser->parse('add_note', $data);
     }
