@@ -18,7 +18,7 @@ class Question_model extends CI_Model{
 
     public function send_confirmation($idQuestion, $idAnswer, $idSubmission){//send info to db that the question has been answered
         //TODO fix "off by 1"-error
-        $query = "INSERT INTO Responses (question, answer, submission) VALUES('$idQuestion', '$idAnswer', '$idSubmission')";
+        $query = "INSERT INTO Responses (questionNum, answer, submission) VALUES('$idQuestion', '$idAnswer', '$idSubmission')";
         $this->db->query($query);
         $nextQuestion = $idQuestion + 1;
         $query = "UPDATE `a18ux04`.`Submissions` SET `nextQuestion`='$nextQuestion' WHERE `idSubmissions`='$idSubmission';";

@@ -20,7 +20,7 @@ class Questionnaire_controller extends CI_Controller{
         $sql = "SELECT nextQuestion FROM Submissions WHERE idSubmissions = '$id';";
         $result = $this->db->query($sql);
         $nextQuestion = $result->result_array()[0]['nextQuestion'];
-        $this->question($nextQuestion, $_SESSION["idSubmission"]);
+        $this->question($nextQuestion);
 	}
 
 
