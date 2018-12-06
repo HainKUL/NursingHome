@@ -273,7 +273,7 @@ $email = $this->db->query($query);
                             </div>
                                 <div class="row" style="padding-top: 40px";>
                                     <div class="col-12">
-                                        <p class="personal_text"> <?php echo $this->lang->line('dash_email'); echo $email ?>.</p>
+                                        <p class="personal_text"> <?php echo $this->lang->line('dash_email'); echo $_SESSION['id'] ?>.</p>
                                     </div>
 
                                 </div>
