@@ -12,6 +12,7 @@ class Questionnaire_controller extends CI_Controller{
 
 
 	public function questionnaire_start($userID){
+        $_SESSION["user_id"] = $userID;
 	    //find submission to resume
         $sql = "SELECT * FROM Submissions WHERE idResident = $userID AND completed <> 1 LIMIT 1";
         $result = $this->db->query($sql);
@@ -61,6 +62,7 @@ class Questionnaire_controller extends CI_Controller{
         $data['button_always'] = "Always";
 
         $data['quit'] = "Quit!";
+        $data['user_id'] = $_SESSION["user_id"];
 
         //pass data to the view(the page)
         $this->parser->parse('questionnaire',$data);//variables sent to html content
