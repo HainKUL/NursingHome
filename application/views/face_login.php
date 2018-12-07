@@ -46,6 +46,7 @@
 
     </div>
 </div>
+<a href="<?=base_url()?>Homepage_controller/residentHome"><button >login bypass</button></a>
 </body>
 <script src="../../assets/js/face_login.js"></script>
 </html>
