@@ -138,10 +138,10 @@
 
 
 
-            <div class="col-1">
-                <div id="return">
-                    <a href=""> <?php echo $this->lang->line('Return'); ?></a>
-                </div>
+            <div class="col-2">
+                <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
+                    <input type="submit" name=<?php echo $this->lang->line('Return');?> value="previous" id="previous" class="button2">
+                </form>
                 <div class="col-11">
                 </div>
             </div>
