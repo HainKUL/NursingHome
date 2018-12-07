@@ -26,7 +26,7 @@
             <div class="col-md-9">
             </div>
             <div class="col-md-3">
-                <a href="<?=base_url()?>Face_Login_controller/facelogin">
+                <a href="<?=base_url()?>index.php/Homepage_controller/home">
                     <button type = "button" class="button1">
                         <img id="menu_icon" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAALfSURBVGhD7Zpfb9JQGMbxK6nfwms/hYBOHf678ELvdIsJqLTQliUDNqZmcdkmmmwCJiZeuItplkjYNF5vjsSR6M3reWoPPSt/7Kn10My+yRP68p73vM8PSgbtEnHEEYd8UIJOzV4onp1JWuejJHhyLP45AMGaFpkoippNlqqO1fHhvBO0rpWp06pFSmvME7zdT5fOOHZHx72kdQ6L997W6MfXZ5ESPMEbPDp2R8eJBvneeUqNcpXqxbJSNSsVe3ZoIICYSVmUS5tKhZmACQ1k5dE8ZdMW7V/XlAozMTsGiUFCljqQmzod5hZp/4bneRmx3m5+iQ5uFQZqykAA8fPbLh29bgWDYT1HG017D8B46+reEcGINIyPXnUgEAxtNuRgfEBAakEgGRifEJB6EEiE2WwONyhCjFojaDIg0DijkhDQ5ECgYYYDQECTBYFE4+wxCAQ0eRBIgAkCAYUD8qZKvR2Deh/y9PxBMRgIM98HYVBBQDAbHuAFnqRBdl/p1Nt+bEsaRIA4dmpJwvRBHB/wJA3SeclehSAgHgjb+LDnhvV65AWBJzUg4wwHgJkMiGiU/WEcatTPGkHqQWCQfd3wZVBirVoQGQgunz3qQIJAcIm9Iz4zykC6c8vBILgEmMPswkBdGcjBbYO61nIwCC7Wa/9cZj+bvTVlIP9aMQhCFuRzRqOtq+4VkPa0TtvTbr7DjiGeo9bOuKcReveuDZ5WkFKQtaki5VJmP1+6ZJCedvPyRdMWz1HDGp6jF3vwXFToIA2zcOwidmmKGbvDPux3NVrNGPZAHEO1KwZpzDjP5y+btniOGtbwHL3YA8fYE3uLF7ExOzSQ7nsGYxVo/eFvtebczb9s5OndgvtNuV3XaeuJm39c0W3xHLV2Xevn6MUePMfefA5mYjav/TVIVPR/gvCboWtZgz690CKl1Zxhg/i6GYrALWA0RFIps+LY9BfR/IcB87RjL4444pCKROIXinxKROhJMmAAAAAASUVORK5CYII=" alt="poll">
                         <p id="logout_text"><?php echo $this->lang->line('logout'); ?></p>
@@ -34,10 +34,10 @@
                 </a>
             </div>
         </div>
-        <div class="row" >
+        <div class="row"style="padding-top: 1%;padding-bottom: 1%" >
             <div class="col-md-2"></div>
             <div class="col-md-8" >
-                <a href="<?=base_url()?>questionnaire_controller/questionnaire_start/1">
+                <a href="<?=base_url()?>index.php/questionnaire_controller/questionnaire_start/1">
                     <button type = "button" class="button2">
                         <img id="menu_icon" src="data:image/png;base64,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" alt="Vragenlijst">
                         <?php echo $this->lang->line('questionnaire'); ?>
@@ -50,7 +50,7 @@
         </div>
 
 
-        <div class="row" style="padding-top: 10px;padding-bottom: 10px">
+        <div class="row" style="padding-top: 1%;padding-bottom: 1%">
             <div class="col-md-2"></div>
             <div class="col-md-8" >
                 <a href="<?=base_url()?>questionnaire_controller/poll">
@@ -64,7 +64,7 @@
         </div>
 
 
-        <div class="row" style="padding-top: 10px;padding-bottom: 10px">
+        <div class="row" style="padding-top: 1%;padding-bottom: 1%">
             <div class="col-md-2"></div>
             <div class="col-md-8" >
                 <a href="<?=base_url()?>Homepage_controller/news">
@@ -77,7 +77,7 @@
         </div>
 
 
-        <div class="row" style="padding-top: 10px;padding-bottom: 10px">
+        <div class="row" style="padding-top: 1%;padding-bottom: 1%">
             <div class="col-md-2"></div>
             <div class="col-md-8" >
                 <a href="<?=base_url()?>Homepage_controller/sportsnews">
@@ -92,7 +92,7 @@
         </div>
 
 
-        <div class="row" style="padding-top: 10px;padding-bottom: 10px">
+        <div class="row" style="padding-top: 1%;padding-bottom: 1%">
             <div class="col-md-2"></div>
             <div class="col-md-8" >
                 <a href="<?=base_url()?>Homepage_controller/weathers">

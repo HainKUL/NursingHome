@@ -12,17 +12,25 @@ class Face_Login_controller extends CI_Controller{
         $this->load->library('parser');
         $this->load->helper('url');
         $this->load->library('session');
-        //$this->load->model('Question_model');
     }
 
-    function facelogin(){
-        $data['welcome'] = 'Welcome 😊';
-        $data['capture'] = 'Click to start';
+    function face_registration(){
+        $data['welcome'] = 'Hello, Welcome 😊';
+        $data['start'] = 'Start Camera';
+        $data['capture'] = 'Take Picture';
+        $data['registration'] = 'Registration';
         $data['login'] = 'Login';
-        $data['skip']='Skip';
 
+        $this->parser->parse('face_registration',$data);
+    }
+
+    function face_login(){
+        $data['welcome'] = 'Hello, Welcome 😊';
+        $data['start'] = 'Start Camera';
+        $data['capture'] = 'Take Picture';
+//        $data['registration'] = 'Registration';
+        $data['login'] = 'Login';
         $this->parser->parse('face_login',$data);
-        //$this->load->view('face_login');
     }
 
 

@@ -5,12 +5,9 @@
     <title>Camera</title>
     <!--Import materialize.css-->
     <link type="text/css" rel="stylesheet" href="../../assets/css/materialize.min.css"  media="screen,projection"/>
-
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 </head>
 
-<body onload="init();">
+<body onload="init()">
 <!--Import jQuery before materialize.js-->
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 <script type="text/javascript" src="../../assets/js/materialize.min.js"></script>
@@ -18,21 +15,26 @@
     <div class="nav-wrapper">
         <a href="#" class="brand-logo center">{welcome}</a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-<!--            <li><a href="#">{registration}</a></li>-->
-            <li class="active"><a href="#">{login}</a></li>
+            <li class="active"><a href="#">{registration}</a></li>
+            <li><a href="<?=base_url()?>index.php/Face_Login_controller/face_login">{login}</a></li>
         </ul>
     </div>
 </nav>
-
 
 <div class="container">
     <div class="card center">
         <div class="card-content">
             <div class="card-action">
-                <div class="card-action">
-                    <button onclick="startWebcam();">{start}</button>
-                    <button onclick="snapshot();">{capture}</button>
-                </div>
+                <form action="face_registration.php" method="post">
+<!--                TODO the info below needs to be store in our databse-->
+                    firstName:  <input type="text">
+                    lastName:   <input type="text">
+                    birthday:   <input type="text">
+                    ID:         <input type="text" class="validate" id="ip">
+                </form>
+
+                <button onclick="startWebcam();">{start}</button>
+                <button onclick="snapshot();">{capture}</button>
             </div>
 
             <div>
@@ -40,15 +42,8 @@
                 <canvas  id="myCanvas" width="400" height="300"></canvas>
             </div>
         </div>
-        <!--<audio id="myAudio">-->
-        <!--<source src="success.wav" type="audio/wav">-->
-        <!--</audio>-->
-
     </div>
 </div>
-<a href="<?=base_url()?>Homepage_controller/residentHome"><button >login bypass</button></a>
 </body>
-<script src="../../assets/js/face_login.js"></script>
+<script src="../../assets/js/face_registration.js"></script>
 </html>
-
-

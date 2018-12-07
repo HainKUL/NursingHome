@@ -9,7 +9,6 @@ var webcamStream;
 function startWebcam() {
     if (navigator.getUserMedia) {
         navigator.getUserMedia (
-
             // constraints
             {
                 video: true,
@@ -33,7 +32,6 @@ function startWebcam() {
     }
 }
 
-
 //---------------------
 // TAKE A SNAPSHOT CODE
 //---------------------
@@ -50,10 +48,9 @@ function snapshot() {
     ctx.drawImage(video, 0,0, canvas.width, canvas.height);
     var img1 = new Image();
     img1.src = canvas.toDataURL();
-    var ip = document.getElementById('ip').value;
     // var x = document.getElementById("myAudio");
     // x.play();
-    datad = "{\r\n    \"image\":\"" + img1.src+ "\",\r\n    \"gallery_name\":\"Arti\"\r\n}"
+    datad = "{\r\n    \"image\":\"" + img1.src+ "\",\r\n    \"gallery_name\":\"Demo\"\r\n}"
     var settings = {
         "async": true,
         "crossDomain": true,
@@ -67,16 +64,32 @@ function snapshot() {
         },
         "processData": false,
         "data": datad
-    }
+    };
+
     $.ajax(settings).done(function (response) {
         var m = response;
-        console.log(JSON.stringify(m).indexOf("success"));
+
+        //if user verified
         if(JSON.stringify(m).indexOf("success") > -1) {
-            Materialize.toast('User Identfied. Name : ' +JSON.stringify(m.images[0].candidates[0].subject_id), 6000);
-            console.log(m.images[0].candidates[0].subject_id);
+            Materialize.toast('User Identfied. ID : ' +JSON.stringify(m.images[0].candidates[0].subject_id), 6000);
+            console.log(m.images[0].candidates[0].subject_id);//show the id returned from the cloud
+
+            //switch to user page
+            var base_url = window.location.origin.concat("/a18ux04");
+            //need to match name with id in db, or alternatively send query with name instead of id
+            let userID = m.images[0].candidates[0].subject_id;
+            let newUrl = base_url.concat("/index.php/Questionnaire_controller/questionnaire_start/").concat(userID);
+
+            console.log(newUrl);
+            //set a timer
+            setTimeout(myFunc,1000);
+            function myFunc() {
+                window.location.href = newUrl;
+            }
         }
+        //if user not identified
         else{
-            Materialize.toast('User Not identified');
+            Materialize.toast('Sorry, please try again ☹');
         }
     });
 }

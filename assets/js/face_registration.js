@@ -49,7 +49,7 @@ function snapshot() {
     var img1 = new Image();
     img1.src = canvas.toDataURL();
     var ip = document.getElementById('ip').value;
-    datad = "{\r\n    \"image\":\"" + img1.src+ "\",\r\n    \"subject_id\":\"" + ip + "\",\r\n    \"gallery_name\":\"Arti\"\r\n}";
+    datad = "{\r\n    \"image\":\"" + img1.src+ "\",\r\n    \"subject_id\":\"" + ip + "\",\r\n    \"gallery_name\":\"Demo\"\r\n}";
     var settings = {
         "async": true,
         "crossDomain": true,
