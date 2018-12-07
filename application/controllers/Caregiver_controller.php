@@ -19,9 +19,8 @@ class Caregiver_controller extends CI_Controller{
         if($_POST) {
             $email = $this->db->escape($_POST['email']);
             $query = "SELECT passwordHash, idCaregivers, email FROM Caregivers WHERE email = $email LIMIT 1;";
-            $id= "SELECT idCaregivers FROM Caregivers WHERE email = $email";
-            $_SESSION['id']=$id;
             $result = $this->db->query($query);
+            $_SESSION['id']=$result->result()[0]->idCaregivers;
 
             if($result->num_rows() === 0)   {
                 $this->session->set_flashdata('flash_data', 'Email or password incorrect!');
@@ -39,6 +38,7 @@ class Caregiver_controller extends CI_Controller{
                 redirect('Caregiver_controller/login'); // Has something to do with not being able to remove index.php in url
             }
         }
+
         $this->load->view("caregiver_login_view");
     }
 

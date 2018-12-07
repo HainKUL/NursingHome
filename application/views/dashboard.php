@@ -1,8 +1,10 @@
-<?php if(!isset($_SESSION['id']))
+<?php
+if(!isset($_SESSION['id']))
 {
 
     header("Location:./index.php?msg=YouMustLoginFirst");
     exit();
+
 }
 
 ?>
@@ -267,7 +269,7 @@ $email = $this->db->query($query);
                                 <div class="col-4" style="align-items: center;">
                                     <select onchange="javascript:window.location.href='<?php echo base_url(); ?>MultiLanguageSwitcher/switcher/'+this.value;">
                                         <option value="english" <?php if($this->session->userdata('site_lang') == 'english') echo 'selected="selected"'; ?>>English</option>
-                                        <option value="dutch" <?php if($this->session->userdata('site_lang') == 'dutch') echo 'selected="selected"'; ?>>Dutch</option>
+                                        <option value="dutch" <?php if($this->session->userdata('site_lang') == 'dutch') echo 'selected="selected"'; ?>>Nederlands</option>
                                     </select>
                                 </div>
                             </div>
