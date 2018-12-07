@@ -73,7 +73,7 @@ if(!isset($_SESSION['id']))
 <?php
 $currentID = $_SESSION['id'];
 $this->load->database();
-$query = "SELECT Notes.noteText, Notes.author, Notes.timestamp, Caregivers.firstName FROM Notes INNER JOIN Caregivers on Notes.author = Caregivers.idCaregivers;";
+$query = "SELECT Notes.noteText, Notes.author, Notes.timestamp, Caregivers.firstName FROM Notes INNER JOIN Caregivers on Notes.author = Caregivers.idCaregivers ORDER BY Notes.timestamp DESC;";
 $result = $this->db->query($query);
 $query = "SELECT firstName, name, idResidents, YEAR(CURRENT_TIMESTAMP) - YEAR(dateOfBirth) - (RIGHT(CURRENT_TIMESTAMP, 5) < RIGHT(dateOfBirth, 5)) as age FROM Residents;";
 $residents = $this->db->query($query);
