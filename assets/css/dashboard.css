@@ -4,6 +4,12 @@
 .btn-group-vertical > .btn-group:not(:last-child) > .btn, .btn-group-vertical > .btn:not(:last-child):not(.dropdown-toggle) {
 }
 
+html, body {
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+    font-family: "Helvetica Neue";
+}
 
 .btn-resident {
     border:none;
@@ -14,6 +20,11 @@
 .btn-resident:hover{
     background-color: #1DA9A1;
 }
+
+.btn-active{
+    background-color: #1DA9A1;
+}
+
 
 
 .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
@@ -53,17 +64,20 @@
 .note-heading{
       text-align: left;
       margin-bottom: 1px;
+    font-size: 15px;
 
 }
 
 .note-timestamp{
     float: right;
     color: grey;
+    font-size: 10px;
 }
 
 .resident-button{
     text-allign: left;
     float:left;
+    font-size:22px;
 
 }
 
@@ -140,10 +154,26 @@ btn-notes {
     font-size: 30px;
 }
 
-
-html, body {
-    margin: 0;
-    height: 100%;
-    overflow: hidden;
-    font-family: "Helvetica Neue";
+[data-toggle="collapse"]:after {
+    display: inline-block;
+    display: inline-block;
+    font: normal normal normal 14px/1 FontAwesome;
+    font-size: inherit;
+    text-rendering: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    content: "\f0d9";
+    transform: translateY(4px) rotate(-90deg);
+    transition: all linear 0.25s;
+    float: right;
+    color: #E6F0BE;
 }
+[data-toggle="collapse"].collapsed:after {
+    transform: translateY(4px) rotate(0deg);
+    color: #E6F0BE;
+}
+
+
+
+
+

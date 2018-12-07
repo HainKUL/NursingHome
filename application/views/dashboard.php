@@ -61,6 +61,7 @@ if(!isset($_SESSION['id']))
     <link rel="icon" href="<?=base_url()?>assets/photos/favicon3.png" type="image/gif" sizes="16x16">
 
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <!-- Custom CSS-->
@@ -319,7 +320,7 @@ $email = $this->db->query($query);
                 <div class="card notes-card active">
                     <div class="card-header notes-card-head" role="tab">
                         <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-1 .item-1" href="div#accordion-1 .item-1" class="btn-notes">
-                                <?php echo $this->lang->line('dash_today'); ?></a><i class="fa fa-star"></i></h5>
+                                <?php echo $this->lang->line('dash_today'); ?>&nbsp;</a></h5>
                     </div>
                     <div class="collapse show item-1 notes-content" role="tabpanel" data-parent="#accordion-1">
                         <div class="card-body">
@@ -349,7 +350,7 @@ $email = $this->db->query($query);
                 </div>
                 <div class="card notes-card">
                     <div class="card-header notes-card-head" role="tab">
-                        <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-2" href="div#accordion-1 .item-2" class="btn-notes"><?php echo $this->lang->line('dash_this_week'); ?></a></h5>
+                        <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-2" href="div#accordion-1 .item-2" class="btn-notes"><?php echo $this->lang->line('dash_this_week'); ?>&nbsp;</a></h5>
                     </div>
                     <div class="collapse item-2 notes-content" role="tabpanel" data-parent="#accordion-1">
                         <div class="card-body">
@@ -376,7 +377,7 @@ $email = $this->db->query($query);
                 </div>
                 <div class="card notes-card">
                     <div class="card-header notes-card-head" role="tab">
-                        <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-3" href="div#accordion-1 .item-3" class="btn-notes"><?php echo $this->lang->line('dash_archive'); ?></a></h5>
+                        <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-3" href="div#accordion-1 .item-3" class="btn-notes"><?php echo $this->lang->line('dash_archive'); ?>&nbsp;</a></h5>
                     </div>
                     <div class="collapse item-3 notes-content" role="tabpanel" data-parent="#accordion-1">
                         <div class="card-body">
@@ -417,24 +418,23 @@ $email = $this->db->query($query);
 
 
 <script>
+    var currentButtonID
     function loadResident(id){
+        if(currentButtonID){
+            var previous = document.getElementById(currentButtonID)
+            previous.classList.remove("btn-active")
+        }
+
+        var element = document.getElementById(id)
+        element.classList.add("btn-active")
+        currentButtonID = id
+
         document.getElementById("residentTitle").innerText = id + "<?php echo $this->lang->line('dash_profile'); ?>"
     }
 
-
 </script>
 
-<script>
-    // $('#accordion .panel-collapse').on('shown.bs.collapse', function () {
-    //     $(this).prev().find(".glyphicon").removeClass("glyphicon-chevron-right").addClass("glyphicon-chevron-down");
-    // });
-    //
-    // //The reverse of the above on hidden event:
-    //
-    // $('#accordion .panel-collapse').on('hidden.bs.collapse', function () {
-    //     $(this).prev().find(".glyphicon").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-right");
-    // });
-</script>
+
 
 <script>
     //set up data
