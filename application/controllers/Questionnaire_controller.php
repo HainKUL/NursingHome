@@ -11,7 +11,7 @@ class Questionnaire_controller extends CI_Controller{
 	}
 
 
-    public function questionnaire_start($userID){
+	public function questionnaire_start($userID){
 	    //find submission to resume
         $sql = "SELECT * FROM Submissions WHERE idResident = $userID AND completed <> 1 LIMIT 1";
         $result = $this->db->query($sql);
@@ -42,16 +42,11 @@ class Questionnaire_controller extends CI_Controller{
 	}
 
 
-
 	public function question($question){
         $data1['jslibs_to_load'] = array('jquery-3.3.1.min.js');
-
+        $_SESSION["Current_Question"] = $question;
         //load data(question info) to the controller
-        $data2 = $this->Question_model->get_question($_SESSION["idSubmission"], $question);//submission, question
-        if($data2 == 0) {
-            $this->Question_model->set_submission_complete($_SESSION["idSubmission"]);
-            redirect('/Homepage_controller/residentHome');
-        }
+        $data2 = $this->Question_model->get_question($question);
         $data = array_merge($data1, $data2);//merge two array
 
         // text
@@ -69,27 +64,40 @@ class Questionnaire_controller extends CI_Controller{
 
         //pass data to the view(the page)
         $this->parser->parse('questionnaire',$data);//variables sent to html content
+
 	}
 
 	public function update()
     {
-        $id = $_SESSION["idSubmission"];
-        $sql = "SELECT nextQuestion FROM Submissions WHERE idSubmissions = '$id';";
-        $result = $this->db->query($sql);
-        $nextQuestion = $result->result_array()[0]['nextQuestion'];
+        $idSubmission = $_SESSION["idSubmission"];
+        $question = $_SESSION["Current_Question"];
+        //$userID = $_SESSION["idUser"];
+        $userID = 1; //TODO remove override once session is fixed
+
+
         //send confimation to db;
         $submit = 1;
-        if(isset($_GET['never']))           $this->Question_model->send_confirmation($nextQuestion, 1, $_SESSION["idSubmission"]);
-        else if(isset($_GET['rarely']))     $this->Question_model->send_confirmation($nextQuestion, 2, $_SESSION["idSubmission"]);
-        else if(isset($_GET['sometimes']))  $this->Question_model->send_confirmation($nextQuestion, 3, $_SESSION["idSubmission"]);
-        else if(isset($_GET['mostly']))     $this->Question_model->send_confirmation($nextQuestion, 4, $_SESSION["idSubmission"]);
-        else if(isset($_GET['always']))     $this->Question_model->send_confirmation($nextQuestion, 5, $_SESSION["idSubmission"]);
+        if(isset($_GET['never']))           $this->Question_model->send_confirmation($question, 1, $idSubmission);
+        else if(isset($_GET['rarely']))     $this->Question_model->send_confirmation($question, 2, $idSubmission);
+        else if(isset($_GET['sometimes']))  $this->Question_model->send_confirmation($question, 3, $idSubmission);
+        else if(isset($_GET['mostly']))     $this->Question_model->send_confirmation($question, 4, $idSubmission);
+        else if(isset($_GET['always']))     $this->Question_model->send_confirmation($question, 5, $idSubmission);
         else $submit = 0;
-        //TODO FIX PREVIOUS BUTTON (return)
-        //TODO catch refresh (don't go to next question on F5)
-        //reload page
-        if($submit == 1) $this->question($nextQuestion);
-        else $this->question($nextQuestion - 2);
+   //TODO extract method and deduplicate
+        $sql =
+            "SELECT * FROM Questions WHERE NOT EXISTS (SELECT * FROM Responses WHERE Questions.idQuestions = Responses.questionNum AND submission = '$idSubmission');";
+        $result = $this->db->query($sql);
+        if($result->num_rows() === 0) {
+            $this->Question_model->set_submission_complete($idSubmission);
+            redirect('questionnaire_controller/done');
+        } else {
+            $nextQuestion = $result->result_array()[0]["idQuestions"];
+            //TODO FIX PREVIOUS BUTTON (return)
+            //TODO catch refresh (don't go to next question on F5)
+            //reload page
+            if($submit == 1) $this->question($nextQuestion);
+            //else $this->question($nextQuestion - 2);
+        }
     }
 
 
