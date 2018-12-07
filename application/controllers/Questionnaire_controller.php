@@ -10,17 +10,38 @@ class Questionnaire_controller extends CI_Controller{
         $this->load->model('Question_model');
 	}
 
-    public function questionnaire_start($userID){ //TODO get next unanswered question with SQL instead
-        $query = "INSERT INTO Submissions (idResident, completed) VALUES(".$this->db->escape($userID).", 0)";
-        $this->db->query($query);
-        $id = $this->db->insert_id();
-        $_SESSION["idSubmission"] = $id;
 
-        $sql = "SELECT nextQuestion FROM Submissions WHERE idSubmissions = '$id';";
+    public function questionnaire_start($userID){
+	    //find submission to resume
+        $sql = "SELECT * FROM Submissions WHERE idResident = $userID AND completed <> 1 LIMIT 1";
         $result = $this->db->query($sql);
-        $nextQuestion = $result->result_array()[0]['nextQuestion'];
-        $this->question($nextQuestion, $_SESSION["idSubmission"]);//TODO why to pass two params since the function takes only one?
-    }
+        if($result->num_rows() === 0) { // no submission to resume, start new one
+            $query = "INSERT INTO Submissions (idResident, completed) VALUES(".$this->db->escape($userID).", 0)";
+            $this->db->query($query);
+            $idSubmission = $this->db->insert_id();
+        } else
+        $idSubmission = $this->db->query($sql)->result_array()[0]["idSubmissions"]; // get id of submission to resume
+
+        //update session and launch questionnaire
+        $_SESSION["idSubmission"] = $idSubmission;
+
+    //TODO extract method and deduplicate
+        $sql =
+            "SELECT * FROM Questions WHERE NOT EXISTS (SELECT * FROM Responses WHERE Questions.idQuestions = Responses.questionNum AND submission = '$idSubmission');";
+        $result = $this->db->query($sql);
+        if($result->num_rows() === 0) {
+            $this->Question_model->set_submission_complete($idSubmission);
+            redirect('questionnaire_controller/done');
+        } else {
+            $nextQuestion = $result->result_array()[0]["idQuestions"];
+            //TODO FIX PREVIOUS BUTTON (return)
+            //TODO catch refresh (don't go to next question on F5)
+        }
+
+        $this->question($nextQuestion);
+	}
+
+
 
 	public function question($question){
         $data1['jslibs_to_load'] = array('jquery-3.3.1.min.js');
