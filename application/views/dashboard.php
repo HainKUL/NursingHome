@@ -256,7 +256,7 @@ $email = $this->db->query($query);
                         <div class="container" >
                             <div class="row" style="padding-top: 40px";>
                                 <div class="col-8">
-                                    <p class="personal_text"> <?php echo $this->lang->line('hello'); echo $_SESSION['id'] ?>></p>
+                                    <p class="personal_text"> <?php echo $this->lang->line('hello'); echo $_SESSION['id'] ?></p>
                                 </div>
                                 <div class="col-4">
                                     <img class="profilePic" style="width:130px;height:130px;" src="<?=base_url() ?>assets/photos/profilePicTest_caregiver.jpg" alt="Profielfoto">
