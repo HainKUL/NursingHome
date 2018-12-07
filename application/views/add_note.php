@@ -1,3 +1,9 @@
+<?php if(!isset($_SESSION['username']))
+{
+    header("Location:./index.php?msg=YouMustLoginFirst");
+    exit();
+}
+?>
 <!DOCTYPE html>
 <meta charset="UTF-8">
 <html>
