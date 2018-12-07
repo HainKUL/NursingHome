@@ -76,12 +76,10 @@ $query = "SELECT Notes.noteText, Notes.author, Notes.timestamp, Caregivers.first
 $result = $this->db->query($query);
 $query = "SELECT firstName, name, idResidents, YEAR(CURRENT_TIMESTAMP) - YEAR(dateOfBirth) - (RIGHT(CURRENT_TIMESTAMP, 5) < RIGHT(dateOfBirth, 5)) as age FROM Residents;";
 $residents = $this->db->query($query);
-/* to use when id is obtainable
-$query = "SELECT firstName FROM Caregivers WHERE $currentID = Caregivers.idCaregivers";
+$query = "SELECT firstName FROM Caregivers WHERE $currentID = Caregivers.idCaregivers;";
 $firstName = $this->db->query($query);
-$query = "SELECT email FROM Caregivers WHERE $currentID = Caregivers.idCaregivers";
+$query = "SELECT email FROM Caregivers WHERE Caregivers.idCaregivers = $currentID;";
 $email = $this->db->query($query);
-*/
 ?>
 
 
@@ -90,11 +88,11 @@ $email = $this->db->query($query);
 
     <div class="row" style="height:100vh;">
         <div class="col-3" style="background-color:#009489;padding:0;">
-            <a href="<?=base_url()?>Dashboard/logout">
+            <!-- <a href="<?=base_url()?>Dashboard/logout">
             <button class="btn btn-primary btn-lg" type="button" style="min-width:100%;background-color:#009489;border:none;" >
                 <p><?php echo $this->lang->line('dash_logout'); ?></p>
             </button>
-            </a>
+            </a> -->
             <div style="height:5%;"></div>
             <div class="searchdiv" style="text-align:center;margin:15px;">
                 <h2 class="floornumber"><?php echo $this->lang->line('dash_floor'); ?> 1</h2><input type="search" placeholder="<?php echo $this->lang->line('search'); ?>" style="width:100%;height:40px;"></div>
@@ -256,33 +254,44 @@ $email = $this->db->query($query);
                         <div class="container" >
                             <div class="row" style="padding-top: 40px";>
                                 <div class="col-8">
-                                    <p class="personal_text"> <?php echo $this->lang->line('hello'); echo $_SESSION['id'] ?></p>
+                                    <p class="personal_text"> <?php echo $this->lang->line('hello'); if ($firstName->num_rows() > 0)
+                                        {
+                                            $row = $firstName->row();
+                                            echo $row->firstName;
+                                        } ?>!</p>
                                 </div>
                                 <div class="col-4">
                                     <img class="profilePic" style="width:130px;height:130px;" src="<?=base_url() ?>assets/photos/profilePicTest_caregiver.jpg" alt="Profielfoto">
                                 </div>
                             </div>
-                            <div class="row" style="padding-top: 40px";>
+                            <div class="row" style="padding-top: 40px;">
                                 <div class="col-8">
                                    <p class="personal_text"> <?php echo $this->lang->line('dash_chooselang'); ?> </p>
                                 </div>
-                                <div class="col-4" style="align-items: center;">
+                                <div class="col-4" style="padding-top: 12px;">
                                     <select onchange="javascript:window.location.href='<?php echo base_url(); ?>MultiLanguageSwitcher/switcher/'+this.value;">
                                         <option value="english" <?php if($this->session->userdata('site_lang') == 'english') echo 'selected="selected"'; ?>>English</option>
                                         <option value="dutch" <?php if($this->session->userdata('site_lang') == 'dutch') echo 'selected="selected"'; ?>>Nederlands</option>
                                     </select>
                                 </div>
                             </div>
-                                <div class="row" style="padding-top: 40px";>
-                                    <div class="col-12">
-                                        <p class="personal_text"> <?php echo $this->lang->line('dash_email'); echo $_SESSION['id'] ?>.</p>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p class="personal_text"> <?php echo $this->lang->line('dash_email'); ?></p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="personal_text" style="text-align: right;"> <?php if ($email->num_rows() > 0)
+                                            {
+                                                $row = $email->row();
+                                                echo $row->email;
+                                            }  ?></p>
                                     </div>
 
                                 </div>
-                            <div class="row" style="padding-top: 40px";>
+                            <div class="row" style="padding-top: 40px;">
                                 <div class="col-12">
-                                    <a href="<?=base_url()?>Dashboard/logout">
-                                        <button type = "button">
+                                     <a href="<?=base_url()?>Dashboard/logout">
+                                       <button type = "button" style="font-size: 2vw">
                                             <?php echo $this->lang->line('dash_logout'); ?>
                                         </button>
                                     </a>
