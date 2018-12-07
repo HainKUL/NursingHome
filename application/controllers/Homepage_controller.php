@@ -21,7 +21,6 @@ class Homepage_controller extends CI_Controller
 
     public function residentHome()
     {
-
         $data['content'] = 'content';
         $this->parser->parse('olderadultmenu', $data);
     }
