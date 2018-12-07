@@ -79,11 +79,12 @@ class Questionnaire_controller extends CI_Controller{
 
         //send confimation to db;
         $submit = 1;
-        if(isset($_GET['never']))           $this->Question_model->send_confirmation($question, 1, $idSubmission);
+        if     (isset($_GET['never']))      $this->Question_model->send_confirmation($question, 1, $idSubmission);
         else if(isset($_GET['rarely']))     $this->Question_model->send_confirmation($question, 2, $idSubmission);
         else if(isset($_GET['sometimes']))  $this->Question_model->send_confirmation($question, 3, $idSubmission);
         else if(isset($_GET['mostly']))     $this->Question_model->send_confirmation($question, 4, $idSubmission);
         else if(isset($_GET['always']))     $this->Question_model->send_confirmation($question, 5, $idSubmission);
+        else if(isset($_GET['Previous']))   {$this->question($question - 1); return;}
         else $submit = 0;
    //TODO extract method and deduplicate
         $sql =

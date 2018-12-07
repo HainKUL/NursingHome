@@ -34,7 +34,7 @@
                 </a>
             </div>
         </div>
-        <div class="row" >
+        <div class="row"style="padding-top: 1%;padding-bottom: 1%" >
             <div class="col-md-2"></div>
             <div class="col-md-8" >
                 <a href="<?=base_url()?>index.php/questionnaire_controller/questionnaire_start/{user_id}">
@@ -43,10 +43,14 @@
                         <?php echo $this->lang->line('questionnaire'); ?>
                     </button>
                 </a>
+
             </div>
+
+
         </div>
 
-        <div class="row" style="padding-top: 10px;padding-bottom: 10px">
+
+        <div class="row" style="padding-top: 1%;padding-bottom: 1%">
             <div class="col-md-2"></div>
             <div class="col-md-8" >
                 <a href="<?=base_url()?>questionnaire_controller/poll">
@@ -60,7 +64,7 @@
         </div>
 
 
-        <div class="row" style="padding-top: 10px;padding-bottom: 10px">
+        <div class="row" style="padding-top: 1%;padding-bottom: 1%">
             <div class="col-md-2"></div>
             <div class="col-md-8" >
                 <a href="<?=base_url()?>Homepage_controller/news">
@@ -73,7 +77,7 @@
         </div>
 
 
-        <div class="row" style="padding-top: 10px;padding-bottom: 10px">
+        <div class="row" style="padding-top: 1%;padding-bottom: 1%">
             <div class="col-md-2"></div>
             <div class="col-md-8" >
                 <a href="<?=base_url()?>Homepage_controller/sportsnews">
@@ -88,7 +92,7 @@
         </div>
 
 
-        <div class="row" style="padding-top: 10px;padding-bottom: 10px">
+        <div class="row" style="padding-top: 1%;padding-bottom: 1%">
             <div class="col-md-2"></div>
             <div class="col-md-8" >
                 <a href="<?=base_url()?>Homepage_controller/weathers">
