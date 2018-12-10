@@ -32,8 +32,8 @@ class Dashboard extends CI_Controller
     }
 
     public function logout() {
-        $data = data('idCaregivers', 'email');
-        $this->session->unset_userdata($data);
+
+        session_destroy();
         redirect('/Caregiver_controller/login');
     }
 

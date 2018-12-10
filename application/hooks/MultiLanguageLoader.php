@@ -18,6 +18,7 @@ class MultiLanguageLoader
             $ci->lang->load('olderadults',$siteLang);
             $ci->lang->load('questionnaire',$siteLang);
             $ci->lang->load('weathers',$siteLang);
+            $ci->lang->load('done',$siteLang);
 
         } else {
             // default language files
@@ -30,6 +31,7 @@ class MultiLanguageLoader
             $ci->lang->load('olderadults','english');
             $ci->lang->load('questionnaire','english');
             $ci->lang->load('weathers','english');
+            $ci->lang->load('done','english');
         }
     }
 }
