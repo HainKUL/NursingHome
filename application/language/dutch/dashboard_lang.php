@@ -30,3 +30,11 @@ $lang['dash_logout'] = "Afmelden";
 $lang['dash_chooselang'] = "Verander van taal:";
 $lang['hello'] = "Hallo, ";
 $lang['dash_email'] = "Jouw email adres: ";
+$lang['first_floor'] = "Eerste Verdieping";
+$lang['second_floor'] = "Tweede Verdieping";
+$lang['third_floor'] = "Derde Verdieping";
+$lang['fourth_floor'] = "Vierde Verdieping";
+$lang['fifth_floor'] = "Vijfde Verdieping";
+$lang['sixth_floor'] = "Zesde Verdieping";
+$lang['dash_select_floor'] = "Kies Verdieping";
+

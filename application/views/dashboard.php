@@ -96,7 +96,20 @@ $email = $this->db->query($query);
             </a> -->
             <div style="height:5%;"></div>
             <div class="searchdiv" style="text-align:center;margin:15px;">
-                <h2 class="floornumber"><?php echo $this->lang->line('dash_floor'); ?> 1</h2><input type="search" placeholder="<?php echo $this->lang->line('search'); ?>" style="width:100%;height:40px;"></div>
+                <h2 class="floornumber"><?php echo $this->lang->line('dash_floor'); ?> 1</h2>
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button"><?php echo $this->lang->line('dash_select_floor'); ?></button>
+                    <div class="dropdown-menu" role="menu">
+                        <a class="dropdown-item" role="presentation" href="#"><?php echo $this->lang->line('first_floor'); ?></a>
+                        <a class="dropdown-item" role="presentation" href="#"><?php echo $this->lang->line('second_floor'); ?></a>
+                        <a class="dropdown-item" role="presentation" href="#"><?php echo $this->lang->line('third_floor'); ?></a>
+                        <a class="dropdown-item" role="presentation" href="#"><?php echo $this->lang->line('fourth_floor'); ?></a>
+                        <a class="dropdown-item" role="presentation" href="#"><?php echo $this->lang->line('fifth_floor'); ?></a>
+                        <a class="dropdown-item" role="presentation" href="#"><?php echo $this->lang->line('sixth_floor'); ?></a>
+                    </div>
+                </div>
+                <input type="search" placeholder="<?php echo $this->lang->line('search'); ?>" style="width:100%;height:40px;"></div>
+
             <div style="height:5%;"></div>
             <div style="overflow-y:scroll;max-height:73vh;">
                 <div class="btn-group-vertical btn-group-lg" role="group" style="width:100%;">

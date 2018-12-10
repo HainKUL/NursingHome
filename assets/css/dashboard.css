@@ -156,7 +156,6 @@ btn-notes {
 
 [data-toggle="collapse"]:after {
     display: inline-block;
-    display: inline-block;
     font: normal normal normal 14px/1 FontAwesome;
     font-size: inherit;
     text-rendering: auto;
@@ -171,6 +170,13 @@ btn-notes {
 [data-toggle="collapse"].collapsed:after {
     transform: translateY(4px) rotate(0deg);
     color: #E6F0BE;
+}
+
+.dropdown-toggle{
+    background-color: #1DA9A1;
+    border: none;
+    margin-bottom: 10px;
+
 }
 
 
