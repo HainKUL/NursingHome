@@ -1,7 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Weihao
- * Date: 12/6/18
- * Time: 13:46
- */
+
+$query = $this->db->get('Submissions');
+foreach ($query->result() as $row)
+{
+    $data['idSubmissions']=$row->idSubmissions;
+    $data['timestampStart']=$row->timestampStart;
+    echo json_encode($data);
+}

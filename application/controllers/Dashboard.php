@@ -19,10 +19,16 @@ class Dashboard extends CI_Controller
         $this->load->helper('url');
         // $this->load->library('form_validation');
         $this->load->helper('string');
+        $this->load->model("Our_chart_model");
+        $this->load->model("Bar_chart_model");
     }
 
     public function dashboard() {
-        $this->load->view('dashboard');
+        $data_each1 = $this->Bar_chart_model->get_each();
+        $data['data_each1'] = $data_each1;
+        $data1 = $this->Our_chart_model->get_avg();
+        $data['data1'] = $data1;
+        $this->load->view('dashboard', $data);
     }
 
     public function logout() {

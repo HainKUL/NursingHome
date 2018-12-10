@@ -1,11 +1,10 @@
-
 function RadarChart(id, data, options) {
     var cfg = {
         w: 200,				//Width of the circle
         h: 600,				//Height of the circle
         margin: {top: 20, right: 20, bottom: 20, left: 20}, //The margins around the circle
         legendPosition: {x: 0, y: 10}, // the position of the legend, from the top-left corner of the svg
-        levels: 3,				//How many levels or inner circles should there be drawn
+        levels:3,				//How many levels or inner circles should there be drawn
         maxValue: 0, 				//What is the value that the biggest circle will represent
         labelFactor: 1.25, 			//How much farther than the radius of the outer circle should the labels be placed
         wrapWidth: 60, 			//The number of pixels after which a label needs to be given a new line

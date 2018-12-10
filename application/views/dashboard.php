@@ -14,6 +14,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/1.3.0/d3-legend.js" charset="utf-8"></script>
 
 
+
    <!-- <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <script src="//d3js.org/d3.v4.min.js"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>-->
@@ -244,225 +245,100 @@ $result = $this->db->query($query);
 
                             <div id="collapseProfile" class="collapse show" aria-labelledby="headingProfile" data-parent="#accordionQuestionnaire">
                                 <div class="card-body">
-                                    <h3><?php echo $this->lang->line('category_title'); ?></h3>
+
 
                                     <div class="radarChart"></div>
 
                                     <script src="../../assets/js/radarChart.js"></script>
+
+                                    <script type="text/javascript">
+                                        var data = <?php echo json_encode($data1); ?>;
+                                    </script>
+
                                     <script>
                                         //////////////////////////////////////////////////////////////
                                         //////////////////////// Set-Up //////////////////////////////
                                         //////////////////////////////////////////////////////////////
+                                        var data11 = [
+                                            {
+                                                "key":"<?php echo $this->lang->line('category_time2'); ?>",
+                                                "values":[
+                                                    {
+                                                        "category":"<?php echo $this->lang->line('category_0'); ?>",
+                                                        "timestampStart":"<?php echo $this->lang->line('category_time2'); ?>",
+                                                        "answer":4
 
-                                        var margin = {top: 150, right: 80, bottom: 120, left: 80},
-                                            legendPosition = {x: 250, y: 15},
-                                            width = Math.min(500, window.innerWidth - 10) - margin.left - margin.right,
+                                                    },
+                                                    {
+                                                        "category":"<?php echo $this->lang->line('category_1'); ?>",
+                                                        "timestampStart":"<?php echo $this->lang->line('category_time2'); ?>",
+                                                        "answer":3
+                                                    },
+                                                    {
+                                                        "category":"<?php echo $this->lang->line('category_2'); ?>",
+                                                        "timestampStart":"<?php echo $this->lang->line('category_time2'); ?>",
+                                                        "answer":2
+                                                    },
+                                                    {
+                                                        "category":"<?php echo $this->lang->line('category_3'); ?>",
+                                                        "timestampStart":"<?php echo $this->lang->line('category_time2'); ?>",
+                                                        "answer":4
+                                                    },
+                                                    {
+                                                        "category":"<?php echo $this->lang->line('category_4'); ?>",
+                                                        "timestampStart":"<?php echo $this->lang->line('category_time2'); ?>",
+                                                        "answer":3
+                                                    },
+                                                    {
+                                                        "category":"<?php echo $this->lang->line('category_5'); ?>",
+                                                        "timestampStart":"<?php echo $this->lang->line('category_time2'); ?>",
+                                                        "answer":1
+                                                    },
+                                                    {
+                                                        "category":"<?php echo $this->lang->line('category_6'); ?>",
+                                                        "timestampStart":"<?php echo $this->lang->line('category_time2'); ?>",
+                                                        "answer":3
+                                                    },
+                                                    {
+                                                        "category":"<?php echo $this->lang->line('category_7'); ?>",
+                                                        "timestampStart":"<?php echo $this->lang->line('category_time2'); ?>",
+                                                        "answer":4
+                                                    },
+                                                    {
+                                                        "category":"<?php echo $this->lang->line('category_8'); ?>",
+                                                        "timestampStart":"<?php echo $this->lang->line('category_time2'); ?>",
+                                                        "answer":3
+                                                    },
+                                                    {
+                                                        "category":"<?php echo $this->lang->line('category_8'); ?>",
+                                                        "timestampStart":"<?php echo $this->lang->line('category_time2'); ?>",
+                                                        "answer":3
+                                                    },
+                                                    {
+                                                        "category":"<?php echo $this->lang->line('category_9'); ?>",
+                                                        "timestampStart":"<?php echo $this->lang->line('category_time2'); ?>",
+                                                        "answer":4
+                                                    },
+                                                    {
+                                                        "category":"<?php echo $this->lang->line('category_10'); ?>",
+                                                        "timestampStart":"<?php echo $this->lang->line('category_time2'); ?>",
+                                                        "answer":3
+                                                    },
+                                                ]
+                                            },];
+
+                                        //var margin = {top: 150, right: 70, bottom: 100, left: 100},
+                                        var margin = {top: 60, right: 50, bottom: 80, left: 0},
+                                            legendPosition = {x: 420, y: 15},
+                                            width = Math.min(600, window.innerWidth - 10) - margin.left - margin.right,
                                             height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20);
                                         //////////////////////////////////////////////////////////////
                                         //////////////////// Draw the Chart //////////////////////////
                                         //////////////////////////////////////////////////////////////
 
                                         var color = d3.scale.ordinal()
-                                            .range(["#42f4b0","#41b2f4","#00A0B0"]);
-                                        var data = [
-                                            {
-                                                "key":"<?php echo $this->lang->line('category_time2'); ?>",
-                                                "values":[
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_0'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time2'); ?>",
-                                                        "value":4
+                                            .range(["#42f4b0","#CCCC00","#00A0B0","#EDC951"]);
 
-                                                    },
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_1'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time2'); ?>",
-                                                        "value":3
-                                                    },
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_2'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time2'); ?>",
-                                                        "value":2
-                                                    },
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_3'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time2'); ?>",
-                                                        "value":4
-                                                    },
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_4'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time2'); ?>",
-                                                        "value":3
-                                                    },
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_5'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time2'); ?>",
-                                                        "value":1
-                                                    },
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_6'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time2'); ?>",
-                                                        "value":3
-                                                    },
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_7'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time2'); ?>",
-                                                        "value":4
-                                                    },
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_8'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time2'); ?>",
-                                                        "value":3
-                                                    },
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_8'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time2'); ?>",
-                                                        "value":3
-                                                    },
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_9'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time2'); ?>",
-                                                        "value":4
-                                                    },
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_10'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time2'); ?>",
-                                                        "value":3
-                                                    },
-                                                ]
-                                            },
-                                            {
-                                                "key":"<?php echo $this->lang->line('category_time1'); ?>",
-                                                "values":[
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_0'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time1'); ?>",
-                                                        "value":3
-                                                    },
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_1'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time1'); ?>",
-                                                        "value":1
-                                                    },
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_2'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time1'); ?>",
-                                                        "value":4
-                                                    },
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_3'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time1'); ?>",
-                                                        "value":3
-                                                    },
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_4'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time1'); ?>",
-                                                        "value":5
-                                                    },
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_5'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time1'); ?>",
-                                                        "value":3
-                                                    },
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_6'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time1'); ?>",
-                                                        "value":3
-                                                    },
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_7'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time1'); ?>",
-                                                        "value":2
-                                                    },
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_8'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time1'); ?>",
-                                                        "value":5
-                                                    },
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_9'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time1'); ?>",
-                                                        "value":3
-                                                    },
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_9'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time1'); ?>",
-                                                        "value":2
-                                                    },
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_10'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time1'); ?>",
-                                                        "value":5
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "key":"<?php echo $this->lang->line('category_time3'); ?>",
-                                                "values":[
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_0'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time3'); ?>",
-                                                        "value":5
-                                                    },
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_1'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time3'); ?>",
-                                                        "value":3
-                                                    },
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_2'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time3'); ?>",
-                                                        "value":5
-                                                    },
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_3'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time3'); ?>",
-                                                        "value":3
-                                                    },
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_4'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time3'); ?>",
-                                                        "value":5
-                                                    },
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_5'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time3'); ?>",
-                                                        "value":5
-                                                    },
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_6'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time3'); ?>",
-                                                        "value":4
-                                                    },
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_7'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time3'); ?>",
-                                                        "value":2
-                                                    },
-                                                    {
-                                                        "reason": "<?php echo $this->lang->line('category_8'); ?>",
-                                                        "device": "<?php echo $this->lang->line('category_time3'); ?>",
-                                                        "value": 5
-                                                    },
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_8'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time3'); ?>",
-                                                        "value":4
-                                                    },
-                                                    {
-                                                        "reason":"<?php echo $this->lang->line('category_9'); ?>",
-                                                        "device":"<?php echo $this->lang->line('category_time3'); ?>",
-                                                        "value":2
-                                                    },
-                                                    {
-                                                        "reason": "<?php echo $this->lang->line('category_10'); ?>",
-                                                        "device": "<?php echo $this->lang->line('category_time3'); ?>",
-                                                        "value": 5
-                                                    }
-
-                                                ]
-                                            }
-                                        ]
 
                                         var radarChartOptions = {
                                             w: width,
@@ -474,21 +350,23 @@ $result = $this->db->query($query);
                                             levels: 5,
                                             roundStrokes: true,
                                             color: color,
-                                            axisName: "reason",
+                                            axisName: "category",
+                                            areaName: "timestampStart",
+                                            value: "answer"
+                                            /*axisName: "reason",
                                             areaName: "device",
-                                            value: "value"
+                                            value: "value"*/
                                         };
 
                                         //Load the data and Call function to draw the Radar chart
                                         RadarChart(".radarChart", data, radarChartOptions);
-                                        //d3.json("data.json", function(error, data){
-                                        //    RadarChart(".radarChart", data, radarChartOptions);
+
+
                                         //});
 
 
                                     </script>
-                                    <!--Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.-->
-                                </div>
+                                    </div>
                             </div>
                         </div>
                         <div class="card">
@@ -504,7 +382,7 @@ $result = $this->db->query($query);
 
                                 </div>
 
-                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                                <!--Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.-->
                             </div>
                         </div>
                     </div>
@@ -531,41 +409,44 @@ $result = $this->db->query($query);
                                             </label>
                                         </br>
                                             <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryA" onclick='change(this.value)'><?php echo $this->lang->line('category_0'); ?>
+                                                <input type="radio" name="gender" value="0" onclick='change(this.value)'><?php echo $this->lang->line('category_0'); ?>
                                             </label>
                                             <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryB" onclick='change(this.value)'><?php echo $this->lang->line('category_1'); ?>
+                                                <input type="radio" name="gender" value="1" onclick='change(this.value)'><?php echo $this->lang->line('category_1'); ?>
                                             </label>
 
                                             <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryC" onclick='change(this.value)'><?php echo $this->lang->line('category_2'); ?>
+                                                <input type="radio" name="gender" value="2" onclick='change(this.value)'><?php echo $this->lang->line('category_2'); ?>
                                             </label>
                                             </br>
                                             <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryD" onclick='change(this.value)'><?php echo $this->lang->line('category_3'); ?>
+                                                <input type="radio" name="gender" value="3" onclick='change(this.value)'><?php echo $this->lang->line('category_3'); ?>
                                             </label>
 
                                             <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryE" onclick='change(this.value)'><?php echo $this->lang->line('category_4'); ?>
+                                                <input type="radio" name="gender" value="4" onclick='change(this.value)'><?php echo $this->lang->line('category_4'); ?>
                                             </label>
                                             <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryF" onclick='change(this.value)'><?php echo $this->lang->line('category_5'); ?>
+                                                <input type="radio" name="gender" value="5" onclick='change(this.value)'><?php echo $this->lang->line('category_5'); ?>
                                             </label>
                                             </br>
 
                                             <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryG" onclick='change(this.value)'><?php echo $this->lang->line('category_6'); ?>
+                                                <input type="radio" name="gender" value="6" onclick='change(this.value)'><?php echo $this->lang->line('category_6'); ?>
                                             </label>
 
                                             <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryH" onclick='change(this.value)'><?php echo $this->lang->line('category_7'); ?>
+                                                <input type="radio" name="gender" value="7" onclick='change(this.value)'><?php echo $this->lang->line('category_7'); ?>
                                             </label>
                                             </br>
                                             <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryI" onclick='change(this.value)'><?php echo $this->lang->line('category_8'); ?>
+                                                <input type="radio" name="gender" value="8" onclick='change(this.value)'><?php echo $this->lang->line('category_8'); ?>
                                             </label>
                                             <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryJ" onclick='change(this.value)'><?php echo $this->lang->line('category_9'); ?>
+                                                <input type="radio" name="gender" value="9" onclick='change(this.value)'><?php echo $this->lang->line('category_9'); ?>
+                                            </label>
+                                            <label class='radio-inline'>
+                                                <input type="radio" name="gender" value="10" onclick='change(this.value)'><?php echo $this->lang->line('category_10'); ?>
                                             </label>
                                             </br>
 
@@ -623,508 +504,253 @@ $result = $this->db->query($query);
 <a href="<?= site_url('Caregiver_controller/login') ?>"><p><?php echo $this->lang->line('dash_logout'); ?></p></a>
 </body>
 
+
+<script type="text/javascript">
+    var bothData = <?php echo json_encode($data_each1); ?>;
+</script>
+
 <script>
-    //set up data
-    var bothData = [
-        {
-            "categoryType": "categoryA",//id category //table question
-            "questionNum": "I can be alone when I wish.",//id question //table question
-            "scores": "2" //id answer //table response
-            //residence id //table submission
-        },
-        {
-            "categoryType": "categoryA",
-            "questionNum": "My privacy is respected when people care for me",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryB",
-            "questionNum": "I get my favorite foods here.",
-            "scores": "1"
-        },
-        {
-            "categoryType": "categoryB",
-            "questionNum": "I can eat when I want.",
-            "scores": "4"
-        },
-        {
-            "categoryType": "categoryB",
-            "questionNum": "I have enough variety in my meals.",
-            "scores": "3"
-        },
-        {
-            "categoryType": "categoryB",
-            "questionNum": "I enjoy mealtimes.",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryB",
-            "questionNum": "Food is the right temperature when I get to eat it.",
-            "scores": "2"
-        },
-        {
-            "categoryType": "categoryC",
-            "questionNum": "If I need help right away, I can get it.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "scores": "2"
-        },
-        {
-            "categoryType": "categoryC",
-            "questionNum": "I feel my possessions are secure.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryC",
-            "questionNum": "feel safe when I am alone.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "scores": "1"
-        },
-        {
-            "categoryType": "categoryD",
-            "questionNum": "get the services I need.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "scores": "1"
-        },
-        {
-            "categoryType": "categoryD",
-            "questionNum": "would recommend this site or organization to others.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "scores": "4"
-        },
-        {
-            "categoryType": "categoryD",
-            "questionNum": "This place feels like home to me.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "scores": "3"
-        },
-        {
-            "categoryType": "categoryD",
-            "questionNum": "I can easily go outdoors if I want.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryD",
-            "questionNum": "I am bothered by the noise here.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "scores": "2"
-        },
-        {
-            "categoryType": "categoryE",
-            "questionNum": "I can have a bath or shower as often as I want.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "scores": "1"
-        },
-        {
-            "categoryType": "categoryE",
-            "questionNum": "I decide when to get up.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "scores": "4"
-        },
-        {
-            "categoryType": "categoryE",
-            "questionNum": "I decide when to go to bed.",
-            "views": "2.7",
-            "scores": "3"
-        },
-        {
-            "categoryType": "categoryE",
-            "questionNum": "I can go where I want on the “spur of the moment.”",
-            "channel_display_name": "syncopika",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryE",
-            "questionNum": "I control who comes into my room.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "1.0",
-            "scores": "2"
-        },
-        {
-            "categoryType": "categoryE",
-            "questionNum": "I decide which clothes to wear.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "23.5",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryE",
-            "questionNum": "decide how to spend my time.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "1.0",
-            "scores": "2"
-        },
-        {
-            "categoryType": "categoryF",
-            "questionNum": "I am treated with respect by staff.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "7.1",
-            "scores": "1"
-        },
-        {
-            "categoryType": "categoryF",
-            "questionNum": "Staff pay attention to me.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "37.1",
-            "scores": "4"
-        },
-        {
-            "categoryType": "categoryF",
-            "questionNum": "I can express my opinion without fear of consequences.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "2.7",
-            "scores": "3"
-        },
-        {
-            "categoryType": "categoryF",
-            "questionNum": "Staff respect what I like and dislike.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "23.5",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryG",
-            "questionNum": "The care and support I get help me live my life the way I want.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "7.1",
-            "scores": "1"
-        },
-        {
-            "categoryType": "categoryG",
-            "questionNum": "Staff respond quickly when I ask for assistance.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "37.1",
-            "scores": "4"
-        },
-        {
-            "categoryType": "categoryG",
-            "questionNum": "staff respond to my suggestions.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "2.7",
-            "scores": "3"
-        },
-        {
-            "categoryType": "categoryG",
-            "questionNum": "I get the health services I need.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "23.5",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryG",
-            "questionNum": "I get the health services I need.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "1.0",
-            "scores": "2"
-        },
-        {
-            "categoryType": "categoryG",
-            "questionNum": "Staff know what they are doing.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "23.5",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryG",
-            "questionNum": "My services are delivered when I want them.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "1.0",
-            "scores": "2"
-        },
-        {
-            "categoryType": "categoryH",
-            "questionNum": "Some of the staff know the story of my life.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "7.1",
-            "scores": "1"
-        },
-        {
-            "categoryType": "categoryH",
-            "questionNum": "consider a staff member my friend.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "37.1",
-            "scores": "4"
-        },
-        {
-            "categoryType": "categoryH",
-            "questionNum": "I have a special relationship with a staff member.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "2.7",
-            "scores": "3"
-        },
-        {
-            "categoryType": "categoryH",
-            "questionNum": "Staff take the time to have a friendly conversation with me.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "23.5",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryH",
-            "questionNum": "Staff ask how my needs can be met.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "1.0",
-            "scores": "2"
-        },
-        {
-            "categoryType": "categoryH",
-            "questionNum": "Staff ask how my needs can be met.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "23.5",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryI",
-            "questionNum": "I have enjoyable things to do here on weekends.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "7.1",
-            "scores": "1"
-        },
-        {
-            "categoryType": "categoryI",
-            "questionNum": "I have enjoyable things to do here in the evenings.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "37.1",
-            "scores": "4"
-        },
-        {
-            "categoryType": "categoryI",
-            "questionNum": "participate in meaningful activities.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "2.7",
-            "scores": "2"
-        },
-        {
-            "categoryType": "categoryI",
-            "questionNum": "If I want, I can participate in religious activities that have meaning to me.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "23.5",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryI",
-            "questionNum": "I have opportunities to spend time with other like-minded residents.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "1.0",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryI",
-            "questionNum": "I have the opportunity to explore new skills and interests.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "23.5",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryJ",
-            "questionNum": "Another resident here is my close friend.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "7.1",
-            "scores": "1"
-        },
-        {
-            "categoryType": "categoryJ",
-            "questionNum": "People ask for my help or advice.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "37.1",
-            "scores": "4"
-        },
-        {
-            "categoryType": "categoryJ",
-            "questionNum": "I have opportunities for affection or romance.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "2.7",
-            "scores": "2"
-        },
-        {
-            "categoryType": "categoryJ",
-            "questionNum": "It is easy to make friends here.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "23.5",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryJ",
-            "questionNum": "have people who want to do things together with me.",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "1.0",
-            "scores": "5"
-        },
-    ];
-
-    // var maleData = [];
-    // var femaleData = [];
-    var data_1 = [];
-    var data_2 = [];
-    var data_3 = [];
-    var data_4 = [];
-    var data_5 = [];
-    var data_6 = [];
-    var data_7 = [];
-    var data_8 = [];
-    var data_9 = [];
-    var data_10 = [];
 
 
-    for(var i = 0; i < bothData.length; i++){
-        if(bothData[i]["categoryType"] === "categoryA"){
-            data_1.push(bothData[i]);
-        }else if(bothData[i]["categoryType"] === "categoryB"){
-            data_2.push(bothData[i]);
-        }
-        else if(bothData[i]["categoryType"] === "categoryC"){
-            data_3.push(bothData[i]);
-        }
-        else if(bothData[i]["categoryType"] === "categoryD"){
-            data_4.push(bothData[i]);
-        }
-        else if(bothData[i]["categoryType"] === "categoryE"){
-            data_5.push(bothData[i]);
-        }
-        else if(bothData[i]["categoryType"] === "categoryF"){
-            data_6.push(bothData[i]);
-        }
-        else if(bothData[i]["categoryType"] === "categoryG"){
-            data_7.push(bothData[i]);
-        }
-        else if(bothData[i]["categoryType"] === "categoryH"){
-            data_8.push(bothData[i]);
-        }
-        else if(bothData[i]["categoryType"] === "categoryI"){
-            data_9.push(bothData[i]);
-        }
-        else if(bothData[i]["categoryType"] === "categoryJ"){
-            data_10.push(bothData[i]);
-        }
-    }
+        var data_1 = [];
+        var data_2 = [];
+        var data_3 = [];
+        var data_4 = [];
+        var data_5 = [];
+        var data_6 = [];
+        var data_7 = [];
+        var data_8 = [];
+        var data_9 = [];
+        var data_10 = [];
+        var data_11 = [];
 
-    //functions for toggling between data
-    function change(value){
 
-        if(value === 'categoryA'){
-            update(data_1);
-        }else if(value === 'categoryB'){
-            update(data_2);
-        }else if(value === 'categoryC'){
-            update(data_3);
+        for (var i = 0; i < bothData.length; i++) {
+            if (bothData[i]["catergoryID"] === "0") {
+                data_1.push(bothData[i]);
+            } else if (bothData[i]["catergoryID"] === "1") {
+                data_2.push(bothData[i]);
+            }
+            else if (bothData[i]["catergoryID"] === "2") {
+                data_3.push(bothData[i]);
+            }
+            else if (bothData[i]["catergoryID"] === "3") {
+                data_4.push(bothData[i]);
+            }
+            else if (bothData[i]["catergoryID"] === "4") {
+                data_5.push(bothData[i]);
+            }
+            else if (bothData[i]["catergoryID"] === "5") {
+                data_6.push(bothData[i]);
+            }
+            else if (bothData[i]["catergoryID"] === "6") {
+                data_7.push(bothData[i]);
+            }
+            else if (bothData[i]["catergoryID"] === "7") {
+                data_8.push(bothData[i]);
+            }
+            else if (bothData[i]["catergoryID"] === "8") {
+                data_9.push(bothData[i]);
+            }
+            else if (bothData[i]["catergoryID"] === "9") {
+                data_10.push(bothData[i]);
+            }
+            else if (bothData[i]["catergoryID"] === "10") {
+                data_11.push(bothData[i]);
+            }
         }
-        else if(value === 'categoryD'){
-            update(data_4);
+
+        //functions for toggling between data
+        function change(value) {
+
+            if (value === '0') {
+                update(data_1);
+            } else if (value === '1') {
+                update(data_2);
+            } else if (value === '2') {
+                update(data_3);
+            }
+            else if (value === '3') {
+                update(data_4);
+            }
+            else if (value === '4') {
+                update(data_5);
+            }
+            else if (value === '5') {
+                update(data_6);
+            }
+            else if (value === '6') {
+                update(data_7);
+            }
+            else if (value === '7') {
+                update(data_8);
+            }
+            else if (value === '8') {
+                update(data_9);
+            }
+            else if (value === '9') {
+                update(data_10);
+            }
+            else if (value === '10') {
+                update(data_11);
+            }
+            else {
+                xChart.domain(bothData.map(function (d) {
+                    return d.category;
+                }));
+                //set domain for y axis
+                yChart.domain([0, d3.max(bothData, function (d) {
+                    return d.answer;
+                })]);
+
+                //get the width of each bar
+                var barWidth = width / bothData.length;
+
+                //select all bars on the graph, take them out, and exit the previous data set.
+                //then you can add/enter the new data set
+                var bars = chart.selectAll(".bar")
+                    .remove()
+                    .exit()
+                    .data(bothData)
+                //now actually give each rectangle the corresponding data
+                bars.enter()
+                    .append("rect")
+                    .attr("class", "bar")
+                    .attr("x", function (d, i) {
+                        return i * barWidth + 1
+                    })
+                    .attr("y", function (d) {
+                        return yChart(d.answer);
+                    })
+                    .attr("height", function (d) {
+                        return height - yChart(d.answer);
+                    })
+                    .attr("width", barWidth - 1)
+                    .attr("fill", function (d) {
+                        if (d.catergoryID === "0") {
+                            return "rgb(216,230,173)";
+                        } else if (d.catergoryID === "1") {
+                            return "rgb(173,216,230)";
+                        }
+                        else if (d.catergoryID === "2") {
+                            return "rgb(230,187,173)";
+                        }
+                        else if (d.catergoryID === "3") {
+                            return "rgb(138,149,240)";
+                        }
+                        else if (d.catergoryrID === "4") {
+                            return "rgb(200,235,208)";
+                        }
+                        else if (d.catergoryID === "5") {
+                            return "rgb(133,266,246)";
+                        }
+                        else if (d.catergoryID === "6") {
+                            return "rgb(187,187,187)";
+                        }
+                        else if (d.catergoryID === "7") {
+                            return "rgb(193,226,204)";
+                        }
+                        else if (d.catergoryID === "8") {
+                            return "rgb(234,145,152)";
+                        }
+                        else if (d.catergoryID === "9") {
+                            return "rgb(252,244,144)";
+                        }
+                        else if (d.catergoryID === "10") {
+                            return "rgb(157,174,147)";
+                        }
+                        else {
+                            return "rgb(14,174,294)";
+                        }
+                    });
+                //left axis
+                chart.select('.y')
+                    .call(yAxis)
+                //bottom axis
+                chart.select('.xAxis')
+                    .attr("transform", "translate(0," + height + ")")
+                    .call(xAxis)
+                    .selectAll("text")
+                    .style("text-anchor", "end")
+                    .attr("dx", "-.8em")
+                    .attr("dy", ".15em")
+                    .attr("transform", function (d) {
+                        return "rotate(-65)";
+                    });
+
+
+            }
         }
-        else if(value === 'categoryE'){
-            update(data_5);
-        }
-        else if(value === 'categoryF'){
-            update(data_6);
-        }
-        else if(value === 'categoryG'){
-            update(data_7);
-        }
-        else if(value === 'categoryH'){
-            update(data_8);
-        }
-        else if(value === 'categoryI'){
-            update(data_9);
-        }
-        else if(value === 'categoryJ'){
-            update(data_10);
-        }
-        else {
-            xChart.domain(bothData.map(function(d){ return d.categoryType; }) );
+
+
+        function update(data) {
+            //set domain for the x axis
+            xChart.domain(data.map(function (d) {
+                return d.question;
+            }));
             //set domain for y axis
-            yChart.domain( [0, d3.max(bothData, function(d){ return +d.scores; })] );
+            yChart.domain([0, d3.max(data, function (d) {
+                return +d.answer;
+            })]);
 
             //get the width of each bar
-            var barWidth = width / bothData.length;
+            var barWidth = width / data.length;
 
             //select all bars on the graph, take them out, and exit the previous data set.
             //then you can add/enter the new data set
             var bars = chart.selectAll(".bar")
                 .remove()
                 .exit()
-                .data(bothData)
+                .data(data)
             //now actually give each rectangle the corresponding data
             bars.enter()
                 .append("rect")
                 .attr("class", "bar")
-                .attr("x", function(d, i){ return i * barWidth + 1 })
-                .attr("y", function(d){ return yChart( d.scores); })
-                .attr("height", function(d){ return height - yChart(d.scores); })
+                .attr("x", function (d, i) {
+                    return i * barWidth + 1
+                })
+                .attr("y", function (d) {
+                    return yChart(d.answer);
+                })
+                .attr("height", function (d) {
+                    return height - yChart(d.answer);
+                })
                 .attr("width", barWidth - 1)
-                .attr("fill", function(d){
-                    if(d.categoryType === "categoryA"){
+                .attr("fill", function (d) {
+                    if (d.catergoryID === "0") {
                         return "rgb(216,230,173)";
-                    }else if(d.categoryType === "categoryB"){
+                    } else if (d.catergoryID === "1") {
                         return "rgb(173,216,230)";
                     }
-                    else if(d.categoryType === "categoryC"){
+                    else if (d.catergoryID === "2") {
                         return "rgb(230,187,173)";
                     }
-                    else if(d.categoryType === "categoryD"){
-                        return "rgb(238,249,240)";
+                    else if (d.catergoryID === "3") {
+                        return "rgb(138,149,240)";
                     }
-                    else if(d.categoryType === "categoryE"){
+                    else if (d.catergoryrID === "4") {
                         return "rgb(200,235,208)";
                     }
-                    else if(d.categoryType === "categoryF"){
-                        return "rgb(227,243,246)";
+                    else if (d.catergoryID === "5") {
+                        return "rgb(133,266,246)";
                     }
-                    else if(d.categoryType === "categoryG"){
+                    else if (d.catergoryID === "6") {
                         return "rgb(187,187,187)";
                     }
-                    else if(d.categoryType === "categoryH"){
+                    else if (d.catergoryID === "7") {
                         return "rgb(193,226,204)";
                     }
-                    else if(d.categoryType === "categoryI"){
-                        return "rgb(234,245,152)";
+                    else if (d.catergoryID === "8") {
+                        return "rgb(234,145,152)";
                     }
-                    else if(d.categoryType === "categoryJ"){
-                        return "rgb(252,244,244)";
+                    else if (d.catergoryID === "9") {
+                        return "rgb(252,244,144)";
+                    }
+                    else if (d.catergoryID === "10") {
+                        return "rgb(157,174,147)";
                     }
                     else {
-                        return "rgb(204,204,204)";
+                        return "rgb(14,174,294)";
                     }
                 });
             //left axis
@@ -1138,74 +764,148 @@ $result = $this->db->query($query);
                 .style("text-anchor", "end")
                 .attr("dx", "-.8em")
                 .attr("dy", ".15em")
-                .attr("transform", function(d){
+                .attr("transform", function (d) {
                     return "rotate(-65)";
                 });
 
 
-        }
-    }
+        }//end update
 
-    function update(data){
-        //set domain for the x axis
-        xChart.domain(data.map(function(d){ return d.questionNum; }) );
+
+        //set up chart
+        var margin = {top: 20, right: 20, bottom: 320, left: 75};
+        var width = 500;
+        var height = 400;
+
+        var chart = d3.select(".chart")
+            .attr("width", width + margin.left + margin.right)
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+        var xChart = d3.scaleBand()
+            .range([0, width]);
+
+        var yChart;
+        yChart = d3.scaleLinear()
+            .range([height, 0]);
+
+
+        var xAxis = d3.axisBottom(xChart);
+
+        var yAxis = d3.axisLeft(yChart)
+            .ticks(5)
+            .tickValues([0, 1, 2, 3, 4, 5]);
+
+
+        //set up axes
+        //left axis
+        chart.append("g")
+            .attr("class", "y axis")
+            .call(yAxis)
+
+
+        //bottom axis
+        chart.append("g")
+            .attr("class", "xAxis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis)
+            .selectAll("text")
+            .style("text-anchor", "end")
+            .attr("dx", "-.8em")
+            .attr("dy", ".15em")
+            .attr("transform", function (d) {
+                return "rotate(-65)";
+            });
+
+        //add labels
+        chart
+            .append("text")
+            .attr("transform", "translate(-35," + (height + margin.bottom) / 2 + ") rotate(-90)")
+            .text("<?php echo $this->lang->line('category_score'); ?>");
+
+        chart
+            .append("text")
+            .attr("transform", "translate(" + (width / 2) + "," + (height + margin.bottom - 5) + ")")
+            .text("<?php echo $this->lang->line('category_ans'); ?>");
+
+
+        //use bothData to begin with
+        //update(bothData);
+        xChart.domain(bothData.map(function (d) {
+            return d.category;
+        }));
         //set domain for y axis
-        yChart.domain( [0, d3.max(data, function(d){ return +d.scores; })] );
+        //yChart.domain( [0, d3.max(bothData, function(d){ return +d.answer; },)] );
+        yChart.domain([0, d3.max(bothData, function (d) {
+            return d.answer;
+        })]);
 
         //get the width of each bar
-        var barWidth = width / data.length;
+        var barWidth = width / bothData.length;
 
         //select all bars on the graph, take them out, and exit the previous data set.
         //then you can add/enter the new data set
         var bars = chart.selectAll(".bar")
             .remove()
             .exit()
-            .data(data)
+            .data(bothData)
         //now actually give each rectangle the corresponding data
         bars.enter()
             .append("rect")
             .attr("class", "bar")
-            .attr("x", function(d, i){ return i * barWidth + 1 })
-            .attr("y", function(d){ return yChart( d.scores); })
-            .attr("height", function(d){ return height - yChart(d.scores); })
+            .attr("x", function (d, i) {
+                return i * barWidth + 1
+            })
+            .attr("y", function (d) {
+                return yChart(d.answer);
+            })
+            .attr("height", function (d) {
+                return height - yChart(d.answer);
+            })
             .attr("width", barWidth - 1)
-            .attr("fill", function(d){
-                if(d.categoryType === "categoryA"){
+            .attr("fill", function (d) {
+                if (d.catergoryID === "0") {
                     return "rgb(216,230,173)";
-                }else if(d.categoryType === "categoryB"){
+                } else if (d.catergoryID === "1") {
                     return "rgb(173,216,230)";
                 }
-                else if(d.categoryType === "categoryC"){
+                else if (d.catergoryID === "2") {
                     return "rgb(230,187,173)";
                 }
-                else if(d.categoryType === "categoryD"){
-                    return "rgb(238,249,240)";
+                else if (d.catergoryID === "3") {
+                    return "rgb(138,149,240)";
                 }
-                else if(d.categoryType === "categoryE"){
+                else if (d.catergoryrID === "4") {
                     return "rgb(200,235,208)";
                 }
-                else if(d.categoryType === "categoryF"){
-                    return "rgb(227,243,246)";
+                else if (d.catergoryID === "5") {
+                    return "rgb(133,266,246)";
                 }
-                else if(d.categoryType === "categoryG"){
+                else if (d.catergoryID === "6") {
                     return "rgb(187,187,187)";
                 }
-                else if(d.categoryType === "categoryH"){
+                else if (d.catergoryID === "7") {
                     return "rgb(193,226,204)";
                 }
-                else if(d.categoryType === "categoryI"){
-                    return "rgb(234,245,152)";
+                else if (d.catergoryID === "8") {
+                    return "rgb(234,145,152)";
                 }
-                else if(d.categoryType === "categoryJ"){
-                    return "rgb(252,244,244)";
+                else if (d.catergoryID === "9") {
+                    return "rgb(252,244,144)";
+                }
+                else if (d.catergoryID === "10") {
+                    return "rgb(157,174,147)";
                 }
                 else {
-                    return "rgb(204,204,204)";
+                    return "rgb(14,174,294)";
                 }
             });
+
         //left axis
         chart.select('.y')
             .call(yAxis)
+
         //bottom axis
         chart.select('.xAxis')
             .attr("transform", "translate(0," + height + ")")
@@ -1213,148 +913,13 @@ $result = $this->db->query($query);
             .selectAll("text")
             .style("text-anchor", "end")
             .attr("dx", "-.8em")
-            .attr("dy", ".15em")
-            .attr("transform", function(d){
+            .attr("dy", ".1em")
+            .attr("transform", function (d) {
                 return "rotate(-65)";
             });
 
 
-    }//end update
-
-    //set up chart
-    var margin = {top: 20, right: 20, bottom: 320, left: 75};
-    var width =500;
-    var height = 400;
-
-    var chart = d3.select(".chart")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-    var xChart = d3.scaleBand()
-        .range([0, width]);
-
-    var yChart;
-    yChart = d3.scaleLinear()
-        .range([height, 0]);
-
-
-    var xAxis = d3.axisBottom(xChart);
-
-    var yAxis = d3.axisLeft(yChart)
-        .ticks(5)
-        .tickValues([0,1, 2, 3,4,5]);
-
-
-    //set up axes
-    //left axis
-    chart.append("g")
-        .attr("class", "y axis")
-        .call(yAxis)
-
-
-
-    //bottom axis
-    chart.append("g")
-        .attr("class", "xAxis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis)
-        .selectAll("text")
-        .style("text-anchor", "end")
-        .attr("dx", "-.8em")
-        .attr("dy", ".15em")
-        .attr("transform", function(d){
-            return "rotate(-65)";
-        });
-
-    //add labels
-    chart
-        .append("text")
-        .attr("transform", "translate(-35," +  (height+margin.bottom)/2 + ") rotate(-90)")
-        .text("<?php echo $this->lang->line('category_score'); ?>");
-
-    chart
-        .append("text")
-        .attr("transform", "translate(" + (width/2) + "," + (height + margin.bottom - 5) + ")")
-        .text("<?php echo $this->lang->line('category_ans'); ?>");
-
-
-    //use bothData to begin with
-    //update(bothData);
-    xChart.domain(bothData.map(function(d){ return d.categoryType; }) );
-    //set domain for y axis
-    //yChart.domain( [0, d3.max(bothData, function(d){ return +d.scores; },)] );
-    yChart.domain( [0, d3.max(bothData, function(d){ return +d.scores; })] );
-
-    //get the width of each bar
-    var barWidth = width / bothData.length;
-
-    //select all bars on the graph, take them out, and exit the previous data set.
-    //then you can add/enter the new data set
-    var bars = chart.selectAll(".bar")
-        .remove()
-        .exit()
-        .data(bothData)
-    //now actually give each rectangle the corresponding data
-    bars.enter()
-        .append("rect")
-        .attr("class", "bar")
-        .attr("x", function(d, i){ return i * barWidth + 1 })
-        .attr("y", function(d){ return yChart( d.scores); })
-        .attr("height", function(d){ return height - yChart(d.scores); })
-        .attr("width", barWidth - 1)
-        .attr("fill", function(d){
-            if(d.categoryType === "categoryA"){
-                return "rgb(216,230,173)";
-            }else if(d.categoryType === "categoryB"){
-                return "rgb(173,216,230)";
-            }
-            else if(d.categoryType === "categoryC"){
-                return "rgb(230,187,173)";
-            }
-            else if(d.categoryType === "categoryD"){
-                return "rgb(238,249,240)";
-            }
-            else if(d.categoryType === "categoryE"){
-                return "rgb(200,235,208)";
-            }
-            else if(d.categoryType === "categoryF"){
-                return "rgb(227,243,246)";
-            }
-            else if(d.categoryType === "categoryG"){
-                return "rgb(187,187,187)";
-            }
-            else if(d.categoryType === "categoryH"){
-                return "rgb(193,226,204)";
-            }
-            else if(d.categoryType === "categoryI"){
-                return "rgb(234,245,152)";
-            }
-            else if(d.categoryType === "categoryJ"){
-                return "rgb(252,244,244)";
-            }
-            else {
-                return "rgb(204,204,204)";
-            }
-        });
-
-    //left axis
-    chart.select('.y')
-        .call(yAxis)
-
-    //bottom axis
-    chart.select('.xAxis')
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis)
-        .selectAll("text")
-        .style("text-anchor", "end")
-        .attr("dx", "-.8em")
-        .attr("dy", ".15em")
-        .attr("transform", function(d){
-            return "rotate(-65)";
-        });
-
 </script>
 
 </html>
+
