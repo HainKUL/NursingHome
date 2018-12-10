@@ -108,8 +108,7 @@ $email = $this->db->query($query);
                         <a class="dropdown-item" role="presentation" href="#"><?php echo $this->lang->line('sixth_floor'); ?></a>
                     </div>
                 </div>
-                <input type="search" placeholder="<?php echo $this->lang->line('search'); ?>" style="width:100%;height:40px;"></div>
-
+                <input class ="searchbar" type="search" placeholder="<?php echo $this->lang->line('search'); ?>"></div>
             <div style="height:5%;"></div>
             <div style="overflow-y:scroll;max-height:73vh;">
                 <div class="btn-group-vertical btn-group-lg" role="group" style="width:100%;">
@@ -141,8 +140,18 @@ $email = $this->db->query($query);
                     <div class="tab-pane active" role="tabpanel" id="tab-1" style="padding:5%;max-height:94vh;overflow-y:scroll;">
                         <div class="card questionnaire-card">
                             <div class="card-body">
-                                <h4 class="card-title" id="residentTitle"></h4>
-                                <p class="card-text">We're talking away. I don't know what. I'm to say I'll say it anyway. Today's another day to find you. Shying away. I'll be coming for your love, okay?. Take on me (take on me). Take me on (take on me). I'll be gone. In a day or two. So needless to say. I'm odds and ends. But I'll be stumbling away. Slowly learning that life is okay. Say after me. It's no better to be safe than sorry. Take on me (take on me). Take me on (take on me). I'll be gone. In a day or two.</p>
+                                <div class="card-top">
+                                    <div class="card-head">
+                                        <img class="card-picture" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
+                                        <span class="card-name">Jan Buskens</span>
+                                    </div>
+                                </div>
+                                <div class="card-text">
+                                    <div class="card-birthdate"><?php echo $this->lang->line('birthday'); ?><span id="card-birthdate">22/06/1996</span></div>
+                                    <div class="card-room"><?php echo $this->lang->line('roomnum'); ?><span id="card-room">502</span></div>
+                                    <div class="card-bed"><?php echo $this->lang->line('bednum'); ?><span id="card-bed">1</span></div>
+                                    <div class="card-privileges"><?php echo $this->lang->line('privileges'); ?><span id="card-privileges">can go outside</span></div>
+                                </div>
                                 <div class="radarChart"></div>
 
                                 <script src="../../assets/js/radarChart.js"></script>
@@ -442,7 +451,7 @@ $email = $this->db->query($query);
         element.classList.add("btn-active")
         currentButtonID = id
 
-        document.getElementById("residentTitle").innerText = id + "<?php echo $this->lang->line('dash_profile'); ?>"
+        document.getElementById("residentName").innerText = id + "<?php echo $this->lang->line('dash_profile'); ?>"
     }
 
 </script>

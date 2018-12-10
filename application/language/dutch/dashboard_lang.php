@@ -37,4 +37,7 @@ $lang['fourth_floor'] = "Vierde Verdieping";
 $lang['fifth_floor'] = "Vijfde Verdieping";
 $lang['sixth_floor'] = "Zesde Verdieping";
 $lang['dash_select_floor'] = "Kies Verdieping";
-
+$lang['birthday'] = "Geboortedatum: ";
+$lang['roomnum'] = "Kamernummer: ";
+$lang['bednum'] = "Bednummer: ";
+$lang['privileges'] = "Privileges: ";

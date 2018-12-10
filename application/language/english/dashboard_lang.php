@@ -34,4 +34,7 @@ $lang['fourth_floor'] = "Fourth Floor";
 $lang['fifth_floor'] = "Fifth Floor";
 $lang['sixth_floor'] = "Sixth Floor";
 $lang['dash_select_floor'] = "Select Floor";
-
+$lang['birthday'] = "Birthdate: ";
+$lang['roomnum'] = "Room number: ";
+$lang['bednum'] = "Bed number: ";
+$lang['privileges'] = "Privileges: ";
