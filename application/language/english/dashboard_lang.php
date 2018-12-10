@@ -27,3 +27,7 @@ $lang['dash_logout'] = "Logout";
 $lang['dash_chooselang'] = "Change language:";
 $lang['hello'] = "Hello, ";
 $lang['dash_email'] = "Your email address: ";
+$lang['birthday'] = "Birthdate: ";
+$lang['roomnum'] = "Room number: ";
+$lang['bednum'] = "Bed number: ";
+$lang['privileges'] = "Privileges: ";

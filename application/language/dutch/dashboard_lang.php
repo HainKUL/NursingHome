@@ -30,3 +30,7 @@ $lang['dash_logout'] = "Afmelden";
 $lang['dash_chooselang'] = "Verander van taal:";
 $lang['hello'] = "Hallo, ";
 $lang['dash_email'] = "Jouw email adres: ";
+$lang['birthday'] = "Geboortedatum: ";
+$lang['roomnum'] = "Kamernummer: ";
+$lang['bednum'] = "Bednummer: ";
+$lang['privileges'] = "Privileges: ";
