@@ -39,6 +39,12 @@ html, body {
     font-weight: 100;
 }
 
+.nav{
+    box-shadow: 0 10px 5px -5px #f9f9f9;
+    position: relative;
+    z-index: 5;
+}
+
 .questionnaire-card {
       margin-bottom:4%;
       box-shadow:1px 1px 7px lightgrey;
@@ -180,11 +186,17 @@ btn-notes {
     font-size: 30px;
 }
 
+tab-content{
+    position: relative;
+    z-index: -1;
+}
+
 .searchbar{
     width:100%;
     height:40px;
     border-radius: 10px;
     border:none;
+    padding-left:10px;
 }
 
 .searchbar:hover{
