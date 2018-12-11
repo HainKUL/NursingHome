@@ -3,56 +3,15 @@
 <html>
 <head>
     <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-    <style>
-        body {
-            font-family: "Arial", sans-serif;
-        }
+    <!-- Bootstrap CSS -->
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-        .bar {
-            fill: #5f89ad;
-        }
+    <!-- Custom CSS-->
 
-        .axis {
-            font-size: 13px;
-        }
+    <link href="<?= base_url()?>assets/css/dashboard.css" rel="stylesheet" type="text/css"/>
 
-        .axis path,
-        .axis line {
-            fill: none;
-            display: none;
-        }
-
-        .label {
-            font-size: 13px;
-        }
-    </style>
-
-
-    <style>
-        body {
-            font-family: 'Open Sans', sans-serif;
-            font-size: 11px;
-            font-weight: 300;
-            fill: #242424;
-            text-align: center;
-            text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
-            cursor: default;
-        }
-
-        .legend {
-            font-family: 'Raleway', sans-serif;
-            fill: #333333;
-        }
-
-        .tooltip {
-            fill: #333333;
-        }
-    </style>
-
-    <select onchange="javascript:window.location.href='<?php echo base_url(); ?>MultiLanguageSwitcher/switcher/'+this.value;">
-        <option value="english" <?php if($this->session->userdata('site_lang') == 'english') echo 'selected="selected"'; ?>>English</option>
-        <option value="dutch" <?php if($this->session->userdata('site_lang') == 'dutch') echo 'selected="selected"'; ?>>Dutch</option>
-    </select>
 </head>
 
 <body>
@@ -123,7 +82,7 @@
 
 </script>
 
-<h3><?php echo $this->lang->line('title'); ?></h3>
+<h3 class="title_registration"><?php echo $this->lang->line('title'); ?></h3>
 
 
 <table align="center" cellpadding = "10">
@@ -144,7 +103,7 @@
 
         <td>
             <select name="Birthday_day" id="Birthday_Day">
-                <option value="-1">Day:</option>
+                <option value="-1"><?php echo $this->lang->line('day'); ?></option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -183,7 +142,7 @@
             </select>
 
             <select id="Birthday_Month" name="Birthday_Month">
-                <option value="-1">Month:</option>
+                <option value="-1"><?php echo $this->lang->line('month'); ?></option>
                 <option value="January">Jan</option>
                 <option value="February">Feb</option>
                 <option value="March">Mar</option>
@@ -200,7 +159,7 @@
 
             <select name="Birthday_Year" id="Birthday_Year">
 
-                <option value="-1">Year:</option>
+                <option value="-1"><?php echo $this->lang->line('year'); ?></option>
                 <option value="1990">1990</option>
 
                 <option value="1989">1989</option>
@@ -285,7 +244,45 @@
             </select>
         </td>
     </tr>
+    <tr>
+        <td><?php echo $this->lang->line('contact'); ?></td>
+        <td>
+            <input type="text" name="Mobile_Number" maxlength="10" />
+        </td>
+    </tr>
 
+    <!--<tr>
+        <td>GENDER</td>
+        <td>
+            Male <input type="radio" name="Gender" value="Male" />
+            Female <input type="radio" name="Gender" value="Female" />
+        </td>
+    </tr>-->
+
+    <tr>
+        <td>PIN CODE</td>
+        <td><input type="text" name="Pin_Code" maxlength="6" />
+        </td>
+    </tr>
+
+
+    <!-- <tr>
+         <td>NATIONALITY</td>
+         <td><input type="text" name="Nationality" value="Belgium" readonly="readonly" /></td>
+     </tr>-->
+
+    <tr>
+        <br/>
+        <td><?php echo $this->lang->line('language'); ?></td>
+        <td>
+            Dutch
+            <input type="radio" name="Dutch" value="Dutch">
+            English
+            <input type="radio" name="English" value="English">
+            French
+            <input type="radio" name="French" value="French">
+        </td>
+    </tr>
     <tr>
         <td><?php echo $this->lang->line('room'); ?></td>
         <td><input type="text" name="Room_Id" maxlength="100" /></td>
@@ -309,45 +306,7 @@
         </td>
     </tr>-->
 
-    <tr>
-        <td><?php echo $this->lang->line('contact'); ?></td>
-        <td>
-            <input type="text" name="Mobile_Number" maxlength="10" />
-        </td>
-    </tr>
 
-    <!--<tr>
-        <td>GENDER</td>
-        <td>
-            Male <input type="radio" name="Gender" value="Male" />
-            Female <input type="radio" name="Gender" value="Female" />
-        </td>
-    </tr>-->
-
-    <tr>
-        <td>PIN CODE</td>
-        <td><input type="text" name="Pin_Code" maxlength="6" />
-        </td>
-    </tr>
-
-
-   <!-- <tr>
-        <td>NATIONALITY</td>
-        <td><input type="text" name="Nationality" value="Belgium" readonly="readonly" /></td>
-    </tr>-->
-
-    <tr>
-        <br/>
-        <td><?php echo $this->lang->line('language'); ?></td>
-        <td>
-            Dutch
-            <input type="radio" name="Dutch" value="Dutch">
-            English
-            <input type="radio" name="English" value="English">
-            French
-            <input type="radio" name="French" value="French">
-        </td>
-    </tr>
 
     <tr>
         <td><?php echo $this->lang->line('floor'); ?></td>

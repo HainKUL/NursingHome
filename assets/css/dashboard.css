@@ -10,7 +10,11 @@ html, body {
     overflow: hidden;
     font-family: "Helvetica Neue";
 }
+.title_registration{
 
+    text-align: center;
+    align-items: center;
+}
 .btn-resident {
     border:none;
     height:11vh;
@@ -48,6 +52,10 @@ html, body {
 .questionnaire-card {
       margin-bottom:4%;
       box-shadow:1px 1px 7px lightgrey;
+}
+.register-card {
+    margin: 4%;
+    box-shadow:1px 1px 7px lightgrey;
 }
 
 .notes-content {

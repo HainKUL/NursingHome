@@ -18,6 +18,7 @@ $lang['dash_today_note'] = 'De opmerkingen van vandaag gaan hier naartoe...';
 $lang['dash_questionnaire'] = 'Vragenlijst';
 $lang['dash_poll'] = 'Poll';
 $lang['dash_personal'] = 'Persoonlijk';
+$lang['dash_register'] = 'Registreer';
 $lang['dash_notes'] = 'NOTITIES';
 $lang['dash_outliers'] = 'Uitschieters';
 $lang['dash_answers'] = 'Volledige antwoorden';
@@ -41,3 +42,5 @@ $lang['birthday'] = "Geboortedatum: ";
 $lang['roomnum'] = "Kamernummer: ";
 $lang['bednum'] = "Bednummer: ";
 $lang['privileges'] = "Privileges: ";
+$lang['register'] = "Registreer nieuwe inwoner ";
+
