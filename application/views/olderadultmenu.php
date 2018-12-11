@@ -16,8 +16,8 @@
 
 </head>
 
-<body>
-<div class="container card">
+<body style="padding-top: 1%">
+<div class="container card" >
         <div class="row" >
             <div class="col-md-10">
             </div>

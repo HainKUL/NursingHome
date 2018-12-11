@@ -81,9 +81,12 @@
         .tickFormat(d3.format(""));
 
 </script>
-
+<?php if(isset($_SESSION)) {
+    echo $this->session->flashdata('flash_data');
+} ?>
 <h3 class="title_registration"><?php echo $this->lang->line('title'); ?></h3>
 
+<form method="post" action="<?= site_url('Dashboard/dashboard_reg') ?>">
 
 <table align="center" cellpadding = "10">
     <tr>
@@ -341,6 +344,8 @@
         </td>
     </tr>
 </table>
+
+</form>
 
 
 </body>

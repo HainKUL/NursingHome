@@ -340,7 +340,7 @@ $email = $this->db->query($query);
 
                                 <h3 class="title_registration"><?php echo $this->lang->line('title'); ?></h3>
 
-
+                            <form method="post" action="<?= site_url('Dashboard/dashboard_reg') ?>">
                                 <table align="center" cellpadding = "10">
                                     <tr>
                                         <td><?php echo $this->lang->line('first'); ?></td>
@@ -358,7 +358,7 @@ $email = $this->db->query($query);
                                         <td><?php echo $this->lang->line('birth'); ?></td>
 
                                         <td>
-                                            <select name="Birthday_day" id="Birthday_Day">
+                                            <select name="Birthday_day" id="Birthday_day">
                                                 <option value="-1"><?php echo $this->lang->line('day'); ?></option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
@@ -498,7 +498,7 @@ $email = $this->db->query($query);
                                                 <option value="1919">1919</option>
                                                 <option value="1918">1918</option>
                                             </select>
-                                        </td>
+                                            </td>
                                     </tr>
                                     <tr>
                                         <td><?php echo $this->lang->line('contact'); ?></td>
@@ -532,11 +532,11 @@ $email = $this->db->query($query);
                                         <td><?php echo $this->lang->line('language'); ?></td>
                                         <td>
 
-                                            <input type="radio" name="Dutch" value="Dutch">
+                                            <input type="radio" name="Radio" value="Dutch" checked>
                                             <?php echo $this->lang->line('dutch'); ?>
-                                            <input type="radio" name="English" value="English">
+                                            <input type="radio" name="Radio" value="English" >
                                             <?php echo $this->lang->line('english'); ?>
-                                            <input type="radio" name="French" value="French">
+                                            <input type="radio" name="Radio" value="French">
                                             <?php echo $this->lang->line('french'); ?>
                                         </td>
                                     </tr>
@@ -569,80 +569,38 @@ $email = $this->db->query($query);
                                         <td><?php echo $this->lang->line('floor'); ?></td>
                                         <td>
 
-                                            <input type="radio" name="GroundFloor" value="GroundFloor">
+                                            <input type="radio" name="floor" value="GroundFloor" checked>
                                             <?php echo $this->lang->line('floor1'); ?>
-                                            <input type="radio" name="FirstFloor" value="FirstFloor">
+                                            <input type="radio" name="floor" value="FirstFloor">
                                             <?php echo $this->lang->line('floor2'); ?>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>        </td>
                                         <td>
-                                            <input type="radio" name="SecondFloor" value="SecondFloor">
+                                            <input type="radio" name="floor" value="SecondFloor">
                                             <?php echo $this->lang->line('floor3'); ?>
-                                            <input type="radio" name="ThirdFloor" value="ThirdFloor">
+                                            <input type="radio" name="floor" value="ThirdFloor">
                                             <?php echo $this->lang->line('floor4'); ?>
 
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td><?php echo $this->lang->line('preferences'); ?></td>
-                                        <td>
-                                            <input type="text" name="Preferences" maxlength="200" />
-                                        </td>
-                                    </tr>
-                                    <tr>
                                         <td><?php echo $this->lang->line('privileges'); ?></td>
                                         <td>
-                                            <input type="text" name="Mobile_Number" maxlength="200" />
+                                            <input type="text" name="Privileges" maxlength="200" />
                                         </td>
                                     </tr>
 
                                     <tr>
                                         <td colspan="2" align="center">
-                                            <input type="submit" value="Save">
+                                            <input type="submit" value="Save"  >
                                             <input type="reset" value="Reset">
-                                            <?php
 
-
-                                            // initializing variables
-                                            $username = "";
-                                            $email    = "";
-                                            $errors = array();
-
-                                            //name, firstName, dateOfBirth
-                                            // REGISTER USER
-                                            if (isset($_POST['reg_user'])) {
-                                                // receive all input values from the form
-                                                $name = $this->db->escape($_POST['name']);
-                                                $firstname = $this->db->escape($_POST['firstname']);
-                                                $dateOfBirth = $this->db->escape($_POST['dateOfBirth']);
-
-                                                // form validation: ensure that the form is correctly filled ...
-                                                // by adding (array_push()) corresponding error unto $errors array
-                                                if (empty($name)) { array_push($errors, "name is required"); }
-                                                if (empty($firstname)) { array_push($errors, "firstname is required"); } //TODO remove this restriction!
-                                                if (empty($dateOfBirth)) { array_push($errors, "Date of birth is required"); }
-
-                                                // first check the database to make sure
-                                                // a user does not already exist with the same username and/or email
-                                                $user_check_query =
-                                                    "SELECT * FROM Residents WHERE firstName='$firstName' AND name = $name AND dateofBirth = $dateOfBirth LIMIT 1";
-                                                $result = $this->db->query($user_check_query);
-
-                                                if (!empty($result->result_array())) array_push($errors, "user already registered");
-
-                                                // Finally, register user if there are no errors in the form
-                                                if (count($errors) == 0) {
-                                                    $query = "INSERT INTO Residents (name, firstName, dateOfBirth) 
-                                                          VALUES('$name', '$firstname', '$dateOfBirth)";
-                                                    $this->db->query($query);
-                                                    header('location: index.php');
-                                                }
-                                            }   ?>
                                         </td>
                                     </tr>
                                 </table>
+                            </form>
                             </div>
 
                     </div>
