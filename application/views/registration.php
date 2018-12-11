@@ -2,31 +2,16 @@
 <meta charset="UTF-8">
 <html>
 <head>
-    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-    <style>
-        body {
-            font-family: "Arial", sans-serif;
-        }
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/ >
+    <title>Smoothed D3.js Radar Chart</title>
 
-        .bar {
-            fill: #5f89ad;
-        }
+    <!-- Google fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 
-        .axis {
-            font-size: 13px;
-        }
-
-        .axis path,
-        .axis line {
-            fill: none;
-            display: none;
-        }
-
-        .label {
-            font-size: 13px;
-        }
-    </style>
-
+    <!-- D3.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/1.3.0/d3-legend.js" charset="utf-8"></script>
 
     <style>
         body {
@@ -39,25 +24,352 @@
             cursor: default;
         }
 
-        .legend {
-            font-family: 'Raleway', sans-serif;
-            fill: #333333;
-        }
-
         .tooltip {
             fill: #333333;
         }
     </style>
-
-    <select onchange="javascript:window.location.href='<?php echo base_url(); ?>MultiLanguageSwitcher/switcher/'+this.value;">
-        <option value="english" <?php if($this->session->userdata('site_lang') == 'english') echo 'selected="selected"'; ?>>English</option>
-        <option value="dutch" <?php if($this->session->userdata('site_lang') == 'dutch') echo 'selected="selected"'; ?>>Dutch</option>
-    </select>
 </head>
 
 <body>
-<div id="graphic"></div>
 
+<div class="radarChart"></div>
+<script>
+    function reqListener () {
+        console.log(this.responseText);
+    }
+
+    var oReq = new XMLHttpRequest(); //New request object
+    oReq.onload = function() {
+        //This is where you handle what to do with the response.
+        //The actual data is found on this.responseText
+        alert(this.responseText); //Will alert: 42
+    };
+    oReq.open("get", "our_chart.php", true);
+    //                               ^ Don't block the rest of the execution.
+    //                                 Don't wait until the request finishes to
+    //                                 continue.
+    oReq.send();
+</script>
+<?php
+
+$where = "idResident ='1' AND completed = '1'";
+
+$this->db->select('*');
+//$this->db->select('category, SUM(answer) AS total', FALSE);
+//$this->db->group_by('category');
+$this->db->from('Questions,Submissions');
+
+$this->db->where($where);
+$this->db->where('Submissions.idSubmissions=Responses.submission');
+
+$this->db->join('Responses', 'Questions.idQuestions=Responses.questionNum');
+//$this->db->select_avg('reviews','overall');
+//$this->db->group_by('category');
+$this->db->order_by('category');
+//$this->db->group_by('category');
+$query = $this->db->get();
+
+// $avg = array();
+
+foreach ($query->result_array() as $row) {
+    //$data['catergoryID'] = $row['catergoryID'];
+    //$data['question'] = $row['question'];
+    //$data['questionNum'] = $row['questionNum'];
+
+
+
+    $data['category'] = $row['category'];
+    $data['timestampCompleted'] = $row['timestampCompleted'];
+    $data['answer'] = $row['answer'];
+
+    $rawdata[] = $data;
+
+    //echo json_encode($data);
+}
+$x = array();
+foreach ($rawdata as $v) {
+    $x[$v['timestampCompleted']][] = $v;
+    //echo json_encode($res);
+}
+//print_r(json_encode($x));
+
+$array = array ();
+foreach($x as $key => $r)
+{
+    foreach($r as $key => $v)
+    {
+        if(isset($b[$v['category']])) $b[$v['category']]['answer'] += $v['answer'];
+        else $b[$v['category']] = $v;
+    }
+    // $array["answer"] = $b["answer"]/ count($r);
+    // $array = array_values($array);
+    //$x[$v['category']['answer']] += $v['answer'];
+}
+//print_r(json_encode($b));
+
+//$b['answer'] = $b['answer'];
+//echo json_encode($res);
+$array = $b;
+
+
+foreach ($array as $v) {
+    $e[$v['timestampCompleted']][] = $v;
+    //echo json_encode($res);
+}
+$da=$e;
+print_r(json_encode($da));
+?>
+
+<script type="text/javascript">
+    var da = <?php echo json_encode($da); ?>;
+</script>
+
+
+<script src="../../assets/js/radarChart.js"></script>
+<script>
+    var data = da;
+    //console.log(data[0][1]);
+    //console.log(data[0]);
+
+    //////////////////////////////////////////////////////////////
+    //////////////////////// Set-Up //////////////////////////////
+    //////////////////////////////////////////////////////////////
+
+    var margin = {top: 30, right: 100, bottom: 100, left: 100},
+        legendPosition = {x: 10, y: 25},
+        width = Math.min(500, window.innerWidth - 10) - margin.left - margin.right,
+        height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20);
+    //////////////////////////////////////////////////////////////
+    //////////////////// Draw the Chart //////////////////////////
+    //////////////////////////////////////////////////////////////
+
+    var color = d3.scale.ordinal()
+        .range(["#82686a","#2f996e","#00A0B0"]);
+
+
+    var data = [
+        {
+            "key":"<?php echo $this->lang->line('category_time2'); ?>",
+            "values":[
+                {
+                    "reason":"<?php echo $this->lang->line('category_0'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time2'); ?>",
+                    "value":4
+
+                },
+                {
+                    "reason":"<?php echo $this->lang->line('category_1'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time2'); ?>",
+                    "value":3
+                },
+                {
+                    "reason":"<?php echo $this->lang->line('category_2'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time2'); ?>",
+                    "value":2
+                },
+                {
+                    "reason":"<?php echo $this->lang->line('category_3'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time2'); ?>",
+                    "value":4
+                },
+                {
+                    "reason":"<?php echo $this->lang->line('category_4'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time2'); ?>",
+                    "value":3
+                },
+                {
+                    "reason":"<?php echo $this->lang->line('category_5'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time2'); ?>",
+                    "value":1
+                },
+                {
+                    "reason":"<?php echo $this->lang->line('category_6'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time2'); ?>",
+                    "value":3
+                },
+                {
+                    "reason":"<?php echo $this->lang->line('category_7'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time2'); ?>",
+                    "value":4
+                },
+                {
+                    "reason":"<?php echo $this->lang->line('category_8'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time2'); ?>",
+                    "value":3
+                },
+                {
+                    "reason":"<?php echo $this->lang->line('category_8'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time2'); ?>",
+                    "value":3
+                },
+                {
+                    "reason":"<?php echo $this->lang->line('category_9'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time2'); ?>",
+                    "value":4
+                },
+                {
+                    "reason":"<?php echo $this->lang->line('category_10'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time2'); ?>",
+                    "value":3
+                },
+            ]
+        },
+        {
+            "key":"<?php echo $this->lang->line('category_time1'); ?>",
+            "values":[
+                {
+                    "reason":"<?php echo $this->lang->line('category_0'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time1'); ?>",
+                    "value":3
+                },
+                {
+                    "reason":"<?php echo $this->lang->line('category_1'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time1'); ?>",
+                    "value":1
+                },
+                {
+                    "reason":"<?php echo $this->lang->line('category_2'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time1'); ?>",
+                    "value":4
+                },
+                {
+                    "reason":"<?php echo $this->lang->line('category_3'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time1'); ?>",
+                    "value":3
+                },
+                {
+                    "reason":"<?php echo $this->lang->line('category_4'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time1'); ?>",
+                    "value":5
+                },
+                {
+                    "reason":"<?php echo $this->lang->line('category_5'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time1'); ?>",
+                    "value":3
+                },
+                {
+                    "reason":"<?php echo $this->lang->line('category_6'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time1'); ?>",
+                    "value":3
+                },
+                {
+                    "reason":"<?php echo $this->lang->line('category_7'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time1'); ?>",
+                    "value":2
+                },
+                {
+                    "reason":"<?php echo $this->lang->line('category_8'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time1'); ?>",
+                    "value":5
+                },
+                {
+                    "reason":"<?php echo $this->lang->line('category_9'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time1'); ?>",
+                    "value":3
+                },
+                {
+                    "reason":"<?php echo $this->lang->line('category_9'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time1'); ?>",
+                    "value":2
+                },
+                {
+                    "reason":"<?php echo $this->lang->line('category_10'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time1'); ?>",
+                    "value":5
+                }
+            ]
+        },
+        {
+            "key":"<?php echo $this->lang->line('category_time3'); ?>",
+            "values":[
+                {
+                    "reason":"<?php echo $this->lang->line('category_0'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time3'); ?>",
+                    "value":5
+                },
+                {
+                    "reason":"<?php echo $this->lang->line('category_1'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time3'); ?>",
+                    "value":3
+                },
+                {
+                    "reason":"<?php echo $this->lang->line('category_2'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time3'); ?>",
+                    "value":5
+                },
+                {
+                    "reason":"<?php echo $this->lang->line('category_3'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time3'); ?>",
+                    "value":3
+                },
+                {
+                    "reason":"<?php echo $this->lang->line('category_4'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time3'); ?>",
+                    "value":5
+                },
+                {
+                    "reason":"<?php echo $this->lang->line('category_5'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time3'); ?>",
+                    "value":5
+                },
+                {
+                    "reason":"<?php echo $this->lang->line('category_6'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time3'); ?>",
+                    "value":4
+                },
+                {
+                    "reason":"<?php echo $this->lang->line('category_7'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time3'); ?>",
+                    "value":2
+                },
+                {
+                    "reason": "<?php echo $this->lang->line('category_8'); ?>",
+                    "device": "<?php echo $this->lang->line('category_time3'); ?>",
+                    "value": 5
+                },
+                {
+                    "reason":"<?php echo $this->lang->line('category_8'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time3'); ?>",
+                    "value":4
+                },
+                {
+                    "reason":"<?php echo $this->lang->line('category_9'); ?>",
+                    "device":"<?php echo $this->lang->line('category_time3'); ?>",
+                    "value":2
+                },
+                {
+                    "reason": "<?php echo $this->lang->line('category_10'); ?>",
+                    "device": "<?php echo $this->lang->line('category_time3'); ?>",
+                    "value": 5
+                }
+
+            ]
+        }
+    ]
+
+    var radarChartOptions = {
+        w: width,
+        h: height,
+        margin: margin,
+        legendPosition: legendPosition,
+        maxValue: 0.5,
+        wrapWidth: 60,
+        levels: 5,
+        roundStrokes: true,
+        color: color,
+        axisName: "reason",
+        areaName: "device",
+        value: "value"
+    };
+
+    //Load the data and Call function to draw the Radar chart
+        RadarChart(".radarChart", data, radarChartOptions);
+
+
+</script>
+
+<!--
+<div id="graphic"></div>
 <script>
     var data = [{"questions":"A1","score":3},{"questions":"A2","score":2},{"questions":"B1","score":4},{"questions":"B2","score":1},{"questions":"B3","score":5},{"questions":"B4","score":3},{"questions":"B5","score":4}
         ,{"questions":"C1","score":3},{"questions":"C2","score":4},{"questions":"C3","score":5}
@@ -121,7 +433,7 @@
     svg.axis()
         .tickFormat(d3.format(""));
 
-</script>
+</script>-->
 
 <h3><?php echo $this->lang->line('title'); ?></h3>
 
