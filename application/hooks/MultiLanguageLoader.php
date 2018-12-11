@@ -19,6 +19,8 @@ class MultiLanguageLoader
             $ci->lang->load('questionnaire',$siteLang);
             $ci->lang->load('weathers',$siteLang);
             $ci->lang->load('done',$siteLang);
+            $ci->lang->load('registration',$siteLang);
+
 
         } else {
             // default language files
@@ -32,6 +34,7 @@ class MultiLanguageLoader
             $ci->lang->load('questionnaire','english');
             $ci->lang->load('weathers','english');
             $ci->lang->load('done','english');
+            $ci->lang->load('registration','english');
         }
     }
 }

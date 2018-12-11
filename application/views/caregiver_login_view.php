@@ -49,7 +49,7 @@
 
         <a href="/index.php/Caregiver_controller/dashboard">dev login</a>-->
 
-    </div> <!-- End Box -->
+    <!-- End Box -->
 
 </form>
 <br /><br /><br /><br /><br /><br />

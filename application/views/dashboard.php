@@ -130,6 +130,7 @@ if(!isset($_SESSION['id']))
     <link rel="icon" href="<?=base_url()?>assets/photos/favicon3.png" type="image/gif" sizes="16x16">
 
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <!-- Custom CSS-->
@@ -164,7 +165,19 @@ $email = $this->db->query($query);
 </a> -->
             <div style="height:5%;"></div>
             <div class="searchdiv" style="text-align:center;margin:15px;">
-                <h2 class="floornumber"><?php echo $this->lang->line('dash_floor'); ?> 1</h2><input type="search" placeholder="<?php echo $this->lang->line('search'); ?>" style="width:100%;height:40px;"></div>
+                <h2 class="floornumber"><?php echo $this->lang->line('dash_floor'); ?> 1</h2>
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button"><?php echo $this->lang->line('dash_select_floor'); ?></button>
+                    <div class="dropdown-menu" role="menu">
+                        <a class="dropdown-item" role="presentation" href="#"><?php echo $this->lang->line('first_floor'); ?></a>
+                        <a class="dropdown-item" role="presentation" href="#"><?php echo $this->lang->line('second_floor'); ?></a>
+                        <a class="dropdown-item" role="presentation" href="#"><?php echo $this->lang->line('third_floor'); ?></a>
+                        <a class="dropdown-item" role="presentation" href="#"><?php echo $this->lang->line('fourth_floor'); ?></a>
+                        <a class="dropdown-item" role="presentation" href="#"><?php echo $this->lang->line('fifth_floor'); ?></a>
+                        <a class="dropdown-item" role="presentation" href="#"><?php echo $this->lang->line('sixth_floor'); ?></a>
+                    </div>
+                </div>
+                <input class ="searchbar" type="search" placeholder="<?php echo $this->lang->line('search'); ?>"></div>
             <div style="height:5%;"></div>
             <div style="overflow-y:scroll;max-height:73vh;">
                 <div class="btn-group-vertical btn-group-lg" role="group" style="width:100%;">
@@ -196,8 +209,18 @@ $email = $this->db->query($query);
                     <div class="tab-pane active" role="tabpanel" id="tab-1" style="padding:5%;max-height:94vh;overflow-y:scroll;">
                         <div class="card questionnaire-card">
                             <div class="card-body">
-                                <h4 class="card-title" id="residentTitle"></h4>
-                                <p class="card-text">We're talking away. I don't know what. I'm to say I'll say it anyway. Today's another day to find you. Shying away. I'll be coming for your love, okay?. Take on me (take on me). Take me on (take on me). I'll be gone. In a day or two. So needless to say. I'm odds and ends. But I'll be stumbling away. Slowly learning that life is okay. Say after me. It's no better to be safe than sorry. Take on me (take on me). Take me on (take on me). I'll be gone. In a day or two.</p>
+                                <div class="card-top">
+                                    <div class="card-head">
+                                        <img class="card-picture" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
+                                        <span class="card-name">Jan Buskens</span>
+                                    </div>
+                                </div>
+                                <div class="card-text">
+                                    <div class="card-birthdate"><?php echo $this->lang->line('birthday'); ?><span id="card-birthdate">22/06/1996</span></div>
+                                    <div class="card-room"><?php echo $this->lang->line('roomnum'); ?><span id="card-room">502</span></div>
+                                    <div class="card-bed"><?php echo $this->lang->line('bednum'); ?><span id="card-bed">1</span></div>
+                                    <div class="card-privileges"><?php echo $this->lang->line('privileges'); ?><span id="card-privileges">can go outside</span></div>
+                                </div>
                                 <div class="radarChart"></div>
 
                                 <script src="../../assets/js/radarChart.js"></script>
@@ -373,7 +396,7 @@ $email = $this->db->query($query);
                 <div class="card notes-card active">
                     <div class="card-header notes-card-head" role="tab">
                         <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-1 .item-1" href="div#accordion-1 .item-1" class="btn-notes">
-                                <?php echo $this->lang->line('dash_today'); ?></a><i class="fa fa-star"></i></h5>
+                                <?php echo $this->lang->line('dash_today'); ?>&nbsp;</a></h5>
                     </div>
                     <div class="collapse show item-1 notes-content" role="tabpanel" data-parent="#accordion-1">
                         <div class="card-body">
@@ -403,7 +426,7 @@ $email = $this->db->query($query);
                 </div>
                 <div class="card notes-card">
                     <div class="card-header notes-card-head" role="tab">
-                        <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-2" href="div#accordion-1 .item-2" class="btn-notes"><?php echo $this->lang->line('dash_this_week'); ?></a></h5>
+                        <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-2" href="div#accordion-1 .item-2" class="btn-notes"><?php echo $this->lang->line('dash_this_week'); ?>&nbsp;</a></h5>
                     </div>
                     <div class="collapse item-2 notes-content" role="tabpanel" data-parent="#accordion-1">
                         <div class="card-body">
@@ -430,7 +453,7 @@ $email = $this->db->query($query);
                 </div>
                 <div class="card notes-card">
                     <div class="card-header notes-card-head" role="tab">
-                        <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-3" href="div#accordion-1 .item-3" class="btn-notes"><?php echo $this->lang->line('dash_archive'); ?></a></h5>
+                        <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-3" href="div#accordion-1 .item-3" class="btn-notes"><?php echo $this->lang->line('dash_archive'); ?>&nbsp;</a></h5>
                     </div>
                     <div class="collapse item-3 notes-content" role="tabpanel" data-parent="#accordion-1">
                         <div class="card-body">
@@ -471,23 +494,20 @@ $email = $this->db->query($query);
 
 
 <script>
+    var currentButtonID
     function loadResident(id){
-        document.getElementById("residentTitle").innerText = id + "<?php echo $this->lang->line('dash_profile'); ?>"
+        if(currentButtonID){
+            var previous = document.getElementById(currentButtonID)
+            previous.classList.remove("btn-active")
+        }
+
+        var element = document.getElementById(id)
+        element.classList.add("btn-active")
+        currentButtonID = id
+
+        document.getElementById("residentName").innerText = id + "<?php echo $this->lang->line('dash_profile'); ?>"
     }
 
-
-</script>
-
-<script>
-    // $('#accordion .panel-collapse').on('shown.bs.collapse', function () {
-    //     $(this).prev().find(".glyphicon").removeClass("glyphicon-chevron-right").addClass("glyphicon-chevron-down");
-    // });
-    //
-    // //The reverse of the above on hidden event:
-    //
-    // $('#accordion .panel-collapse').on('hidden.bs.collapse', function () {
-    //     $(this).prev().find(".glyphicon").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-right");
-    // });
 </script>
 
 <script type="text/javascript">

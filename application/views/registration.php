@@ -435,24 +435,24 @@ print_r(json_encode($da));
 
 </script>-->
 
-<h3>ELDERLY REGISTRATION FORM</h3>
+<h3><?php echo $this->lang->line('title'); ?></h3>
 
 
 <table align="center" cellpadding = "10">
     <tr>
-        <td>FIRST NAME</td>
+        <td><?php echo $this->lang->line('first'); ?></td>
         <td><input type="text" name="firstname" maxlength="30"/>
         </td>
     </tr>
 
     <tr>
-        <td>LAST NAME</td>
+        <td><?php echo $this->lang->line('last'); ?></td>
         <td><input type="text" name="name" maxlength="30"/>
         </td>
     </tr>
 
     <tr>
-        <td>DATE OF BIRTH</td>
+        <td><?php echo $this->lang->line('birth'); ?></td>
 
         <td>
             <select name="Birthday_day" id="Birthday_Day">
@@ -599,49 +599,42 @@ print_r(json_encode($da));
     </tr>
 
     <tr>
-        <td>ROOM ID</td>
+        <td><?php echo $this->lang->line('room'); ?></td>
         <td><input type="text" name="Room_Id" maxlength="100" /></td>
     </tr>
-
     <tr>
+        <td><?php echo $this->lang->line('bed'); ?></td>
+        <td><input type="text" name="Bed_Id" maxlength="10" /></td>
+    </tr>
+
+   <!--<tr>
         <td>EMAIL</td>
         <td>
             <input type="text" name="email" maxlength="30" />
         </td>
-    </tr>
+    </tr>-->
 
-    <tr>
+   <!-- <tr>
         <td>PASSWORD</td>
         <td>
             <input type="text" name="password" maxlength="30" />
         </td>
-    </tr>
+    </tr>-->
 
     <tr>
-        <td>MOBILE NUMBER</td>
+        <td><?php echo $this->lang->line('contact'); ?></td>
         <td>
             <input type="text" name="Mobile_Number" maxlength="10" />
         </td>
     </tr>
 
-    <tr>
+    <!--<tr>
         <td>GENDER</td>
         <td>
             Male <input type="radio" name="Gender" value="Male" />
             Female <input type="radio" name="Gender" value="Female" />
         </td>
-    </tr>
-
-    <tr>
-        <td>HOME ADDRESS <br /><br /><br /></td>
-        <td><textarea name="Address" rows="4" cols="30"></textarea></td>
-    </tr>
-
-    <tr>
-        <td>HOMEDOWN</td>
-        <td><input type="text" name="City" maxlength="30" />
-        </td>
-    </tr>
+    </tr>-->
 
     <tr>
         <td>PIN CODE</td>
@@ -649,20 +642,15 @@ print_r(json_encode($da));
         </td>
     </tr>
 
-    <tr>
-        <td>PROVINCE</td>
-        <td><input type="text" name="Province" maxlength="30" />
-        </td>
-    </tr>
 
-    <tr>
+   <!-- <tr>
         <td>NATIONALITY</td>
         <td><input type="text" name="Nationality" value="Belgium" readonly="readonly" /></td>
-    </tr>
+    </tr>-->
 
     <tr>
         <br/>
-        <td>LANGUAGE PREFERENCE</td>
+        <td><?php echo $this->lang->line('language'); ?></td>
         <td>
             Dutch
             <input type="radio" name="Dutch" value="Dutch">
@@ -674,7 +662,7 @@ print_r(json_encode($da));
     </tr>
 
     <tr>
-        <td>FLOOR</td>
+        <td><?php echo $this->lang->line('floor'); ?></td>
         <td>
             GroundFloor
             <input type="radio" name="GroundFloor" value="GroundFloor">
@@ -684,6 +672,18 @@ print_r(json_encode($da));
             <input type="radio" name="SecondFloor" value="SecondFloor">
             ThirdFloor
             <input type="radio" name="ThirdFloor" value="ThirdFloor">
+        </td>
+    </tr>
+    <tr>
+        <td><?php echo $this->lang->line('preferences'); ?></td>
+        <td>
+            <input type="text" name="Preferences" maxlength="200" />
+        </td>
+    </tr>
+    <tr>
+        <td><?php echo $this->lang->line('privileges'); ?></td>
+        <td>
+            <input type="text" name="Mobile_Number" maxlength="200" />
         </td>
     </tr>
 
