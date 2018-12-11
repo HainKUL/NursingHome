@@ -22,13 +22,3 @@ body {
     color: #221E1D;
 }
 
-
-
-footer{
-    font-family: Helvetica,Arial;
-   /*make it stand at the bottom at all times */
-    position: absolute;
-    bottom: 0;
-    padding: 1rem;
-    text-align: center;
-}
