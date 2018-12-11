@@ -34,13 +34,22 @@ class Bar_chart_model extends CI_Model
             //$data['questionNum'] = $row['questionNum'];
             $data['answer'] = $row['answer'];
             $data['category'] = $row['category'];
+            //$data['timestampStart'] = $row['timestampStart'];
             //echo json_encode($bothData);
-            $bothData1[]=$data;
+            $rawdata[]=$data;
             //print_r(json_encode($bothData));
         }
 
-        return $bothData1;
-        //echo(json_encode($bothData);
+        /*foreach ($rawdata as $value)
+        {
+            $time= $value['timestampStart'];
+            $x[$time][]= $value;
+        }
+        $bothData1[]= $x;*/
+        //$sliced_array = array_slice($bothData1, 0, 1);
+
+        return $rawdata;
+        //echo(json_encode($bothData1);
     }
 
     function __destruct() {

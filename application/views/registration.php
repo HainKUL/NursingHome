@@ -33,9 +33,104 @@
 <body>
 
 <div class="radarChart"></div>
+<script>
+    function reqListener () {
+        console.log(this.responseText);
+    }
+
+    var oReq = new XMLHttpRequest(); //New request object
+    oReq.onload = function() {
+        //This is where you handle what to do with the response.
+        //The actual data is found on this.responseText
+        alert(this.responseText); //Will alert: 42
+    };
+    oReq.open("get", "our_chart.php", true);
+    //                               ^ Don't block the rest of the execution.
+    //                                 Don't wait until the request finishes to
+    //                                 continue.
+    oReq.send();
+</script>
+<?php
+
+$where = "idResident ='1' AND completed = '1'";
+
+$this->db->select('*');
+//$this->db->select('category, SUM(answer) AS total', FALSE);
+//$this->db->group_by('category');
+$this->db->from('Questions,Submissions');
+
+$this->db->where($where);
+$this->db->where('Submissions.idSubmissions=Responses.submission');
+
+$this->db->join('Responses', 'Questions.idQuestions=Responses.questionNum');
+//$this->db->select_avg('reviews','overall');
+//$this->db->group_by('category');
+$this->db->order_by('category');
+//$this->db->group_by('category');
+$query = $this->db->get();
+
+// $avg = array();
+
+foreach ($query->result_array() as $row) {
+    //$data['catergoryID'] = $row['catergoryID'];
+    //$data['question'] = $row['question'];
+    //$data['questionNum'] = $row['questionNum'];
+
+
+
+    $data['category'] = $row['category'];
+    $data['timestampCompleted'] = $row['timestampCompleted'];
+    $data['answer'] = $row['answer'];
+
+    $rawdata[] = $data;
+
+    //echo json_encode($data);
+}
+$x = array();
+foreach ($rawdata as $v) {
+    $x[$v['timestampCompleted']][] = $v;
+    //echo json_encode($res);
+}
+//print_r(json_encode($x));
+
+$array = array ();
+foreach($x as $key => $r)
+{
+    foreach($r as $key => $v)
+    {
+        if(isset($b[$v['category']])) $b[$v['category']]['answer'] += $v['answer'];
+        else $b[$v['category']] = $v;
+    }
+    // $array["answer"] = $b["answer"]/ count($r);
+    // $array = array_values($array);
+    //$x[$v['category']['answer']] += $v['answer'];
+}
+//print_r(json_encode($b));
+
+//$b['answer'] = $b['answer'];
+//echo json_encode($res);
+$array = $b;
+
+
+foreach ($array as $v) {
+    $e[$v['timestampCompleted']][] = $v;
+    //echo json_encode($res);
+}
+$da=$e;
+print_r(json_encode($da));
+?>
+
+<script type="text/javascript">
+    var da = <?php echo json_encode($da); ?>;
+</script>
+
 
 <script src="../../assets/js/radarChart.js"></script>
 <script>
+    var data = da;
+    //console.log(data[0][1]);
+    //console.log(data[0]);
+
     //////////////////////////////////////////////////////////////
     //////////////////////// Set-Up //////////////////////////////
     //////////////////////////////////////////////////////////////
@@ -50,6 +145,8 @@
 
     var color = d3.scale.ordinal()
         .range(["#82686a","#2f996e","#00A0B0"]);
+
+
     var data = [
         {
             "key":"<?php echo $this->lang->line('category_time2'); ?>",
