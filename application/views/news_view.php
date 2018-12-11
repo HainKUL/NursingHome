@@ -21,7 +21,7 @@
         </div>
         <div class="col-md-2" style="padding-bottom:10px" >
             <a class="link1" href="residentHome">
-            <button type="button" class ="btn btn-default button1 float-right" >
+            <button type="button" class ="btn btn-default button_back float-right" >
                 <?php echo $this->lang->line('buttonBack'); ?>
             </button>
             </a>
@@ -49,7 +49,7 @@
         </div>
         <div class = "col-md-6">
             <a class="link1" href="nieuwsblad">
-                <button type="button" class="button2">
+                <button type="button" class="button_menu">
                     <img src="<?=base_url()?>assets/photos/nieuwsblad.jpg"  class="image1">
                     <?php echo $this->lang->line('buttonClickHere'); ?>
                 </button>
@@ -61,7 +61,7 @@
         </div>
         <div class = "col-md-6">
             <a class="link1" href="standard">
-                <button type="button" class="button2">
+                <button type="button" class="button_menu">
                     <img src="<?=base_url()?>assets/photos/standaard.jpg" class="image2">
                     <?php echo $this->lang->line('buttonClickHere'); ?>
                 </button>
@@ -73,7 +73,7 @@
         </div>
         <div class = "col-md-6">
             <a class="link1" href="dm">
-                <button type="button"class="button2" >
+                <button type="button"class="button_menu" >
                     <img src="<?=base_url()?>assets/photos/demorgen.png" class="image3" >
                     <?php echo $this->lang->line('buttonClickHere'); ?>
                 </button>

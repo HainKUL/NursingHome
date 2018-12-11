@@ -8,10 +8,7 @@
     <link href="<?=base_url() ?>assets/css/features.css" rel="stylesheet" type="text/css"/>
 
     <title>{page_title}</title>
-    <select onchange="javascript:window.location.href='<?php echo base_url(); ?>MultiLanguageSwitcher/switcher/'+this.value;">
-        <option value="english" <?php if($this->session->userdata('site_lang') == 'english') echo 'selected="selected"'; ?>>English</option>
-        <option value="dutch" <?php if($this->session->userdata('site_lang') == 'dutch') echo 'selected="selected"'; ?>>Dutch</option>
-    </select>
+
 </head>
 
 
@@ -22,7 +19,7 @@
         </div>
         <div class="col-md-2" style="padding-bottom:10px" >
             <a class="link1" href="residenthome">
-                <button type="button" class ="btn btn-default button1 float-right" >
+                <button type="button" class ="btn btn-default button_back float-right" >
                     {buttonBack}
                 </button>
             </a>

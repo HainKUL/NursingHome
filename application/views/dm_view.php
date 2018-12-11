@@ -20,7 +20,7 @@
         </div>
         <div class="col-md-2" style="padding-bottom:10px" >
             <a class="link1" href="news">
-                <button type="button" class ="btn btn-default button1 float-right" >
+                <button type="button" class ="btn btn-default button_back float-right" >
                     {buttonBack}
                 </button>
             </a>
