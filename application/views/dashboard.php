@@ -379,7 +379,17 @@ $email = $this->db->query($query);
                         </div>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="tab-4">
-                        <div class="card register-card">
+<script>
+    var button = document.querySelector('.button');
+    var card = document.querySelector('.card');
+    button.addEventListener( 'click', function() {
+        card.classList.toggle('is-flipped');
+    });
+</script>
+                        <div class="scene scene--card">
+                            <div class="card register-card">
+                                <div class="card__face card__face--front">
+
 
                                 <h3 class="title_registration"><?php echo $this->lang->line('title'); ?></h3>
 
@@ -546,7 +556,7 @@ $email = $this->db->query($query);
                                     <tr>
                                         <td><?php echo $this->lang->line('contact'); ?></td>
                                         <td>
-                                            <input type="number" name="Mobile_Number" maxlength="10" placeholder="phone number" />
+                                            <input type="number" name="Mobile_Number" maxlength="10" placeholder="number" />
                                         </td>
                                     </tr>
 
@@ -599,13 +609,6 @@ $email = $this->db->query($query);
                                          </td>
                                      </tr>-->
 
-                                    <!-- <tr>
-                                         <td>PASSWORD</td>
-                                         <td>
-                                             <input type="text" name="password" maxlength="30" />
-                                         </td>
-                                     </tr>-->
-
 
 
                                     <tr>
@@ -644,8 +647,11 @@ $email = $this->db->query($query);
                                     </tr>
                                 </table>
                             </form>
-                            </div>
 
+                            </div>
+                                <div class="card__face card__face--back"> back </div>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
