@@ -387,13 +387,13 @@ $email = $this->db->query($query);
                                 <table align="center" cellpadding = "10">
                                     <tr>
                                         <td><?php echo $this->lang->line('first'); ?></td>
-                                        <td><input type="text" name="firstname" maxlength="30"/>
+                                        <td><input type="text" name="firstname" maxlength="30" placeholder="residents first name"/>
                                         </td>
                                     </tr>
 
                                     <tr>
                                         <td><?php echo $this->lang->line('last'); ?></td>
-                                        <td><input type="text" name="name" maxlength="30"/>
+                                        <td><input type="text" name="name" maxlength="30" placeholder="residents last name"/>
                                         </td>
                                     </tr>
 
@@ -401,7 +401,7 @@ $email = $this->db->query($query);
                                         <td><?php echo $this->lang->line('birth'); ?></td>
 
                                         <td>
-                                            <select name="Birthday_day" id="Birthday_day">
+                                            <select name="Birthday_day" id="Birthday_day" style="width: 29%" required>
                                                 <option value="-1"><?php echo $this->lang->line('day'); ?></option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
@@ -440,7 +440,7 @@ $email = $this->db->query($query);
                                                 <option value="31">31</option>
                                             </select>
 
-                                            <select id="Birthday_Month" name="Birthday_Month">
+                                            <select id="Birthday_Month" name="Birthday_Month" style="width: 35%" required>
                                                 <option value="-1"><?php echo $this->lang->line('month'); ?></option>
                                                 <option value="January">Jan</option>
                                                 <option value="February">Feb</option>
@@ -456,7 +456,7 @@ $email = $this->db->query($query);
                                                 <option value="December">Dec</option>
                                             </select>
 
-                                            <select name="Birthday_Year" id="Birthday_Year">
+                                            <select name="Birthday_Year" id="Birthday_Year" style="width: 30%" required>
 
                                                 <option value="-1"><?php echo $this->lang->line('year'); ?></option>
                                                 <option value="1990">1990</option>
@@ -546,7 +546,7 @@ $email = $this->db->query($query);
                                     <tr>
                                         <td><?php echo $this->lang->line('contact'); ?></td>
                                         <td>
-                                            <input type="text" name="Mobile_Number" maxlength="10" />
+                                            <input type="number" name="Mobile_Number" maxlength="10" placeholder="phone number" />
                                         </td>
                                     </tr>
 
@@ -560,7 +560,7 @@ $email = $this->db->query($query);
 
                                     <tr>
                                         <td>PIN CODE</td>
-                                        <td><input type="text" name="Pin_Code" maxlength="6" />
+                                        <td><input type="password" name="Pin_Code" maxlength="4" placeholder="pin"/>
                                         </td>
                                     </tr>
 
@@ -585,11 +585,11 @@ $email = $this->db->query($query);
                                     </tr>
                                     <tr>
                                         <td><?php echo $this->lang->line('room'); ?></td>
-                                        <td><input type="text" name="Room_Id" maxlength="100" /></td>
+                                        <td><input type="text" name="Room_Id" maxlength="100" placeholder="room id" /></td>
                                     </tr>
                                     <tr>
                                         <td><?php echo $this->lang->line('bed'); ?></td>
-                                        <td><input type="text" name="Bed_Id" maxlength="10" /></td>
+                                        <td><input type="text" name="Bed_Id" maxlength="10" placeholder="bed id" /></td>
                                     </tr>
 
                                     <!--<tr>
@@ -631,7 +631,7 @@ $email = $this->db->query($query);
                                     <tr>
                                         <td><?php echo $this->lang->line('privileges'); ?></td>
                                         <td>
-                                            <input type="text" name="Privileges" maxlength="200" />
+                                            <input type="text" name="Privileges" maxlength="200" placeholder="optional" />
                                         </td>
                                     </tr>
 
