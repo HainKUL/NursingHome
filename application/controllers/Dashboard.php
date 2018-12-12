@@ -59,6 +59,7 @@ class Dashboard extends CI_Controller
             $pref=serialize($pref_array);
 
 
+
             // form validation: ensure that the form is correctly filled ...
             // by adding (array_push()) corresponding error unto $errors array
             if (empty($name)) { array_push($errors, "Name is required"); }
@@ -101,3 +102,5 @@ class Dashboard extends CI_Controller
     }
 
 }
+
+
