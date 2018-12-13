@@ -11,4 +11,4 @@ $lang['polls'] = 'Extra questions';
 $lang['newspaper'] = 'Newspaper';
 $lang['sports'] = 'Sports results';
 $lang['weather'] = 'The weather ';
-$lang['logout'] = 'Click here to log out';
+$lang['logout'] = 'Log out';

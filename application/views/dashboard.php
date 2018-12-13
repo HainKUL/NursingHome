@@ -24,11 +24,13 @@ if(!isset($_SESSION['id']))
     <!-- D3.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/1.3.0/d3-legend.js" charset="utf-8"></script>
-    <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
-    <script src="//d3js.org/d3.v4.min.js"></script>
 
-    <script src="https://d3js.org/d3.v4.min.js"></script>
-<!--    <script src="--><?//= base_url()?><!--assets/js/trail.js"></script>-->
+
+
+
+
+
+    <!--    <script src="--><?//= base_url()?><!--assets/js/trail.js"></script>-->
 
 
     <style>
@@ -39,28 +41,95 @@ if(!isset($_SESSION['id']))
             fill: #242424;
             text-align: center;
             /*text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;*/
-            /*cursor:url(http://www.rw-designer.com/cursor-view/104989.png), auto;*/
-        }
-        .bar {
-            fill: #2f996e;
-        }
+            cursor: default;
 
+        }
+        .bar:hover{
+            fill: red;
+        }
         .tooltip {
             fill: #333333;
         }
         .radio{
-            text-align: center;
+            text-align: end;
+        }
+        .form-radio
+        {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            display: inline-block;
+            position: relative;
+            background-color: #f1f1f1;
+            color: #666;
+            top: 10px;
+            height: 30px;
+            width: 30px;
+            border: 0;
+            border-radius: 50px;
+            cursor: pointer;
+            margin-right: 7px;
+            outline: none;
+        }
+        .form-radio:checked::before
+        {
+            position: absolute;
+            font: 13px/1 'Open Sans', sans-serif;
+            left: 11px;
+            top: 7px;
+            content: '\02143';
+            transform: rotate(40deg);
+        }
+        .form-radio:hover
+        {
+            background-color: #f7f7f7;
+        }
+        .form-radio:checked
+        {
+            background-color: #f1f1f1;
+        }
+
+
+        select {
+            font-family: sans-serif;
+            font-size: 30px;
+            background: none repeat scroll 0 0 #FFFFFF;
+            border: 1px solid #E5E5E5;
+            border-radius: 5px 5px 5px 5px;
+            box-shadow: 0 0 10px #E8E8E8 inset;
+            height: 40px;
+            padding: 8px;
+            width: 210px;
+            margin-left:100px;
+
+        }
+
+        .category{
+            margin: 0px 0px 0px 40px;
+            width: 210px;
+        }
+
+
+
+        option {
+            direction: ltr;
+        }
+
+        label
+        {
+            font: 300 16px/1.7 'Open Sans', sans-serif;
+            color: #666;
+            cursor: pointer;
         }
 
     </style>
-
-
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="<?=base_url()?>assets/photos/favicon3.png" type="image/gif" sizes="16x16">
 
     <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <!-- Custom CSS-->
@@ -72,7 +141,7 @@ if(!isset($_SESSION['id']))
 <?php
 $currentID = $_SESSION['id'];
 $this->load->database();
-$query = "SELECT Notes.noteText, Notes.author, Notes.timestamp, Caregivers.firstName FROM Notes INNER JOIN Caregivers on Notes.author = Caregivers.idCaregivers;";
+$query = "SELECT Notes.noteText, Notes.author, Notes.timestamp, Caregivers.firstName FROM Notes INNER JOIN Caregivers on Notes.author = Caregivers.idCaregivers ORDER BY Notes.timestamp DESC;";
 $result = $this->db->query($query);
 $query = "SELECT firstName, name, idResidents, YEAR(CURRENT_TIMESTAMP) - YEAR(dateOfBirth) - (RIGHT(CURRENT_TIMESTAMP, 5) < RIGHT(dateOfBirth, 5)) as age FROM Residents;";
 $residents = $this->db->query($query);
@@ -95,9 +164,20 @@ $email = $this->db->query($query);
             </a> -->
             <div style="height:5%;"></div>
             <div class="searchdiv" style="text-align:center;margin:15px;">
-                <h2 class="floornumber"><?php echo $this->lang->line('dash_floor'); ?> 1</h2><input type="search" placeholder="<?php echo $this->lang->line('search'); ?>" style="width:100%;height:40px;"></div>
-            <div style="height:5%;"></div>
-            <div style="overflow-y:scroll;max-height:73vh;">
+                <h2 class="floornumber"><?php echo $this->lang->line('dash_floor'); ?> 1</h2>
+                <div class="dropdown">
+                    <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button"><?php echo $this->lang->line('dash_select_floor'); ?></button>
+                    <div class="dropdown-menu" role="menu">
+                        <a class="dropdown-item" role="presentation" href="#"><?php echo $this->lang->line('first_floor'); ?></a>
+                        <a class="dropdown-item" role="presentation" href="#"><?php echo $this->lang->line('second_floor'); ?></a>
+                        <a class="dropdown-item" role="presentation" href="#"><?php echo $this->lang->line('third_floor'); ?></a>
+                        <a class="dropdown-item" role="presentation" href="#"><?php echo $this->lang->line('fourth_floor'); ?></a>
+                        <a class="dropdown-item" role="presentation" href="#"><?php echo $this->lang->line('fifth_floor'); ?></a>
+                        <a class="dropdown-item" role="presentation" href="#"><?php echo $this->lang->line('sixth_floor'); ?></a>
+                    </div>
+                </div>
+                <input class ="searchbar" type="search" placeholder="<?php echo $this->lang->line('search'); ?>"></div>
+            <div style="overflow-y:scroll;max-height:68vh;">
                 <div class="btn-group-vertical btn-group-lg" role="group" style="width:100%;">
                     <?php
                     foreach ($residents->result_array() as $row) {
@@ -116,60 +196,79 @@ $email = $this->db->query($query);
                 </div>
             </div>
         </div>
+        <div class="col-3 hiddendiv" id="div2" style="background-color:#009489;padding:0;">
+
+
+
+
+
+
+        </div>
+        <div class="col-3 hiddendiv" id="div3" style="background-color:#009489;padding:0;">
+
+
+
+
+
+
+        </div>
+        <div class="col-3 hiddendiv" id="div4" style="background-color:#009489;padding:0;">
+
+
+
+
+
+
+        </div>
         <div class="col-6" style="background-color:#f9f9f9;padding:0px;">
             <div style="width:100%;">
                 <ul class="nav nav-tabs" style="text-align:center;border:none;">
-                    <li class="nav-item" style="width:33%;"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1" style="border:none;"><?php echo $this->lang->line('dash_questionnaire'); ?></a></li>
-                    <li class="nav-item" style="width:34%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2" style="border:none;"><?php echo $this->lang->line('dash_poll'); ?></a></li>
-                    <li class="nav-item" style="width:33%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3" style="border:none;"><?php echo $this->lang->line('dash_personal'); ?></a></li>
+                    <li class="nav-item" style="width:25%;"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1" style="border:none;" onclick="loadDiv1()"><?php echo $this->lang->line('dash_questionnaire'); ?></a></li>
+                    <li class="nav-item" style="width:25%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2" style="border:none;" onclick="loadDiv2()"><?php echo $this->lang->line('dash_poll'); ?></a></li>
+                    <li class="nav-item" style="width:25%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3" style="border:none;" onclick="loadDiv3()"><?php echo $this->lang->line('dash_personal'); ?></a></li>
+                    <li class="nav-item" style="width:25%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-4" style="border:none;" onclick="loadDiv4()"><?php echo $this->lang->line('dash_register'); ?></a></li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="tab-1" style="padding:5%;max-height:94vh;overflow-y:scroll;">
                         <div class="card questionnaire-card">
                             <div class="card-body">
-                                <h4 class="card-title" id="residentTitle"></h4>
-                                <p class="card-text">We're talking away. I don't know what. I'm to say I'll say it anyway. Today's another day to find you. Shying away. I'll be coming for your love, okay?. Take on me (take on me). Take me on (take on me). I'll be gone. In a day or two. So needless to say. I'm odds and ends. But I'll be stumbling away. Slowly learning that life is okay. Say after me. It's no better to be safe than sorry. Take on me (take on me). Take me on (take on me). I'll be gone. In a day or two.</p>
+                                <div class="card-top">
+                                    <div class="card-head">
+                                        <img class="card-picture" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
+                                        <span class="card-name">Jan Buskens</span>
+                                    </div>
+                                </div>
+                                <div class="card-text">
+                                    <div class="card-birthdate"><?php echo $this->lang->line('birthday'); ?><span id="card-birthdate">22/06/1996</span></div>
+                                    <div class="card-room"><?php echo $this->lang->line('roomnum'); ?><span id="card-room">502</span></div>
+                                    <div class="card-bed"><?php echo $this->lang->line('bednum'); ?><span id="card-bed">1</span></div>
+                                    <div class="card-privileges"><?php echo $this->lang->line('privileges'); ?><span id="card-privileges">: can go outside</span></div>
+                                </div>
                                 <div class="radarChart"></div>
 
                                 <script src="../../assets/js/radarChart.js"></script>
+                                <script type="text/javascript">
+                                    var data = <?php echo json_encode($data1); ?>;
+                                </script>
+
                                 <script>
+                                    //////////////////////////////////////////////////////////////
+                                    //////////////////////// Set-Up //////////////////////////////
+                                    //////////////////////////////////////////////////////////////
 
-                                    var margin = {top: 30, right: 100, bottom: 100, left: 100},
-                                        legendPosition = {x: 25, y: 25},
-                                        width = Math.min(500, window.innerWidth - 10) - margin.left - margin.right,
-                                        height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20);
 
-                                    var data = [
-                                        [
-                                            {axis:"<?php echo $this->lang->line('category_0'); ?>",value:2},
-                                            {axis:"<?php echo $this->lang->line('category_1'); ?>",value:4.3},
-                                            {axis:"<?php echo $this->lang->line('category_2'); ?>",value:5},
-                                            {axis:"<?php echo $this->lang->line('category_3'); ?>",value:2.1},
-                                            {axis:"<?php echo $this->lang->line('category_4'); ?>",value:4.5},
-                                            {axis:"<?php echo $this->lang->line('category_5'); ?>",value:3.3},
-                                            {axis:"<?php echo $this->lang->line('category_6'); ?>",value:5},
-                                            {axis:"<?php echo $this->lang->line('category_7'); ?>",value:3},
-                                            {axis:"<?php echo $this->lang->line('category_8'); ?>",value:1},
-                                            {axis:"<?php echo $this->lang->line('category_9'); ?>",value:4},
-                                            {axis:"<?php echo $this->lang->line('category_10'); ?>",value:2}
+                                    //var margin = {top: 150, right: 70, bottom: 100, left: 100},
 
-                                        ],[
-                                            {axis:"<?php echo $this->lang->line('category_0'); ?>",value:3},
-                                            {axis:"<?php echo $this->lang->line('category_1'); ?>",value:4},
-                                            {axis:"<?php echo $this->lang->line('category_2'); ?>",value:5},
-                                            {axis:"<?php echo $this->lang->line('category_3'); ?>",value:3.6},
-                                            {axis:"<?php echo $this->lang->line('category_4'); ?>",value:2.1},
-                                            {axis:"<?php echo $this->lang->line('category_5'); ?>",value:1.3},
-                                            {axis:"<?php echo $this->lang->line('category_6'); ?>",value:4},
-                                            {axis:"<?php echo $this->lang->line('category_7'); ?>",value:5},
-                                            {axis:"<?php echo $this->lang->line('category_8'); ?>",value:3},
-                                            {axis:"<?php echo $this->lang->line('category_9'); ?>",value:2},
-                                            {axis:"<?php echo $this->lang->line('category_10'); ?>",value:4}
-                                        ]
-                                    ];
+                                    var margin = {top: 120, right: 60, bottom: 40, left: 60},
+                                        legendPosition = {x: 220, y: 10},
+                                        width = Math.min(400, window.innerWidth - 10) - margin.left - margin.right,
+                                        height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20); //////////////////////////////////////////////////////////////
+                                    //////////////////// Draw the Chart //////////////////////////
+                                    //////////////////////////////////////////////////////////////
 
                                     var color = d3.scale.ordinal()
-                                        .range(["#82686a","#2f996e"]);
+                                        .range(["#42f4b0","#CCCC00","#00A0B0","#EDC951"]);
+
 
                                     var radarChartOptions = {
                                         w: width,
@@ -177,15 +276,19 @@ $email = $this->db->query($query);
                                         margin: margin,
                                         legendPosition: legendPosition,
                                         maxValue: 0.5,
-                                        wrapWidth: 50,
+                                        wrapWidth: 60,
                                         levels: 5,
                                         roundStrokes: true,
                                         color: color,
                                         axisName: "category",
-                                        areaName: "times",
-                                        value: "value"
+                                        areaName: "timestampStart",
+                                        value: "answer"
+                                        /*axisName: "reason",
+                                         areaName: "device",
+                                         value: "value"*/
                                     };
-                                    //Call function to draw the Radar chart
+
+                                    //Load the data and Call function to draw the Radar chart
                                     RadarChart(".radarChart", data, radarChartOptions);
                                 </script>
                             </div>
@@ -198,51 +301,48 @@ $email = $this->db->query($query);
                         </div>
                         <div class="card questionnaire-card">
                             <div class="card-body">
+                            </br>
                                 <h4 class="card-title"><?php echo $this->lang->line('dash_answers'); ?></h4>
-                                <h3><?php echo $this->lang->line('category_title2'); ?></h3>
-
+                                <!--<h3><?php echo $this->lang->line('category_title2'); ?></h3>-->
+                                <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+                                <script src="//d3js.org/d3.v4.min.js"></script>
+                                <script src="https://d3js.org/d3.v4.min.js"></script>
                                 <div class='container'>
                                     <div class='row'>
                                         <div class='radio'>
-                                            <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryA" onclick='change(this.value)'>categoryA
-                                            </label>
-                                            <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryB" onclick='change(this.value)'>categoryB
-                                            </label>
-                                            <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryC" onclick='change(this.value)'>categoryC
-                                            </label>
-                                            <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryD" onclick='change(this.value)'>categoryD
-                                            </label>
-                                            <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryE" onclick='change(this.value)'>categoryE
-                                            </label>
-                                            <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryF" onclick='change(this.value)'>categoryF
-                                            </label>
-                                            <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryG" onclick='change(this.value)'>categoryG
-                                            </label>
-                                            <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryH" onclick='change(this.value)'>categoryH
-                                            </label>
-                                            <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryI" onclick='change(this.value)'>categoryI
-                                            </label>
-                                            <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryJ" onclick='change(this.value)'>categoryJ
-                                            </label>
-                                            <label class='radio-inline'>
-                                                <input type="radio" name="gender" value="categoryK" onclick='change(this.value)'>categoryK
-                                            </label>
+
+                                            </br>
+
+                                            <div class = "date" style="float:left;">
+                                                <select >
+                                                    <option value="100">Please Select Date</option>
+
+                                                    </select>
+                                            </div>
+                                            <div class = "category"; style="float:right;">
+                                            <select >
+                                                <option value="all" onclick='change(this.value)'>Please Select Category</option>
+                                                <option name="name" value="all" onclick='change(this.value)'><?php echo $this->lang->line('category_all'); ?></option>
+                                                <option name="name" value="0" onclick='change(this.value)'><?php echo $this->lang->line('category_0'); ?></option>
+                                                <option name="name" value="1" onclick='change(this.value)'><?php echo $this->lang->line('category_1'); ?></option>
+                                                <option name="name" value="2" onclick='change(this.value)'><?php echo $this->lang->line('category_2'); ?></option>
+                                                <option name="name" value="3" onclick='change(this.value)'><?php echo $this->lang->line('category_3'); ?></option>
+                                                <option name="name" value="4" onclick='change(this.value)'><?php echo $this->lang->line('category_4'); ?></option>
+                                                <option name="name" value="5" onclick='change(this.value)'><?php echo $this->lang->line('category_5'); ?></option>
+                                                <option name="name" value="6" onclick='change(this.value)'><?php echo $this->lang->line('category_6'); ?></option>
+                                                <option name="name" value="7" onclick='change(this.value)'><?php echo $this->lang->line('category_7'); ?></option>
+                                                <option name="name" value="8" onclick='change(this.value)'><?php echo $this->lang->line('category_8'); ?></option>
+                                                <option name="name" value="9" onclick='change(this.value)'><?php echo $this->lang->line('category_9'); ?></option>
+                                                <option name="name" value="10" onclick='change(this.value)'><?php echo $this->lang->line('category_10'); ?></option>
+                                                </select>
+                                            </div>
+                                            </br>
+                                            </br>
 
                                         </div>
                                         <svg class='chart'>
                                         </svg>
                                     </div>
-                                    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
                                 </div>
                             </div>
                         </div>
@@ -291,7 +391,7 @@ $email = $this->db->query($query);
                             <div class="row" style="padding-top: 40px;">
                                 <div class="col-12">
                                      <a href="<?=base_url()?>Dashboard/logout">
-                                       <button type = "button" style="font-size: 2vw">
+                                       <button class="btn btn-primary btn-lg" type="button" style="min-width:100%;background-color:#009489;border:none;">
                                             <?php echo $this->lang->line('dash_logout'); ?>
                                         </button>
                                     </a>
@@ -301,6 +401,269 @@ $email = $this->db->query($query);
 
                         </div>
                     </div>
+                    <div class="tab-pane" role="tabpanel" id="tab-4" style="padding:5%;max-height:94vh;overflow-y:scroll;">
+                        <div class="card register-card">
+
+                                <h3 class="title_registration"><?php echo $this->lang->line('title'); ?></h3>
+
+                            <form method="post" action="<?= site_url('Dashboard/dashboard_reg') ?>">
+                                <table align="center" cellpadding = "10">
+                                    <tr>
+                                        <td><?php echo $this->lang->line('first'); ?></td>
+                                        <td><input type="text" name="firstname" maxlength="30" placeholder="residents first name"/>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><?php echo $this->lang->line('last'); ?></td>
+                                        <td><input type="text" name="name" maxlength="30" placeholder="residents last name"/>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><?php echo $this->lang->line('birth'); ?></td>
+
+                                        <td>
+                                            <select name="Birthday_day" id="Birthday_day" style="width: 29%" required>
+                                                <option value="-1"><?php echo $this->lang->line('day'); ?></option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                                <option value="21">21</option>
+
+                                                <option value="22">22</option>
+                                                <option value="23">23</option>
+                                                <option value="24">24</option>
+                                                <option value="25">25</option>
+                                                <option value="26">26</option>
+                                                <option value="27">27</option>
+                                                <option value="28">28</option>
+                                                <option value="29">29</option>
+                                                <option value="30">30</option>
+
+                                                <option value="31">31</option>
+                                            </select>
+
+                                            <select id="Birthday_Month" name="Birthday_Month" style="width: 35%" required>
+                                                <option value="-1"><?php echo $this->lang->line('month'); ?></option>
+                                                <option value="January">Jan</option>
+                                                <option value="February">Feb</option>
+                                                <option value="March">Mar</option>
+                                                <option value="April">Apr</option>
+                                                <option value="May">May</option>
+                                                <option value="June">Jun</option>
+                                                <option value="July">Jul</option>
+                                                <option value="August">Aug</option>
+                                                <option value="September">Sep</option>
+                                                <option value="October">Oct</option>
+                                                <option value="November">Nov</option>
+                                                <option value="December">Dec</option>
+                                            </select>
+
+                                            <select name="Birthday_Year" id="Birthday_Year" style="width: 30%" required>
+
+                                                <option value="-1"><?php echo $this->lang->line('year'); ?></option>
+                                                <option value="1990">1990</option>
+
+                                                <option value="1989">1989</option>
+                                                <option value="1988">1988</option>
+                                                <option value="1987">1987</option>
+                                                <option value="1986">1986</option>
+                                                <option value="1985">1985</option>
+                                                <option value="1984">1984</option>
+                                                <option value="1983">1983</option>
+                                                <option value="1982">1982</option>
+                                                <option value="1981">1981</option>
+                                                <option value="1980">1980</option>
+
+                                                <option value="1979">1979</option>
+                                                <option value="1978">1978</option>
+                                                <option value="1977">1977</option>
+                                                <option value="1976">1976</option>
+                                                <option value="1975">1975</option>
+                                                <option value="1974">1974</option>
+                                                <option value="1973">1973</option>
+                                                <option value="1972">1972</option>
+                                                <option value="1971">1971</option>
+                                                <option value="1970">1970</option>
+
+                                                <option value="1969">1969</option>
+                                                <option value="1968">1968</option>
+                                                <option value="1967">1967</option>
+                                                <option value="1966">1966</option>
+                                                <option value="1965">1965</option>
+                                                <option value="1964">1964</option>
+                                                <option value="1963">1963</option>
+                                                <option value="1962">1962</option>
+                                                <option value="1961">1961</option>
+                                                <option value="1960">1960</option>
+
+                                                <option value="1959">1959</option>
+                                                <option value="1958">1958</option>
+                                                <option value="1957">1957</option>
+                                                <option value="1956">1956</option>
+                                                <option value="1955">1955</option>
+                                                <option value="1954">1954</option>
+                                                <option value="1953">1953</option>
+                                                <option value="1952">1952</option>
+                                                <option value="1951">1951</option>
+                                                <option value="1950">1950</option>
+
+                                                <option value="1949">1949</option>
+                                                <option value="1948">1948</option>
+                                                <option value="1947">1947</option>
+                                                <option value="1946">1946</option>
+                                                <option value="1945">1945</option>
+                                                <option value="1944">1944</option>
+                                                <option value="1943">1943</option>
+                                                <option value="1942">1942</option>
+                                                <option value="1941">1941</option>
+                                                <option value="1940">1940</option>
+
+                                                <option value="1939">1939</option>
+                                                <option value="1938">1938</option>
+                                                <option value="1937">1937</option>
+                                                <option value="1936">1936</option>
+                                                <option value="1935">1935</option>
+                                                <option value="1934">1934</option>
+                                                <option value="1933">1933</option>
+                                                <option value="1932">1932</option>
+                                                <option value="1931">1931</option>
+                                                <option value="1930">1930</option>
+
+                                                <option value="1929">1929</option>
+                                                <option value="1928">1928</option>
+                                                <option value="1927">1927</option>
+                                                <option value="1926">1926</option>
+                                                <option value="1925">1925</option>
+                                                <option value="1924">1924</option>
+                                                <option value="1923">1923</option>
+                                                <option value="1922">1922</option>
+                                                <option value="1921">1921</option>
+                                                <option value="1920">1920</option>
+
+                                                <option value="1919">1919</option>
+                                                <option value="1918">1918</option>
+                                            </select>
+                                            </td>
+                                    </tr>
+                                    <tr>
+                                        <td><?php echo $this->lang->line('contact'); ?></td>
+                                        <td>
+                                            <input type="number" name="Mobile_Number" maxlength="10" placeholder="number" />
+                                        </td>
+                                    </tr>
+
+                                    <!--<tr>
+                                        <td>GENDER</td>
+                                        <td>
+                                            Male <input type="radio" name="Gender" value="Male" />
+                                            Female <input type="radio" name="Gender" value="Female" />
+                                        </td>
+                                    </tr>-->
+
+                                    <tr>
+                                        <td>PIN CODE</td>
+                                        <td><input type="password" name="Pin_Code" maxlength="4" placeholder="pin"/>
+                                        </td>
+                                    </tr>
+
+
+                                    <!-- <tr>
+                                         <td>NATIONALITY</td>
+                                         <td><input type="text" name="Nationality" value="Belgium" readonly="readonly" /></td>
+                                     </tr>-->
+
+                                    <tr>
+                                        <br/>
+                                        <td><?php echo $this->lang->line('language'); ?></td>
+                                        <td>
+
+                                            <input type="radio" name="Radio" value="Dutch" checked>
+                                            <?php echo $this->lang->line('dutch'); ?>
+                                            <input type="radio" name="Radio" value="English" >
+                                            <?php echo $this->lang->line('english'); ?>
+                                            <input type="radio" name="Radio" value="French">
+                                            <?php echo $this->lang->line('french'); ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><?php echo $this->lang->line('room'); ?></td>
+                                        <td><input type="text" name="Room_Id" maxlength="100" placeholder="room id" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><?php echo $this->lang->line('bed'); ?></td>
+                                        <td><input type="text" name="Bed_Id" maxlength="10" placeholder="bed id" /></td>
+                                    </tr>
+
+                                    <!--<tr>
+                                         <td>EMAIL</td>
+                                         <td>
+                                             <input type="text" name="email" maxlength="30" />
+                                         </td>
+                                     </tr>-->
+
+
+
+                                    <tr>
+                                        <td><?php echo $this->lang->line('floor'); ?></td>
+                                        <td>
+
+                                            <input type="radio" name="floor" value="GroundFloor" checked>
+                                            <?php echo $this->lang->line('floor1'); ?>
+                                            <input type="radio" name="floor" value="FirstFloor">
+                                            <?php echo $this->lang->line('floor2'); ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>        </td>
+                                        <td>
+                                            <input type="radio" name="floor" value="SecondFloor">
+                                            <?php echo $this->lang->line('floor3'); ?>
+                                            <input type="radio" name="floor" value="ThirdFloor">
+                                            <?php echo $this->lang->line('floor4'); ?>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><?php echo $this->lang->line('privileges'); ?></td>
+                                        <td>
+                                            <input type="text" name="Privileges" maxlength="200" placeholder="optional" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="2" align="center">
+                                            <input type="submit" value="Save"  >
+                                            <input type="reset" value="Reset">
+
+                                        </td>
+                                    </tr>
+                                </table>
+                            </form>
+                            </div>
+
+                    </div>
+
                 </div>
             </div>
         </div>
@@ -310,8 +673,8 @@ $email = $this->db->query($query);
                 <h2 class="notes-title"><?php echo $this->lang->line('dash_notes'); ?></h2>
 
                 <a  href=<?=base_url()?>index.php/Caregiver_controller/add_note class="link1">
-                <button class="btn btn-primary btn-lg" type="button" style="min-width:100%;background-color:#009489;border:none;"><?php echo $this->lang->line('dash_add'); ?></button></div>
-                </a>
+                    <button class="btn btn-primary btn-lg" type="button" style="min-width:100%;background-color:#009489;border:none;"><?php echo $this->lang->line('dash_add'); ?></button></div>
+            </a>
 
             <div style="height:2%;"></div>
 
@@ -319,7 +682,7 @@ $email = $this->db->query($query);
                 <div class="card notes-card active">
                     <div class="card-header notes-card-head" role="tab">
                         <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-1 .item-1" href="div#accordion-1 .item-1" class="btn-notes">
-                                <?php echo $this->lang->line('dash_today'); ?></a><i class="fa fa-star"></i></h5>
+                                <?php echo $this->lang->line('dash_today'); ?>&nbsp;</a></h5>
                     </div>
                     <div class="collapse show item-1 notes-content" role="tabpanel" data-parent="#accordion-1">
                         <div class="card-body">
@@ -327,19 +690,19 @@ $email = $this->db->query($query);
                             foreach ($result->result_array() as $row) {
                                 if((time()+3600)-strtotime($row['timestamp']) < 86400){
                                     ?><div class="note-box"><?php
-                                            ?><p class="note-heading"><b><?php
-                                                echo $row['firstName'];
-                                                ?></b><span class="note-timestamp"><?php
-                                                for($i = 0; $i < 11; $i++) {
-                                                    $row['timestamp'][$i] = ' ';
-                                                }
-                                                $row['timestamp'][16] = ' ';
-                                                $row['timestamp'][17] = ' ';
-                                                $row['timestamp'][18] = ' ';
-                                                    echo $row['timestamp'];
-                                                ?></span><?php
-                                            ?></p><?php
-                                        echo $row['noteText'];
+                                    ?><p class="note-heading"><b><?php
+                                        echo $row['firstName'];
+                                        ?></b><span class="note-timestamp"><?php
+                                    for($i = 0; $i < 11; $i++) {
+                                        $row['timestamp'][$i] = ' ';
+                                    }
+                                    $row['timestamp'][16] = ' ';
+                                    $row['timestamp'][17] = ' ';
+                                    $row['timestamp'][18] = ' ';
+                                    echo $row['timestamp'];
+                                    ?></span><?php
+                                    ?></p><?php
+                                    echo $row['noteText'];
                                     ?></div><?php
                                 }
                             }
@@ -349,7 +712,7 @@ $email = $this->db->query($query);
                 </div>
                 <div class="card notes-card">
                     <div class="card-header notes-card-head" role="tab">
-                        <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-2" href="div#accordion-1 .item-2" class="btn-notes"><?php echo $this->lang->line('dash_this_week'); ?></a></h5>
+                        <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-2" href="div#accordion-1 .item-2" class="btn-notes"><?php echo $this->lang->line('dash_this_week'); ?>&nbsp;</a></h5>
                     </div>
                     <div class="collapse item-2 notes-content" role="tabpanel" data-parent="#accordion-1">
                         <div class="card-body">
@@ -376,7 +739,7 @@ $email = $this->db->query($query);
                 </div>
                 <div class="card notes-card">
                     <div class="card-header notes-card-head" role="tab">
-                        <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-3" href="div#accordion-1 .item-3" class="btn-notes"><?php echo $this->lang->line('dash_archive'); ?></a></h5>
+                        <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-3" href="div#accordion-1 .item-3" class="btn-notes"><?php echo $this->lang->line('dash_archive'); ?>&nbsp;</a></h5>
                     </div>
                     <div class="collapse item-3 notes-content" role="tabpanel" data-parent="#accordion-1">
                         <div class="card-body">
@@ -417,472 +780,28 @@ $email = $this->db->query($query);
 
 
 <script>
+    var currentButtonID
     function loadResident(id){
-        document.getElementById("residentTitle").innerText = id + "<?php echo $this->lang->line('dash_profile'); ?>"
+        if(currentButtonID){
+            var previous = document.getElementById(currentButtonID)
+            previous.classList.remove("btn-active")
+        }
+
+        var element = document.getElementById(id)
+        element.classList.add("btn-active")
+        currentButtonID = id
+
+        document.getElementById("residentName").innerText = id + "<?php echo $this->lang->line('dash_profile'); ?>"
     }
 
+</script>
 
+<script type="text/javascript">
+    var bothData = <?php echo json_encode($data_each1); ?>;
 </script>
 
 <script>
-    // $('#accordion .panel-collapse').on('shown.bs.collapse', function () {
-    //     $(this).prev().find(".glyphicon").removeClass("glyphicon-chevron-right").addClass("glyphicon-chevron-down");
-    // });
-    //
-    // //The reverse of the above on hidden event:
-    //
-    // $('#accordion .panel-collapse').on('hidden.bs.collapse', function () {
-    //     $(this).prev().find(".glyphicon").removeClass("glyphicon-chevron-down").addClass("glyphicon-chevron-right");
-    // });
-</script>
 
-<script>
-    //set up data
-    var bothData = [
-        {
-            "categoryType": "categoryA",
-            "questionNum": "question 1",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "3.3",
-            "scores": "2"
-        },
-        {
-            "categoryType": "categoryA",
-            "questionNum": "question 2",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "12.8",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryB",
-            "questionNum": "question 1",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "7.1",
-            "scores": "1"
-        },
-        {
-            "categoryType": "categoryB",
-            "questionNum": "question 2",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "37.1",
-            "scores": "4"
-        },
-        {
-            "categoryType": "categoryB",
-            "questionNum": "question 3",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "2.7",
-            "scores": "3"
-        },
-        {
-            "categoryType": "categoryB",
-            "questionNum": "question 4",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "23.5",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryB",
-            "questionNum": "question 5",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "1.0",
-            "scores": "2"
-        },
-        {
-            "categoryType": "categoryC",
-            "questionNum": "question 1",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "3.3",
-            "scores": "2"
-        },
-        {
-            "categoryType": "categoryC",
-            "questionNum": "question 2",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "12.8",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryC",
-            "questionNum": "question 3",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "7.1",
-            "scores": "1"
-        },
-        {
-            "categoryType": "categoryD",
-            "questionNum": "question 1",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "7.1",
-            "scores": "1"
-        },
-        {
-            "categoryType": "categoryD",
-            "questionNum": "question 2",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "37.1",
-            "scores": "4"
-        },
-        {
-            "categoryType": "categoryD",
-            "questionNum": "question 3",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "2.7",
-            "scores": "3"
-        },
-        {
-            "categoryType": "categoryD",
-            "questionNum": "question 4",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "23.5",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryD",
-            "questionNum": "question 5",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "1.0",
-            "scores": "2"
-        },
-        {
-            "categoryType": "categoryE",
-            "questionNum": "question 1",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "7.1",
-            "scores": "1"
-        },
-        {
-            "categoryType": "categoryE",
-            "questionNum": "question 2",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "37.1",
-            "scores": "4"
-        },
-        {
-            "categoryType": "categoryE",
-            "questionNum": "question 3",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "2.7",
-            "scores": "3"
-        },
-        {
-            "categoryType": "categoryE",
-            "questionNum": "question 4",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "23.5",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryE",
-            "questionNum": "question 5",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "1.0",
-            "scores": "2"
-        },
-        {
-            "categoryType": "categoryE",
-            "questionNum": "question 6",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "23.5",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryE",
-            "questionNum": "question 7",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "1.0",
-            "scores": "2"
-        },
-        {
-            "categoryType": "categoryF",
-            "questionNum": "question 1",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "7.1",
-            "scores": "1"
-        },
-        {
-            "categoryType": "categoryF",
-            "questionNum": "question 2",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "37.1",
-            "scores": "4"
-        },
-        {
-            "categoryType": "categoryF",
-            "questionNum": "question 3",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "2.7",
-            "scores": "3"
-        },
-        {
-            "categoryType": "categoryF",
-            "questionNum": "question 4",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "23.5",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryG",
-            "questionNum": "question 1",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "7.1",
-            "scores": "1"
-        },
-        {
-            "categoryType": "categoryG",
-            "questionNum": "question 2",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "37.1",
-            "scores": "4"
-        },
-        {
-            "categoryType": "categoryG",
-            "questionNum": "question 3",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "2.7",
-            "scores": "3"
-        },
-        {
-            "categoryType": "categoryG",
-            "questionNum": "question 4",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "23.5",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryG",
-            "questionNum": "question 5",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "1.0",
-            "scores": "2"
-        },
-        {
-            "categoryType": "categoryG",
-            "questionNum": "question 6",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "23.5",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryG",
-            "questionNum": "question 7",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "1.0",
-            "scores": "2"
-        },
-        {
-            "categoryType": "categoryH",
-            "questionNum": "question 1",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "7.1",
-            "scores": "1"
-        },
-        {
-            "categoryType": "categoryH",
-            "questionNum": "question 2",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "37.1",
-            "scores": "4"
-        },
-        {
-            "categoryType": "categoryH",
-            "questionNum": "question 3",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "2.7",
-            "scores": "3"
-        },
-        {
-            "categoryType": "categoryH",
-            "questionNum": "question 4",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "23.5",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryH",
-            "questionNum": "question 5",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "1.0",
-            "scores": "2"
-        },
-        {
-            "categoryType": "categoryH",
-            "questionNum": "question 6",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "23.5",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryI",
-            "questionNum": "question 1",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "7.1",
-            "scores": "1"
-        },
-        {
-            "categoryType": "categoryI",
-            "questionNum": "question 2",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "37.1",
-            "scores": "4"
-        },
-        {
-            "categoryType": "categoryI",
-            "questionNum": "question 3",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "2.7",
-            "scores": "2"
-        },
-        {
-            "categoryType": "categoryI",
-            "questionNum": "question 4",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "23.5",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryI",
-            "questionNum": "question 5",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "1.0",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryI",
-            "questionNum": "question 6",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "23.5",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryJ",
-            "questionNum": "question 1",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "7.1",
-            "scores": "1"
-        },
-        {
-            "categoryType": "categoryJ",
-            "questionNum": "question 2",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "37.1",
-            "scores": "4"
-        },
-        {
-            "categoryType": "categoryJ",
-            "questionNum": "question 3",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "2.7",
-            "scores": "2"
-        },
-        {
-            "categoryType": "categoryJ",
-            "questionNum": "question 4",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "23.5",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryJ",
-            "questionNum": "question 5",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "1.0",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryK",
-            "questionNum": "question 1",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "7.1",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryK",
-            "questionNum": "question 2",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "37.1",
-            "scores": "4"
-        },
-        {
-            "categoryType": "categoryK",
-            "questionNum": "question 3",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "2.7",
-            "scores": "3"
-        },
-        {
-            "categoryType": "categoryK",
-            "questionNum": "question 4",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "23.5",
-            "scores": "5"
-        },
-        {
-            "categoryType": "categoryK",
-            "questionNum": "question 5",
-            "channel_display_name": "syncopika",
-            "channel_id": "T2NUI3KLGK6sDILFbzUZZg",
-            "views": "1.0",
-            "scores": "3"
-        },
-    ];
-
-    // var maleData = [];
-    // var femaleData = [];
     var data_1 = [];
     var data_2 = [];
     var data_3 = [];
@@ -895,82 +814,174 @@ $email = $this->db->query($query);
     var data_10 = [];
     var data_11 = [];
 
-    for(var i = 0; i < bothData.length; i++){
-        if(bothData[i]["categoryType"] === "categoryA"){
+
+    for (var i = 0; i < bothData.length; i++) {
+        if (bothData[i]["catergoryID"] === "0") {
             data_1.push(bothData[i]);
-        }else if(bothData[i]["categoryType"] === "categoryB"){
+        } else if (bothData[i]["catergoryID"] === "1") {
             data_2.push(bothData[i]);
         }
-        else if(bothData[i]["categoryType"] === "categoryC"){
+        else if (bothData[i]["catergoryID"] === "2") {
             data_3.push(bothData[i]);
         }
-        else if(bothData[i]["categoryType"] === "categoryD"){
+        else if (bothData[i]["catergoryID"] === "3") {
             data_4.push(bothData[i]);
         }
-        else if(bothData[i]["categoryType"] === "categoryE"){
+        else if (bothData[i]["catergoryID"] === "4") {
             data_5.push(bothData[i]);
         }
-        else if(bothData[i]["categoryType"] === "categoryF"){
+        else if (bothData[i]["catergoryID"] === "5") {
             data_6.push(bothData[i]);
         }
-        else if(bothData[i]["categoryType"] === "categoryG"){
+        else if (bothData[i]["catergoryID"] === "6") {
             data_7.push(bothData[i]);
         }
-        else if(bothData[i]["categoryType"] === "categoryH"){
+        else if (bothData[i]["catergoryID"] === "7") {
             data_8.push(bothData[i]);
         }
-        else if(bothData[i]["categoryType"] === "categoryI"){
+        else if (bothData[i]["catergoryID"] === "8") {
             data_9.push(bothData[i]);
         }
-        else if(bothData[i]["categoryType"] === "categoryJ"){
+        else if (bothData[i]["catergoryID"] === "9") {
             data_10.push(bothData[i]);
         }
-        else if(bothData[i]["categoryType"] === "categoryK"){
+        else if (bothData[i]["catergoryID"] === "10") {
             data_11.push(bothData[i]);
         }
     }
 
     //functions for toggling between data
-    function change(value){
+    function change(value) {
 
-        if(value === 'categoryA'){
+        if (value === '0') {
             update(data_1);
-        }else if(value === 'categoryB'){
+        } else if (value === '1') {
             update(data_2);
-        }else if(value === 'categoryC'){
+        } else if (value === '2') {
             update(data_3);
         }
-        else if(value === 'categoryD'){
+        else if (value === '3') {
             update(data_4);
         }
-        else if(value === 'categoryE'){
+        else if (value === '4') {
             update(data_5);
         }
-        else if(value === 'categoryF'){
+        else if (value === '5') {
             update(data_6);
         }
-        else if(value === 'categoryG'){
+        else if (value === '6') {
             update(data_7);
         }
-        else if(value === 'categoryH'){
+        else if (value === '7') {
             update(data_8);
         }
-        else if(value === 'categoryI'){
+        else if (value === '8') {
             update(data_9);
         }
-        else if(value === 'categoryJ'){
+        else if (value === '9') {
             update(data_10);
         }
-        else{
+        else if (value === '10') {
             update(data_11);
+        }
+        else {
+            xChart.domain(bothData.map(function (d) {
+                return d.category;
+            }));
+            //set domain for y axis
+            yChart.domain([0, d3.max(bothData, function (d) {
+                return d.answer;
+            })]);
+
+            //get the width of each bar
+            var barWidth = width / bothData.length;
+
+            //select all bars on the graph, take them out, and exit the previous data set.
+            //then you can add/enter the new data set
+            var bars = chart.selectAll(".bar")
+                .remove()
+                .exit()
+                .data(bothData)
+            //now actually give each rectangle the corresponding data
+            bars.enter()
+                .append("rect")
+                .attr("class", "bar")
+                .attr("x", function (d, i) {
+                    return i * barWidth + 1
+                })
+                .attr("y", function (d) {
+                    return yChart(d.answer);
+                })
+                .attr("height", function (d) {
+                    return height - yChart(d.answer);
+                })
+                .attr("width", barWidth - 1)
+                .attr("fill", function (d) {
+                    if (d.catergoryID === "0") {
+                        return "rgb(216,230,173)";
+                    } else if (d.catergoryID === "1") {
+                        return "rgb(173,216,230)";
+                    }
+                    else if (d.catergoryID === "2") {
+                        return "rgb(230,187,173)";
+                    }
+                    else if (d.catergoryID === "3") {
+                        return "rgb(138,149,240)";
+                    }
+                    else if (d.catergoryrID === "4") {
+                        return "rgb(200,235,208)";
+                    }
+                    else if (d.catergoryID === "5") {
+                        return "rgb(133,266,246)";
+                    }
+                    else if (d.catergoryID === "6") {
+                        return "rgb(187,187,187)";
+                    }
+                    else if (d.catergoryID === "7") {
+                        return "rgb(193,226,204)";
+                    }
+                    else if (d.catergoryID === "8") {
+                        return "rgb(234,145,152)";
+                    }
+                    else if (d.catergoryID === "9") {
+                        return "rgb(252,244,144)";
+                    }
+                    else if (d.catergoryID === "10") {
+                        return "rgb(157,174,147)";
+                    }
+                    else {
+                        return "rgb(14,174,294)";
+                    }
+                });
+            //left axis
+            chart.select('.y')
+                .call(yAxis)
+            //bottom axis
+            chart.select('.xAxis')
+                .attr("transform", "translate(0," + height + ")")
+                .call(xAxis)
+                .selectAll("text")
+                .style("text-anchor", "end")
+                .attr("dx", "-.8em")
+                .attr("dy", ".15em")
+                .attr("transform", function (d) {
+                    return "rotate(-65)";
+                });
+
+
         }
     }
 
-    function update(data){
+
+    function update(data) {
         //set domain for the x axis
-        xChart.domain(data.map(function(d){ return d.questionNum; }) );
+        xChart.domain(data.map(function (d) {
+            return d.question;
+        }));
         //set domain for y axis
-        yChart.domain( [0, d3.max(data, function(d){ return +d.scores; })] );
+        yChart.domain([0, d3.max(data, function (d) {
+            return +d.answer;
+        })]);
 
         //get the width of each bar
         var barWidth = width / data.length;
@@ -985,42 +996,51 @@ $email = $this->db->query($query);
         bars.enter()
             .append("rect")
             .attr("class", "bar")
-            .attr("x", function(d, i){ return i * barWidth + 1 })
-            .attr("y", function(d){ return yChart( d.scores); })
-            .attr("height", function(d){ return height - yChart(d.scores); })
+            .attr("x", function (d, i) {
+                return i * barWidth + 1
+            })
+            .attr("y", function (d) {
+                return yChart(d.answer);
+            })
+            .attr("height", function (d) {
+                return height - yChart(d.answer);
+            })
             .attr("width", barWidth - 1)
-            .attr("fill", function(d){
-                if(d.categoryType === "categoryB"){
-                    return "rgb(251,180,174)";
-                }else if(d.categoryType === "categoryB"){
-                    return "rgb(179,205,227)";
+            .attr("fill", function (d) {
+                if (d.catergoryID === "0") {
+                    return "rgb(216,230,173)";
+                } else if (d.catergoryID === "1") {
+                    return "rgb(173,216,230)";
                 }
-                else if(d.categoryType === "categoryC"){
-                    return "rgb(251,180,174)";
+                else if (d.catergoryID === "2") {
+                    return "rgb(230,187,173)";
                 }
-                else if(d.categoryType === "categoryD"){
-                    return "rgb(179,205,227)";
+                else if (d.catergoryID === "3") {
+                    return "rgb(138,149,240)";
                 }
-                else if(d.categoryType === "categoryE"){
-                    return "rgb(251,180,174)";
+                else if (d.catergoryrID === "4") {
+                    return "rgb(200,235,208)";
                 }
-                else if(d.categoryType === "categoryF"){
-                    return "rgb(179,205,227)";
+                else if (d.catergoryID === "5") {
+                    return "rgb(133,266,246)";
                 }
-                else if(d.categoryType === "categoryG"){
-                    return "rgb(251,180,174)";
+                else if (d.catergoryID === "6") {
+                    return "rgb(187,187,187)";
                 }
-                else if(d.categoryType === "categoryH"){
-                    return "rgb(179,205,227)";
+                else if (d.catergoryID === "7") {
+                    return "rgb(193,226,204)";
                 }
-                else if(d.categoryType === "categoryI"){
-                    return "rgb(251,180,174)";
+                else if (d.catergoryID === "8") {
+                    return "rgb(234,145,152)";
                 }
-                else if(d.categoryType === "categoryJ"){
-                    return "rgb(179,205,227)";
+                else if (d.catergoryID === "9") {
+                    return "rgb(252,244,144)";
+                }
+                else if (d.catergoryID === "10") {
+                    return "rgb(157,174,147)";
                 }
                 else {
-                    return "rgb(251,180,174)";
+                    return "rgb(14,174,294)";
                 }
             });
         //left axis
@@ -1034,16 +1054,18 @@ $email = $this->db->query($query);
             .style("text-anchor", "end")
             .attr("dx", "-.8em")
             .attr("dy", ".15em")
-            .attr("transform", function(d){
+            .attr("transform", function (d) {
                 return "rotate(-65)";
             });
 
+
     }//end update
 
+
     //set up chart
-    var margin = {top: 20, right: 20, bottom: 95, left: 50};
-    var width =500;
-    var height = 400;
+    var margin = {top: 20, right:20, bottom: 280, left: 60};
+    var width = 430;
+    var height = 300;
 
     var chart = d3.select(".chart")
         .attr("width", width + margin.left + margin.right)
@@ -1054,17 +1076,24 @@ $email = $this->db->query($query);
     var xChart = d3.scaleBand()
         .range([0, width]);
 
-    var yChart = d3.scaleLinear()
+    var yChart;
+    yChart = d3.scaleLinear()
         .range([height, 0]);
 
+
     var xAxis = d3.axisBottom(xChart);
-    var yAxis = d3.axisLeft(yChart);
+
+    var yAxis = d3.axisLeft(yChart)
+        .ticks(5)
+        .tickValues([0, 1, 2, 3, 4, 5]);
+
 
     //set up axes
     //left axis
     chart.append("g")
         .attr("class", "y axis")
         .call(yAxis)
+
 
     //bottom axis
     chart.append("g")
@@ -1075,27 +1104,32 @@ $email = $this->db->query($query);
         .style("text-anchor", "end")
         .attr("dx", "-.8em")
         .attr("dy", ".15em")
-        .attr("transform", function(d){
+        .attr("transform", function (d) {
             return "rotate(-65)";
         });
 
     //add labels
     chart
         .append("text")
-        .attr("transform", "translate(-35," +  (height+margin.bottom)/2 + ") rotate(-90)")
-        .text("score of answer");
+        .attr("transform", "translate(-35," + (height + margin.bottom) / 2 + ") rotate(-90)")
+        .text("<?php echo $this->lang->line('category_score'); ?>");
 
     chart
         .append("text")
-        .attr("transform", "translate(" + (width/2) + "," + (height + margin.bottom - 5) + ")")
-        .text("Answers");
+        .attr("transform", "translate(" + (width / 2) + "," + (height + margin.bottom - 5) + ")")
+        .text("<?php echo $this->lang->line('category_ans'); ?>");
 
 
     //use bothData to begin with
     //update(bothData);
-    xChart.domain(bothData.map(function(d){ return d.categoryType; }) );
+    xChart.domain(bothData.map(function (d) {
+        return d.category;
+    }));
     //set domain for y axis
-    yChart.domain( [0, d3.max(bothData, function(d){ return +d.scores; })] );
+    //yChart.domain( [0, d3.max(bothData, function(d){ return +d.answer; },)] );
+    yChart.domain([0, d3.max(bothData, function (d) {
+        return d.answer;
+    })]);
 
     //get the width of each bar
     var barWidth = width / bothData.length;
@@ -1110,47 +1144,58 @@ $email = $this->db->query($query);
     bars.enter()
         .append("rect")
         .attr("class", "bar")
-        .attr("x", function(d, i){ return i * barWidth + 1 })
-        .attr("y", function(d){ return yChart( d.scores); })
-        .attr("height", function(d){ return height - yChart(d.scores); })
+        .attr("x", function (d, i) {
+            return i * barWidth + 1
+        })
+        .attr("y", function (d) {
+            return yChart(d.answer);
+        })
+        .attr("height", function (d) {
+            return height - yChart(d.answer);
+        })
         .attr("width", barWidth - 1)
-        .attr("fill", function(d){
-            if(d.categoryType === "categoryB"){
-                return "rgb(251,180,174)";
-            }else if(d.categoryType === "categoryB"){
-                return "rgb(204,153,255)";
+        .attr("fill", function (d) {
+            if (d.catergoryID === "0") {
+                return "rgb(216,230,173)";
+            } else if (d.catergoryID === "1") {
+                return "rgb(173,216,230)";
             }
-            else if(d.categoryType === "categoryC"){
-                return "rgb(251,180,174)";
+            else if (d.catergoryID === "2") {
+                return "rgb(230,187,173)";
             }
-            else if(d.categoryType === "categoryD"){
-                return "rgb(179,205,227)";
+            else if (d.catergoryID === "3") {
+                return "rgb(138,149,240)";
             }
-            else if(d.categoryType === "categoryE"){
-                return "rgb(251,180,174)";
+            else if (d.catergoryrID === "4") {
+                return "rgb(200,235,208)";
             }
-            else if(d.categoryType === "categoryF"){
-                return "rgb(179,205,227)";
+            else if (d.catergoryID === "5") {
+                return "rgb(133,266,246)";
             }
-            else if(d.categoryType === "categoryG"){
-                return "rgb(251,180,174)";
+            else if (d.catergoryID === "6") {
+                return "rgb(187,187,187)";
             }
-            else if(d.categoryType === "categoryH"){
-                return "rgb(179,205,227)";
+            else if (d.catergoryID === "7") {
+                return "rgb(193,226,204)";
             }
-            else if(d.categoryType === "categoryI"){
-                return "rgb(251,180,174)";
+            else if (d.catergoryID === "8") {
+                return "rgb(234,145,152)";
             }
-            else if(d.categoryType === "categoryJ"){
-                return "rgb(179,205,227)";
+            else if (d.catergoryID === "9") {
+                return "rgb(252,244,144)";
+            }
+            else if (d.catergoryID === "10") {
+                return "rgb(157,174,147)";
             }
             else {
-                return "rgb(251,180,174)";
+                return "rgb(14,174,294)";
             }
         });
+
     //left axis
     chart.select('.y')
         .call(yAxis)
+
     //bottom axis
     chart.select('.xAxis')
         .attr("transform", "translate(0," + height + ")")
@@ -1158,12 +1203,12 @@ $email = $this->db->query($query);
         .selectAll("text")
         .style("text-anchor", "end")
         .attr("dx", "-.8em")
-        .attr("dy", ".15em")
-        .attr("transform", function(d){
+        .attr("dy", ".1em")
+        .attr("transform", function (d) {
             return "rotate(-65)";
         });
+
+
 </script>
 
 
-
-</html>

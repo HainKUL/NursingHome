@@ -7,10 +7,6 @@
     <link href="<?=base_url()?>assets/css/caregiver_login.css" rel="stylesheet" type="text/css"/>
     <link rel="icon" href="<?=base_url()?>assets/photos/favicon3.ico" type="image/gif" sizes="16x16">
 
-    <select onchange="javascript:window.location.href='<?php echo base_url(); ?>MultiLanguageSwitcher/switcher/'+this.value;">
-        <option value="english" <?php if($this->session->userdata('site_lang') == 'english') echo 'selected="selected"'; ?>>English</option>
-        <option value="dutch" <?php if($this->session->userdata('site_lang') == 'dutch') echo 'selected="selected"'; ?>>Dutch</option>
-    </select>
 </head>
 
 <body>
@@ -49,7 +45,7 @@
 
         <a href="/index.php/Caregiver_controller/dashboard">dev login</a>-->
 
-    </div> <!-- End Box -->
+    <!-- End Box -->
 
 </form>
 <br /><br /><br /><br /><br /><br />
