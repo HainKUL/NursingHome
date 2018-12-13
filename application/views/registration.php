@@ -4,86 +4,16 @@
 <head>
     <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <!-- Bootstrap CSS -->
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <!-- Custom CSS-->
-
     <link href="<?= base_url()?>assets/css/dashboard.css" rel="stylesheet" type="text/css"/>
 
 </head>
 
 <body>
-<div id="graphic"></div>
 
-<script>
-    var data = [{"questions":"A1","score":3},{"questions":"A2","score":2},{"questions":"B1","score":4},{"questions":"B2","score":1},{"questions":"B3","score":5},{"questions":"B4","score":3},{"questions":"B5","score":4}
-        ,{"questions":"C1","score":3},{"questions":"C2","score":4},{"questions":"C3","score":5}
-        ,{"questions":"D1","score":3},{"questions":"D2","score":4},{"questions":"D3","score":1},{"questions":"D4","score":4},{"questions":"D5","score":5}
-        ,{"questions":"E1","score":3},{"questions":"E2","score":4},{"questions":"E3","score":1},{"questions":"E4","score":4},{"questions":"E5","score":5}
-        ,{"questions":"F1","score":3},{"questions":"F2","score":4},{"questions":"F3","score":5}
-        ,{"questions":"G1","score":3},{"questions":"G2","score":4},{"questions":"G3","score":1},{"questions":"G4","score":4},{"questions":"G5","score":5},{"questions":"G6","score":4},{"questions":"G7","score":3}
-        ,{"questions":"H1","score":3},{"questions":"H2","score":4},{"questions":"H3","score":1},{"questions":"H4","score":4},{"questions":"H5","score":5},{"questions":"H6","score":4}];
-
-    // set the dimensions and margins of the graph
-    var margin = {top: 20, right: 20, bottom: 30, left: 40},
-        width = 500 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
-
-    // set the ranges
-    var y = d3.scaleBand()
-        .range([height, 0])
-        .padding(0.2);
-
-    var x = d3.scaleLinear()
-        .range([0, width]);
-
-    // append the svg object to the body of the page
-    // append a 'group' element to 'svg'
-    // moves the 'group' element to the top left margin
-    var svg = d3.select("#graphic").append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform",
-            "translate(" + margin.left + "," + margin.top + ")");
-    // format the data
-    data.forEach(function(d) {
-        d.score = +d.score;
-    });
-
-    // Scale the range of the data in the domains
-    x.domain([0, d3.max(data, function(d){ return d.score; })])
-    y.domain(data.map(function(d) { return d.questions; }));
-
-
-    // append the rectangles for the bar chart
-    svg.selectAll(".bar")
-        .data(data)
-        .enter().append("rect")
-        .attr("class", "bar")
-
-        .attr("width", function(d) {return x(d.score); } )
-        .attr("y", function(d) { return y(d.questions); })
-        .attr("height", y.bandwidth());
-
-    // add the x Axis
-    svg.append("g")
-        .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x));
-
-    // add the y Axis
-    svg.append("g")
-        .call(d3.axisLeft(y));
-
-    svg.axis()
-        .tickFormat(d3.format(""));
-
-</script>
-<?php if(isset($_SESSION)) {
-    echo $this->session->flashdata('flash_data');
-} ?>
 <h3 class="title_registration"><?php echo $this->lang->line('title'); ?></h3>
 
 <form method="post" action="<?= site_url('Dashboard/dashboard_reg') ?>">
@@ -343,9 +273,47 @@
             <input type="reset" value="Reset">
         </td>
     </tr>
+
 </table>
 
 </form>
+
+
+<div class="container">
+    <div class="card center">
+        <div class="card-content">
+            <div class="card-action">
+                <div class="card-action">
+                    <div class="card-action">
+                        <form action="face_registration.php" method="post">
+                            ID:         <input type="text" class="validate" id="ip">
+                        </form>
+
+                        <button onclick="startWebcam();" align="center">{start}</button>
+                        <button onclick="snapshot();" align="center">{capture}</button>
+                    </div>
+                    <tr>
+                        <td>
+                            <video onclick="snapshot(this)" id="video" width="400" height="300" align="center" controls autoplay></video>
+                        </td>
+                        <td>
+                            <canvas  id="myCanvas" width="400" height="300"></canvas>
+                        </td>
+
+                    </tr>
+
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+
+<a href="<?=base_url()?>Homepage_controller/residentHome"><button >login bypass</button></a>
+<script src="../../assets/js/face_login.js"></script>
 
 
 </body>

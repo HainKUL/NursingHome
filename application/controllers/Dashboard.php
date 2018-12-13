@@ -87,6 +87,7 @@ class Dashboard extends CI_Controller
                 $query = "INSERT INTO Residents (name, firstName,dateOfBirth,roomNumber,bedNumber,pinHash,pinSalt,preferences) VALUES($name, $firstname,'$dateOfBirth',$roomNumber,$bedNumber,'$pinhash','$salt',$lang)";
                 $this->db->query($query);
                 header('location: dashboard');
+                echo "success";
             }
 
         }

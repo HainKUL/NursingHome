@@ -3,6 +3,8 @@ navigator.getUserMedia = ( navigator.getUserMedia ||
     navigator.mozGetUserMedia ||
     navigator.msGetUserMedia);
 
+
+
 var video;
 var webcamStream;
 
@@ -30,6 +32,8 @@ function startWebcam() {
     } else {
         console.log("getUserMedia not supported");
     }
+
+    init();
 }
 
 //---------------------
@@ -42,6 +46,8 @@ function init() {
     // drawing in it
     canvas = document.getElementById("myCanvas");
     ctx = canvas.getContext('2d');
+
+    console.log("success");
 }
 
 function snapshot() {
@@ -66,9 +72,10 @@ function snapshot() {
     }
 
     $.ajax(settings).done(function (response) {
-        //
+
         if((response.images[0].transaction.status) == "success"){
             Materialize.toast("Image Trained succesfully by name " +response.images[0].transaction.subject_id+ " in gallery name " +response.images[0].transaction.gallery_name, 4000);
+            console.log("IDK")
         }
         else{
             Materialize.toast("Unable to Train Image", 4000);
