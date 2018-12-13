@@ -41,7 +41,7 @@ if(!isset($_SESSION['id']))
             font-weight: 300;
             fill: #242424;
             text-align: center;
-            text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;
+            /*text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;*/
             cursor: default;
 
         }
@@ -157,7 +157,7 @@ $email = $this->db->query($query);
 
 
     <div class="row" style="height:100vh;">
-        <div class="col-3" style="background-color:#009489;padding:0;">
+        <div class="col-3" id="div1" style="background-color:#009489;padding:0;">
             <!-- <a href="<?=base_url()?>Dashboard/logout">
             <button class="btn btn-primary btn-lg" type="button" style="min-width:100%;background-color:#009489;border:none;" >
                 <p><?php echo $this->lang->line('dash_logout'); ?></p>
@@ -178,8 +178,7 @@ $email = $this->db->query($query);
                     </div>
                 </div>
                 <input class ="searchbar" type="search" placeholder="<?php echo $this->lang->line('search'); ?>"></div>
-            <div style="height:5%;"></div>
-            <div style="overflow-y:scroll;max-height:73vh;">
+            <div style="overflow-y:scroll;max-height:68vh;">
                 <div class="btn-group-vertical btn-group-lg" role="group" style="width:100%;">
                     <?php
                     foreach ($residents->result_array() as $row) {
@@ -198,13 +197,37 @@ $email = $this->db->query($query);
                 </div>
             </div>
         </div>
+        <div class="col-3 hiddendiv" id="div2" style="background-color:#009489;padding:0;">
+
+
+
+
+
+
+        </div>
+        <div class="col-3 hiddendiv" id="div3" style="background-color:#009489;padding:0;">
+
+
+
+
+
+
+        </div>
+        <div class="col-3 hiddendiv" id="div4" style="background-color:#009489;padding:0;">
+
+
+
+
+
+
+        </div>
         <div class="col-6" style="background-color:#f9f9f9;padding:0px;">
             <div style="width:100%;">
                 <ul class="nav nav-tabs" style="text-align:center;border:none;">
-                    <li class="nav-item" style="width:25%;"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1" style="border:none;"><?php echo $this->lang->line('dash_questionnaire'); ?></a></li>
-                    <li class="nav-item" style="width:25%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2" style="border:none;"><?php echo $this->lang->line('dash_poll'); ?></a></li>
-                    <li class="nav-item" style="width:25%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3" style="border:none;"><?php echo $this->lang->line('dash_personal'); ?></a></li>
-                    <li class="nav-item" style="width:25%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-4" style="border:none;"><?php echo $this->lang->line('dash_register'); ?></a></li>
+                    <li class="nav-item" style="width:25%;"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1" style="border:none;" onclick="loadDiv1()"><?php echo $this->lang->line('dash_questionnaire'); ?></a></li>
+                    <li class="nav-item" style="width:25%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2" style="border:none;" onclick="loadDiv2()"><?php echo $this->lang->line('dash_poll'); ?></a></li>
+                    <li class="nav-item" style="width:25%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3" style="border:none;" onclick="loadDiv3()"><?php echo $this->lang->line('dash_personal'); ?></a></li>
+                    <li class="nav-item" style="width:25%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-4" style="border:none;" onclick="loadDiv4()"><?php echo $this->lang->line('dash_register'); ?></a></li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="tab-1" style="padding:5%;max-height:94vh;overflow-y:scroll;">
@@ -346,8 +369,8 @@ $email = $this->db->query($query);
                                 <div class="col-8">
                                    <p class="personal_text"> <?php echo $this->lang->line('dash_chooselang'); ?> </p>
                                 </div>
-                                <div class="col-4" style="padding-top: 12px;">
-                                    <select onchange="javascript:window.location.href='<?php echo base_url(); ?>MultiLanguageSwitcher/switcher/'+this.value;">
+                                <div class="col-4" style="padding-top: 12px">
+                                    <select style="width:100%" onchange="javascript:window.location.href='<?php echo base_url(); ?>MultiLanguageSwitcher/switcher/'+this.value;">
                                         <option value="english" <?php if($this->session->userdata('site_lang') == 'english') echo 'selected="selected"'; ?>>English</option>
                                         <option value="dutch" <?php if($this->session->userdata('site_lang') == 'dutch') echo 'selected="selected"'; ?>>Nederlands</option>
                                     </select>
@@ -379,7 +402,7 @@ $email = $this->db->query($query);
 
                         </div>
                     </div>
-                    <div class="tab-pane" role="tabpanel" id="tab-4">
+                    <div class="tab-pane" role="tabpanel" id="tab-4" style="padding:5%;max-height:94vh;overflow-y:scroll;">
                         <div class="card register-card">
 
                                 <h3 class="title_registration"><?php echo $this->lang->line('title'); ?></h3>
@@ -777,6 +800,37 @@ $email = $this->db->query($query);
         currentButtonID = id
 
         document.getElementById("residentName").innerText = id + "<?php echo $this->lang->line('dash_profile'); ?>"
+    }
+</script>
+
+<script>
+    function loadDiv1(){
+        document.getElementById("div2").classList.add("hiddendiv")
+        document.getElementById("div3").classList.add("hiddendiv")
+        document.getElementById("div4").classList.add("hiddendiv")
+        var element = document.getElementById("div1")
+        element.classList.remove("hiddendiv")
+    }
+    function loadDiv2(){
+        document.getElementById("div1").classList.add("hiddendiv")
+        document.getElementById("div3").classList.add("hiddendiv")
+        document.getElementById("div4").classList.add("hiddendiv")
+        var element = document.getElementById("div2")
+        element.classList.remove("hiddendiv")
+    }
+    function loadDiv3(){
+        document.getElementById("div1").classList.add("hiddendiv")
+        document.getElementById("div2").classList.add("hiddendiv")
+        document.getElementById("div4").classList.add("hiddendiv")
+        var element = document.getElementById("div3")
+        element.classList.remove("hiddendiv")
+    }
+    function loadDiv4(){
+        document.getElementById("div1").classList.add("hiddendiv")
+        document.getElementById("div2").classList.add("hiddendiv")
+        document.getElementById("div3").classList.add("hiddendiv")
+        var element = document.getElementById("div4")
+        element.classList.remove("hiddendiv")
     }
 
 </script>
