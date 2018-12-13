@@ -48,7 +48,7 @@
         <div class = "col-md-3">
         </div>
         <div class = "col-md-6">
-            <a class="link1" href="<?=base_url()?>/Homepage_controller/nieuwsblad/<?php echo $_SESSION['id']?>">
+            <a class="link1" href="<?=base_url()?>/Homepage_controller/nieuwsblad">
                 <button type="button" class="button_menu">
                     <img src="<?=base_url()?>assets/photos/nieuwsblad.jpg"  class="image1">
                     <?php echo $this->lang->line('buttonClickHere'); ?>
@@ -60,7 +60,7 @@
         <div class = "col-md-3">
         </div>
         <div class = "col-md-6">
-            <a class="link1" href="<?=base_url()?>/Homepage_controller/standard/<?php echo $_SESSION['id']?>">
+            <a class="link1" href="<?=base_url()?>/Homepage_controller/standard">
                 <button type="button" class="button_menu">
                     <img src="<?=base_url()?>assets/photos/standaard.jpg" class="image2">
                     <?php echo $this->lang->line('buttonClickHere'); ?>
@@ -72,7 +72,7 @@
         <div class = "col-md-3">
         </div>
         <div class = "col-md-6">
-            <a class="link1" href="<?=base_url()?>/Homepage_controller/dm/<?php echo $_SESSION['id']?>">
+            <a class="link1" href="<?=base_url()?>/Homepage_controller/dm">
                 <button type="button"class="button_menu" >
                     <img src="<?=base_url()?>assets/photos/demorgen.png" class="image3" >
                     <?php echo $this->lang->line('buttonClickHere'); ?>

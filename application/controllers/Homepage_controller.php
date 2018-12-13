@@ -39,53 +39,41 @@ class Homepage_controller extends CI_Controller
         $this->parser->parse('Homepage_view', $data);
     }
 
-    public function news($userID)
+    public function news()
     {
 
-        $data['user_id'] = $userID;
-        $_SESSION['id']=$userID;
-        $this->parser->parse('news_view', $data);
+        $this->load->view("news_view");
     }
 
-    public function nieuwsblad($userID)
+    public function nieuwsblad()
     {
 
 
-        $data['user_id'] = $userID;
-        $_SESSION['id']=$userID;
-        $this->parser->parse('nieuwsblad_view', $data);
+        $this->load->view("nieuwsblad_view");
     }
 
-    public function standard($userID)
+    public function standard()
     {
 
 
-        $data['user_id'] = $userID;
-        $_SESSION['id']=$userID;
-        $this->parser->parse('standard_view', $data);
+        $this->load->view("standard_view");
     }
 
-    public function dm($userID)
+    public function dm()
     {
 
-        $data['user_id'] = $userID;
-        $_SESSION['id']=$userID;
-        $this->parser->parse('dm_view', $data);
+        $this->load->view("dm_view");
     }
 
-    public function weathers($userID)
+    public function weathers()
     {
 
-        $data['user_id'] = $userID;
-        $_SESSION['id']=$userID;
-        $this->parser->parse('weathers', $data);
+        $this->load->view("weathers");
     }
 
-    public function sportsnews($userID)
+    public function sportsnews()
     {
-
-        $data['user_id'] = $userID;
-        $this->parser->parse('sportsnews', $data);
+        $this->load->view("sportsnews");
     }
     public function login(){
         $data['head_message'] = 'Resident Login | Welcome';
