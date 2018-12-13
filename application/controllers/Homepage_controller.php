@@ -19,9 +19,10 @@ class Homepage_controller extends CI_Controller
         $this->parser->parse('Homepage_view', $data);
     }
 
-    public function residentHome()
+    public function residentHome($userID)
     {
         $data['content'] = 'content';
+        $data['user_id'] = $userID;
         $this->parser->parse('olderadultmenu', $data);
     }
 

@@ -30,10 +30,11 @@ body {
     border-radius:15px;
     box-shadow: 10px 10px #eae6e8;
 }
-.button1 /*to go back */
+
+.button_logout /*to go back */
 {
     display: block;
-    padding: 10px 20px; /*make button bigger than text*/
+    padding: 1px 20px; /*make button bigger than text*/
     font-size: 20px;
     align-items: center;
     text-align: center;
@@ -44,13 +45,13 @@ body {
     box-shadow: 5px 5px #eae6e8;
 
 }
-.button1:active { /* to show button being pressed*/
+.button_logout:active { /* to show button being pressed*/
     background-color: grey;
     box-shadow: 0 5px #666;
     transform: translateY(4px);
 }
 
-.button2 /* menu buttons */
+.button_menu /* menu buttons */
 {
     display: block;
     height: 100px;
@@ -64,7 +65,24 @@ body {
     box-shadow: 5px 5px #eae6e8;
 
 }
-.button2:active { /* to show button being pressed*/
+.button_menu:active { /* to show button being pressed*/
+    background-color: grey;
+    box-shadow: 0 5px #666;
+    transform: translateY(4px);
+}
+.button_back{
+    display: block;
+    padding: 10px 20px; /*make button bigger than text*/
+    font-size: 20px;
+    align-items: center;
+    text-align: center;
+    color: #282828;
+    background-color: #F9F5F7;
+    border-radius: 15px;
+    border-color: rgba(88, 88, 88, 0.44);
+    box-shadow: 5px 5px #eae6e8;
+}
+.button_back:active { /* to show button being pressed*/
     background-color: grey;
     box-shadow: 0 5px #666;
     transform: translateY(4px);

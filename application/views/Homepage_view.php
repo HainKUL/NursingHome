@@ -10,11 +10,7 @@
     <link href="<?=base_url() ?>assets/css/homepage.css" rel="stylesheet" type="text/css"/>
     <!--<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.1/less.min.js">-->
 
-<!-- language changer -->
-    <select onchange="javascript:window.location.href='<?php echo base_url(); ?>MultiLanguageSwitcher/switcher/'+this.value;">
-        <option value="english" <?php if($this->session->userdata('site_lang') == 'english') echo 'selected="selected"'; ?>>English</option>
-        <option value="dutch" <?php if($this->session->userdata('site_lang') == 'dutch') echo 'selected="selected"'; ?>>Nederlands</option>
-    </select>
+
 </head>
 
 <body background="<?=base_url() ?>assets/photos/background_remy.png">
@@ -61,11 +57,6 @@
 
     </div>
 </body>
-<footer>
-    <p><?php echo $this->lang->line('text_copyright_footer'); ?>
-        <a href="#"><?php echo $this->lang->line('text_copyright_privacy'); ?></a> | <a href="#"><?php echo $this->lang->line('text_copyright_term'); ?></a>
-    </p>
-</footer>
 
 </html>
 
