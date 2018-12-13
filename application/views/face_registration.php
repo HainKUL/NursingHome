@@ -13,10 +13,10 @@
 <script type="text/javascript" src="../../assets/js/materialize.min.js"></script>
 <nav>
     <div class="nav-wrapper">
-        <a href="#" class="brand-logo center">{welcome}</a>
+        <a href="#" class="brand-logo center"><?php echo $this->lang->line('login_welcome'); ?></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li class="active"><a href="#">{registration}</a></li>
-            <li><a href="<?=base_url()?>index.php/Face_Login_controller/face_login">{login}</a></li>
+            <li class="active"><a href="#"><?php echo $this->lang->line('login_registration'); ?></a></li>
+            <li><a href="<?=base_url()?>index.php/Face_Login_controller/face_login"><?php echo $this->lang->line('login_login'); ?></a></li>
         </ul>
     </div>
 </nav>
@@ -27,14 +27,14 @@
             <div class="card-action">
                 <form action="face_registration.php" method="post">
 <!--                TODO the info below needs to be store in our databse-->
-                    firstName:  <input type="text">
-                    lastName:   <input type="text">
-                    birthday:   <input type="text">
-                    ID:         <input type="text" class="validate" id="ip">
+                    <?php echo $this->lang->line('register_firstname'); ?>:  <input type="text">
+                    <?php echo $this->lang->line('register_lastname'); ?>:   <input type="text">
+                    <?php echo $this->lang->line('register_birthday'); ?>:   <input type="text">
+                    <?php echo $this->lang->line('register_id'); ?>:         <input type="text" class="validate" id="ip">
                 </form>
 
-                <button onclick="startWebcam();">{start}</button>
-                <button onclick="snapshot();">{capture}</button>
+                <button onclick="startWebcam();"><?php echo $this->lang->line('login_start'); ?></button>
+                <button onclick="snapshot();"><?php echo $this->lang->line('login_capture'); ?></button>
             </div>
 
             <div>

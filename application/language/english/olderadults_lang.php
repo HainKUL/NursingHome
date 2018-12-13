@@ -23,3 +23,13 @@ $lang['Nieuwsblad_title'] = 'The Nieuwsblad newspage';
 $lang['Nieuwsblad'] = 'The Nieuwsblad';
 
 $lang['login_welcome'] = 'Hello, Welcome 😊';
+$lang['login_registration'] = 'Registration';
+$lang['login_login'] = 'login';
+$lang['login_start'] = 'Start Camera';
+$lang['login_capture'] = 'Take Picture';
+$lang['login_bypass'] = 'Login bypass';
+
+$lang['register_firstname'] = 'First name';
+$lang['register_lasttname'] = 'Last name';
+$lang['register_birthday'] = 'Birthday';
+$lang['register_id'] = 'ID';
