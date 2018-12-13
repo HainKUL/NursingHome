@@ -2,6 +2,7 @@
 <meta charset="UTF-8">
 <html>
 <head>
+    <title>Registration Form</title>
     <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <!-- Bootstrap CSS -->
     <!-- Bootstrap CSS -->
@@ -146,18 +147,18 @@
 
             <select id="Birthday_Month" name="Birthday_Month">
                 <option value="-1"><?php echo $this->lang->line('month'); ?></option>
-                <option value="January">Jan</option>
-                <option value="February">Feb</option>
-                <option value="March">Mar</option>
-                <option value="April">Apr</option>
-                <option value="May">May</option>
-                <option value="June">Jun</option>
-                <option value="July">Jul</option>
-                <option value="August">Aug</option>
-                <option value="September">Sep</option>
-                <option value="October">Oct</option>
-                <option value="November">Nov</option>
-                <option value="December">Dec</option>
+                <option value="January"><?php echo $this->lang->line('januari_register'); ?></option>
+                <option value="February"><?php echo $this->lang->line('februari_register'); ?></option>
+                <option value="March"><?php echo $this->lang->line('march_register'); ?></option>
+                <option value="April"><?php echo $this->lang->line('april_register'); ?></option>
+                <option value="May"><?php echo $this->lang->line('may_register'); ?></option>
+                <option value="June"><?php echo $this->lang->line('june_register'); ?></option>
+                <option value="July"><?php echo $this->lang->line('july_register'); ?></option>
+                <option value="August"><?php echo $this->lang->line('august_register'); ?></option>
+                <option value="September"><?php echo $this->lang->line('september_register'); ?></option>
+                <option value="October"><?php echo $this->lang->line('october_register'); ?></option>
+                <option value="November"><?php echo $this->lang->line('november_register'); ?></option>
+                <option value="December"><?php echo $this->lang->line('december_register'); ?></option>
             </select>
 
             <select name="Birthday_Year" id="Birthday_Year">

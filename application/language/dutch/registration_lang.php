@@ -26,3 +26,7 @@ $lang['floor1'] = 'Gelijkvloers';
 $lang['floor2'] = 'Verdiep 1';
 $lang['floor3'] = 'Verdiep 2';
 $lang['floor4'] = 'Verdiep 3';
+
+/*registration caregiver*/
+
+$lang['title'] = 'ELDERLY REGISTRATION FORM';

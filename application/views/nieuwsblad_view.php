@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>{page_title}</title>
+    <title><?php echo $this->lang->line('Nieuwsblad_title'); ?></title>
     <link rel="icon" href="<?=base_url()?>assets/photos/favicon3.ico" type="image/gif" sizes="16x16">
 
     <!-- Bootstrap CSS -->
@@ -19,7 +19,7 @@
         <div class="col-md-2" style="padding-bottom:10px" >
             <a class="link1" href="news">
                 <button type="button" class ="btn btn-default button_back float-right" >
-                    {buttonBack}
+                    <?php echo $this->lang->line('buttonback'); ?>
                 </button>
             </a>
         </div>
@@ -28,7 +28,7 @@
 
         <div class = "col-md-12"">
         <h1 class="h1">
-            {content_title_1}
+            <?php echo $this->lang->line('Nieuwsblad'); ?>
         </h1>
     </div>
 <iframe width="100%" height="750" frameborder="0" class="rssdog" src="https://www.rssdog.com/index.php?url=http%3A%2F%2Ffeeds.nieuwsblad.be%2Fnieuws%2Fsnelnieuws&mode=html&showonly=&maxitems=7&showdescs=1&desctrim=0&descmax=0&tabwidth=100%25&excltitle=1&linktarget=_blank&textsize=xx-large&bordercol=transparent&headbgcol=blue&headtxtcol=white&titlebgcol=%585858&titletxtcol=%23282828&itembgcol=%585858&itemtxtcol=%23282828&ctl=0"></iframe>

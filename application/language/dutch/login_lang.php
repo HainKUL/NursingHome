@@ -11,5 +11,6 @@ $lang['login_username'] = 'Gebruikersnaam';
 $lang['login_password'] = 'Wachtwoord';
 $lang['login_forgot'] = 'Uw wachtwoord vergeten?';
 $lang['login_click'] = 'Klik hier!';
+$lang['caregiver_login_title'] = "Verzorger login | Welkom";
 
 ?>

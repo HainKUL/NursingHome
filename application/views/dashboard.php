@@ -410,13 +410,13 @@ $residents = $this->db->query($query);
                                 <table align="center" cellpadding = "10">
                                     <tr>
                                         <td><?php echo $this->lang->line('first'); ?></td>
-                                        <td><input type="text" name="firstname" maxlength="30" placeholder="residents first name"/>
+                                        <td><input type="text" name="firstname" maxlength="30" placeholder="<?php echo $this->lang->line('firstname_placeholder_register'); ?>"/>
                                         </td>
                                     </tr>
 
                                     <tr>
                                         <td><?php echo $this->lang->line('last'); ?></td>
-                                        <td><input type="text" name="name" maxlength="30" placeholder="residents last name"/>
+                                        <td><input type="text" name="name" maxlength="30" placeholder="<?php echo $this->lang->line('lastname_placeholder_register'); ?>"/>
                                         </td>
                                     </tr>
 
@@ -465,18 +465,18 @@ $residents = $this->db->query($query);
 
                                             <select id="Birthday_Month" name="Birthday_Month" style="width: 35%" required>
                                                 <option value="-1"><?php echo $this->lang->line('month'); ?></option>
-                                                <option value="January">Jan</option>
-                                                <option value="February">Feb</option>
-                                                <option value="March">Mar</option>
-                                                <option value="April">Apr</option>
-                                                <option value="May">May</option>
-                                                <option value="June">Jun</option>
-                                                <option value="July">Jul</option>
-                                                <option value="August">Aug</option>
-                                                <option value="September">Sep</option>
-                                                <option value="October">Oct</option>
-                                                <option value="November">Nov</option>
-                                                <option value="December">Dec</option>
+                                                <option value="January"><?php echo $this->lang->line('januari_register'); ?></option>
+                                                <option value="February"><?php echo $this->lang->line('februari_register'); ?></option>
+                                                <option value="March"><?php echo $this->lang->line('march_register'); ?></option>
+                                                <option value="April"><?php echo $this->lang->line('april_register'); ?></option>
+                                                <option value="May"><?php echo $this->lang->line('may_register'); ?></option>
+                                                <option value="June"><?php echo $this->lang->line('june_register'); ?></option>
+                                                <option value="July"><?php echo $this->lang->line('july_register'); ?></option>
+                                                <option value="August"><?php echo $this->lang->line('august_register'); ?></option>
+                                                <option value="September"><?php echo $this->lang->line('september_register'); ?></option>
+                                                <option value="October"><?php echo $this->lang->line('october_register'); ?></option>
+                                                <option value="November"><?php echo $this->lang->line('november_register'); ?></option>
+                                                <option value="December"><?php echo $this->lang->line('december_register'); ?></option>
                                             </select>
 
                                             <select name="Birthday_Year" id="Birthday_Year" style="width: 30%" required>
@@ -647,7 +647,7 @@ $residents = $this->db->query($query);
                                     <tr>
                                         <td><?php echo $this->lang->line('privileges'); ?></td>
                                         <td>
-                                            <input type="text" name="Privileges" maxlength="200" placeholder="optional" />
+                                            <input type="text" name="Privileges" maxlength="200" placeholder="<?php echo $this->lang->line('privileges_optional'); ?>" />
                                         </td>
                                     </tr>
 

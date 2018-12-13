@@ -26,3 +26,7 @@ $lang['floor1'] = 'Ground floor';
 $lang['floor2'] = 'First floor';
 $lang['floor3'] = 'Second floor';
 $lang['floor4'] = 'Third floor';
+
+/*registration caregiver*/
+
+$lang['title'] = 'ELDERLY REGISTRATION FORM';
