@@ -46,7 +46,22 @@
 
     </div>
 </div>
-<a href="<?=base_url()?>Homepage_controller/residentHome"><button >login bypass</button></a>
+<form method="post" action="<?=base_url()?>Homepage_controller/login">
+    <h1>login</h1>
+
+    <p>
+        <label>name:</label>
+        <input type="text" name="name" id="name" class="form-control"  />
+
+    </p>
+    <p>
+        <label>pincode:</label>
+        <input type="password" name="pincode" id="pincode" class="form-control"  />
+    </p>
+    <br />
+    <p>
+        <input type="submit" id="submit" value="<?php echo $this->lang->line('login_button'); ?>" />
+    </p>
 </body>
 <script src="../../assets/js/face_login.js"></script>
 </html>

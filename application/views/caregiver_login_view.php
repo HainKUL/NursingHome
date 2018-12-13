@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Caregiver Login | Welcome</title>
-    <link href="<?=base_url()?>assets/css/caregiver_login.css" rel="stylesheet" type="text/css"/>
+    <link href="<?=base_url()?>assets/css/dashboard.css" rel="stylesheet" type="text/css"/>
     <link rel="icon" href="<?=base_url()?>assets/photos/favicon3.ico" type="image/gif" sizes="16x16">
 
 </head>
@@ -53,10 +53,6 @@
 
 
 <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-<footer>
-    <p><?php echo $this->lang->line('text_copyright_footer'); ?>
-        <a href="#"><?php echo $this->lang->line('text_copyright_privacy'); ?></a> | <a href="#"><?php echo $this->lang->line('text_copyright_term'); ?>e</a>
-    </p>
-</footer>
+
 </body>
 </html>

@@ -88,5 +88,32 @@ class Homepage_controller extends CI_Controller
         $data['buttonBack'] = 'Ik wil terug';
         $this->parser->parse('sportsnews', $data);
     }
+    public function login(){
+        $data['head_message'] = 'Resident Login | Welcome';
 
+        if($_POST) {
+            $name = $this->db->escape($_POST['name']);
+            $query = "SELECT pinHash, idResidents, name FROM Residents WHERE name = $name LIMIT 1;";
+            $result = $this->db->query($query);
+            $_SESSION['id']=$result->result()[0]->idResidents;
+
+            if($result->num_rows() === 0)   {
+                $this->session->set_flashdata('flash_data', 'Email or password incorrect!');
+                redirect('Homepage_controller/login');
+            }
+
+            $hash = $result->result()[0]->pinHash;
+
+            if(password_verify($_POST['pincode'], $hash)) { //TODO verify guaranteed forward compatibility with crypt()
+                $data = array('id_Residents' => $result->result()[0]->idResidents, 'name' => $result->result()[0]->name);
+                $this->session->set_userdata($data);
+                redirect('Homepage_controller/residentHome/'.$_SESSION['id']); // Has something to do with not being able to remove index.php in url
+            } else {
+                $this->session->set_flashdata('flash_data', 'Email or password incorrect!');
+                redirect('Homepage_controller/login'); // Has something to do with not being able to remove index.php in url
+            }
+        }
+
+        $this->load->view("face_login");
+    }
 }
