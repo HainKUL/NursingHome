@@ -240,12 +240,6 @@ $email = $this->db->query($query);
 
         </div>
         <div class="col-3 hiddendiv" id="div4" style="background-color:#009489;padding:0;">
-
-
-
-
-
-
         </div>
         <div class="col-6" style="background-color:#f9f9f9;padding:0px;">
             <div style="width:100%;">
@@ -708,8 +702,10 @@ $email = $this->db->query($query);
             <div role="tablist" id="accordion-1" style="border:none;text-align:right;">
                 <div class="card notes-card active">
                     <div class="card-header notes-card-head" role="tab">
-                        <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-1 .item-1" href="div#accordion-1 .item-1" class="btn-notes">
-                                <?php echo $this->lang->line('dash_today'); ?>&nbsp;</a></h5>
+                        <h5 class="mb-0">
+                            <a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-1 .item-1" href="div#accordion-1 .item-1" class="btn-notes">
+                                <?php echo $this->lang->line('dash_today'); ?>&nbsp;</a>
+                        </h5>
                     </div>
                     <div class="collapse show item-1 notes-content" role="tabpanel" data-parent="#accordion-1">
                         <div class="card-body">
