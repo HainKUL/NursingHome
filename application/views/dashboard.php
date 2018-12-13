@@ -205,7 +205,26 @@ $email = $this->db->query($query);
 
         </div>
         <div class="col-3 hiddendiv" id="div3" style="background-color:#009489;padding:0;">
+            <div style="height:5%;"></div>
+                <h2 class="floornumber"><?php echo $this->lang->line('personal'); ?></h2>
+            <div style="overflow-y:scroll;max-height:68vh;">
+                <div class="btn-group-vertical btn-group-lg" role="group" style="width:100%;">
+                    <?php
+                    foreach ($residents->result_array() as $row) {
+                        ?><button class="btn btn-primary btn-resident" id="<?php echo $row['idResidents']?>" type="button" onclick="loadResident(this.id)">
+                        <div class="resident-button">
+                            <img class="profilePic" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
+                            <span class="resident-nameage"><div class="button-name"><?php
+                                    echo $row['firstName'];
+                                    ?></div><div class="button-age"><?php
+                                    echo $row['age'] ?></div>
+                                <?php
+                                ?></span></div></button><?php
+                    }
+                    ?>
 
+                </div>
+            </div>
 
 
 
