@@ -156,7 +156,7 @@ $email = $this->db->query($query);
 
 
     <div class="row" style="height:100vh;">
-        <div class="col-3" style="background-color:#009489;padding:0;">
+        <div class="col-3" id="div1" style="background-color:#009489;padding:0;">
             <!-- <a href="<?=base_url()?>Dashboard/logout">
             <button class="btn btn-primary btn-lg" type="button" style="min-width:100%;background-color:#009489;border:none;" >
                 <p><?php echo $this->lang->line('dash_logout'); ?></p>
@@ -369,7 +369,7 @@ $email = $this->db->query($query);
                                    <p class="personal_text"> <?php echo $this->lang->line('dash_chooselang'); ?> </p>
                                 </div>
                                 <div class="col-4" style="padding-top: 12px;">
-                                    <select onchange="javascript:window.location.href='<?php echo base_url(); ?>MultiLanguageSwitcher/switcher/'+this.value;">
+                                    <select style="width:100%" onchange="javascript:window.location.href='<?php echo base_url(); ?>MultiLanguageSwitcher/switcher/'+this.value;">
                                         <option value="english" <?php if($this->session->userdata('site_lang') == 'english') echo 'selected="selected"'; ?>>English</option>
                                         <option value="dutch" <?php if($this->session->userdata('site_lang') == 'dutch') echo 'selected="selected"'; ?>>Nederlands</option>
                                     </select>
@@ -792,6 +792,38 @@ $email = $this->db->query($query);
         currentButtonID = id
 
         document.getElementById("residentName").innerText = id + "<?php echo $this->lang->line('dash_profile'); ?>"
+    }
+
+</script>
+
+<script>
+    function loadDiv1(){
+        document.getElementById("div2").classList.add("hiddendiv")
+        document.getElementById("div3").classList.add("hiddendiv")
+        document.getElementById("div4").classList.add("hiddendiv")
+        var element = document.getElementById("div1")
+        element.classList.remove("hiddendiv")
+    }
+    function loadDiv2(){
+        document.getElementById("div1").classList.add("hiddendiv")
+        document.getElementById("div3").classList.add("hiddendiv")
+        document.getElementById("div4").classList.add("hiddendiv")
+        var element = document.getElementById("div2")
+        element.classList.remove("hiddendiv")
+    }
+    function loadDiv3(){
+        document.getElementById("div1").classList.add("hiddendiv")
+        document.getElementById("div2").classList.add("hiddendiv")
+        document.getElementById("div4").classList.add("hiddendiv")
+        var element = document.getElementById("div3")
+        element.classList.remove("hiddendiv")
+    }
+    function loadDiv4(){
+        document.getElementById("div1").classList.add("hiddendiv")
+        document.getElementById("div2").classList.add("hiddendiv")
+        document.getElementById("div3").classList.add("hiddendiv")
+        var element = document.getElementById("div4")
+        element.classList.remove("hiddendiv")
     }
 
 </script>
