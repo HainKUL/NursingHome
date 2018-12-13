@@ -13,7 +13,7 @@
 
 </head>
 
-<body background="<?=base_url() ?>assets/photos/background_remy.png">
+<body style="background-repeat:no-repeat;background-size: cover;" background="<?=base_url() ?>assets/photos/background_remy.png">
 <div class="row" style="padding-top: 15%"></div>
 <div class="container" style="width: 60% ;background-color: #F9F5F7/*fff6e0*/; box-shadow: 10px 10px #e7d6d5; opacity: 0.95; padding-top: 50px; padding-bottom: 50px; border-radius:12px">
 

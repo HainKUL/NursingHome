@@ -40,3 +40,6 @@ $lang['roomnum'] = "Room number: ";
 $lang['bednum'] = "Bed number: ";
 $lang['privileges'] = "Privileges: ";
 $lang['register'] = "Register new inhabitant";
+$lang['personal'] = "PERSONAL";
+$lang['personal_settings'] = "Personal settings";
+$lang['grouping'] = "Grouping";
