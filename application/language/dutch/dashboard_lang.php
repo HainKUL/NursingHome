@@ -63,3 +63,7 @@ $lang['november_register'] = "november";
 $lang['december_register'] = "december";
 $lang['privileges_optional'] = "optioneel";
 
+$lang['password_forgot_title'] = "Wachtwoord Vergeten";
+$lang['password_forgot_head'] = "Wachtwoord vergeten?";
+$lang['password_forgot_no_problem'] = "Geen probleem! Vul uw e-mail adres in en er zal u een nieuw wachtwoord opgestuurd worden";
+$lang['password_forgot_send'] = "Verstuur email!";

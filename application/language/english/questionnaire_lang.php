@@ -8,3 +8,10 @@
 $lang['title'] = 'Care for you| GraceAge';
 $lang['Quit'] = 'Quit';
 $lang['Return'] = 'Previous question';
+
+$lang['button_never'] = 'never';
+$lang['button_rarely'] = 'rarely';
+$lang['button_sometimes'] = 'sometimes';
+$lang['button_mostly'] = 'mostly';
+$lang['button_always'] = 'always';
+

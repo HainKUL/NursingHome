@@ -59,3 +59,8 @@ $lang['october_register'] = "October";
 $lang['november_register'] = "November";
 $lang['december_register'] = "December";
 $lang['privileges_optional'] = "optional";
+
+$lang['password_forgot_title'] = "Forgot Password";
+$lang['password_forgot_head'] = "Forgot Password?";
+$lang['password_forgot_no_problem'] = "No problem! Fill in your e-mail address and a new one will be send";
+$lang['password_forgot_send'] = "Send email!";

@@ -21,3 +21,5 @@ $lang['DM_title'] = 'De Morgen nieuwspagina';
 $lang['DM'] = 'De Morgen';
 $lang['Nieuwsblad_title'] = 'Het Nieuwsblad nieuwspagina';
 $lang['Nieuwsblad'] = 'Het Nieuwsblad';
+
+$lang['login_welcome'] = 'Hallo, Welkom 😊';
