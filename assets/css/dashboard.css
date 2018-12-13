@@ -56,6 +56,26 @@ html, body {
 .register-card {
     margin: 4%;
     box-shadow:1px 1px 7px lightgrey;
+
+    transition: transform 1s;
+    transform-style: preserve-3d;
+
+}
+.button{
+
+}
+.card.is-flipped {
+    transform: rotateY(180deg);
+}
+.card__face {
+    text-align: center;
+    backface-visibility: hidden;
+}
+.card__face--front {
+}
+
+.card__face--back {
+    transform: rotateY(180deg);
 }
 
 .notes-content {
