@@ -23,6 +23,7 @@ class Homepage_controller extends CI_Controller
     {
         $data['content'] = 'content';
         $data['user_id'] = $userID;
+        $_SESSION['id']=$userID;
         $this->parser->parse('olderadultmenu', $data);
     }
 
@@ -38,54 +39,52 @@ class Homepage_controller extends CI_Controller
         $this->parser->parse('Homepage_view', $data);
     }
 
-    public function news()
+    public function news($userID)
     {
-        $data['buttonBack'] = 'Ik wil terug';
+
+        $data['user_id'] = $userID;
+        $_SESSION['id']=$userID;
         $this->parser->parse('news_view', $data);
     }
 
-    public function nieuwsblad()
+    public function nieuwsblad($userID)
     {
 
-        $data['page_title'] = ' Het Nieuwsblad nieuwspagina';
-        $data['content_title_1'] = 'Het Nieuwsblad';
-        $data['buttonBack'] = 'Ik wil terug';
+
+        $data['user_id'] = $userID;
+        $_SESSION['id']=$userID;
         $this->parser->parse('nieuwsblad_view', $data);
     }
 
-    public function standard()
+    public function standard($userID)
     {
 
-        $data['page_title'] = 'De Standard nieuwspagina';
-        $data['content_title_1'] = 'De Standaard';
-        $data['buttonBack'] = 'Ik wil terug';
+
+        $data['user_id'] = $userID;
+        $_SESSION['id']=$userID;
         $this->parser->parse('standard_view', $data);
     }
 
-    public function dm()
+    public function dm($userID)
     {
 
-        $data['page_title'] = 'De Morgen nieuwspagina';
-        $data['content_title_1'] = 'De Morgen';
-        $data['buttonBack'] = 'Ik wil terug';
+        $data['user_id'] = $userID;
+        $_SESSION['id']=$userID;
         $this->parser->parse('dm_view', $data);
     }
 
-    public function weathers()
+    public function weathers($userID)
     {
 
-        $data['page_title'] = 'Het weer voor deze week';
-        $data['content_title_1'] = 'Het weer voor deze week';
-        $data['buttonBack'] = 'Ik wil terug';
+        $data['user_id'] = $userID;
+        $_SESSION['id']=$userID;
         $this->parser->parse('weathers', $data);
     }
 
-    public function sportsnews()
+    public function sportsnews($userID)
     {
 
-        $data['page_title'] = 'Sportnieuws';
-        $data['content_title_1'] = 'Sportnieuws voor vandaag';
-        $data['buttonBack'] = 'Ik wil terug';
+        $data['user_id'] = $userID;
         $this->parser->parse('sportsnews', $data);
     }
     public function login(){

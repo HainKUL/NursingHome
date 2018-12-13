@@ -18,7 +18,7 @@
         <div class="col-md-10">
         </div>
         <div class="col-md-2" style="padding-bottom:10px" >
-            <a class="link1" href="residenthome">
+            <a class="link1" href="<?=base_url()?>/Homepage_controller/residentHome/<?php echo $_SESSION['id']?>">
                 <button type="button" class ="btn btn-default button_back float-right" >
                     {buttonBack}
                 </button>
