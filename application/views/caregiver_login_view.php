@@ -20,39 +20,80 @@
         <div class="col-2">
         </div>
         <div class="col-8">
+
+
             <div class="container" id="card-inside">
+                <form method="post" action="<?=base_url()?>Caregiver_controller/login">
                 <div class="row" >
                     <div class="col-2">
                     </div>
                     <div class="col-8">
-                        <!--<form method="post" action="index.html">-->
-                        <form method="post" action="<?=base_url()?>Caregiver_controller/login">
-                            <!-- action="<?=base_url()?>Caregiver_controller/login">
-                    <!--<div class="box">-->
+
                             <h1 style="padding-top: 15%; font-size: 40px;"><?php echo $this->lang->line('login_title'); ?> </h1>
+
+                    </div>
+                    <div class="col-2">
+                    </div>
+                </div>
+                <div class="row" >
+                    <div class="col-2">
+                    </div>
+                    <div class="col-8">
 
                             <p style="padding-top: 15%; font-size: 32px;">
                                 <label><?php echo $this->lang->line('login_username'); ?>:</label>
                                 <input style="line-height: 32px;"type="text" name="email" id="email" class="form-control" name="email" />
 
                             </p>
-                            <p style="padding-top: 15%; font-size: 32px;">
-                                <label><?php echo $this->lang->line('login_password'); ?>:</label>
-                                <input style="line-height: 32px;" type="password" name="password" id="password" class="form-control" name="password" />
-                            </p>
-                            <br />
-                            <p style="padding-top: 15%">
-                                <input type="submit" id="submit" value="<?php echo $this->lang->line('login_button'); ?>" />
-                            </p>
 
-                        </form>
-                        <br /><br /><br /><br /><br /><br />
-                        <p style="padding-top: 15%"><?php echo $this->lang->line('login_forgot'); ?> <a href="forgot"><?php echo $this->lang->line('login_click'); ?></a></p>
                     </div>
                     <div class="col-2">
                     </div>
                 </div>
+                <div class="row" >
+                    <div class="col-2">
+                    </div>
+                    <div class="col-8">
+
+                            <p style="padding-top: 15%; font-size: 32px;">
+                                <label><?php echo $this->lang->line('login_password'); ?>:</label>
+                                <input style="line-height: 32px; margin-left: 3.5vw;" type="password" name="password" id="password" class="form-control" name="password" />
+                            </p>
+
+                    </div>
+                    <div class="col-2">
+                    </div>
+                </div>
+
+                <div class="row" >
+                    <div class="col-2">
+                    </div>
+                    <div class="col-8">
+                            <p style="padding-top: 10%">
+                                <input type="submit" id="submit" value="<?php echo $this->lang->line('login_button'); ?>" />
+                            </p>
+
+                    </div>
+                    <div class="col-2">
+                    </div>
+                </div>
+
+                </form>
+
+                <div class="row" >
+                    <div class="col-2">
+                    </div>
+                    <div class="col-8">
+                        <br /><br /><br /><br /><br /><br />
+                        <p style="padding-top: 15%"><?php echo $this->lang->line('login_forgot'); ?> <a href="forgot"><?php echo $this->lang->line('login_click'); ?></a></p>
+
+                    </div>
+                    <div class="col-2">
+                    </div>
+                </div>
+
             </div>
+            
         <div class="col-2">
         </div>
     </div>
