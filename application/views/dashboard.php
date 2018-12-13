@@ -206,25 +206,33 @@ $email = $this->db->query($query);
         </div>
         <div class="col-3 hiddendiv" id="div3" style="background-color:#009489;padding:0;">
             <div style="height:5%;"></div>
-                <h2 class="floornumber"><?php echo $this->lang->line('personal'); ?></h2>
-            <div style="overflow-y:scroll;max-height:68vh;">
+                <h2 class="floornumber" style="padding:15px"><?php echo $this->lang->line('personal');?></h2>
+            <div style="overflow-y:scroll;max-height:70vh;">
                 <div class="btn-group-vertical btn-group-lg" role="group" style="width:100%;">
-                    <?php
-                    foreach ($residents->result_array() as $row) {
-                        ?><button class="btn btn-primary btn-resident" id="<?php echo $row['idResidents']?>" type="button" onclick="loadResident(this.id)">
+                    <button class="btn btn-primary btn-resident" id="settings1" type="button" onclick="settingsButton(this.id)">
                         <div class="resident-button">
                             <img class="profilePic" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
-                            <span class="resident-nameage"><div class="button-name"><?php
-                                    echo $row['firstName'];
-                                    ?></div><div class="button-age"><?php
-                                    echo $row['age'] ?></div>
-                                <?php
-                                ?></span></div></button><?php
-                    }
-                    ?>
-
+                            <span>
+                                <?php echo $this->lang->line('personal_settings');?>
+                            </span>
+                        </div>
+                    </button>
+                    <button class="btn btn-primary btn-resident" id="settings2" type="button" onclick="settingsButton(this.id)">
+                        <div class="resident-button">
+                            <img class="profilePic" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
+                            <span>
+                                <?php echo $this->lang->line('grouping');?>
+                            </span>
+                        </div>
+                    </button>
                 </div>
             </div>
+            <div style="height:50vh"></div>
+            <a href="<?=base_url()?>Dashboard/logout" style="padding:10%">
+                <button class="btn btn-primary btn-lg" type="button" style="width:80%;background-color:#00675F;border:none;color:#DEEAE9">
+                    <?php echo $this->lang->line('dash_logout'); ?>
+                </button>
+            </a>
 
 
 
@@ -407,16 +415,16 @@ $email = $this->db->query($query);
                                     </div>
 
                                 </div>
-                            <div class="row" style="padding-top: 40px;">
-                                <div class="col-12">
-                                     <a href="<?=base_url()?>Dashboard/logout">
-                                       <button class="btn btn-primary btn-lg" type="button" style="min-width:100%;background-color:#009489;border:none;">
-                                            <?php echo $this->lang->line('dash_logout'); ?>
-                                        </button>
-                                    </a>
-                                </div>
-
-                            </div>
+<!--                            <div class="row" style="padding-top: 40px;">-->
+<!--                                <div class="col-12">-->
+<!--                                     <a href="--><?//=base_url()?><!--Dashboard/logout">-->
+<!--                                       <button class="btn btn-primary btn-lg" type="button" style="min-width:100%;background-color:#009489;border:none;">-->
+<!--                                            --><?php //echo $this->lang->line('dash_logout'); ?>
+<!--                                        </button>-->
+<!--                                    </a>-->
+<!--                                </div>-->
+<!---->
+<!--                            </div>-->
 
                         </div>
                     </div>
@@ -811,6 +819,21 @@ $email = $this->db->query($query);
         currentButtonID = id
 
         document.getElementById("residentName").innerText = id + "<?php echo $this->lang->line('dash_profile'); ?>"
+    }
+
+</script>
+
+<script>
+    var currentButtonID
+    function settingsButton(id){
+        if(currentButtonID){
+            var previous = document.getElementById(currentButtonID)
+            previous.classList.remove("btn-active")
+        }
+
+        var element = document.getElementById(id)
+        element.classList.add("btn-active")
+        currentButtonID = id
     }
 
 </script>

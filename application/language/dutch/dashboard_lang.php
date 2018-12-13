@@ -43,4 +43,7 @@ $lang['roomnum'] = "Kamernummer: ";
 $lang['bednum'] = "Bednummer: ";
 $lang['privileges'] = "Privileges: ";
 $lang['register'] = "Registreer nieuwe inwoner ";
+$lang['personal'] = "PERSOONLIJK";
+$lang['personal_settings'] = "Persoonlijke instellingen";
+$lang['grouping'] = "Groepering";
 
