@@ -76,14 +76,14 @@ $query = "SELECT Notes.noteText, Notes.author, Notes.timestamp, Caregivers.first
 $result = $this->db->query($query);
 $query = "SELECT firstName, name, idResidents, YEAR(CURRENT_TIMESTAMP) - YEAR(dateOfBirth) - (RIGHT(CURRENT_TIMESTAMP, 5) < RIGHT(dateOfBirth, 5)) as age FROM Residents;";
 $residents = $this->db->query($query);
-$query = "SELECT firstName FROM Caregivers WHERE $currentID = Caregivers.idCaregivers;";
-$firstName = $this->db->query($query);
-$query = "SELECT email FROM Caregivers WHERE Caregivers.idCaregivers = $currentID;";
-$email = $this->db->query($query);
-?>
+    $query = "SELECT firstName FROM Caregivers WHERE $currentID = Caregivers.idCaregivers;";
+    $firstName = $this->db->query($query);
+    $query = "SELECT email FROM Caregivers WHERE Caregivers.idCaregivers = $currentID;";
+    $email = $this->db->query($query);
+    ?>
 
 
-<div class="container-fluid">
+    <div class="container-fluid">
 
 
     <div class="row" style="height:100vh;">
