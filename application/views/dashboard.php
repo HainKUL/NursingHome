@@ -742,7 +742,7 @@ $residentsFirstname = $this->db->query($query);
 
                                     <tr>
                                         <td colspan="2" align="center">
-                                            <input type="submit" value="Save"  >
+                                            <input type="submit" value="Send"  >
                                             <input type="reset" value="Reset">
 
                                         </td>

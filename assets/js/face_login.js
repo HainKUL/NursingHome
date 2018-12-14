@@ -82,7 +82,7 @@ function snapshot() {
 
             console.log(newUrl);
             //set a timer
-            setTimeout(myFunc,500);
+            setTimeout(myFunc,2000);
             function myFunc() {
                 window.location.href = newUrl;
             }
