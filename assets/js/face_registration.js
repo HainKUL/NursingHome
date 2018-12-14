@@ -56,6 +56,7 @@ function snapshot() {
     img1.src = canvas.toDataURL();
     // var ip = document.getElementById('ip').value;
     var ip = document.getElementsByTagName("h4")[0].innerHTML;
+    var cgid=document.getElementsByTagName("h5")[0].innerHTML;
     console.log(ip);
     datad = "{\r\n    \"image\":\"" + img1.src+ "\",\r\n    \"subject_id\":\"" + ip + "\",\r\n    \"gallery_name\":\"Demoxx\"\r\n}";
     var settings = {
@@ -80,7 +81,7 @@ function snapshot() {
             console.log("successfully registered")
             alert("successfully registered")
             let base_url = window.location.origin.concat("/a18ux04");
-            let newUrl = base_url.concat("/index.php/Dashboard/dashboard");
+            let newUrl = base_url.concat("/index.php/Dashboard/registrationsucces/").concat(cgid);
 
             console.log(newUrl);
             window.location.href = newUrl;
