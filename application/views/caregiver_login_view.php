@@ -23,7 +23,7 @@
 
 
             <div class="container" id="card-inside">
-                <form method="post" action="<?=base_url()?>Caregiver_controller/login">
+                <form method="post" action="<?=base_url()?>/index.php/Caregiver_controller/login">
                 <div class="row" >
                     <div class="col-2">
                     </div>
