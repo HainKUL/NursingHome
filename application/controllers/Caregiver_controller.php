@@ -45,7 +45,7 @@ class Caregiver_controller extends CI_Controller{
     }
 
 
-    public function getnotes($context, $time1, $time2){
+    public function getnotes($context, $time1, $time2){ //TODO remove times as argument, or use them
         //$query = "SELECT noteText, author, timestamp FROM Notes WHERE timestamp >= $time1 AND timestamp < $time2;";
         $query = "SELECT noteText, author timestamp FROM Notes;";
         $result = $this->db->query($query);

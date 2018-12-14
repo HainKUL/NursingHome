@@ -256,7 +256,7 @@ $residents = $this->db->query($query);
                                 <div class="card-top">
                                     <div class="card-head">
                                         <img class="card-picture" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
-                                        <span class="card-name">Jan Buskens</span>
+                                        <span class="card-name" id="residentName"></span>
                                     </div>
                                 </div>
                                 <div class="card-text">
