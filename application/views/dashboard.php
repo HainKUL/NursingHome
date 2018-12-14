@@ -47,9 +47,7 @@ if(!isset($_SESSION["caregiver"]))
         .bar:hover{
             fill: red;
         }
-        .tooltip {
-            fill: #333333;
-        }
+
         .radio{
             text-align: end;
         }
@@ -328,11 +326,27 @@ $residents = $this->db->query($query);
                                 <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
                                 <script src="//d3js.org/d3.v4.min.js"></script>
                                 <script src="https://d3js.org/d3.v4.min.js"></script>
+
+                                <script type="text/javascript">
+                                    var bothData = <?php echo json_encode($data_each1); ?>;
+                                </script>
+
                                 <div class='container'>
                                     <div class='row'>
                                         <div class='radio'>
 
                                             </br>
+
+                                            <select class="form-control">
+                                                <?php
+
+                                                foreach($data_each1 as $row)
+                                                {
+                                                    //echo '<option value="'.$row['timestampStart'].'">'.$row['timestampStart'].'</option>';
+                                                    echo '<option value="all" onclick=\'change(this.value)\'>'.$row['timestampStart'].'</option>';
+                                                }
+                                                ?>
+                                            </select>
 
                                             <div class = "date" style="float:left;">
                                                 <select >
@@ -865,9 +879,7 @@ $residents = $this->db->query($query);
 
 </script>
 
-<script type="text/javascript">
-    var bothData = <?php echo json_encode($data_each1); ?>;
-</script>
+
 
 <script>
 
@@ -1133,7 +1145,7 @@ $residents = $this->db->query($query);
 
     //set up chart
     var margin = {top: 20, right:20, bottom: 280, left: 60};
-    var width = 430;
+    var width = 380;
     var height = 300;
 
     var chart = d3.select(".chart")
