@@ -27,6 +27,10 @@ if(!isset($_SESSION["caregiver"]))
 
 
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
 
@@ -149,11 +153,32 @@ $residents = $this->db->query($query);
     $firstName = $this->db->query($query);
     $query = "SELECT email FROM Caregivers WHERE Caregivers.idCaregivers = $currentID;";
     $email = $this->db->query($query);
+
+$query = "SELECT firstName FROM Residents;";
+$residentsFirstname = $this->db->query($query);
     ?>
+
+<script>
+    $( function() {
+        var availableTags =  <?php
+            echo "[";
+            foreach ($residentsFirstname->result_array() as $row) {
+                echo '"';
+                echo $row['firstName'];
+                echo '",';
+
+            }
+            echo "]";
+            ?>
+            
+        $( "#tags" ).autocomplete({
+            source: availableTags
+        });
+    } );
+</script>
 
 
     <div class="container-fluid">
-
 
     <div class="row" style="height:100vh;">
         <div class="col-3" id="div1" style="background-color:#009489;padding:0;">
@@ -176,7 +201,11 @@ $residents = $this->db->query($query);
                         <a class="dropdown-item" role="presentation" href="#"><?php echo $this->lang->line('sixth_floor'); ?></a>
                     </div>
                 </div>
-                <input class ="searchbar" type="search" placeholder="<?php echo $this->lang->line('search'); ?>"></div>
+                <div class="ui-widget">
+                    <label for="tags">Tags: </label>
+                    <input id="tags">
+                </div>
+            </div>
             <div style="overflow-y:scroll;max-height:68vh;">
                 <div class="btn-group-vertical btn-group-lg" role="group" style="width:100%;">
                     <?php
@@ -833,7 +862,7 @@ $residents = $this->db->query($query);
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
