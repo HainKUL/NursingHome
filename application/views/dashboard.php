@@ -99,7 +99,7 @@ if(!isset($_SESSION['id']))
             box-shadow: 0 0 10px #E8E8E8 inset;
             height: 40px;
             padding: 8px;
-            width: 210px;
+            width: 180px;
             margin-left:100px;
 
         }
@@ -108,8 +108,6 @@ if(!isset($_SESSION['id']))
             margin: 0px 0px 0px 40px;
             width: 210px;
         }
-
-
 
         option {
             direction: ltr;
@@ -273,44 +271,9 @@ $residents = $this->db->query($query);
                                 </script>
 
                                 <script>
-                                    //////////////////////////////////////////////////////////////
-                                    //////////////////////// Set-Up //////////////////////////////
-                                    //////////////////////////////////////////////////////////////
-
-
-                                    //var margin = {top: 150, right: 70, bottom: 100, left: 100},
-
-                                    var margin = {top: 120, right: 60, bottom: 40, left: 60},
-                                        legendPosition = {x: 220, y: 10},
-                                        width = Math.min(400, window.innerWidth - 10) - margin.left - margin.right,
-                                        height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20); //////////////////////////////////////////////////////////////
-                                    //////////////////// Draw the Chart //////////////////////////
-                                    //////////////////////////////////////////////////////////////
-
-                                    var color = d3.scale.ordinal()
-                                        .range(["#42f4b0","#CCCC00","#00A0B0","#EDC951"]);
-
-
-                                    var radarChartOptions = {
-                                        w: width,
-                                        h: height,
-                                        margin: margin,
-                                        legendPosition: legendPosition,
-                                        maxValue: 0.5,
-                                        wrapWidth: 60,
-                                        levels: 5,
-                                        roundStrokes: true,
-                                        color: color,
-                                        axisName: "category",
-                                        areaName: "timestampStart",
-                                        value: "answer"
-                                        /*axisName: "reason",
-                                         areaName: "device",
-                                         value: "value"*/
-                                    };
-
                                     //Load the data and Call function to draw the Radar chart
-                                    RadarChart(".radarChart", data, radarChartOptions);
+                                    //RadarChart(".radarChart", data, radarChartOptions);
+                                    RadarChart(".radarChart", data);
                                 </script>
                             </div>
                         </div>
@@ -336,13 +299,12 @@ $residents = $this->db->query($query);
 
                                             <div class = "date" style="float:left;">
                                                 <select >
-                                                    <option value="100">Please Select Date</option>
-
-                                                    </select>
+                                                    <option value="100">Select Date</option>
+                                                </select>
                                             </div>
                                             <div class = "category"; style="float:right;">
                                             <select >
-                                                <option value="all" onclick='change(this.value)'>Please Select Category</option>
+                                                <option value="all" onclick='change(this.value)'>Select Category</option>
                                                 <option name="name" value="all" onclick='change(this.value)'><?php echo $this->lang->line('category_all'); ?></option>
                                                 <option name="name" value="0" onclick='change(this.value)'><?php echo $this->lang->line('category_0'); ?></option>
                                                 <option name="name" value="1" onclick='change(this.value)'><?php echo $this->lang->line('category_1'); ?></option>
