@@ -47,14 +47,15 @@ function init() {
     canvas = document.getElementById("myCanvas");
     ctx = canvas.getContext('2d');
 
-    console.log("success");
+    console.log("camera open");
 }
 
 function snapshot() {
     ctx.drawImage(video, 0,0, canvas.width, canvas.height);
     var img1 = new Image();
     img1.src = canvas.toDataURL();
-    var ip = document.getElementById('ip').value;
+    var id = '<%=Session["reg_id"]%>';
+     var ip = document.getElementById('ip').value;
     datad = "{\r\n    \"image\":\"" + img1.src+ "\",\r\n    \"subject_id\":\"" + ip + "\",\r\n    \"gallery_name\":\"Demo\"\r\n}";
     var settings = {
         "async": true,
@@ -74,11 +75,20 @@ function snapshot() {
     $.ajax(settings).done(function (response) {
 
         if((response.images[0].transaction.status) == "success"){
-            Materialize.toast("Image Trained succesfully by name " +response.images[0].transaction.subject_id+ " in gallery name " +response.images[0].transaction.gallery_name, 4000);
-            console.log("IDK")
+            //Materialize.toast("Image Trained succesfully by name " +response.images[0].transaction.subject_id+ " in gallery name " +response.images[0].transaction.gallery_name, 4000);
+            console.log("successfully registered")
+            alert("successfully registered")
+            // let newUrl = site_url.concat("/index.php/Dashboard/dashboard")
+            // console.log(newUrl);
+            // //set a timer
+            // setTimeout(myFunc,1000);
+            // function myFunc() {
+            //     window.location.href = newUrl;
+            // }
         }
         else{
-            Materialize.toast("Unable to Train Image", 4000);
+            //Materialize.toast("Unable to Train Image", 4000);
+            alert("failed with registration")
         }
     });
     //console.log(img1.src);

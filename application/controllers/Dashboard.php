@@ -86,8 +86,14 @@ class Dashboard extends CI_Controller
             if (count($errors) == 0) {
                 $query = "INSERT INTO Residents (name, firstName,dateOfBirth,roomNumber,bedNumber,pinHash,pinSalt,preferences) VALUES($name, $firstname,'$dateOfBirth',$roomNumber,$bedNumber,'$pinhash','$salt',$lang)";
                 $this->db->query($query);
-                header('location: dashboard');
-                echo "success";
+//                header('location: dashboard');
+
+                $query2 = "SELECT idResidents FROM Residents ORDER BY idResidents DESC LIMIT 1;";
+                $result2 = $this->db->query($query2)->result_array()[0]["idResidents"];
+                $_SESSION["reg_id"] = strval($result2);
+
+                header('location: ../Face_login_controller/face_registration');
+
             }
 
         }
