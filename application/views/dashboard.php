@@ -56,9 +56,7 @@ if(!isset($_SESSION['caregiver']))
         .bar:hover{
             fill: red;
         }
-        .tooltip {
-            fill: #333333;
-        }
+
         .radio{
             text-align: end;
         }
@@ -346,44 +344,8 @@ $residentsFirstname = $this->db->query($query);
                                 </script>
 
                                 <script>
-                                    //////////////////////////////////////////////////////////////
-                                    //////////////////////// Set-Up //////////////////////////////
-                                    //////////////////////////////////////////////////////////////
-
-
-                                    //var margin = {top: 150, right: 70, bottom: 100, left: 100},
-
-                                    var margin = {top: 120, right: 60, bottom: 40, left: 60},
-                                        legendPosition = {x: 220, y: 10},
-                                        width = Math.min(400, window.innerWidth - 10) - margin.left - margin.right,
-                                        height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20); //////////////////////////////////////////////////////////////
-                                    //////////////////// Draw the Chart //////////////////////////
-                                    //////////////////////////////////////////////////////////////
-
-                                    var color = d3.scale.ordinal()
-                                        .range(["#42f4b0","#CCCC00","#00A0B0","#EDC951"]);
-
-
-                                    var radarChartOptions = {
-                                        w: width,
-                                        h: height,
-                                        margin: margin,
-                                        legendPosition: legendPosition,
-                                        maxValue: 0.5,
-                                        wrapWidth: 60,
-                                        levels: 5,
-                                        roundStrokes: true,
-                                        color: color,
-                                        axisName: "category",
-                                        areaName: "timestampStart",
-                                        value: "answer"
-                                        /*axisName: "reason",
-                                         areaName: "device",
-                                         value: "value"*/
-                                    };
-
                                     //Load the data and Call function to draw the Radar chart
-                                    RadarChart(".radarChart", data, radarChartOptions);
+                                    RadarChart(".radarChart", data);
                                 </script>
                             </div>
                         </div>
@@ -401,18 +363,41 @@ $residentsFirstname = $this->db->query($query);
                                 <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
                                 <script src="//d3js.org/d3.v4.min.js"></script>
                                 <script src="https://d3js.org/d3.v4.min.js"></script>
+
                                 <div class='container'>
                                     <div class='row'>
                                         <div class='radio'>
 
                                             </br>
-
                                             <div class = "date" style="float:left;">
+                                            <select class="form-control">
+                                                <option value="100">Please Select Date</option>
+                                                <!--<script>
+                                                    var bothData[];
+                                                    function changeDate(v)
+                                                    {
+                                                        bothData = <?php json_encode(v);?>";
+                                                    }
+                                                </script>-->
+                                                <?php
+                                                foreach($data_each1 as $row)
+                                                {
+                                                    echo "<script> var bothData = ". json_encode($row['values'])."</script>";
+                                                    //echo '<option value="'.$row['timestampStart'].'">'.$row['timestampStart'].'</option>';
+                                                    //echo '<option value="'.$row['key'].'" onclick=\'change("all")\'>'.$row['key'].'</option>';
+                                                   // echo '<option value="'.$row['values'].'" onclick=\'changeDate(this.value)\'>'.$row['key'].'</option>';
+                                                    echo '<option value="'.$row['key'].'" onclick=\'change(this.value)\'>'.$row['key'].'</option>';
+                                                }
+                                                ?>
+                                            </select>
+                                            </div>
+
+                                            <!--<div class = "date" style="float:left;">
                                                 <select >
                                                     <option value="100">Please Select Date</option>
 
                                                     </select>
-                                            </div>
+                                            </div>-->
                                             <div class = "category"; style="float:right;">
                                             <select >
                                                 <option value="all" onclick='change(this.value)'>Please Select Category</option>
@@ -576,6 +561,18 @@ $residentsFirstname = $this->db->query($query);
                                             <select name="Birthday_Year" id="Birthday_Year" style="width: 30%" required>
 
                                                 <option value="-1"><?php echo $this->lang->line('year'); ?></option>
+
+                                                <option value="1990">2000</option>
+
+                                                <option value="1999">1999</option>
+                                                <option value="1998">1998</option>
+                                                <option value="1997">1997</option>
+                                                <option value="1996">1996</option>
+                                                <option value="1995">1995</option>
+                                                <option value="1994">1994</option>
+                                                <option value="1993">1993</option>
+                                                <option value="1992">1992</option>
+                                                <option value="1991">1991</option>
                                                 <option value="1990">1990</option>
 
                                                 <option value="1989">1989</option>
@@ -657,6 +654,25 @@ $residentsFirstname = $this->db->query($query);
 
                                                 <option value="1919">1919</option>
                                                 <option value="1918">1918</option>
+                                                <option value="1917">1917</option>
+                                                <option value="1916">1916</option>
+                                                <option value="1915">1915</option>
+                                                <option value="1914">1914</option>
+                                                <option value="1913">1913</option>
+                                                <option value="1912">1912</option>
+                                                <option value="1911">1911</option>
+                                                <option value="1910">1910</option>
+
+                                                <option value="1909">1909</option>
+                                                <option value="1908">1908</option>
+                                                <option value="1907">1907</option>
+                                                <option value="1906">1906</option>
+                                                <option value="1905">1905</option>
+                                                <option value="1904">1904</option>
+                                                <option value="1903">1903</option>
+                                                <option value="1902">1902</option>
+                                                <option value="1901">1901</option>
+                                                <option value="1900">1900</option>
                                             </select>
                                             </td>
                                     </tr>
@@ -939,11 +955,24 @@ $residentsFirstname = $this->db->query($query);
 
 </script>
 
-<script type="text/javascript">
-    var bothData = <?php echo json_encode($data_each1); ?>;
-</script>
+<!--<script type="text/javascript">
+   // var bothDataRaw = <?php echo json_encode($data_each1); ?>;
+</script>-->
 
 <script>
+   // var bothData1[];
+
+  /*  function changeDate(value)
+    {
+        for (index = 0; index < bothDataRaw.length; ++index)
+        {
+            if(bothData.key==value)
+            {
+                bothData1.push(bothDataRaw.values);
+            }
+        }
+        bothData = bothdata1;
+    }*/
 
     var data_1 = [];
     var data_2 = [];
@@ -1207,7 +1236,7 @@ $residentsFirstname = $this->db->query($query);
 
     //set up chart
     var margin = {top: 20, right:20, bottom: 280, left: 60};
-    var width = 430;
+    var width = 380;
     var height = 300;
 
     var chart = d3.select(".chart")
