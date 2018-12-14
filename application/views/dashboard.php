@@ -32,6 +32,10 @@ if(!isset($_SESSION['caregiver']))
 
 
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 
 
@@ -150,11 +154,33 @@ $query = "SELECT Notes.noteText, Notes.author, Notes.timestamp, Caregivers.first
 $result = $this->db->query($query);
 $query = "SELECT firstName, name, idResidents, YEAR(CURRENT_TIMESTAMP) - YEAR(dateOfBirth) - (RIGHT(CURRENT_TIMESTAMP, 5) < RIGHT(dateOfBirth, 5)) as age FROM Residents;";
 $residents = $this->db->query($query);
-$query = "SELECT firstName FROM Caregivers WHERE $currentID = Caregivers.idCaregivers;";
-$firstName = $this->db->query($query);
-$query = "SELECT email FROM Caregivers WHERE Caregivers.idCaregivers = $currentID;";
-$email = $this->db->query($query);
-?>
+    $query = "SELECT firstName FROM Caregivers WHERE $currentID = Caregivers.idCaregivers;";
+    $firstName = $this->db->query($query);
+    $query = "SELECT email FROM Caregivers WHERE Caregivers.idCaregivers = $currentID;";
+    $email = $this->db->query($query);
+
+$query = "SELECT firstName FROM Residents;";
+$residentsFirstname = $this->db->query($query);
+    ?>
+
+<script>
+    $( function() {
+        var availableTags =  <?php
+            echo "[";
+            foreach ($residentsFirstname->result_array() as $row) {
+                echo '"';
+                echo $row['firstName'];
+                echo '",';
+
+            }
+            echo "]";
+            ?>
+
+        $( "#tags" ).autocomplete({
+            source: availableTags
+        });
+    } );
+</script>
 
 
 <div class="container-fluid">
@@ -181,7 +207,10 @@ $email = $this->db->query($query);
                         <a class="dropdown-item" role="presentation" href="#"><?php echo $this->lang->line('sixth_floor'); ?></a>
                     </div>
                 </div>
-                <input class ="searchbar" type="search" placeholder="<?php echo $this->lang->line('search'); ?>"></div>
+                <div class="ui-widget" >
+                    <input id="tags" for="tags" class ="searchbar" type="search" placeholder="<?php echo $this->lang->line('search'); ?>">
+                </div>
+            </div>
             <div style="overflow-y:scroll;max-height:68vh;">
                 <div class="btn-group-vertical btn-group-lg" role="group" style="width:100%;">
                     <?php
@@ -189,12 +218,12 @@ $email = $this->db->query($query);
                         ?><button class="btn btn-primary btn-resident" id="<?php echo $row['idResidents']?>" type="button" onclick="loadResident(this.id)">
                         <div class="resident-button">
                             <img class="profilePic" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
-                            <span class="resident-nameage"><div class="button-name"><?php
-                                    echo $row['firstName'];
-                                    ?></div><div class="button-age"><?php
-                                    echo $row['age'] ?></div>
-                                <?php
-                                ?></span></div></button><?php
+                        <span class="resident-nameage"><div class="button-name"><?php
+                        echo $row['firstName'];
+                        ?></div><div class="button-age"><?php
+                        echo $row['age'] ?></div>
+                            <?php
+                            ?></span></div></button><?php
                     }
                     ?>
 
@@ -202,6 +231,35 @@ $email = $this->db->query($query);
             </div>
         </div>
         <div class="col-3 hiddendiv" id="div2" style="background-color:#009489;padding:0;">
+            <div style="height:5%;"></div>
+            <h2 class="floornumber" style="padding:15px"><?php echo $this->lang->line('polls');?></h2>
+            <a href="#" style="padding:10%">
+                <button class="btn btn-primary btn-lg" type="button" style="width:80%;background-color:#00675F;border:none;color:#DEEAE9">
+                    ADD POLL
+                </button>
+            </a>
+            <div style="overflow-y:scroll;max-height:70vh;">
+
+                <div class="btn-group-vertical btn-group-lg" role="group" style="width:100%;">
+                    <button class="btn btn-primary btn-resident" id="settings1" type="button" onclick="settingsButton(this.id)">
+                        <div class="resident-button">
+                            <img class="profilePic" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
+                            <span style="font-weight:100">
+                                FOOD
+                            </span>
+                        </div>
+                    </button>
+                    <button class="btn btn-primary btn-resident" id="settings2" type="button" onclick="settingsButton(this.id)">
+                        <div class="resident-button">
+                            <img class="profilePic" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
+                            <span style="font-weight:100">
+                                ACTIVITIES
+                            </span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
 
 
 
@@ -230,14 +288,24 @@ $email = $this->db->query($query);
                             </span>
                         </div>
                     </button>
+                    <button class="btn btn-primary btn-resident" id="settings2" type="button" onclick="settingsButton(this.id)">
+                        <div class="resident-button">
+                            <img class="profilePic" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
+                            <span style="font-weight:100">
+                                <?php echo $this->lang->line('register_button');?>
+                            </span>
+                        </div>
+                    </button>
                 </div>
             </div>
-            <div style="height:50vh"></div>
-            <a href="<?=base_url()?>Dashboard/logout" style="padding:10%">
+            <div style="height:50vh; padding:60% 10%;">
+            <a href="<?=base_url()?>Dashboard/logout" style="padding:20% 10%;">
                 <button class="btn btn-primary btn-lg" type="button" style="width:80%;background-color:#00675F;border:none;color:#DEEAE9">
                     <?php echo $this->lang->line('dash_logout'); ?>
                 </button>
             </a>
+            </div>
+
 
 
 
@@ -343,23 +411,23 @@ $email = $this->db->query($query);
                                                 <select >
                                                     <option value="100">Please Select Date</option>
 
-                                                </select>
+                                                    </select>
                                             </div>
                                             <div class = "category"; style="float:right;">
-                                                <select >
-                                                    <option value="all" onclick='change(this.value)'>Please Select Category</option>
-                                                    <option name="name" value="all" onclick='change(this.value)'><?php echo $this->lang->line('category_all'); ?></option>
-                                                    <option name="name" value="0" onclick='change(this.value)'><?php echo $this->lang->line('category_0'); ?></option>
-                                                    <option name="name" value="1" onclick='change(this.value)'><?php echo $this->lang->line('category_1'); ?></option>
-                                                    <option name="name" value="2" onclick='change(this.value)'><?php echo $this->lang->line('category_2'); ?></option>
-                                                    <option name="name" value="3" onclick='change(this.value)'><?php echo $this->lang->line('category_3'); ?></option>
-                                                    <option name="name" value="4" onclick='change(this.value)'><?php echo $this->lang->line('category_4'); ?></option>
-                                                    <option name="name" value="5" onclick='change(this.value)'><?php echo $this->lang->line('category_5'); ?></option>
-                                                    <option name="name" value="6" onclick='change(this.value)'><?php echo $this->lang->line('category_6'); ?></option>
-                                                    <option name="name" value="7" onclick='change(this.value)'><?php echo $this->lang->line('category_7'); ?></option>
-                                                    <option name="name" value="8" onclick='change(this.value)'><?php echo $this->lang->line('category_8'); ?></option>
-                                                    <option name="name" value="9" onclick='change(this.value)'><?php echo $this->lang->line('category_9'); ?></option>
-                                                    <option name="name" value="10" onclick='change(this.value)'><?php echo $this->lang->line('category_10'); ?></option>
+                                            <select >
+                                                <option value="all" onclick='change(this.value)'>Please Select Category</option>
+                                                <option name="name" value="all" onclick='change(this.value)'><?php echo $this->lang->line('category_all'); ?></option>
+                                                <option name="name" value="0" onclick='change(this.value)'><?php echo $this->lang->line('category_0'); ?></option>
+                                                <option name="name" value="1" onclick='change(this.value)'><?php echo $this->lang->line('category_1'); ?></option>
+                                                <option name="name" value="2" onclick='change(this.value)'><?php echo $this->lang->line('category_2'); ?></option>
+                                                <option name="name" value="3" onclick='change(this.value)'><?php echo $this->lang->line('category_3'); ?></option>
+                                                <option name="name" value="4" onclick='change(this.value)'><?php echo $this->lang->line('category_4'); ?></option>
+                                                <option name="name" value="5" onclick='change(this.value)'><?php echo $this->lang->line('category_5'); ?></option>
+                                                <option name="name" value="6" onclick='change(this.value)'><?php echo $this->lang->line('category_6'); ?></option>
+                                                <option name="name" value="7" onclick='change(this.value)'><?php echo $this->lang->line('category_7'); ?></option>
+                                                <option name="name" value="8" onclick='change(this.value)'><?php echo $this->lang->line('category_8'); ?></option>
+                                                <option name="name" value="9" onclick='change(this.value)'><?php echo $this->lang->line('category_9'); ?></option>
+                                                <option name="name" value="10" onclick='change(this.value)'><?php echo $this->lang->line('category_10'); ?></option>
                                                 </select>
                                             </div>
                                             </br>
@@ -392,7 +460,7 @@ $email = $this->db->query($query);
                             </div>
                             <div class="row" style="padding-top: 40px;">
                                 <div class="col-8">
-                                    <p class="personal_text"> <?php echo $this->lang->line('dash_chooselang'); ?> </p>
+                                   <p class="personal_text"> <?php echo $this->lang->line('dash_chooselang'); ?> </p>
                                 </div>
                                 <div class="col-4" style="padding-top: 12px;">
                                     <select style="width:100%" onchange="javascript:window.location.href='<?php echo base_url(); ?>MultiLanguageSwitcher/switcher/'+this.value;">
@@ -401,17 +469,17 @@ $email = $this->db->query($query);
                                     </select>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <p class="personal_text"> <?php echo $this->lang->line('dash_email'); ?></p>
-                                </div>
-                                <div class="col-6">
-                                    <p class="personal_text" style="text-align: right;"> <?php if ($email->num_rows() > 0)
-                                        {
-                                            $row = $email->row();
-                                            echo $row->email;
-                                        }  ?></p>
-                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p class="personal_text"> <?php echo $this->lang->line('dash_email'); ?></p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="personal_text" style="text-align: right;"> <?php if ($email->num_rows() > 0)
+                                            {
+                                                $row = $email->row();
+                                                echo $row->email;
+                                            }  ?></p>
+                                    </div>
 
                             </div>
                             <!--                            <div class="row" style="padding-top: 40px;">-->
@@ -430,7 +498,7 @@ $email = $this->db->query($query);
                     <div class="tab-pane" role="tabpanel" id="tab-4" style="padding:5%;max-height:94vh;overflow-y:scroll;">
                         <div class="card register-card">
 
-                            <h3 class="title_registration"><?php echo $this->lang->line('title'); ?></h3>
+                                <h3 class="title_registration"><?php echo $this->lang->line('title'); ?></h3>
 
                             <form method="post" action="<?= site_url('Dashboard/dashboard_reg') ?>">
                                 <table align="center" cellpadding = "10">
@@ -590,7 +658,7 @@ $email = $this->db->query($query);
                                                 <option value="1919">1919</option>
                                                 <option value="1918">1918</option>
                                             </select>
-                                        </td>
+                                            </td>
                                     </tr>
                                     <tr>
                                         <td><?php echo $this->lang->line('contact'); ?></td>
@@ -801,7 +869,7 @@ $email = $this->db->query($query);
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
