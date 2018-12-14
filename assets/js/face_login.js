@@ -73,13 +73,12 @@ function snapshot() {
         if(JSON.stringify(m).indexOf("success") > -1) {
             Materialize.toast('User Identfied. ID : ' +JSON.stringify(m.images[0].candidates[0].subject_id), 6000);
             console.log(m.images[0].candidates[0].subject_id);//show the id returned from the cloud
-
             //switch to user page
             let base_url = window.location.origin.concat("/a18ux04");
             //need to match name with id in db, or alternatively send query with name instead of id
             let userID = m.images[0].candidates[0].subject_id;
             //let newUrl = base_url.concat("/index.php/Questionnaire_controller/questionnaire_start/").concat(userID);
-            let newUrl = base_url.concat("/index.php/Homepage_controller/residentHome/").concat(userID);
+            let newUrl = base_url.concat("/index.php/Homepage_controller/succeslogin/").concat(userID);
 
             console.log(newUrl);
             //set a timer
