@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>{page_title}</title>
+    <title><?php echo $this->lang->line('DM_title'); ?></title>
     <link rel="icon" href="<?=base_url()?>assets/photos/favicon3.ico" type="image/gif" sizes="16x16">
 
     <!-- Bootstrap CSS -->
@@ -19,9 +19,9 @@
         <div class="col-md-10">
         </div>
         <div class="col-md-2" style="padding-bottom:10px" >
-            <a class="link1" href="news">
+            <a class="link1" href="<?=base_url()?>/Homepage_controller/news">
                 <button type="button" class ="btn btn-default button_back float-right" >
-                    {buttonBack}
+                    <?php echo $this->lang->line('buttonback'); ?>
                 </button>
             </a>
         </div>
@@ -30,7 +30,7 @@
 
         <div class = "col-md-12"">
             <h1 class="h1">
-                {content_title_1}
+                <?php echo $this->lang->line('DM'); ?>
             </h1>
     </div>
 

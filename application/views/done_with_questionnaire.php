@@ -63,7 +63,7 @@
         <div class="row" style="padding-top: 5%">
             <div class="col-5"></div>
             <div class="col-2" align="center">
-                <a href="<?=base_url()?>questionnaire_controller/menu\">
+                <a href="<?=base_url()?>questionnaire_controller/menu/<?php echo $_SESSION['id']?>">
                     <button id="button" class="button1" ><?php echo $this->lang->line('button'); ?></button>
                 </a>
             </div>

@@ -23,6 +23,7 @@ class Homepage_controller extends CI_Controller
     {
         $data['content'] = 'content';
         $data['user_id'] = $userID;
+        $_SESSION['id']=$userID;
         $this->parser->parse('olderadultmenu', $data);
     }
 
@@ -40,53 +41,66 @@ class Homepage_controller extends CI_Controller
 
     public function news()
     {
-        $data['buttonBack'] = 'Ik wil terug';
-        $this->parser->parse('news_view', $data);
+
+        $this->load->view("news_view");
     }
 
     public function nieuwsblad()
     {
 
-        $data['page_title'] = ' Het Nieuwsblad nieuwspagina';
-        $data['content_title_1'] = 'Het Nieuwsblad';
-        $data['buttonBack'] = 'Ik wil terug';
-        $this->parser->parse('nieuwsblad_view', $data);
+
+        $this->load->view("nieuwsblad_view");
     }
 
     public function standard()
     {
 
-        $data['page_title'] = 'De Standard nieuwspagina';
-        $data['content_title_1'] = 'De Standaard';
-        $data['buttonBack'] = 'Ik wil terug';
-        $this->parser->parse('standard_view', $data);
+
+        $this->load->view("standard_view");
     }
 
     public function dm()
     {
 
-        $data['page_title'] = 'De Morgen nieuwspagina';
-        $data['content_title_1'] = 'De Morgen';
-        $data['buttonBack'] = 'Ik wil terug';
-        $this->parser->parse('dm_view', $data);
+        $this->load->view("dm_view");
     }
 
     public function weathers()
     {
 
-        $data['page_title'] = 'Het weer voor deze week';
-        $data['content_title_1'] = 'Het weer voor deze week';
-        $data['buttonBack'] = 'Ik wil terug';
-        $this->parser->parse('weathers', $data);
+        $this->load->view("weathers");
     }
 
     public function sportsnews()
     {
-
-        $data['page_title'] = 'Sportnieuws';
-        $data['content_title_1'] = 'Sportnieuws voor vandaag';
-        $data['buttonBack'] = 'Ik wil terug';
-        $this->parser->parse('sportsnews', $data);
+        $this->load->view("sportsnews");
     }
+    public function login(){
+        $data['head_message'] = 'Resident Login | Welcome';
 
+        if($_POST) {
+            $name = $this->db->escape($_POST['name']);
+            $query = "SELECT pinHash, idResidents, name FROM Residents WHERE name = $name LIMIT 1;";
+            $result = $this->db->query($query);
+            $_SESSION['id']=$result->result()[0]->idResidents;
+
+            if($result->num_rows() === 0)   {
+                $this->session->set_flashdata('flash_data', 'Email or password incorrect!');
+                redirect('Homepage_controller/login');
+            }
+
+            $hash = $result->result()[0]->pinHash;
+
+            if(password_verify($_POST['pincode'], $hash)) { //TODO verify guaranteed forward compatibility with crypt()
+                $data = array('id_Residents' => $result->result()[0]->idResidents, 'name' => $result->result()[0]->name);
+                $this->session->set_userdata($data);
+                redirect('Homepage_controller/residentHome/'.$_SESSION['id']); // Has something to do with not being able to remove index.php in url
+            } else {
+                $this->session->set_flashdata('flash_data', 'Email or password incorrect!');
+                redirect('Homepage_controller/login'); // Has something to do with not being able to remove index.php in url
+            }
+        }
+
+        $this->load->view("face_login");
+    }
 }

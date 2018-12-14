@@ -3,7 +3,7 @@
 
 <html>
 <head>
-    <title>{page_title}</title>
+    <title><?php echo $this->lang->line('password_forgot_title'); ?></title>
     <link rel="icon" href="<?=base_url()?>assets/photos/favicon3.ico" type="image/gif" sizes="16x16">
 
     <link href="<?=base_url() ?>assets/css/password_forgot.css" rel="stylesheet" type="text/css"/>
@@ -16,16 +16,16 @@
 
 <body>
 <div id="title">
-    <p>{head_message}</p>
+    <p><?php echo $this->lang->line('password_forgot_head'); ?></p>
 </div>
 
 <div id="text">
-    <p>{first_sentence}</p>
+    <p><?php echo $this->lang->line('password_forgot_no_problem'); ?></p>
     <p> E-mail: <input type="email" name="emailaddress" id = "emailInput" placeholder="e-mail"> </p>
 </div>
 
 <div id="button">
-    {button_text}
+    <button id='button'><?php echo $this->lang->line('password_forgot_send'); ?></button>
 </div>
 
 </body>

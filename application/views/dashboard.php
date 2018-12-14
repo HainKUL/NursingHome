@@ -27,6 +27,9 @@ if(!isset($_SESSION['id']))
 
 
 
+
+
+
     <!--    <script src="--><?//= base_url()?><!--assets/js/trail.js"></script>-->
 
 
@@ -142,18 +145,18 @@ $query = "SELECT Notes.noteText, Notes.author, Notes.timestamp, Caregivers.first
 $result = $this->db->query($query);
 $query = "SELECT firstName, name, idResidents, YEAR(CURRENT_TIMESTAMP) - YEAR(dateOfBirth) - (RIGHT(CURRENT_TIMESTAMP, 5) < RIGHT(dateOfBirth, 5)) as age FROM Residents;";
 $residents = $this->db->query($query);
-$query = "SELECT firstName FROM Caregivers WHERE $currentID = Caregivers.idCaregivers;";
-$firstName = $this->db->query($query);
-$query = "SELECT email FROM Caregivers WHERE Caregivers.idCaregivers = $currentID;";
-$email = $this->db->query($query);
-?>
+    $query = "SELECT firstName FROM Caregivers WHERE $currentID = Caregivers.idCaregivers;";
+    $firstName = $this->db->query($query);
+    $query = "SELECT email FROM Caregivers WHERE Caregivers.idCaregivers = $currentID;";
+    $email = $this->db->query($query);
+    ?>
 
 
-<div class="container-fluid">
+    <div class="container-fluid">
 
 
     <div class="row" style="height:100vh;">
-        <div class="col-3" style="background-color:#009489;padding:0;">
+        <div class="col-3" id="div1" style="background-color:#009489;padding:0;">
             <!-- <a href="<?=base_url()?>Dashboard/logout">
             <button class="btn btn-primary btn-lg" type="button" style="min-width:100%;background-color:#009489;border:none;" >
                 <p><?php echo $this->lang->line('dash_logout'); ?></p>
@@ -181,12 +184,12 @@ $email = $this->db->query($query);
                         ?><button class="btn btn-primary btn-resident" id="<?php echo $row['idResidents']?>" type="button" onclick="loadResident(this.id)">
                         <div class="resident-button">
                             <img class="profilePic" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
-                            <span class="resident-nameage"><div class="button-name"><?php
-                                    echo $row['firstName'];
-                                    ?></div><div class="button-age"><?php
-                                    echo $row['age'] ?></div>
-                                <?php
-                                ?></span></div></button><?php
+                        <span class="resident-nameage"><div class="button-name"><?php
+                        echo $row['firstName'];
+                        ?></div><div class="button-age"><?php
+                        echo $row['age'] ?></div>
+                            <?php
+                            ?></span></div></button><?php
                     }
                     ?>
 
@@ -202,7 +205,34 @@ $email = $this->db->query($query);
 
         </div>
         <div class="col-3 hiddendiv" id="div3" style="background-color:#009489;padding:0;">
-
+            <div style="height:5%;"></div>
+                <h2 class="floornumber" style="padding:15px"><?php echo $this->lang->line('personal');?></h2>
+            <div style="overflow-y:scroll;max-height:70vh;">
+                <div class="btn-group-vertical btn-group-lg" role="group" style="width:100%;">
+                    <button class="btn btn-primary btn-resident" id="settings1" type="button" onclick="settingsButton(this.id)">
+                        <div class="resident-button">
+                            <img class="profilePic" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
+                            <span style="font-weight:100">
+                                <?php echo $this->lang->line('personal_settings');?>
+                            </span>
+                        </div>
+                    </button>
+                    <button class="btn btn-primary btn-resident" id="settings2" type="button" onclick="settingsButton(this.id)">
+                        <div class="resident-button">
+                            <img class="profilePic" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
+                            <span style="font-weight:100">
+                                <?php echo $this->lang->line('grouping');?>
+                            </span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+            <div style="height:50vh"></div>
+            <a href="<?=base_url()?>Dashboard/logout" style="padding:10%">
+                <button class="btn btn-primary btn-lg" type="button" style="width:80%;background-color:#00675F;border:none;color:#DEEAE9">
+                    <?php echo $this->lang->line('dash_logout'); ?>
+                </button>
+            </a>
 
 
 
@@ -210,12 +240,6 @@ $email = $this->db->query($query);
 
         </div>
         <div class="col-3 hiddendiv" id="div4" style="background-color:#009489;padding:0;">
-
-
-
-
-
-
         </div>
         <div class="col-6" style="background-color:#f9f9f9;padding:0px;">
             <div style="width:100%;">
@@ -298,7 +322,7 @@ $email = $this->db->query($query);
                         </div>
                         <div class="card questionnaire-card">
                             <div class="card-body">
-                                </br>
+                            </br>
                                 <h4 class="card-title"><?php echo $this->lang->line('dash_answers'); ?></h4>
                                 <!--<h3><?php echo $this->lang->line('category_title2'); ?></h3>-->
                                 <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
@@ -314,23 +338,23 @@ $email = $this->db->query($query);
                                                 <select >
                                                     <option value="100">Please Select Date</option>
 
-                                                </select>
+                                                    </select>
                                             </div>
                                             <div class = "category"; style="float:right;">
-                                                <select >
-                                                    <option value="all" onclick='change(this.value)'>Please Select Category</option>
-                                                    <option name="name" value="all" onclick='change(this.value)'><?php echo $this->lang->line('category_all'); ?></option>
-                                                    <option name="name" value="0" onclick='change(this.value)'><?php echo $this->lang->line('category_0'); ?></option>
-                                                    <option name="name" value="1" onclick='change(this.value)'><?php echo $this->lang->line('category_1'); ?></option>
-                                                    <option name="name" value="2" onclick='change(this.value)'><?php echo $this->lang->line('category_2'); ?></option>
-                                                    <option name="name" value="3" onclick='change(this.value)'><?php echo $this->lang->line('category_3'); ?></option>
-                                                    <option name="name" value="4" onclick='change(this.value)'><?php echo $this->lang->line('category_4'); ?></option>
-                                                    <option name="name" value="5" onclick='change(this.value)'><?php echo $this->lang->line('category_5'); ?></option>
-                                                    <option name="name" value="6" onclick='change(this.value)'><?php echo $this->lang->line('category_6'); ?></option>
-                                                    <option name="name" value="7" onclick='change(this.value)'><?php echo $this->lang->line('category_7'); ?></option>
-                                                    <option name="name" value="8" onclick='change(this.value)'><?php echo $this->lang->line('category_8'); ?></option>
-                                                    <option name="name" value="9" onclick='change(this.value)'><?php echo $this->lang->line('category_9'); ?></option>
-                                                    <option name="name" value="10" onclick='change(this.value)'><?php echo $this->lang->line('category_10'); ?></option>
+                                            <select >
+                                                <option value="all" onclick='change(this.value)'>Please Select Category</option>
+                                                <option name="name" value="all" onclick='change(this.value)'><?php echo $this->lang->line('category_all'); ?></option>
+                                                <option name="name" value="0" onclick='change(this.value)'><?php echo $this->lang->line('category_0'); ?></option>
+                                                <option name="name" value="1" onclick='change(this.value)'><?php echo $this->lang->line('category_1'); ?></option>
+                                                <option name="name" value="2" onclick='change(this.value)'><?php echo $this->lang->line('category_2'); ?></option>
+                                                <option name="name" value="3" onclick='change(this.value)'><?php echo $this->lang->line('category_3'); ?></option>
+                                                <option name="name" value="4" onclick='change(this.value)'><?php echo $this->lang->line('category_4'); ?></option>
+                                                <option name="name" value="5" onclick='change(this.value)'><?php echo $this->lang->line('category_5'); ?></option>
+                                                <option name="name" value="6" onclick='change(this.value)'><?php echo $this->lang->line('category_6'); ?></option>
+                                                <option name="name" value="7" onclick='change(this.value)'><?php echo $this->lang->line('category_7'); ?></option>
+                                                <option name="name" value="8" onclick='change(this.value)'><?php echo $this->lang->line('category_8'); ?></option>
+                                                <option name="name" value="9" onclick='change(this.value)'><?php echo $this->lang->line('category_9'); ?></option>
+                                                <option name="name" value="10" onclick='change(this.value)'><?php echo $this->lang->line('category_10'); ?></option>
                                                 </select>
                                             </div>
                                             </br>
@@ -363,57 +387,57 @@ $email = $this->db->query($query);
                             </div>
                             <div class="row" style="padding-top: 40px;">
                                 <div class="col-8">
-                                    <p class="personal_text"> <?php echo $this->lang->line('dash_chooselang'); ?> </p>
+                                   <p class="personal_text"> <?php echo $this->lang->line('dash_chooselang'); ?> </p>
                                 </div>
                                 <div class="col-4" style="padding-top: 12px;">
-                                    <select onchange="javascript:window.location.href='<?php echo base_url(); ?>MultiLanguageSwitcher/switcher/'+this.value;">
+                                    <select style="width:100%" onchange="javascript:window.location.href='<?php echo base_url(); ?>MultiLanguageSwitcher/switcher/'+this.value;">
                                         <option value="english" <?php if($this->session->userdata('site_lang') == 'english') echo 'selected="selected"'; ?>>English</option>
                                         <option value="dutch" <?php if($this->session->userdata('site_lang') == 'dutch') echo 'selected="selected"'; ?>>Nederlands</option>
                                     </select>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <p class="personal_text"> <?php echo $this->lang->line('dash_email'); ?></p>
-                                </div>
-                                <div class="col-6">
-                                    <p class="personal_text" style="text-align: right;"> <?php if ($email->num_rows() > 0)
-                                        {
-                                            $row = $email->row();
-                                            echo $row->email;
-                                        }  ?></p>
-                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <p class="personal_text"> <?php echo $this->lang->line('dash_email'); ?></p>
+                                    </div>
+                                    <div class="col-6">
+                                        <p class="personal_text" style="text-align: right;"> <?php if ($email->num_rows() > 0)
+                                            {
+                                                $row = $email->row();
+                                                echo $row->email;
+                                            }  ?></p>
+                                    </div>
 
-                            </div>
-                            <div class="row" style="padding-top: 40px;">
-                                <div class="col-12">
-                                    <a href="<?=base_url()?>Dashboard/logout">
-                                        <button class="btn btn-primary btn-lg" type="button" style="min-width:100%;background-color:#009489;border:none;">
-                                            <?php echo $this->lang->line('dash_logout'); ?>
-                                        </button>
-                                    </a>
                                 </div>
-
-                            </div>
+<!--                            <div class="row" style="padding-top: 40px;">-->
+<!--                                <div class="col-12">-->
+<!--                                     <a href="--><?//=base_url()?><!--Dashboard/logout">-->
+<!--                                       <button class="btn btn-primary btn-lg" type="button" style="min-width:100%;background-color:#009489;border:none;">-->
+<!--                                            --><?php //echo $this->lang->line('dash_logout'); ?>
+<!--                                        </button>-->
+<!--                                    </a>-->
+<!--                                </div>-->
+<!---->
+<!--                            </div>-->
 
                         </div>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="tab-4" style="padding:5%;max-height:94vh;overflow-y:scroll;">
                         <div class="card register-card">
 
-                            <h3 class="title_registration"><?php echo $this->lang->line('title'); ?></h3>
+                                <h3 class="title_registration"><?php echo $this->lang->line('title'); ?></h3>
 
                             <form method="post" action="<?= site_url('Dashboard/dashboard_reg') ?>">
                                 <table align="center" cellpadding = "10">
                                     <tr>
                                         <td><?php echo $this->lang->line('first'); ?></td>
-                                        <td><input type="text" name="firstname" maxlength="30" placeholder="residents first name"/>
+                                        <td><input type="text" name="firstname" maxlength="30" placeholder="<?php echo $this->lang->line('firstname_placeholder_register'); ?>"/>
                                         </td>
                                     </tr>
 
                                     <tr>
                                         <td><?php echo $this->lang->line('last'); ?></td>
-                                        <td><input type="text" name="name" maxlength="30" placeholder="residents last name"/>
+                                        <td><input type="text" name="name" maxlength="30" placeholder="<?php echo $this->lang->line('lastname_placeholder_register'); ?>"/>
                                         </td>
                                     </tr>
 
@@ -462,18 +486,18 @@ $email = $this->db->query($query);
 
                                             <select id="Birthday_Month" name="Birthday_Month" style="width: 35%" required>
                                                 <option value="-1"><?php echo $this->lang->line('month'); ?></option>
-                                                <option value="January">Jan</option>
-                                                <option value="February">Feb</option>
-                                                <option value="March">Mar</option>
-                                                <option value="April">Apr</option>
-                                                <option value="May">May</option>
-                                                <option value="June">Jun</option>
-                                                <option value="July">Jul</option>
-                                                <option value="August">Aug</option>
-                                                <option value="September">Sep</option>
-                                                <option value="October">Oct</option>
-                                                <option value="November">Nov</option>
-                                                <option value="December">Dec</option>
+                                                <option value="January"><?php echo $this->lang->line('januari_register'); ?></option>
+                                                <option value="February"><?php echo $this->lang->line('februari_register'); ?></option>
+                                                <option value="March"><?php echo $this->lang->line('march_register'); ?></option>
+                                                <option value="April"><?php echo $this->lang->line('april_register'); ?></option>
+                                                <option value="May"><?php echo $this->lang->line('may_register'); ?></option>
+                                                <option value="June"><?php echo $this->lang->line('june_register'); ?></option>
+                                                <option value="July"><?php echo $this->lang->line('july_register'); ?></option>
+                                                <option value="August"><?php echo $this->lang->line('august_register'); ?></option>
+                                                <option value="September"><?php echo $this->lang->line('september_register'); ?></option>
+                                                <option value="October"><?php echo $this->lang->line('october_register'); ?></option>
+                                                <option value="November"><?php echo $this->lang->line('november_register'); ?></option>
+                                                <option value="December"><?php echo $this->lang->line('december_register'); ?></option>
                                             </select>
 
                                             <select name="Birthday_Year" id="Birthday_Year" style="width: 30%" required>
@@ -561,7 +585,7 @@ $email = $this->db->query($query);
                                                 <option value="1919">1919</option>
                                                 <option value="1918">1918</option>
                                             </select>
-                                        </td>
+                                            </td>
                                     </tr>
                                     <tr>
                                         <td><?php echo $this->lang->line('contact'); ?></td>
@@ -644,7 +668,7 @@ $email = $this->db->query($query);
                                     <tr>
                                         <td><?php echo $this->lang->line('privileges'); ?></td>
                                         <td>
-                                            <input type="text" name="Privileges" maxlength="200" placeholder="optional" />
+                                            <input type="text" name="Privileges" maxlength="200" placeholder="<?php echo $this->lang->line('privileges_optional'); ?>" />
                                         </td>
                                     </tr>
 
@@ -699,8 +723,10 @@ $email = $this->db->query($query);
             <div role="tablist" id="accordion-1" style="border:none;text-align:right;">
                 <div class="card notes-card active">
                     <div class="card-header notes-card-head" role="tab">
-                        <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-1 .item-1" href="div#accordion-1 .item-1" class="btn-notes">
-                                <?php echo $this->lang->line('dash_today'); ?>&nbsp;</a></h5>
+                        <h5 class="mb-0">
+                            <a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-1 .item-1" href="div#accordion-1 .item-1" class="btn-notes">
+                                <?php echo $this->lang->line('dash_today'); ?>&nbsp;</a>
+                        </h5>
                     </div>
                     <div class="collapse show item-1 notes-content" role="tabpanel" data-parent="#accordion-1">
                         <div class="card-body">
@@ -813,6 +839,53 @@ $email = $this->db->query($query);
         currentButtonID = id
 
         document.getElementById("residentName").innerText = id + "<?php echo $this->lang->line('dash_profile'); ?>"
+    }
+
+</script>
+
+<script>
+    var currentButtonID
+    function settingsButton(id){
+        if(currentButtonID){
+            var previous = document.getElementById(currentButtonID)
+            previous.classList.remove("btn-active")
+        }
+
+        var element = document.getElementById(id)
+        element.classList.add("btn-active")
+        currentButtonID = id
+    }
+
+</script>
+
+<script>
+    function loadDiv1(){
+        document.getElementById("div2").classList.add("hiddendiv")
+        document.getElementById("div3").classList.add("hiddendiv")
+        document.getElementById("div4").classList.add("hiddendiv")
+        var element = document.getElementById("div1")
+        element.classList.remove("hiddendiv")
+    }
+    function loadDiv2(){
+        document.getElementById("div1").classList.add("hiddendiv")
+        document.getElementById("div3").classList.add("hiddendiv")
+        document.getElementById("div4").classList.add("hiddendiv")
+        var element = document.getElementById("div2")
+        element.classList.remove("hiddendiv")
+    }
+    function loadDiv3(){
+        document.getElementById("div1").classList.add("hiddendiv")
+        document.getElementById("div2").classList.add("hiddendiv")
+        document.getElementById("div4").classList.add("hiddendiv")
+        var element = document.getElementById("div3")
+        element.classList.remove("hiddendiv")
+    }
+    function loadDiv4(){
+        document.getElementById("div1").classList.add("hiddendiv")
+        document.getElementById("div2").classList.add("hiddendiv")
+        document.getElementById("div3").classList.add("hiddendiv")
+        var element = document.getElementById("div4")
+        element.classList.remove("hiddendiv")
     }
 
 </script>

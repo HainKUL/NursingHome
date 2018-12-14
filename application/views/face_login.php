@@ -16,10 +16,10 @@
 <script type="text/javascript" src="../../assets/js/materialize.min.js"></script>
 <nav>
     <div class="nav-wrapper">
-        <a href="#" class="brand-logo center">{welcome}</a>
+        <a href="#" class="brand-logo center"><?php echo $this->lang->line('login_welcome'); ?></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
 <!--            <li><a href="#">{registration}</a></li>-->
-            <li class="active"><a href="#">{login}</a></li>
+            <li class="active"><a href="#"><?php echo $this->lang->line('login_login'); ?></a></li>
         </ul>
     </div>
 </nav>
@@ -30,8 +30,8 @@
         <div class="card-content">
             <div class="card-action">
                 <div class="card-action">
-                    <button onclick="startWebcam();">{start}</button>
-                    <button onclick="snapshot();">{capture}</button>
+                    <button onclick="startWebcam();"><?php echo $this->lang->line('login_start'); ?></button>
+                    <button onclick="snapshot();"><?php echo $this->lang->line('login_capture'); ?></button>
                 </div>
             </div>
 
@@ -46,7 +46,22 @@
 
     </div>
 </div>
-<a href="<?=base_url()?>Homepage_controller/residentHome"><button >login bypass</button></a>
+<form method="post" action="<?=base_url()?>Homepage_controller/login">
+    <h1>login</h1>
+
+    <p>
+        <label>name:</label>
+        <input type="text" name="name" id="name" class="form-control"  />
+
+    </p>
+    <p>
+        <label>pincode:</label>
+        <input type="password" name="pincode" id="pincode" class="form-control"  />
+    </p>
+    <br />
+    <p>
+        <input type="submit" id="submit" value="<?php echo $this->lang->line('login_button'); ?>" />
+    </p>
 </body>
 <script src="../../assets/js/face_login.js"></script>
 </html>

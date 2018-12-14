@@ -2,7 +2,7 @@
 <meta charset="UTF-8">
 <html>
 <head>
-    <title>Elderly Registration Form</title>
+    <title></title>
     <link rel="icon" href="<?=base_url()?>assets/photos/favicon3.ico" type="image/gif" sizes="16x16">
 
     <link href="<?=base_url() ?>assets/css/password_forgot.css" rel="stylesheet" type="text/css"/>
