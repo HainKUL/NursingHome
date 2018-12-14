@@ -75,7 +75,7 @@ function snapshot() {
             console.log(m.images[0].candidates[0].subject_id);//show the id returned from the cloud
 
             //switch to user page
-            var base_url = window.location.origin.concat("/a18ux04");
+            let base_url = window.location.origin.concat("/a18ux04");
             //need to match name with id in db, or alternatively send query with name instead of id
             let userID = m.images[0].candidates[0].subject_id;
             //let newUrl = base_url.concat("/index.php/Questionnaire_controller/questionnaire_start/").concat(userID);

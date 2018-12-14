@@ -79,13 +79,11 @@ function snapshot() {
             //Materialize.toast("Image Trained succesfully by name " +response.images[0].transaction.subject_id+ " in gallery name " +response.images[0].transaction.gallery_name, 4000);
             console.log("successfully registered")
             alert("successfully registered")
-            // let newUrl = site_url.concat("/index.php/Dashboard/dashboard")
-            // console.log(newUrl);
-            // //set a timer
-            // setTimeout(myFunc,1000);
-            // function myFunc() {
-            //     window.location.href = newUrl;
-            // }
+            let base_url = window.location.origin.concat("/a18ux04");
+            let newUrl = base_url.concat("/index.php/Dashboard/dashboard");
+
+            console.log(newUrl);
+            window.location.href = newUrl;
         }
         else{
             //Materialize.toast("Unable to Train Image", 4000);
