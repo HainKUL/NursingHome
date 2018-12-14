@@ -369,8 +369,9 @@ $residentsFirstname = $this->db->query($query);
                                         <div class='radio'>
 
                                             </br>
-
+                                            <div class = "date" style="float:left;">
                                             <select class="form-control">
+                                                <option value="100">Please Select Date</option>
                                                 <!--<script>
                                                     var bothData[];
                                                     function changeDate(v)
@@ -389,13 +390,14 @@ $residentsFirstname = $this->db->query($query);
                                                 }
                                                 ?>
                                             </select>
+                                            </div>
 
-                                            <div class = "date" style="float:left;">
+                                            <!--<div class = "date" style="float:left;">
                                                 <select >
                                                     <option value="100">Please Select Date</option>
 
                                                     </select>
-                                            </div>
+                                            </div>-->
                                             <div class = "category"; style="float:right;">
                                             <select >
                                                 <option value="all" onclick='change(this.value)'>Please Select Category</option>
@@ -559,6 +561,18 @@ $residentsFirstname = $this->db->query($query);
                                             <select name="Birthday_Year" id="Birthday_Year" style="width: 30%" required>
 
                                                 <option value="-1"><?php echo $this->lang->line('year'); ?></option>
+
+                                                <option value="1990">2000</option>
+
+                                                <option value="1999">1999</option>
+                                                <option value="1998">1998</option>
+                                                <option value="1997">1997</option>
+                                                <option value="1996">1996</option>
+                                                <option value="1995">1995</option>
+                                                <option value="1994">1994</option>
+                                                <option value="1993">1993</option>
+                                                <option value="1992">1992</option>
+                                                <option value="1991">1991</option>
                                                 <option value="1990">1990</option>
 
                                                 <option value="1989">1989</option>
@@ -640,6 +654,25 @@ $residentsFirstname = $this->db->query($query);
 
                                                 <option value="1919">1919</option>
                                                 <option value="1918">1918</option>
+                                                <option value="1917">1917</option>
+                                                <option value="1916">1916</option>
+                                                <option value="1915">1915</option>
+                                                <option value="1914">1914</option>
+                                                <option value="1913">1913</option>
+                                                <option value="1912">1912</option>
+                                                <option value="1911">1911</option>
+                                                <option value="1910">1910</option>
+
+                                                <option value="1909">1909</option>
+                                                <option value="1908">1908</option>
+                                                <option value="1907">1907</option>
+                                                <option value="1906">1906</option>
+                                                <option value="1905">1905</option>
+                                                <option value="1904">1904</option>
+                                                <option value="1903">1903</option>
+                                                <option value="1902">1902</option>
+                                                <option value="1901">1901</option>
+                                                <option value="1900">1900</option>
                                             </select>
                                             </td>
                                     </tr>
