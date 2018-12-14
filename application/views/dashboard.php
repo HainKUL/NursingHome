@@ -1,5 +1,5 @@
 <?php
-if(!isset($_SESSION['id']))
+if(!isset($_SESSION["caregiver"]))
 {
 
     header("Location:./index.php?msg=YouMustLoginFirst");
@@ -195,6 +195,35 @@ $residents = $this->db->query($query);
             </div>
         </div>
         <div class="col-3 hiddendiv" id="div2" style="background-color:#009489;padding:0;">
+            <div style="height:5%;"></div>
+            <h2 class="floornumber" style="padding:15px"><?php echo $this->lang->line('polls');?></h2>
+            <a href="#" style="padding:10%">
+                <button class="btn btn-primary btn-lg" type="button" style="width:80%;background-color:#00675F;border:none;color:#DEEAE9">
+                    ADD POLL
+                </button>
+            </a>
+            <div style="overflow-y:scroll;max-height:70vh;">
+
+                <div class="btn-group-vertical btn-group-lg" role="group" style="width:100%;">
+                    <button class="btn btn-primary btn-resident" id="settings1" type="button" onclick="settingsButton(this.id)">
+                        <div class="resident-button">
+                            <img class="profilePic" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
+                            <span style="font-weight:100">
+                                FOOD
+                            </span>
+                        </div>
+                    </button>
+                    <button class="btn btn-primary btn-resident" id="settings2" type="button" onclick="settingsButton(this.id)">
+                        <div class="resident-button">
+                            <img class="profilePic" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
+                            <span style="font-weight:100">
+                                ACTIVITIES
+                            </span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+
 
 
 
@@ -220,6 +249,14 @@ $residents = $this->db->query($query);
                             <img class="profilePic" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
                             <span style="font-weight:100">
                                 <?php echo $this->lang->line('grouping');?>
+                            </span>
+                        </div>
+                    </button>
+                    <button class="btn btn-primary btn-resident" id="settings2" type="button" onclick="settingsButton(this.id)">
+                        <div class="resident-button">
+                            <img class="profilePic" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
+                            <span style="font-weight:100">
+                                <?php echo $this->lang->line('register_button');?>
                             </span>
                         </div>
                     </button>

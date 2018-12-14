@@ -67,3 +67,4 @@ $lang['password_forgot_send'] = "Send email!";
 $lang['personal'] = "PERSONAL";
 $lang['personal_settings'] = "Personal settings";
 $lang['grouping'] = "Grouping";
+$lang['register_button'] = "Register new resident";
