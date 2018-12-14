@@ -87,31 +87,31 @@
             </div>
             <div class="col-2">
                 <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
-                    <input type="submit" name="never" value="never" id="never" class="button_menu">
+                    <input type="submit" name="never" value="<?php echo $this->lang->line('button_never');?>" id="never" class="button_menu">
                 </form>
             </div>
 
             <div class="col-2">
                 <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
-                    <input type="submit" name="rarely" value="rarely" id="rarely" class="button_menu">
+                    <input type="submit" name="rarely" value="<?php echo $this->lang->line('button_rarely');?>" id="rarely" class="button_menu">
                 </form>
             </div>
 
             <div class="col-2">
                 <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
-                    <input type="submit" name="sometimes" value="sometimes" id="sometime" class="button_menu">
+                    <input type="submit" name="sometimes" value="<?php echo $this->lang->line('button_sometimes');?>" id="sometime" class="button_menu">
                 </form>
             </div>
 
             <div class="col-2">
                 <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
-                    <input type="submit" name="mostly" value="mostly" id="mostly" class="button_menu">
+                    <input type="submit" name="mostly" value="<?php echo $this->lang->line('button_mostly');?>" id="mostly" class="button_menu">
                 </form>
             </div>
 
             <div class="col-2">
                 <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
-                    <input type="submit" name="always" value="always" id="always" class="button_menu">
+                    <input type="submit" name="always" value="<?php echo $this->lang->line('button_always');?>" id="always" class="button_menu">
                 </form>
             </div>
 
@@ -131,7 +131,7 @@
         </div>
         <div class="col-2">
             <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
-                <input type="submit" name=<?php echo $this->lang->line('Return');?> value="previous" id="previous" class="button_back">
+                <input type="submit" name=<?php echo $this->lang->line('Return');?> value="<?php echo $this->lang->line('Return');?>" id="previous" class="button1">
             </form>
 
         </div>

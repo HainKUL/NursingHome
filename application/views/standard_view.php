@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" href="<?=base_url()?>assets/photos/favicon3.ico" type="image/gif" sizes="16x16">
 
-    <title>{page_title}</title>
+    <title><?php echo $this->lang->line('standard_title'); ?></title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link href="<?=base_url() ?>assets/css/features.css" rel="stylesheet" type="text/css"/>
@@ -21,7 +21,7 @@
         <div class="col-md-2" style="padding-bottom:10px" >
             <a class="link1" href="<?=base_url()?>/Homepage_controller/news">
                 <button type="button" class ="btn btn-default button_back float-right" >
-                    {buttonBack}
+                    <?php echo $this->lang->line('buttonback'); ?>
                 </button>
             </a>
         </div>
@@ -30,7 +30,7 @@
 
         <div class = "col-md-12"">
         <h1 class="h1">
-            {content_title_1}
+            <?php echo $this->lang->line('standard'); ?>
         </h1>
     </div>
 

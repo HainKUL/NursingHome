@@ -12,5 +12,6 @@ $lang['login_username'] = 'Username';
 $lang['login_password'] = 'Password';
 $lang['login_forgot'] = 'Forgot your password?';
 $lang['login_click'] = 'Click Here!';
+$lang['caregiver_login_title'] = "Caregiver Login | Welcome";
 
 ?>

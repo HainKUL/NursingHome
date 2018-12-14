@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <html>
 <head>
-    <title>Elderly Registration Form</title>
+    <title><?php echo $this->lang->line('add_note_title'); ?></title>
     <link href="<?=base_url() ?>assets/css/features.css" rel="stylesheet" type="text/css"/>
 </head>
 
@@ -17,18 +17,18 @@
     echo $this->session->flashdata('flash_data');
 } ?>
 
-<h3>ADD NOTE FORM</h3>
+<h3><?php echo $this->lang->line('add_note_form'); ?></h3>
 <form method="post" action="<?= site_url('Caregiver_controller/add_note') ?>">
     <table align="center" cellpadding = "10">
 
         <tr>
-            <td>USER ID (int)</td>
+            <td><?php echo $this->lang->line('add_note_id'); ?></td>
             <td><input type="text" name="id" maxlength="5"/>
             </td>
         </tr>
 
         <tr>
-            <td>NOTE</td>
+            <td><?php echo $this->lang->line('add_note_note'); ?></td>
             <td>
                 <textarea type="text" name="note" maxlength="1023" ></textarea>
             </td>
