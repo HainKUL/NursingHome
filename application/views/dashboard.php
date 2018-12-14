@@ -201,8 +201,8 @@ $residentsFirstname = $this->db->query($query);
                         <a class="dropdown-item" role="presentation" href="#"><?php echo $this->lang->line('sixth_floor'); ?></a>
                     </div>
                 </div>
-                <div class="ui-widget">
-                    <label for="tags">Tags: </label>
+                <div class="ui-widget" >
+                    <label for="tags" class ="searchbar" type="search" placeholder="<?php echo $this->lang->line('search'); ?>"></label>
                     <input id="tags">
                 </div>
             </div>
