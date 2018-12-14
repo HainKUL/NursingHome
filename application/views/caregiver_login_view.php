@@ -42,7 +42,7 @@
 
                             <p style="padding-top: 15%; font-size: 32px;">
                                 <label><?php echo $this->lang->line('login_username'); ?>:</label>
-                                <input style="line-height: 32px;"type="text" name="email" id="email" class="form-control" name="email" />
+                                <input style="line-height: 32px;" type="text" name="email" id="email" class="form-control" name="email" />
 
                             </p>
 
@@ -55,9 +55,9 @@
                     </div>
                     <div class="col-8">
 
-                            <p style="padding-top: 15%; font-size: 32px;">
+                            <p style="padding-top: 15%; font-size: 32px; padding-right: 12px; padding-left: 7px;">
                                 <label><?php echo $this->lang->line('login_password'); ?>:</label>
-                                <input style="line-height: 32px; margin-left: 3.5vw;" type="password" name="password" id="password" class="form-control" name="password" />
+                                <input style="line-height: 32px;" type="password" name="password" id="password" class="form-control" name="password" />
                             </p>
 
                     </div>
