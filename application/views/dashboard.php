@@ -271,44 +271,8 @@ $email = $this->db->query($query);
                                 </script>
 
                                 <script>
-                                    //////////////////////////////////////////////////////////////
-                                    //////////////////////// Set-Up //////////////////////////////
-                                    //////////////////////////////////////////////////////////////
-
-
-                                    //var margin = {top: 150, right: 70, bottom: 100, left: 100},
-
-                                    var margin = {top: 120, right: 60, bottom: 40, left: 60},
-                                        legendPosition = {x: 220, y: 10},
-                                        width = Math.min(400, window.innerWidth - 10) - margin.left - margin.right,
-                                        height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20); //////////////////////////////////////////////////////////////
-                                    //////////////////// Draw the Chart //////////////////////////
-                                    //////////////////////////////////////////////////////////////
-
-                                    var color = d3.scale.ordinal()
-                                        .range(["#42f4b0","#CCCC00","#00A0B0","#EDC951"]);
-
-
-                                    var radarChartOptions = {
-                                        w: width,
-                                        h: height,
-                                        margin: margin,
-                                        legendPosition: legendPosition,
-                                        maxValue: 0.5,
-                                        wrapWidth: 60,
-                                        levels: 5,
-                                        roundStrokes: true,
-                                        color: color,
-                                        axisName: "category",
-                                        areaName: "timestampStart",
-                                        value: "answer"
-                                        /*axisName: "reason",
-                                         areaName: "device",
-                                         value: "value"*/
-                                    };
-
                                     //Load the data and Call function to draw the Radar chart
-                                    RadarChart(".radarChart", data, radarChartOptions);
+                                    RadarChart(".radarChart", data);
                                 </script>
                             </div>
                         </div>
@@ -327,10 +291,6 @@ $email = $this->db->query($query);
                                 <script src="//d3js.org/d3.v4.min.js"></script>
                                 <script src="https://d3js.org/d3.v4.min.js"></script>
 
-                                <script type="text/javascript">
-                                    var bothData = <?php echo json_encode($data_each1); ?>;
-                                </script>
-
                                 <div class='container'>
                                     <div class='row'>
                                         <div class='radio'>
@@ -338,12 +298,21 @@ $email = $this->db->query($query);
                                             </br>
 
                                             <select class="form-control">
+                                                <!--<script>
+                                                    var bothData[];
+                                                    function changeDate(v)
+                                                    {
+                                                        bothData = <?php json_encode(v);?>";
+                                                    }
+                                                </script>-->
                                                 <?php
-
                                                 foreach($data_each1 as $row)
                                                 {
+                                                    echo "<script> var bothData = ". json_encode($row['values'])."</script>";
                                                     //echo '<option value="'.$row['timestampStart'].'">'.$row['timestampStart'].'</option>';
-                                                    echo '<option value="all" onclick=\'change(this.value)\'>'.$row['timestampStart'].'</option>';
+                                                    //echo '<option value="'.$row['key'].'" onclick=\'change("all")\'>'.$row['key'].'</option>';
+                                                   // echo '<option value="'.$row['values'].'" onclick=\'changeDate(this.value)\'>'.$row['key'].'</option>';
+                                                    echo '<option value="'.$row['key'].'" onclick=\'change(this.value)\'>'.$row['key'].'</option>';
                                                 }
                                                 ?>
                                             </select>
@@ -880,9 +849,24 @@ $email = $this->db->query($query);
 
 </script>
 
-
+<!--<script type="text/javascript">
+   // var bothDataRaw = <?php echo json_encode($data_each1); ?>;
+</script>-->
 
 <script>
+   // var bothData1[];
+
+  /*  function changeDate(value)
+    {
+        for (index = 0; index < bothDataRaw.length; ++index)
+        {
+            if(bothData.key==value)
+            {
+                bothData1.push(bothDataRaw.values);
+            }
+        }
+        bothData = bothdata1;
+    }*/
 
     var data_1 = [];
     var data_2 = [];

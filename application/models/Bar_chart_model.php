@@ -20,7 +20,7 @@ class Bar_chart_model extends CI_Model
 
     public function get_each()
     {
-        $where = "idResident ='2' AND completed = '1'";
+        $where = "idResident ='1' AND completed = '1'";
         $this->db->select('*,idResident');
         $this->db->from('Questions,Submissions');
         $this->db->where($where);
@@ -40,6 +40,20 @@ class Bar_chart_model extends CI_Model
             //print_r(json_encode($bothData));
         }
 
+        foreach ($rawdata as $value)
+        {
+            $time= $value['timestampStart'];
+            $x[$time][]= $value;
+        }
+        $bothData= $x;
+
+        foreach ($bothData as $key =>$v)
+        {
+            $data11["key"] = $key;
+            $data11["values"] = $v;
+            $data22[]=$data11;
+            unset($data11);
+        }
         /*foreach ($rawdata as $value)
         {
             $time= $value['timestampStart'];
@@ -48,7 +62,7 @@ class Bar_chart_model extends CI_Model
         $bothData1[]= $x;*/
         //$sliced_array = array_slice($bothData1, 0, 1);
 
-        return $rawdata;
+        return $data22;
         //echo(json_encode($bothData1);
     }
 
