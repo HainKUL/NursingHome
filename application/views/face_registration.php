@@ -115,42 +115,39 @@ if(!isset($_SESSION['id']))
         <div class="col-3" id="div1" style="background-color:#009489;padding:0;"></div>
 
         <div class="col-6" style="background-color:#f9f9f9;padding:0px;">
+
             <div style="width:100%;">
+
                 <ul class="nav nav-tabs" style="text-align:center;border:none;">
                     <li class="nav-item" style="width:25%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-1" style="border:none;"><?php echo $this->lang->line('dash_questionnaire'); ?></a></li>
                     <li class="nav-item" style="width:25%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2" style="border:none;" ><?php echo $this->lang->line('dash_poll'); ?></a></li>
                     <li class="nav-item" style="width:25%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3" style="border:none;"><?php echo $this->lang->line('dash_personal'); ?></a></li>
                     <li class="nav-item" style="width:25%;"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-4" style="border:none;" onload="loadDiv4()"><?php echo $this->lang->line('dash_register'); ?></a></li>
                 </ul>
-                <div class="tab-content">
-                    <div class="tab-pane" role="tabpanel" id="tab-4" style="padding:5%;max-height:94vh;overflow-y:scroll;">
-                        <div class="card register-card">
-                            <h3 class="title_registration"><?php echo $this->lang->line('title'); ?></h3>
-                            <div>
-                                <form  method="post">
-<!--                                    ID:<input type="text" class="validate" id="ip">-->
-                                    <h4 type="text" class="validate" id="ip"><?php echo $_SESSION["reg_id"] ?></h4>
 
-                                </form>
-                                <div id="container">
-                                    <button  id="button1" onclick="startWebcam();"><?php echo $this->lang->line('login_start'); ?></button>
-                                    <br/><br/>
-                                    <button  id="button2" onclick="snapshot();"><?php echo $this->lang->line('login_capture'); ?></button>
-                                    <br/><br/>
-                                </div>
-                                <div>
-                                    <video  class="center" onclick="snapshot(this)"  class="center" id="video" margin="0" width="400" height="300" controls autoplay></video>
-                                    <br/>
-                                    <canvas  class="center" id="myCanvas" width="400" height="300"></canvas>
-                                </div>
-                                <a href="<?=base_url()?>Homepage_controller/residentHome"><button >login bypass</button></a>
-                                <script src="../../assets/js/face_registration.js"></script>
-                            </div>
+            </div>
 
-                        </div>
+            <div style="padding:5%;max-height:94vh;overflow-y:scroll;">
+                <h3 class="title_registration"><?php echo $this->lang->line('title'); ?></h3>
+                <div>
+                    <form  method="post">
+                        <!--                                    ID:<input type="text" class="validate" id="ip">-->
+                        <h4 type="text" class="validate" id="ip"><?php echo $_SESSION["reg_id"] ?></h4>
 
+                    </form>
+                    <div id="container">
+                        <button  id="button1" onclick="startWebcam();"><?php echo $this->lang->line('login_start'); ?></button>
+                        <br/><br/>
+                        <button  id="button2" onclick="snapshot();"><?php echo $this->lang->line('login_capture'); ?></button>
+                        <br/><br/>
                     </div>
-
+                    <div>
+                        <video  class="center" onclick="snapshot(this)"  class="center" id="video" margin="0" width="400" height="300" controls autoplay></video>
+                        <br/>
+                        <canvas  class="center" id="myCanvas" width="400" height="300"></canvas>
+                    </div>
+                    <a href="<?=base_url()?>Homepage_controller/residentHome"><button >login bypass</button></a>
+                    <script src="../../assets/js/face_registration.js"></script>
                 </div>
             </div>
         </div>
@@ -167,79 +164,3 @@ if(!isset($_SESSION['id']))
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--<!DOCTYPE html>-->
-<!--<html lang="en">-->
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <title>Camera</title>-->
-<!--    <!--Import materialize.css-->-->
-<!--</head>-->
-<!---->
-<!--<body onload="init()">-->
-<!--<!--Import jQuery before materialize.js-->-->
-<!---->
-<!--<nav>-->
-<!--    <div class="nav-wrapper">-->
-<!--        <a href="#" class="brand-logo center">--><?php //echo $this->lang->line('login_welcome'); ?><!--</a>-->
-<!--        <ul id="nav-mobile" class="right hide-on-med-and-down">-->
-<!--            <li class="active"><a href="#">--><?php //echo $this->lang->line('login_registration'); ?><!--</a></li>-->
-<!--            <li><a href="--><?//=base_url()?><!--index.php/Face_Login_controller/face_login">--><?php //echo $this->lang->line('login_login'); ?><!--</a></li>-->
-<!--        </ul>-->
-<!--    </div>-->
-<!--</nav>-->
-<!---->
-<!--<div class="container">-->
-<!--    <div class="card center">-->
-<!--        <div class="card-content">-->
-<!--            <div class="card-action">-->
-<!--                <form action="face_registration.php" method="post">-->
-<!--                    --><?php //echo $this->lang->line('register_id'); ?><!--: <input type="text" class="validate" id="ip">-->
-<!--                </form>-->
-<!---->
-<!--                <button onclick="startWebcam();">--><?php //echo $this->lang->line('login_start'); ?><!--</button>-->
-<!--                <button onclick="snapshot();">--><?php //echo $this->lang->line('login_capture'); ?><!--</button>-->
-<!--            </div>-->
-<!---->
-<!--            <div>-->
-<!--                <video onclick="snapshot(this)" id="video" width="400" height="300"  controls autoplay></video>-->
-<!--                <canvas  id="myCanvas" width="400" height="300"></canvas>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
-<!--</body>-->
-<!--<script src="../../assets/js/face_registration.js"></script>-->
-<!--</html>-->
