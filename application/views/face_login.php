@@ -50,6 +50,11 @@
     <h1>login</h1>
 
     <p>
+        <label>firstname:</label>
+        <input type="text" name="firstname" id="firstname" class="form-control"  />
+
+    </p>
+    <p>
         <label>name:</label>
         <input type="text" name="name" id="name" class="form-control"  />
 
