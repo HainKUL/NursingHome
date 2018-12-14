@@ -1,8 +1,13 @@
 <?php
-if(!isset($_SESSION['id']))
+if(!isset($_SESSION['caregiver']))
 {
 
-    header("Location:".base_url()."Caregiver_controller/login");
+
+    echo "<script> 
+                    alert('You are not logged in!'); 
+                    window.location.href='".base_url()."Caregiver_controller/login';
+          </script>";
+
     exit();
 
 }
