@@ -2,7 +2,7 @@
 if(!isset($_SESSION['id']))
 {
 
-    header("Location:./index.php?msg=YouMustLoginFirst");
+    header("Location:".base_url()."Caregiver_controller/login");
     exit();
 
 }
