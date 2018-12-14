@@ -88,10 +88,11 @@ class Dashboard extends CI_Controller
                 $this->db->query($query);
 //                header('location: dashboard');
 
-                $query2 = "SELECT idResidents FROM Residents ORDER BY idResidents DESC LIMIT 1;";
+                $query2 = "SELECT idResidents FROM a18ux04.Residents ORDER BY idResidents DESC LIMIT 1;";
                 $result2 = $this->db->query($query2)->result_array()[0]["idResidents"];
-                $_SESSION["reg_id"] = strval($result2);
-
+//                $_SESSION["reg_id"] = strval($result2);
+                $_SESSION['reg_id'] = $result2;
+                //echo $_SESSION["reg_id"];
                 header('location: ../Face_login_controller/face_registration');
 
             }
@@ -107,7 +108,10 @@ class Dashboard extends CI_Controller
         session_destroy();
         redirect('/Caregiver_controller/login');
     }
+    public function registrationsucces($userId){
+        $_SESSION['resident']="yes";
+        redirect('/Dashboard/dashboard');
+
+    }
 
 }
-
-

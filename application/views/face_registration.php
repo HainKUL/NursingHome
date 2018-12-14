@@ -91,6 +91,8 @@ if(!isset($_SESSION['id']))
             visibility: hidden;
         }
 
+
+
     </style>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -131,7 +133,8 @@ if(!isset($_SESSION['id']))
                 <div>
                     <form  method="post">
                         <!--                                    ID:<input type="text" class="validate" id="ip">-->
-                        <h4 type="text" class="validate" id="ip"><?php echo $_SESSION["reg_id"] ?></h4>
+                        <h4 type="text" class="validate" id="ip"><?php echo $_SESSION['reg_id'] ?></h4>
+                        <h5 type="text" class="validate" id="cgid"><?php echo $_SESSION['id'] ?></h5>
 
                     </form>
                     <div id="container">
@@ -145,8 +148,7 @@ if(!isset($_SESSION['id']))
                         <br/>
                         <canvas  class="center" id="myCanvas" width="400" height="300"></canvas>
                     </div>
-                    <a href="<?=base_url()?>Homepage_controller/residentHome"><button >login bypass</button></a>
-                    <script src="../../assets/js/face_registration.js"></script>
+                    <a href="<?=base_url()?>Dashboard/registrationsucces/<?php echo $_SESSION['id'] ?>"><button >login bypass</button></a>
                 </div>
             </div>
         </div>
@@ -160,6 +162,7 @@ if(!isset($_SESSION['id']))
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script src="../../assets/js/face_registration.js"></script>
 </body>
 
 </html>
