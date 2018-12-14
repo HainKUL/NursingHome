@@ -65,6 +65,7 @@ $lang['privileges_optional'] = "optioneel";
 $lang['personal'] = "PERSOONLIJK";
 $lang['personal_settings'] = "Persoonlijke instellingen";
 $lang['grouping'] = "Groepering";
+$lang['register_button'] = "Registreer nieuwe bewoner";
 
 $lang['password_forgot_title'] = "Wachtwoord Vergeten";
 $lang['password_forgot_head'] = "Wachtwoord vergeten?";

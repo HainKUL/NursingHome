@@ -1,3 +1,14 @@
+
+<?php
+if(!isset($_SESSION["resident"]))
+{
+
+    header("Location:./index.php?msg=YouMustLoginFirst");
+    exit();
+
+}
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -45,9 +56,9 @@
 
         <div class="row" >
             <div class="col-8">
-                <h1>
+                <h2>
                     <p>{category}</p>
-                </h1>
+                </h2>
             </div>
             <div class="col-2">
             </div>
@@ -75,9 +86,9 @@
             </div>
             -->
             <div class="col-12" style="text-align: center">
-                <h2>
+                <h1>
                     <p>{question}</p>
-                </h2>
+                </h1>
             </div>
         </div>
 
