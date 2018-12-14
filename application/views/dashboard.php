@@ -202,8 +202,7 @@ $residentsFirstname = $this->db->query($query);
                     </div>
                 </div>
                 <div class="ui-widget" >
-                    <label for="tags" class ="searchbar" type="search" placeholder="<?php echo $this->lang->line('search'); ?>"></label>
-                    <input id="tags">
+                    <input id="tags" for="tags" class ="searchbar" type="search" placeholder="<?php echo $this->lang->line('search'); ?>">
                 </div>
             </div>
             <div style="overflow-y:scroll;max-height:68vh;">
