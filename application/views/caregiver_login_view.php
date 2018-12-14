@@ -9,7 +9,7 @@
 
 </head>
 
-<body>
+<body style="background-repeat:no-repeat;background-size: cover;" background="<?=base_url() ?>assets/photos/background_remy.png">
 <?php if(isset($_SESSION)) {
     echo $this->session->flashdata('flash_data');
 } ?>
