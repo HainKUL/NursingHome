@@ -105,7 +105,7 @@ class Homepage_controller extends CI_Controller
     }
     public function logout(){
         session_destroy();
-        redirect('Face_Login_controller/face_login');
+        redirect('Homepage_controller/home');
     }
     public function succeslogin($userId){
         $_SESSION['resident']="yes";

@@ -104,7 +104,7 @@ class Dashboard extends CI_Controller
     public function logout() {
 
         session_destroy();
-        redirect('/Caregiver_controller/login');
+        redirect('/Homepage_controller/home');
     }
     public function registrationsucces($userId){
         $_SESSION['resident']="yes";
