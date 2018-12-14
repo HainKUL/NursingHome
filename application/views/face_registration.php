@@ -124,7 +124,6 @@ if(!isset($_SESSION['id']))
                     <li class="nav-item" style="width:25%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3" style="border:none;"><?php echo $this->lang->line('dash_personal'); ?></a></li>
                     <li class="nav-item" style="width:25%;"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-4" style="border:none;" onload="loadDiv4()"><?php echo $this->lang->line('dash_register'); ?></a></li>
                 </ul>
-
             </div>
 
             <div style="padding:5%;max-height:94vh;overflow-y:scroll;">
