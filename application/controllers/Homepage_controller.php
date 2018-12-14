@@ -113,4 +113,5 @@ class Homepage_controller extends CI_Controller
         $this->residentHome($userId);
 
     }
+
 }
