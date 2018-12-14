@@ -1,8 +1,8 @@
 <?php
-if(!isset($_SESSION["caregiver"]))
+if(!isset($_SESSION['id']))
 {
 
-    header("Location:./index.php?msg=YouMustLoginFirst");
+    header("Location:".base_url()."Caregiver_controller/login");
     exit();
 
 }
@@ -170,7 +170,7 @@ $residentsFirstname = $this->db->query($query);
             }
             echo "]";
             ?>
-            
+
         $( "#tags" ).autocomplete({
             source: availableTags
         });
@@ -178,7 +178,8 @@ $residentsFirstname = $this->db->query($query);
 </script>
 
 
-    <div class="container-fluid">
+<div class="container-fluid">
+
 
     <div class="row" style="height:100vh;">
         <div class="col-3" id="div1" style="background-color:#009489;padding:0;">
@@ -263,7 +264,7 @@ $residentsFirstname = $this->db->query($query);
         </div>
         <div class="col-3 hiddendiv" id="div3" style="background-color:#009489;padding:0;">
             <div style="height:5%;"></div>
-                <h2 class="floornumber" style="padding:15px"><?php echo $this->lang->line('personal');?></h2>
+            <h2 class="floornumber" style="padding:15px"><?php echo $this->lang->line('personal');?></h2>
             <div style="overflow-y:scroll;max-height:70vh;">
                 <div class="btn-group-vertical btn-group-lg" role="group" style="width:100%;">
                     <button class="btn btn-primary btn-resident" id="settings1" type="button" onclick="settingsButton(this.id)">
@@ -389,7 +390,7 @@ $residentsFirstname = $this->db->query($query);
                         </div>
                         <div class="card questionnaire-card">
                             <div class="card-body">
-                            </br>
+                                </br>
                                 <h4 class="card-title"><?php echo $this->lang->line('dash_answers'); ?></h4>
                                 <!--<h3><?php echo $this->lang->line('category_title2'); ?></h3>-->
                                 <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
@@ -475,17 +476,17 @@ $residentsFirstname = $this->db->query($query);
                                             }  ?></p>
                                     </div>
 
-                                </div>
-<!--                            <div class="row" style="padding-top: 40px;">-->
-<!--                                <div class="col-12">-->
-<!--                                     <a href="--><?//=base_url()?><!--Dashboard/logout">-->
-<!--                                       <button class="btn btn-primary btn-lg" type="button" style="min-width:100%;background-color:#009489;border:none;">-->
-<!--                                            --><?php //echo $this->lang->line('dash_logout'); ?>
-<!--                                        </button>-->
-<!--                                    </a>-->
-<!--                                </div>-->
-<!---->
-<!--                            </div>-->
+                            </div>
+                            <!--                            <div class="row" style="padding-top: 40px;">-->
+                            <!--                                <div class="col-12">-->
+                            <!--                                     <a href="--><?//=base_url()?><!--Dashboard/logout">-->
+                            <!--                                       <button class="btn btn-primary btn-lg" type="button" style="min-width:100%;background-color:#009489;border:none;">-->
+                            <!--                                            --><?php //echo $this->lang->line('dash_logout'); ?>
+                            <!--                                        </button>-->
+                            <!--                                    </a>-->
+                            <!--                                </div>-->
+                            <!---->
+                            <!--                            </div>-->
 
                         </div>
                     </div>
@@ -748,7 +749,7 @@ $residentsFirstname = $this->db->query($query);
                                     </tr>
                                 </table>
                             </form>
-                            </div>
+                        </div>
 
                     </div>
 
@@ -1347,5 +1348,7 @@ $residentsFirstname = $this->db->query($query);
 
 
 </script>
+
+</html>
 
 
