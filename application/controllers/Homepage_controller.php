@@ -94,6 +94,7 @@ class Homepage_controller extends CI_Controller
             if(password_verify($_POST['pincode'], $hash)) { //TODO verify guaranteed forward compatibility with crypt()
                 $data = array('id_Residents' => $result->result()[0]->idResidents, 'name' => $result->result()[0]->name);
                 $this->session->set_userdata($data);
+                $_SESSION["resident"]="yes";
                 redirect('Homepage_controller/residentHome/'.$_SESSION['id']); // Has something to do with not being able to remove index.php in url
             } else {
                 $this->session->set_flashdata('flash_data', 'Email or password incorrect!');
@@ -102,5 +103,9 @@ class Homepage_controller extends CI_Controller
         }
 
         $this->load->view("face_login");
+    }
+    public function logout(){
+        session_destroy();
+        redirect('Face_Login_controller/face_login');
     }
 }
