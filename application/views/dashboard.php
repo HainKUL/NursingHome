@@ -254,6 +254,14 @@ $residents = $this->db->query($query);
                             </span>
                         </div>
                     </button>
+                    <button class="btn btn-primary btn-resident" id="settings2" type="button" onclick="settingsButton(this.id)">
+                        <div class="resident-button">
+                            <img class="profilePic" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
+                            <span style="font-weight:100">
+                                <?php echo $this->lang->line('register_button');?>
+                            </span>
+                        </div>
+                    </button>
                 </div>
             </div>
             <div style="height:50vh"></div>
