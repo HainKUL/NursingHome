@@ -3,8 +3,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Caregiver Login | Welcome</title>
-    <link href="<?=base_url()?>assets/css/dashboard.css" rel="stylesheet" type="text/css"/>
+    <title> <?php echo $this->lang->line('caregiver_login_title'); ?></title>
+    <link href="<?=base_url()?>assets/css/caregiver_login.css" rel="stylesheet" type="text/css"/>
     <link rel="icon" href="<?=base_url()?>assets/photos/favicon3.ico" type="image/gif" sizes="16x16">
 
 </head>
