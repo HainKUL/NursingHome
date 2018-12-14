@@ -31,15 +31,7 @@ class Dashboard extends CI_Controller
         $this->load->view('dashboard', $data);
     }
     public function dashboard_reg(){
-        $data['page_title'] = 'dashboard';
-
-// initializing variables
-        $username = "";
-        $email    = "";
         $errors = array();
-
-//name, firstName, dateOfBirth
-// REGISTER USER
         if ($_POST) {
             // receive all input values from the form
             $name = $this->db->escape($_POST['name']);
@@ -52,6 +44,7 @@ class Dashboard extends CI_Controller
             $roomNumber = $this->db->escape($_POST['Room_Id']);
             $bedNumber = $this->db->escape($_POST['Bed_Id']);
             $Pin_Code = $_POST['Pin_Code'];
+            $Pin_Code_2 = $_POST['Pin_Code_2'];
             $lang= $this->db->escape($_POST['Radio']);
             $floor=$this->db->escape($_POST['floor']);
             $nr=$this->db->escape($_POST['Mobile_Number']);
@@ -68,6 +61,8 @@ class Dashboard extends CI_Controller
             if (empty($roomNumber)) { array_push($errors, "Roomnumber is required"); }
             if (empty($bedNumber)) { array_push($errors, "Bednumber is required"); }
             if (empty($_POST['Pin_Code'])) array_push($errors, "Pincode is required");
+            if (empty($_POST['Pin_Code_2'])) array_push($errors, "Pincode2 is required");
+            if ($Pin_Code != $Pin_Code_2)  array_push($errors, "Pincodes do not match");
 
             // first check the database to make sure
             // a user does not already exist with the same username and/or email
@@ -77,23 +72,27 @@ class Dashboard extends CI_Controller
             $rounds = 10000;
             // pass in the password, the number of rounds, and the salt
             $pinhash =  crypt($Pin_Code, sprintf('$6$rounds=%d$%s$', $rounds, $salt));
+            $pinhash_2 =  crypt($Pin_Code_2, sprintf('$6$rounds=%d$%s$', $rounds, $salt));
 
             // Finally, register user if there are no errors in the form
             if (count($errors) == 0) {
                 $query = "INSERT INTO Residents (name, firstName,dateOfBirth,roomNumber,bedNumber,pinHash,pinSalt,preferences) VALUES($name, $firstname,'$dateOfBirth',$roomNumber,$bedNumber,'$pinhash','$salt',$lang)";
                 $this->db->query($query);
-//                header('location: dashboard');
-
                 $query2 = "SELECT idResidents FROM a18ux04.Residents ORDER BY idResidents DESC LIMIT 1;";
                 $result2 = $this->db->query($query2)->result_array()[0]["idResidents"];
-//                $_SESSION["reg_id"] = strval($result2);
                 $_SESSION['reg_id'] = $result2;
-                //echo $_SESSION["reg_id"];
+                $_SESSION['success'] = "Registration succesfull, register Face-ID";
                 header('location: ../Face_login_controller/face_registration');
 
             }
             else{
-                header('location: ../Dashboard/dashboard');
+                $errorstring = "";
+                foreach($errors as $err)
+                {
+                    $errorstring = $errorstring.$err.".   ";
+                }
+                $succes = "Registration failed: ".$errorstring;
+                echo "<script> alert('".$succes."'); window.location.href='".base_url()."Dashboard/dashboard'; </script>";
             }
 
         }

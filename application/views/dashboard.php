@@ -480,21 +480,22 @@ $residentsFirstname = $this->db->query($query);
 
                         </div>
                     </div>
-                    <div class="tab-pane" role="tabpanel" id="tab-4" style="padding:5%;max-height:94vh;overflow-y:scroll;">
+                    <div class="tab-pane" role="tabpanel" id="tab-4" style="padding:1%;max-height:94vh;overflow-y:scroll;">
                         <div class="card register-card">
 
                                 <h3 class="title_registration"><?php echo $this->lang->line('title'); ?></h3>
 
                             <form method="post" action="<?= site_url('Dashboard/dashboard_reg') ?>">
                                 <table align="center" cellpadding = "10">
+
                                     <tr>
-                                        <td><?php echo $this->lang->line('first'); ?></td>
+                                        <td>*<?php echo $this->lang->line('first'); ?>:  </td>
                                         <td><input type="text" name="firstname" maxlength="30" placeholder="<?php echo $this->lang->line('firstname_placeholder_register'); ?>" required/>
                                         </td>
                                     </tr>
 
                                     <tr>
-                                        <td><?php echo $this->lang->line('last'); ?></td>
+                                        <td>*<?php echo $this->lang->line('last'); ?>: </td>
                                         <td><input type="text" name="name" maxlength="30" placeholder="<?php echo $this->lang->line('lastname_placeholder_register'); ?>"required/>
                                         </td>
                                     </tr>
@@ -503,7 +504,7 @@ $residentsFirstname = $this->db->query($query);
                                         <td><?php echo $this->lang->line('birth'); ?></td>
 
                                         <td>
-                                            <select name="Birthday_day" id="Birthday_day" style="width: 29%" required>
+                                            <select name="Birthday_day" id="Birthday_day" style="width: 29%" >
                                                 <option value="-1"><?php echo $this->lang->line('day'); ?></option>
                                                 <option value="1">1</option>
                                                 <option value="2">2</option>
@@ -542,7 +543,7 @@ $residentsFirstname = $this->db->query($query);
                                                 <option value="31">31</option>
                                             </select>
 
-                                            <select id="Birthday_Month" name="Birthday_Month" style="width: 35%" required>
+                                            <select id="Birthday_Month" name="Birthday_Month" style="width: 35%" >
                                                 <option value="-1"><?php echo $this->lang->line('month'); ?></option>
                                                 <option value="January"><?php echo $this->lang->line('januari_register'); ?></option>
                                                 <option value="February"><?php echo $this->lang->line('februari_register'); ?></option>
@@ -558,7 +559,7 @@ $residentsFirstname = $this->db->query($query);
                                                 <option value="December"><?php echo $this->lang->line('december_register'); ?></option>
                                             </select>
 
-                                            <select name="Birthday_Year" id="Birthday_Year" style="width: 30%" required>
+                                            <select name="Birthday_Year" id="Birthday_Year" style="width: 30%" >
 
                                                 <option value="-1"><?php echo $this->lang->line('year'); ?></option>
 
@@ -677,7 +678,7 @@ $residentsFirstname = $this->db->query($query);
                                             </td>
                                     </tr>
                                     <tr>
-                                        <td><?php echo $this->lang->line('contact'); ?></td>
+                                        <td><?php echo $this->lang->line('contact'); ?>: </td>
                                         <td>
                                             <input type="number" name="Mobile_Number" maxlength="10" placeholder="number" />
                                         </td>
@@ -692,8 +693,13 @@ $residentsFirstname = $this->db->query($query);
                                     </tr>-->
 
                                     <tr>
-                                        <td>PIN CODE</td>
-                                        <td><input type="password" name="Pin_Code" maxlength="4" placeholder="pin"/>
+                                        <td>*PIN CODE: </td>
+                                        <td><input type="password" name="Pin_Code" maxlength="4" placeholder="pin" required/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>*PIN CODE CONFIRM: </td>
+                                        <td><input type="password" name="Pin_Code_2" maxlength="4" placeholder="pin" required/>
                                         </td>
                                     </tr>
 
@@ -705,7 +711,7 @@ $residentsFirstname = $this->db->query($query);
 
                                     <tr>
                                         <br/>
-                                        <td><?php echo $this->lang->line('language'); ?></td>
+                                        <td>*<?php echo $this->lang->line('language'); ?>: </td>
                                         <td>
 
                                             <input type="radio" name="Radio" value="Dutch" checked>
@@ -717,12 +723,12 @@ $residentsFirstname = $this->db->query($query);
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td><?php echo $this->lang->line('room'); ?></td>
-                                        <td><input type="text" name="Room_Id" maxlength="100" placeholder="room id" /></td>
+                                        <td>*<?php echo $this->lang->line('room'); ?>: </td>
+                                        <td><input type="text" name="Room_Id" maxlength="100" placeholder="room id" required/></td>
                                     </tr>
                                     <tr>
-                                        <td><?php echo $this->lang->line('bed'); ?></td>
-                                        <td><input type="text" name="Bed_Id" maxlength="10" placeholder="bed id" /></td>
+                                        <td>*<?php echo $this->lang->line('bed'); ?>: </td>
+                                        <td><input type="text" name="Bed_Id" maxlength="10" placeholder="bed id" required/></td>
                                     </tr>
 
                                     <!--<tr>
@@ -735,7 +741,7 @@ $residentsFirstname = $this->db->query($query);
 
 
                                     <tr>
-                                        <td><?php echo $this->lang->line('floor'); ?></td>
+                                        <td><?php echo $this->lang->line('floor'); ?>: </td>
                                         <td>
 
                                             <input type="radio" name="floor" value="GroundFloor" checked>
@@ -755,7 +761,7 @@ $residentsFirstname = $this->db->query($query);
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td><?php echo $this->lang->line('privileges'); ?></td>
+                                        <td><?php echo $this->lang->line('privileges'); ?>: </td>
                                         <td>
                                             <input type="text" name="Privileges" maxlength="200" placeholder="<?php echo $this->lang->line('privileges_optional'); ?>" />
                                         </td>
@@ -767,6 +773,9 @@ $residentsFirstname = $this->db->query($query);
                                             <input type="reset" value="Reset">
 
                                         </td>
+                                    </tr>
+                                    <tr>
+                                        <td> * =  required </td>
                                     </tr>
                                 </table>
                             </form>
