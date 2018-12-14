@@ -504,13 +504,13 @@ $residentsFirstname = $this->db->query($query);
                                 <table align="center" cellpadding = "10">
                                     <tr>
                                         <td><?php echo $this->lang->line('first'); ?></td>
-                                        <td><input type="text" name="firstname" maxlength="30" placeholder="<?php echo $this->lang->line('firstname_placeholder_register'); ?>"/>
+                                        <td><input type="text" name="firstname" maxlength="30" placeholder="<?php echo $this->lang->line('firstname_placeholder_register'); ?>" required/>
                                         </td>
                                     </tr>
 
                                     <tr>
                                         <td><?php echo $this->lang->line('last'); ?></td>
-                                        <td><input type="text" name="name" maxlength="30" placeholder="<?php echo $this->lang->line('lastname_placeholder_register'); ?>"/>
+                                        <td><input type="text" name="name" maxlength="30" placeholder="<?php echo $this->lang->line('lastname_placeholder_register'); ?>"required/>
                                         </td>
                                     </tr>
 

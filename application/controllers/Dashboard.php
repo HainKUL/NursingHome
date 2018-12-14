@@ -71,11 +71,7 @@ class Dashboard extends CI_Controller
 
             // first check the database to make sure
             // a user does not already exist with the same username and/or email
-            $user_check_query =
-                "SELECT * FROM Residents WHERE firstname= $firstname AND name = $name  LIMIT 1";
-            $result = $this->db->query($user_check_query);
 
-            if (!empty($result->result_array())) array_push($errors, "user already registered");
             $salt = substr(str_replace('+','.',base64_encode(md5(mt_rand(), true))),0,16);
             // how many times the string will be hashed
             $rounds = 10000;
@@ -95,6 +91,9 @@ class Dashboard extends CI_Controller
                 //echo $_SESSION["reg_id"];
                 header('location: ../Face_login_controller/face_registration');
 
+            }
+            else{
+                header('location: ../Dashboard/dashboard');
             }
 
         }
