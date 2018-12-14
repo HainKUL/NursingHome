@@ -50,7 +50,7 @@ function snapshot() {
     img1.src = canvas.toDataURL();
     // var x = document.getElementById("myAudio");
     // x.play();
-    datad = "{\r\n    \"image\":\"" + img1.src+ "\",\r\n    \"gallery_name\":\"Demo\"\r\n}"
+    datad = "{\r\n    \"image\":\"" + img1.src+ "\",\r\n    \"gallery_name\":\"Demoxx\"\r\n}"
     var settings = {
         "async": true,
         "crossDomain": true,
@@ -83,7 +83,7 @@ function snapshot() {
 
             console.log(newUrl);
             //set a timer
-            setTimeout(myFunc,1000);
+            setTimeout(myFunc,500);
             function myFunc() {
                 window.location.href = newUrl;
             }

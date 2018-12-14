@@ -54,9 +54,10 @@ function snapshot() {
     ctx.drawImage(video, 0,0, canvas.width, canvas.height);
     var img1 = new Image();
     img1.src = canvas.toDataURL();
-    var id = '<%=Session["reg_id"]%>';
-     var ip = document.getElementById('ip').value;
-    datad = "{\r\n    \"image\":\"" + img1.src+ "\",\r\n    \"subject_id\":\"" + ip + "\",\r\n    \"gallery_name\":\"Demo\"\r\n}";
+    // var ip = document.getElementById('ip').value;
+    var ip = document.getElementsByTagName("h4")[0].innerHTML;
+    console.log(ip);
+    datad = "{\r\n    \"image\":\"" + img1.src+ "\",\r\n    \"subject_id\":\"" + ip + "\",\r\n    \"gallery_name\":\"Demoxx\"\r\n}";
     var settings = {
         "async": true,
         "crossDomain": true,
