@@ -1,4 +1,39 @@
-function RadarChart(id, data, options) {
+function RadarChart(id, data) {
+    //////////////////////////////////////////////////////////////
+    //////////////////////// Set-Up //////////////////////////////
+    //////////////////////////////////////////////////////////////
+
+
+    //var margin = {top: 150, right: 70, bottom: 100, left: 100},
+
+    var margin = {top: 120, right: 60, bottom: 40, left: 60},
+        legendPosition = {x: 220, y: 10},
+        width = Math.min(400, window.innerWidth - 10) - margin.left - margin.right,
+        height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20); //////////////////////////////////////////////////////////////
+    //////////////////// Draw the Chart //////////////////////////
+    //////////////////////////////////////////////////////////////
+
+    var color = d3.scale.ordinal()
+        .range(["#42f4b0","#CCCC00","#00A0B0","#EDC951"]);
+
+
+    var options = {
+        w: width,
+        h: height,
+        margin: margin,
+        legendPosition: legendPosition,
+        maxValue: 0.5,
+        wrapWidth: 60,
+        levels: 5,
+        roundStrokes: true,
+        color: color,
+        axisName: "category",
+        areaName: "timestampStart",
+        value: "answer"
+        /*axisName: "reason",
+         areaName: "device",
+         value: "value"*/
+    };
     var cfg = {
         w: 200,				//Width of the circle
         h: 600,				//Height of the circle
@@ -18,6 +53,41 @@ function RadarChart(id, data, options) {
         areaName:"areaName",
         value: "value",
         sortAreas: true,
+    };
+    //////////////////////////////////////////////////////////////
+    //////////////////////// Set-Up //////////////////////////////
+    //////////////////////////////////////////////////////////////
+
+
+    //var margin = {top: 150, right: 70, bottom: 100, left: 100},
+
+    var margin = {top: 120, right: 60, bottom: 40, left: 60},
+        legendPosition = {x: 220, y: 10},
+        width = Math.min(400, window.innerWidth - 10) - margin.left - margin.right,
+        height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20); //////////////////////////////////////////////////////////////
+    //////////////////// Draw the Chart //////////////////////////
+    //////////////////////////////////////////////////////////////
+
+    var color = d3.scale.ordinal()
+        .range(["#42f4b0","#CCCC00","#00A0B0","#EDC951"]);
+
+
+    var radarChartOptions = {
+        w: width,
+        h: height,
+        margin: margin,
+        legendPosition: legendPosition,
+        maxValue: 0.5,
+        wrapWidth: 60,
+        levels: 5,
+        roundStrokes: true,
+        color: color,
+        axisName: "category",
+        areaName: "timestampStart",
+        value: "answer"
+        /*axisName: "reason",
+         areaName: "device",
+         value: "value"*/
     };
 
     //Put all of the options into a variable called cfg

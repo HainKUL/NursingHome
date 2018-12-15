@@ -1,3 +1,17 @@
+<?php
+if(!isset($_SESSION["resident"]))
+{
+
+    echo "<script> 
+                    alert('You are not logged in!'); 
+                    window.location.href='".base_url()."index.php/Face_Login_controller/face_login';
+          </script>";
+
+    exit();
+
+}
+
+?>
 <!DOCTYPE html>
 <html>
 <head>

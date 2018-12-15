@@ -80,27 +80,37 @@ class Homepage_controller extends CI_Controller
 
         if($_POST) {
             $name = $this->db->escape($_POST['name']);
-            $query = "SELECT pinHash, idResidents, name FROM Residents WHERE name = $name LIMIT 1;";
+            $firstname=$this->db->escape($_POST['firstname']);
+            $query = "SELECT pinHash, idResidents, name FROM Residents WHERE name = $name AND firstname = $firstname LIMIT 1;";
             $result = $this->db->query($query);
             $_SESSION['id']=$result->result()[0]->idResidents;
 
             if($result->num_rows() === 0)   {
-                $this->session->set_flashdata('flash_data', 'Email or password incorrect!');
+                $this->session->set_flashdata('flash_data', 'name or password incorrect!');
                 redirect('Homepage_controller/login');
             }
-
             $hash = $result->result()[0]->pinHash;
-
             if(password_verify($_POST['pincode'], $hash)) { //TODO verify guaranteed forward compatibility with crypt()
                 $data = array('id_Residents' => $result->result()[0]->idResidents, 'name' => $result->result()[0]->name);
                 $this->session->set_userdata($data);
+                $_SESSION["resident"]="yes";
                 redirect('Homepage_controller/residentHome/'.$_SESSION['id']); // Has something to do with not being able to remove index.php in url
             } else {
-                $this->session->set_flashdata('flash_data', 'Email or password incorrect!');
-                redirect('Homepage_controller/login'); // Has something to do with not being able to remove index.php in url
+                $succes = "Login failed: wrong password";
+                echo "<script> alert('".$succes."'); window.location.href='".base_url()."index.php/Face_Login_controller/face_login'; </script>";
             }
         }
 
         $this->load->view("face_login");
     }
+    public function logout(){
+        session_destroy();
+        redirect('Homepage_controller/home');
+    }
+    public function succeslogin($userId){
+        $_SESSION['resident']="yes";
+        $this->residentHome($userId);
+
+    }
+
 }

@@ -61,22 +61,14 @@ html, body {
     transform-style: preserve-3d;
 
 }
-.button{
-
-}
-.card.is-flipped {
-    transform: rotateY(180deg);
-}
-.card__face {
-    text-align: center;
+.front{
     backface-visibility: hidden;
 }
-.card__face--front {
-}
-
-.card__face--back {
+.face.backface{
     transform: rotateY(180deg);
 }
+
+
 
 .notes-content {
       text-align:left;
