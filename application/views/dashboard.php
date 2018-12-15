@@ -349,12 +349,12 @@ $residentsFirstname = $this->db->query($query);
                                 </script>
                             </div>
                         </div>
-                        <div class="card questionnaire-card">
+                        <!--<div class="card questionnaire-card">
                             <div class="card-body">
                                 <h4 class="card-title"><?php echo $this->lang->line('dash_outliers'); ?></h4>
                                 <p class="card-text">Super trouper beams are gonna blind me. But I won't feel blue. Like I always do. 'Cause somewhere in the crowd there's you. I was sick and tired of everything. When I called you last night from Glasgow. All I do is eat and sleep and sing. Wishing every show was the last show (wishing every show was the last show). So imagine I was glad to hear you're coming (glad to hear you're coming). Suddenly I feel all right. (And suddenly it's gonna be). And it's gonna be so different. When I'm on the stage tonight. Tonight the super trouper lights are gonna find me. Shining like the sun (sup-p-per troup-p-per). Smiling, having fun (sup-p-per troup-p-per). Feeling like a number one. Tonight the super trouper beams are gonna blind me. But I won't feel blue (sup-p-per troup-p-per). Like I always do (sup-p-per troup-p-per). 'Cause somewhere in the crowd there's you.</p>
                             </div>
-                        </div>
+                        </div>-->
                         <div class="card questionnaire-card">
                             <div class="card-body">
                                 </br>
@@ -783,7 +783,7 @@ $residentsFirstname = $this->db->query($query);
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td> * =  <?php echo $this->lang->line('privileges_optional'); ?> </td>
+                                                <td> * =  <?php echo $this->lang->line('required'); ?>add</td>
                                             </tr>
                                         </table>
                                     </form>
