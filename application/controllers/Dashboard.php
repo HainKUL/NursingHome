@@ -82,7 +82,7 @@ class Dashboard extends CI_Controller
                 $result2 = $this->db->query($query2)->result_array()[0]["idResidents"];
                 $_SESSION['reg_id'] = $result2;
                 $_SESSION['success'] = "Registration succesfull, register Face-ID";
-                header('location: ../Face_login_controller/face_registration');
+                header('location: ../Face_Login_controller/face_registration');
 
             }
             else{

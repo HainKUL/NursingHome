@@ -80,7 +80,7 @@ function snapshot() {
             //Materialize.toast("Image Trained succesfully by name " +response.images[0].transaction.subject_id+ " in gallery name " +response.images[0].transaction.gallery_name, 4000);
             console.log("successfully registered")
             alert("successfully registered")
-            let base_url = window.location.origin.concat("/a18ux04");
+            let base_url = window.location.origin;
             let newUrl = base_url.concat("/index.php/Dashboard/registrationsucces/").concat(cgid);
 
             console.log(newUrl);
