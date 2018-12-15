@@ -448,9 +448,9 @@ $residentsFirstname = $this->db->query($query);
                                     <img class="profilePic" style="width:130px;height:130px;" src="<?=base_url() ?>assets/photos/profilePicTest_caregiver.jpg" alt="Profielfoto">
                                 </div>
                             </div>
-                            <div class="row" style="padding-top: 40px;">
-                                <div class="col-8">
-                                   <p class="personal_text"> <?php echo $this->lang->line('dash_chooselang'); ?> </p>
+                            <div class="row" style="padding-top: 40px; vertical-align: bottom;">
+                                <div class="col-8" style="vertical-align: central;">
+                                   <p class="personal_text_2" style="padding-top: 4vh;"> <?php echo $this->lang->line('dash_chooselang'); ?> </p>
                                 </div>
                                 <div class="col-4" style="padding-top: 12px;">
                                     <select style="width:100%" onchange="javascript:window.location.href='<?php echo base_url(); ?>MultiLanguageSwitcher/switcher/'+this.value;">
@@ -459,12 +459,12 @@ $residentsFirstname = $this->db->query($query);
                                     </select>
                                 </div>
                             </div>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <p class="personal_text"> <?php echo $this->lang->line('dash_email'); ?></p>
+                                <div class="row" style="padding-top: 40px;">
+                                    <div class="col-4">
+                                        <p class="personal_text_2" style="padding-top: 0.5vh;"> <?php echo $this->lang->line('dash_email'); ?></p>
                                     </div>
-                                    <div class="col-6">
-                                        <p class="personal_text" style="text-align: right;"> <?php if ($email->num_rows() > 0)
+                                    <div class="col-8">
+                                        <p class="personal_text_2" style="text-align: end;"> <?php if ($email->num_rows() > 0)
                                             {
                                                 $row = $email->row();
                                                 echo $row->email;
@@ -783,7 +783,7 @@ $residentsFirstname = $this->db->query($query);
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td> * =  <?php echo $this->lang->line('required'); ?>add</td>
+                                                <td> * =  <?php echo $this->lang->line('required'); ?></td>
                                             </tr>
                                         </table>
                                     </form>
@@ -802,9 +802,33 @@ $residentsFirstname = $this->db->query($query);
             <div class="searchdiv" style="text-align:center;margin:15px;">
                 <h2 class="notes-title"><?php echo $this->lang->line('dash_notes'); ?></h2>
 
-                <a  href=<?=base_url()?>index.php/Caregiver_controller/add_note class="link1">
-                    <button class="btn btn-primary btn-lg" type="button" style="min-width:100%;background-color:#009489;border:none;"><?php echo $this->lang->line('dash_add'); ?></button></div>
-            </a>
+
+                    <button class="btn btn-primary btn-lg" type="button" style="min-width:100%;background-color:#009489;border:none;" data-toggle="modal" data-target="#myModal"><?php echo $this->lang->line('dash_add'); ?></button>
+                    <!--Modal-->
+                <form method="post" action="<?= site_url('Caregiver_controller/add_note') ?>">
+                    <div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+
+                                    <h4 class="modal-title"><?php echo $this->lang->line('dash_add'); ?></h4>
+                                </div>
+                                <div class="modal-body" >
+                                    <textarea class="form-control"  style="min-width: 100%" type="text" name="note" maxlength="1023" ></textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="submit" value="Save" class="btn btn-default">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+
+            </div>
 
             <div style="height:2%;"></div>
 
