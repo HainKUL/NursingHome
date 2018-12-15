@@ -379,40 +379,45 @@ $residentsFirstname = $this->db->query($query);
                                                         bothData = <?php json_encode(v);?>";
                                                     }
                                                 </script>-->
+
+
                                                 <?php
                                                 foreach($data_each1 as $row)
                                                 {
-                                                    echo "<script> var bothData = ". json_encode($row['values'])."</script>";
+                                                    //if($row['key']=="value")
+                                                    //{
+                                                    //echo "<script> bothData = ". json_encode($row['values'])."</script>";
+                                                    //}
                                                     //echo '<option value="'.$row['timestampStart'].'">'.$row['timestampStart'].'</option>';
                                                     //echo '<option value="'.$row['key'].'" onclick=\'change("all")\'>'.$row['key'].'</option>';
                                                    // echo '<option value="'.$row['values'].'" onclick=\'changeDate(this.value)\'>'.$row['key'].'</option>';
-                                                    echo '<option value="'.$row['key'].'" onclick=\'change(this.value)\'>'.$row['key'].'</option>';
+                                                   // echo '<option value="'.$row['key'].'" onclick=\'changeDate(this.value)\'>'.$row['key'].'</option>';
+                                                    echo '<option value="'.$row['key'].'" onclick=\'change(this.value,"all")\'>'.$row['key'].'</option>';
+
                                                 }
+
                                                 ?>
                                             </select>
                                             </div>
+                                            <script type="text/javascript">
+                                                var bothData = <?php echo json_encode($one); ?>;;
+                                            </script>
 
-                                            <!--<div class = "date" style="float:left;">
-                                                <select >
-                                                    <option value="100">Please Select Date</option>
-
-                                                    </select>
-                                            </div>-->
                                             <div class = "category"; style="float:right;">
                                             <select >
-                                                <option value="all" onclick='change(this.value)'>Please Select Category</option>
-                                                <option name="name" value="all" onclick='change(this.value)'><?php echo $this->lang->line('category_all'); ?></option>
-                                                <option name="name" value="0" onclick='change(this.value)'><?php echo $this->lang->line('category_0'); ?></option>
-                                                <option name="name" value="1" onclick='change(this.value)'><?php echo $this->lang->line('category_1'); ?></option>
-                                                <option name="name" value="2" onclick='change(this.value)'><?php echo $this->lang->line('category_2'); ?></option>
-                                                <option name="name" value="3" onclick='change(this.value)'><?php echo $this->lang->line('category_3'); ?></option>
-                                                <option name="name" value="4" onclick='change(this.value)'><?php echo $this->lang->line('category_4'); ?></option>
-                                                <option name="name" value="5" onclick='change(this.value)'><?php echo $this->lang->line('category_5'); ?></option>
-                                                <option name="name" value="6" onclick='change(this.value)'><?php echo $this->lang->line('category_6'); ?></option>
-                                                <option name="name" value="7" onclick='change(this.value)'><?php echo $this->lang->line('category_7'); ?></option>
-                                                <option name="name" value="8" onclick='change(this.value)'><?php echo $this->lang->line('category_8'); ?></option>
-                                                <option name="name" value="9" onclick='change(this.value)'><?php echo $this->lang->line('category_9'); ?></option>
-                                                <option name="name" value="10" onclick='change(this.value)'><?php echo $this->lang->line('category_10'); ?></option>
+                                                <option value="all" onclick='change("1",this.value)'>Please Select Category</option>
+                                                <option  value="all" onclick='change("0",this.value)'><?php echo $this->lang->line('category_all'); ?></option>
+                                                <option value="0" onclick='change("0",this.value)'><?php echo $this->lang->line('category_0'); ?></option>
+                                                <option value="1" onclick='change("0",this.value)'><?php echo $this->lang->line('category_1'); ?></option>
+                                                <option  value="2" onclick='change("0",this.value)'><?php echo $this->lang->line('category_2'); ?></option>
+                                                <option  value="3" onclick='change("0",this.value)'><?php echo $this->lang->line('category_3'); ?></option>
+                                                <option  value="4" onclick='change("0",this.value)'><?php echo $this->lang->line('category_4'); ?></option>
+                                                <option  value="5" onclick='change("0",this.value)'><?php echo $this->lang->line('category_5'); ?></option>
+                                                <option  value="6" onclick='change("0",this.value)'><?php echo $this->lang->line('category_6'); ?></option>
+                                                <option  value="7" onclick='change("0",this.value)'><?php echo $this->lang->line('category_7'); ?></option>
+                                                <option  value="8" onclick='change("0",this.value)'><?php echo $this->lang->line('category_8'); ?></option>
+                                                <option value="9" onclick='change("0",this.value)'><?php echo $this->lang->line('category_9'); ?></option>
+                                                <option  value="10" onclick='change("0",this.value)'><?php echo $this->lang->line('category_10'); ?></option>
                                                 </select>
                                             </div>
                                             </br>
@@ -957,9 +962,13 @@ $residentsFirstname = $this->db->query($query);
 
 <!--<script type="text/javascript">
    // var bothDataRaw = <?php echo json_encode($data_each1); ?>;
+</script>
+<script type="text/javascript">
+    var bothData = <?php echo json_encode($one); ?>;;
 </script>-->
 
-<script>
+<script type="text/javascript">
+
    // var bothData1[];
 
   /*  function changeDate(value)
@@ -974,56 +983,75 @@ $residentsFirstname = $this->db->query($query);
         bothData = bothdata1;
     }*/
 
-    var data_1 = [];
-    var data_2 = [];
-    var data_3 = [];
-    var data_4 = [];
-    var data_5 = [];
-    var data_6 = [];
-    var data_7 = [];
-    var data_8 = [];
-    var data_9 = [];
-    var data_10 = [];
-    var data_11 = [];
 
 
-    for (var i = 0; i < bothData.length; i++) {
-        if (bothData[i]["catergoryID"] === "0") {
-            data_1.push(bothData[i]);
-        } else if (bothData[i]["catergoryID"] === "1") {
-            data_2.push(bothData[i]);
-        }
-        else if (bothData[i]["catergoryID"] === "2") {
-            data_3.push(bothData[i]);
-        }
-        else if (bothData[i]["catergoryID"] === "3") {
-            data_4.push(bothData[i]);
-        }
-        else if (bothData[i]["catergoryID"] === "4") {
-            data_5.push(bothData[i]);
-        }
-        else if (bothData[i]["catergoryID"] === "5") {
-            data_6.push(bothData[i]);
-        }
-        else if (bothData[i]["catergoryID"] === "6") {
-            data_7.push(bothData[i]);
-        }
-        else if (bothData[i]["catergoryID"] === "7") {
-            data_8.push(bothData[i]);
-        }
-        else if (bothData[i]["catergoryID"] === "8") {
-            data_9.push(bothData[i]);
-        }
-        else if (bothData[i]["catergoryID"] === "9") {
-            data_10.push(bothData[i]);
-        }
-        else if (bothData[i]["catergoryID"] === "10") {
-            data_11.push(bothData[i]);
-        }
-    }
 
     //functions for toggling between data
-    function change(value) {
+    function change(date,value) {
+
+        var data5 = <?php echo json_encode($data_each1); ?>;
+
+
+        for (var index = 0; index < data5.length; ++index) {
+            //console.log(data5[index]['key']);
+            //console.log(date);
+            if (data5[index]['key'] === date)
+            {
+               bothData = data5[index]['values'];
+                //console.log(data5[index]['values']);
+            }
+        }
+
+        var data_1 = [];
+        var data_2 = [];
+        var data_3 = [];
+        var data_4 = [];
+        var data_5 = [];
+        var data_6 = [];
+        var data_7 = [];
+        var data_8 = [];
+        var data_9 = [];
+        var data_10 = [];
+        var data_11 = [];
+
+        //var bothData = <?php echo json_encode($one); ?>;;
+
+        for (var i = 0; i < bothData.length; i++) {
+            if (bothData[i]["catergoryID"] === "0") {
+                data_1.push(bothData[i]);
+            } else if (bothData[i]["catergoryID"] === "1") {
+                data_2.push(bothData[i]);
+            }
+            else if (bothData[i]["catergoryID"] === "2") {
+                data_3.push(bothData[i]);
+            }
+            else if (bothData[i]["catergoryID"] === "3") {
+                data_4.push(bothData[i]);
+            }
+            else if (bothData[i]["catergoryID"] === "4") {
+                data_5.push(bothData[i]);
+            }
+            else if (bothData[i]["catergoryID"] === "5") {
+                data_6.push(bothData[i]);
+            }
+            else if (bothData[i]["catergoryID"] === "6") {
+                data_7.push(bothData[i]);
+            }
+            else if (bothData[i]["catergoryID"] === "7") {
+                data_8.push(bothData[i]);
+            }
+            else if (bothData[i]["catergoryID"] === "8") {
+                data_9.push(bothData[i]);
+            }
+            else if (bothData[i]["catergoryID"] === "9") {
+                data_10.push(bothData[i]);
+            }
+            else if (bothData[i]["catergoryID"] === "10") {
+                data_11.push(bothData[i]);
+            }
+
+        }
+
 
         if (value === '0') {
             update(data_1);
@@ -1056,7 +1084,7 @@ $residentsFirstname = $this->db->query($query);
         else if (value === '10') {
             update(data_11);
         }
-        else {
+        else if (value === 'all'){
             xChart.domain(bothData.map(function (d) {
                 return d.category;
             }));
@@ -1142,6 +1170,7 @@ $residentsFirstname = $this->db->query($query);
 
 
         }
+
     }
 
 

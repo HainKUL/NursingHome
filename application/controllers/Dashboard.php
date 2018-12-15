@@ -26,6 +26,8 @@ class Dashboard extends CI_Controller
     public function dashboard() {
         $data_each1 = $this->Bar_chart_model->get_each();
         $data['data_each1'] = $data_each1;
+        $data_one = $this->Bar_chart_model->get_one();
+        $data['one'] =   $data_one;
         $data1 = $this->Our_chart_model->get_avg();
         $data['data1'] = $data1;
         $this->load->view('dashboard', $data);
