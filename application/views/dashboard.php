@@ -233,7 +233,7 @@ $residentsFirstname = $this->db->query($query);
             <h2 class="floornumber" style="padding:15px"><?php echo $this->lang->line('polls');?></h2>
             <a href="#" style="padding:10%">
                 <button class="btn btn-primary btn-lg" type="button" style="width:80%;background-color:#00675F;border:none;color:#DEEAE9">
-                    ADD POLL
+                    <?php echo $this->lang->line('add_poll'); ?>
                 </button>
             </a>
             <div style="overflow-y:scroll;max-height:70vh;">
@@ -432,7 +432,7 @@ $residentsFirstname = $this->db->query($query);
                         </div>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="tab-2">
-                        <p>Content for tab 2.</p>
+                        <p><?php echo $this->lang->line('poll_content'); ?></p>
                     </div>
                     <div class="tab-pane" role="tabpanel" id="tab-3">
                         <div class="container" >
@@ -488,9 +488,7 @@ $residentsFirstname = $this->db->query($query);
 
                     <div class="tab-pane" role="tabpanel" id="tab-4" style="padding:1%;max-height:94vh;overflow-y:scroll;">
                         <div class="card register-card">
-                            <div class="front face">front
-                                <button class="btnFlip">Flip</button></div>
-                            <div class="backface">
+
 
 
                                         <h3 class="title_registration"><?php echo $this->lang->line('title'); ?></h3>
@@ -785,11 +783,11 @@ $residentsFirstname = $this->db->query($query);
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td> * =  required </td>
+                                                <td> * =  <?php echo $this->lang->line('privileges_optional'); ?> </td>
                                             </tr>
                                         </table>
                                     </form>
-                                </div>
+
 
 
 
