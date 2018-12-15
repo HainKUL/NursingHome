@@ -24,17 +24,17 @@ class MultiLanguageLoader
 
         } else {
             // default language files
-            $ci->lang->load('footer','english');
-            $ci->lang->load('login','english');
-            $ci->lang->load('dashboard','english');
-            $ci->lang->load('home','english');
-            $ci->lang->load('news','english');
-            $ci->lang->load('category','english');
-            $ci->lang->load('olderadults','english');
-            $ci->lang->load('questionnaire','english');
-            $ci->lang->load('weathers','english');
-            $ci->lang->load('done','english');
-            $ci->lang->load('registration','english');
+            $ci->lang->load('footer','dutch');
+            $ci->lang->load('login','dutch');
+            $ci->lang->load('dashboard','dutch');
+            $ci->lang->load('home','dutch');
+            $ci->lang->load('news','dutch');
+            $ci->lang->load('category','dutch');
+            $ci->lang->load('olderadults','dutch');
+            $ci->lang->load('questionnaire','dutch');
+            $ci->lang->load('weathers','dutch');
+            $ci->lang->load('done','dutch');
+            $ci->lang->load('registration','dutch');
         }
     }
 }

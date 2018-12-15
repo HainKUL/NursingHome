@@ -91,6 +91,10 @@ if(!isset($_SESSION['id']))
             visibility: hidden;
         }
 
+        h5.validate {
+            visibility: hidden;
+        }
+
 
 
     </style>
