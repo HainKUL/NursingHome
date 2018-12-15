@@ -81,9 +81,10 @@ class Homepage_controller extends CI_Controller
         if($_POST) {
             $name = $this->db->escape($_POST['name']);
             $firstname=$this->db->escape($_POST['firstname']);
-            $query = "SELECT pinHash, idResidents, name FROM Residents WHERE name = $name AND firstname = $firstname LIMIT 1;";
+            $query = "SELECT pinHash, idResidents,preferences name FROM Residents WHERE name = $name AND firstname = $firstname LIMIT 1;";
             $result = $this->db->query($query);
             $_SESSION['id']=$result->result()[0]->idResidents;
+            $lang = $result->result()[0]->preferences;
 
             if($result->num_rows() === 0)   {
                 $this->session->set_flashdata('flash_data', 'name or password incorrect!');
@@ -94,6 +95,9 @@ class Homepage_controller extends CI_Controller
                 $data = array('id_Residents' => $result->result()[0]->idResidents, 'name' => $result->result()[0]->name);
                 $this->session->set_userdata($data);
                 $_SESSION["resident"]="yes";
+                $_SESSION['lang']=$lang;
+                if($lang == 'Engels') $lang='english';
+                echo "<script>window.location.href='".base_url()."MultiLanguageSwitcher/switcher/'".$lang.";</script>";
                 redirect('Homepage_controller/residentHome/'.$_SESSION['id']); // Has something to do with not being able to remove index.php in url
             } else {
                 $succes = "Login failed: wrong password";
@@ -110,6 +114,10 @@ class Homepage_controller extends CI_Controller
     public function succeslogin($userId){
         $_SESSION['resident']="yes";
         $this->residentHome($userId);
+        $lang=$_SESSION['lang'];
+        if($lang == 'Engels') $lang='english';
+        echo "<script>window.location.href='".base_url()."MultiLanguageSwitcher/switcher/'".$lang.";</script>";
+
 
     }
 

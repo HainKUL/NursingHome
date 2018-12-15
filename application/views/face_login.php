@@ -50,17 +50,17 @@
     <h1>login</h1>
 
     <p>
-        <label>firstname:</label>
+        <label><?php echo $this->lang->line('register_firstname'); ?></label>
         <input type="text" name="firstname" id="firstname" class="form-control"  />
 
     </p>
     <p>
-        <label>name:</label>
+        <label><?php echo $this->lang->line('register_lastname'); ?></label>
         <input type="text" name="name" id="name" class="form-control"  />
 
     </p>
     <p>
-        <label>pincode:</label>
+        <label>Pincode:</label>
         <input type="password" name="pincode" id="pincode" class="form-control"  />
     </p>
     <br />
