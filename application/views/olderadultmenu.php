@@ -60,18 +60,7 @@ if(!isset($_SESSION["resident"]))
         </div>
 
 
-        <div class="row" style="padding-top: 1%;padding-bottom: 1%">
-            <div class="col-md-2"></div>
-            <div class="col-md-8" >
-                <a href="<?=base_url()?>questionnaire_controller/poll">
-                    <button type = "button" class="button_menu">
-                        <img id="menu_icon" src="data:image/png;base64,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" alt="poll">
-                        <?php echo $this->lang->line('polls'); ?>
-                    </button>
-                </a>
-            </div>
 
-        </div>
 
 
         <div class="row" style="padding-top: 1%;padding-bottom: 1%">
@@ -102,7 +91,7 @@ if(!isset($_SESSION["resident"]))
         </div>
 
 
-        <div class="row" style="padding-top: 1%;padding-bottom: 1%">
+        <div class="row" style="padding-top: 1%;padding-bottom: 7%">
             <div class="col-md-2"></div>
             <div class="col-md-8" >
                 <a href="<?=base_url()?>Homepage_controller/weathers">
