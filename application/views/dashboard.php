@@ -448,9 +448,9 @@ $residentsFirstname = $this->db->query($query);
                                     <img class="profilePic" style="width:130px;height:130px;" src="<?=base_url() ?>assets/photos/profilePicTest_caregiver.jpg" alt="Profielfoto">
                                 </div>
                             </div>
-                            <div class="row" style="padding-top: 40px;">
-                                <div class="col-8">
-                                   <p class="personal_text"> <?php echo $this->lang->line('dash_chooselang'); ?> </p>
+                            <div class="row" style="padding-top: 40px; vertical-align: bottom;">
+                                <div class="col-8" style="vertical-align: central;">
+                                   <p class="personal_text_2" style="padding-top: 4vh;"> <?php echo $this->lang->line('dash_chooselang'); ?> </p>
                                 </div>
                                 <div class="col-4" style="padding-top: 12px;">
                                     <select style="width:100%" onchange="javascript:window.location.href='<?php echo base_url(); ?>MultiLanguageSwitcher/switcher/'+this.value;">
@@ -459,12 +459,12 @@ $residentsFirstname = $this->db->query($query);
                                     </select>
                                 </div>
                             </div>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <p class="personal_text"> <?php echo $this->lang->line('dash_email'); ?></p>
+                                <div class="row" style="padding-top: 40px;">
+                                    <div class="col-4">
+                                        <p class="personal_text_2" style="padding-top: 0.5vh;"> <?php echo $this->lang->line('dash_email'); ?></p>
                                     </div>
-                                    <div class="col-6">
-                                        <p class="personal_text" style="text-align: right;"> <?php if ($email->num_rows() > 0)
+                                    <div class="col-8">
+                                        <p class="personal_text_2" style="text-align: end;"> <?php if ($email->num_rows() > 0)
                                             {
                                                 $row = $email->row();
                                                 echo $row->email;
