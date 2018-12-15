@@ -783,7 +783,7 @@ $residentsFirstname = $this->db->query($query);
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td> * =  <?php echo $this->lang->line('required'); ?>add</td>
+                                                <td> * =  <?php echo $this->lang->line('required'); ?></td>
                                             </tr>
                                         </table>
                                     </form>
@@ -802,9 +802,33 @@ $residentsFirstname = $this->db->query($query);
             <div class="searchdiv" style="text-align:center;margin:15px;">
                 <h2 class="notes-title"><?php echo $this->lang->line('dash_notes'); ?></h2>
 
-                <a  href=<?=base_url()?>index.php/Caregiver_controller/add_note class="link1">
-                    <button class="btn btn-primary btn-lg" type="button" style="min-width:100%;background-color:#009489;border:none;"><?php echo $this->lang->line('dash_add'); ?></button></div>
-            </a>
+
+                    <button class="btn btn-primary btn-lg" type="button" style="min-width:100%;background-color:#009489;border:none;" data-toggle="modal" data-target="#myModal"><?php echo $this->lang->line('dash_add'); ?></button>
+                    <!--Modal-->
+                <form method="post" action="<?= site_url('Caregiver_controller/add_note') ?>">
+                    <div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+
+                                    <h4 class="modal-title"><?php echo $this->lang->line('dash_add'); ?></h4>
+                                </div>
+                                <div class="modal-body" >
+                                    <textarea class="form-control"  style="min-width: 100%" type="text" name="note" maxlength="1023" ></textarea>
+                                </div>
+                                <div class="modal-footer">
+                                    <input type="submit" value="Save" class="btn btn-default">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </form>
+
+            </div>
 
             <div style="height:2%;"></div>
 
