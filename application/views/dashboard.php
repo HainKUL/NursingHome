@@ -793,7 +793,7 @@ $residentsFirstname = $this->db->query($query);
                     </div>
                 </div>
             </div>
-        </div>
+<!--        </div>-->
         <div class="col-3" style="background-color:#c7de6e;padding:0;">
             <div style="height:5%;"></div>
             <div class="searchdiv" style="text-align:center;margin:15px;">
