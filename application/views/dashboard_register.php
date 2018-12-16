@@ -152,14 +152,14 @@ $query = "SELECT Notes.noteText, Notes.author, Notes.timestamp, Caregivers.first
 $result = $this->db->query($query);
 $query = "SELECT firstName, name, idResidents, YEAR(CURRENT_TIMESTAMP) - YEAR(dateOfBirth) - (RIGHT(CURRENT_TIMESTAMP, 5) < RIGHT(dateOfBirth, 5)) as age FROM Residents;";
 $residents = $this->db->query($query);
-    $query = "SELECT firstName FROM Caregivers WHERE $currentID = Caregivers.idCaregivers;";
-    $firstName = $this->db->query($query);
-    $query = "SELECT email FROM Caregivers WHERE Caregivers.idCaregivers = $currentID;";
-    $email = $this->db->query($query);
+$query = "SELECT firstName FROM Caregivers WHERE $currentID = Caregivers.idCaregivers;";
+$firstName = $this->db->query($query);
+$query = "SELECT email FROM Caregivers WHERE Caregivers.idCaregivers = $currentID;";
+$email = $this->db->query($query);
 
 $query = "SELECT firstName FROM Residents;";
 $residentsFirstname = $this->db->query($query);
-    ?>
+?>
 
 <script>
     $( function() {
@@ -174,9 +174,9 @@ $residentsFirstname = $this->db->query($query);
             echo "]";
             ?>
 
-        $( "#tags" ).autocomplete({
-            source: availableTags
-        });
+            $( "#tags" ).autocomplete({
+                source: availableTags
+            });
     } );
 </script>
 
@@ -216,12 +216,12 @@ $residentsFirstname = $this->db->query($query);
                         ?><button class="btn btn-primary btn-resident" id="<?php echo $row['idResidents']?>" type="button" onclick="loadResident(this.id)">
                         <div class="resident-button">
                             <img class="profilePic" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
-                        <span class="resident-nameage"><div class="button-name"><?php
-                        echo $row['firstName'];
-                        ?></div><div class="button-age"><?php
-                        echo $row['age'] ?></div>
-                            <?php
-                            ?></span></div></button><?php
+                            <span class="resident-nameage"><div class="button-name"><?php
+                                    echo $row['firstName'];
+                                    ?></div><div class="button-age"><?php
+                                    echo $row['age'] ?></div>
+                                <?php
+                                ?></span></div></button><?php
                     }
                     ?>
 
@@ -286,27 +286,25 @@ $residentsFirstname = $this->db->query($query);
                             </span>
                         </div>
                     </button>-->
-                    <button class="btn btn-primary btn-resident  btn-info btn-lg" id="settings2" type="button" onclick="settingsButton(this.id);"data-toggle="modal" data-target="#myModal2">
+                    <button class="btn btn-primary btn-resident " id="settings2" type="button" onclick="settingsButton(this.id);">
                         <div class="resident-button">
                             <img class="profilePic" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
-                            <span style="font-weight:100">
+                            <a style="color: white; font-weight: 100;" href="dashboard"><span class="btn" style="font-weight:100">
+
                                 <?php echo $this->lang->line('register_button');?>
-                            </span>
 
-
+                            </span></a>
                         </div>
-
                     </button>
                 </div>
             </div>
             <div style="height:50vh; padding:60% 10%;">
-            <a href="<?=base_url()?>Dashboard/logout" style="padding:20% 10%;">
-                <button class="btn btn-primary btn-lg" type="button" style="width:80%;background-color:#00675F;border:none;color:#DEEAE9">
-                    <?php echo $this->lang->line('dash_logout'); ?>
-                </button>
-            </a>
+                <a href="<?=base_url()?>Dashboard/logout" style="padding:20% 10%;">
+                    <button class="btn btn-primary btn-lg" type="button" style="width:80%;background-color:#00675F;border:none;color:#DEEAE9">
+                        <?php echo $this->lang->line('dash_logout'); ?>
+                    </button>
+                </a>
             </div>
-
 
 
 
@@ -314,328 +312,15 @@ $residentsFirstname = $this->db->query($query);
 
 
         </div>
-        <form method="post" action="<?= site_url('Dashboard/dashboard_reg') ?>">
-
-            <div id="myModal2" class="modal fade" role="dialog">
-                <div class="modal-dialog modal-lg">
-
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-
-                            <h4 class="modal-title"><?php echo $this->lang->line('register_button'); ?></h4>
-                        </div>
-                        <div class="modal-body">
-                            <table align="center" cellpadding = "5">
-
-                                <tr>
-                                    <td>*<?php echo $this->lang->line('first'); ?>:  </td>
-                                    <td><input type="text" name="firstname" maxlength="30" placeholder="<?php echo $this->lang->line('firstname_placeholder_register'); ?>" required/>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td>*<?php echo $this->lang->line('last'); ?>: </td>
-                                    <td><input type="text" name="name" maxlength="30" placeholder="<?php echo $this->lang->line('lastname_placeholder_register'); ?>"required/>
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td><?php echo $this->lang->line('birth'); ?></td>
-
-                                    <td>
-                                        <select name="Birthday_day" id="Birthday_day" style="width: 29%" >
-                                            <option value="-1"><?php echo $this->lang->line('day'); ?></option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
-                                            <option value="11">11</option>
-                                            <option value="12">12</option>
-
-                                            <option value="13">13</option>
-                                            <option value="14">14</option>
-                                            <option value="15">15</option>
-                                            <option value="16">16</option>
-                                            <option value="17">17</option>
-                                            <option value="18">18</option>
-                                            <option value="19">19</option>
-                                            <option value="20">20</option>
-                                            <option value="21">21</option>
-
-                                            <option value="22">22</option>
-                                            <option value="23">23</option>
-                                            <option value="24">24</option>
-                                            <option value="25">25</option>
-                                            <option value="26">26</option>
-                                            <option value="27">27</option>
-                                            <option value="28">28</option>
-                                            <option value="29">29</option>
-                                            <option value="30">30</option>
-
-                                            <option value="31">31</option>
-                                        </select>
-
-                                        <select id="Birthday_Month" name="Birthday_Month" style="width: 35%" >
-                                            <option value="-1"><?php echo $this->lang->line('month'); ?></option>
-                                            <option value="January"><?php echo $this->lang->line('januari_register'); ?></option>
-                                            <option value="February"><?php echo $this->lang->line('februari_register'); ?></option>
-                                            <option value="March"><?php echo $this->lang->line('march_register'); ?></option>
-                                            <option value="April"><?php echo $this->lang->line('april_register'); ?></option>
-                                            <option value="May"><?php echo $this->lang->line('may_register'); ?></option>
-                                            <option value="June"><?php echo $this->lang->line('june_register'); ?></option>
-                                            <option value="July"><?php echo $this->lang->line('july_register'); ?></option>
-                                            <option value="August"><?php echo $this->lang->line('august_register'); ?></option>
-                                            <option value="September"><?php echo $this->lang->line('september_register'); ?></option>
-                                            <option value="October"><?php echo $this->lang->line('october_register'); ?></option>
-                                            <option value="November"><?php echo $this->lang->line('november_register'); ?></option>
-                                            <option value="December"><?php echo $this->lang->line('december_register'); ?></option>
-                                        </select>
-
-                                        <select name="Birthday_Year" id="Birthday_Year" style="width: 30%" >
-
-                                            <option value="-1"><?php echo $this->lang->line('year'); ?></option>
-
-                                            <option value="1990">2000</option>
-
-                                            <option value="1999">1999</option>
-                                            <option value="1998">1998</option>
-                                            <option value="1997">1997</option>
-                                            <option value="1996">1996</option>
-                                            <option value="1995">1995</option>
-                                            <option value="1994">1994</option>
-                                            <option value="1993">1993</option>
-                                            <option value="1992">1992</option>
-                                            <option value="1991">1991</option>
-                                            <option value="1990">1990</option>
-
-                                            <option value="1989">1989</option>
-                                            <option value="1988">1988</option>
-                                            <option value="1987">1987</option>
-                                            <option value="1986">1986</option>
-                                            <option value="1985">1985</option>
-                                            <option value="1984">1984</option>
-                                            <option value="1983">1983</option>
-                                            <option value="1982">1982</option>
-                                            <option value="1981">1981</option>
-                                            <option value="1980">1980</option>
-
-                                            <option value="1979">1979</option>
-                                            <option value="1978">1978</option>
-                                            <option value="1977">1977</option>
-                                            <option value="1976">1976</option>
-                                            <option value="1975">1975</option>
-                                            <option value="1974">1974</option>
-                                            <option value="1973">1973</option>
-                                            <option value="1972">1972</option>
-                                            <option value="1971">1971</option>
-                                            <option value="1970">1970</option>
-
-                                            <option value="1969">1969</option>
-                                            <option value="1968">1968</option>
-                                            <option value="1967">1967</option>
-                                            <option value="1966">1966</option>
-                                            <option value="1965">1965</option>
-                                            <option value="1964">1964</option>
-                                            <option value="1963">1963</option>
-                                            <option value="1962">1962</option>
-                                            <option value="1961">1961</option>
-                                            <option value="1960">1960</option>
-
-                                            <option value="1959">1959</option>
-                                            <option value="1958">1958</option>
-                                            <option value="1957">1957</option>
-                                            <option value="1956">1956</option>
-                                            <option value="1955">1955</option>
-                                            <option value="1954">1954</option>
-                                            <option value="1953">1953</option>
-                                            <option value="1952">1952</option>
-                                            <option value="1951">1951</option>
-                                            <option value="1950">1950</option>
-
-                                            <option value="1949">1949</option>
-                                            <option value="1948">1948</option>
-                                            <option value="1947">1947</option>
-                                            <option value="1946">1946</option>
-                                            <option value="1945">1945</option>
-                                            <option value="1944">1944</option>
-                                            <option value="1943">1943</option>
-                                            <option value="1942">1942</option>
-                                            <option value="1941">1941</option>
-                                            <option value="1940">1940</option>
-
-                                            <option value="1939">1939</option>
-                                            <option value="1938">1938</option>
-                                            <option value="1937">1937</option>
-                                            <option value="1936">1936</option>
-                                            <option value="1935">1935</option>
-                                            <option value="1934">1934</option>
-                                            <option value="1933">1933</option>
-                                            <option value="1932">1932</option>
-                                            <option value="1931">1931</option>
-                                            <option value="1930">1930</option>
-
-                                            <option value="1929">1929</option>
-                                            <option value="1928">1928</option>
-                                            <option value="1927">1927</option>
-                                            <option value="1926">1926</option>
-                                            <option value="1925">1925</option>
-                                            <option value="1924">1924</option>
-                                            <option value="1923">1923</option>
-                                            <option value="1922">1922</option>
-                                            <option value="1921">1921</option>
-                                            <option value="1920">1920</option>
-
-                                            <option value="1919">1919</option>
-                                            <option value="1918">1918</option>
-                                            <option value="1917">1917</option>
-                                            <option value="1916">1916</option>
-                                            <option value="1915">1915</option>
-                                            <option value="1914">1914</option>
-                                            <option value="1913">1913</option>
-                                            <option value="1912">1912</option>
-                                            <option value="1911">1911</option>
-                                            <option value="1910">1910</option>
-
-                                            <option value="1909">1909</option>
-                                            <option value="1908">1908</option>
-                                            <option value="1907">1907</option>
-                                            <option value="1906">1906</option>
-                                            <option value="1905">1905</option>
-                                            <option value="1904">1904</option>
-                                            <option value="1903">1903</option>
-                                            <option value="1902">1902</option>
-                                            <option value="1901">1901</option>
-                                            <option value="1900">1900</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><?php echo $this->lang->line('contact'); ?>: </td>
-                                    <td>
-                                        <input type="number" name="Mobile_Number" maxlength="10" placeholder="number" />
-                                    </td>
-                                </tr>
-
-                                <!--<tr>
-                                    <td>GENDER</td>
-                                    <td>
-                                        Male <input type="radio" name="Gender" value="Male" />
-                                        Female <input type="radio" name="Gender" value="Female" />
-                                    </td>
-                                </tr>-->
-
-                                <tr>
-                                    <td>*PIN CODE: </td>
-                                    <td><input type="password" name="Pin_Code" maxlength="4" placeholder="pin" required/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>*PIN CODE CONFIRM: </td>
-                                    <td><input type="password" name="Pin_Code_2" maxlength="4" placeholder="pin" required/>
-                                    </td>
-                                </tr>
-
-
-                                <!-- <tr>
-                                     <td>NATIONALITY</td>
-                                     <td><input type="text" name="Nationality" value="Belgium" readonly="readonly" /></td>
-                                 </tr>-->
-
-                                <tr>
-                                    <br/>
-                                    <td>*<?php echo $this->lang->line('language'); ?>: </td>
-                                    <td>
-
-                                        <input type="radio" name="Radio" value="Dutch" checked>
-                                        <?php echo $this->lang->line('dutch'); ?>
-                                        <input type="radio" name="Radio" value="English" >
-                                        <?php echo $this->lang->line('english'); ?>
-                                        <input type="radio" name="Radio" value="French">
-                                        <?php echo $this->lang->line('french'); ?>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>*<?php echo $this->lang->line('room'); ?>: </td>
-                                    <td><input type="text" name="Room_Id" maxlength="100" placeholder="room id" required/></td>
-                                </tr>
-                                <tr>
-                                    <td>*<?php echo $this->lang->line('bed'); ?>: </td>
-                                    <td><input type="text" name="Bed_Id" maxlength="10" placeholder="bed id" required/></td>
-                                </tr>
-
-                                <!--<tr>
-                                     <td>EMAIL</td>
-                                     <td>
-                                         <input type="text" name="email" maxlength="30" />
-                                     </td>
-                                 </tr>-->
-
-
-
-                                <tr>
-                                    <td><?php echo $this->lang->line('floor'); ?>: </td>
-                                    <td>
-
-                                        <input type="radio" name="floor" value="GroundFloor" checked>
-                                        <?php echo $this->lang->line('floor1'); ?>
-                                        <input type="radio" name="floor" value="FirstFloor">
-                                        <?php echo $this->lang->line('floor2'); ?>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>        </td>
-                                    <td>
-                                        <input type="radio" name="floor" value="SecondFloor">
-                                        <?php echo $this->lang->line('floor3'); ?>
-                                        <input type="radio" name="floor" value="ThirdFloor">
-                                        <?php echo $this->lang->line('floor4'); ?>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td><?php echo $this->lang->line('privileges'); ?>: </td>
-                                    <td>
-                                        <input type="text" name="Privileges" maxlength="200" placeholder="<?php echo $this->lang->line('privileges_optional'); ?>" />
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <td colspan="2" align="center">
-                                        <input type="submit" value="Send">
-
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td> * =  <?php echo $this->lang->line('required'); ?></td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </form>
         <div class="col-3 hiddendiv" id="div4" style="background-color:#009489;padding:0;">
         </div>
         <div class="col-6" style="background-color:#f9f9f9;padding:0px;">
             <div style="width:100%;">
                 <ul class="nav nav-tabs" style="text-align:center;border:none;">
-                    <li class="nav-item" style="width:33%;"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1" style="border:none;" onclick="loadDiv1()"><?php echo $this->lang->line('dash_questionnaire'); ?></a></li>
-                    <li class="nav-item" style="width:33%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2" style="border:none;" onclick="loadDiv2()"><?php echo $this->lang->line('dash_poll'); ?></a></li>
-                    <li class="nav-item" style="width:34%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3" style="border:none;" onclick="loadDiv3()"><?php echo $this->lang->line('dash_personal'); ?></a></li>
-
+                    <li class="nav-item" style="width:25%;"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1" style="border:none;" onclick="loadDiv1()"><?php echo $this->lang->line('dash_questionnaire'); ?></a></li>
+                    <li class="nav-item" style="width:25%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2" style="border:none;" onclick="loadDiv2()"><?php echo $this->lang->line('dash_poll'); ?></a></li>
+                    <li class="nav-item" style="width:25%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3" style="border:none;" onclick="loadDiv3()"><?php echo $this->lang->line('dash_personal'); ?></a></li>
+                    <li class="nav-item" style="width:25%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-4" style="border:none;" onclick="loadDiv4()"><?php echo $this->lang->line('dash_register'); ?></a></li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="tab-1" style="padding:5%;max-height:94vh;overflow-y:scroll;">
@@ -644,7 +329,7 @@ $residentsFirstname = $this->db->query($query);
                                 <div class="card-top">
                                     <div class="card-head">
                                         <img class="card-picture" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
-                                        <span class="card-name" id="residentName"></span>
+                                        <span class="card-name">Jan Buskens</span>
                                     </div>
                                 </div>
                                 <div class="card-text">
@@ -687,9 +372,9 @@ $residentsFirstname = $this->db->query($query);
 
                                             </br>
                                             <div class = "date" style="float:left;">
-                                            <select class="form-control">
-                                                <option value="100">Please Select Date</option>
-                                                <!--<script>
+                                                <select class="form-control">
+                                                    <option value="100">Please Select Date</option>
+                                                    <!--<script>
                                                     var bothData[];
                                                     function changeDate(v)
                                                     {
@@ -698,43 +383,43 @@ $residentsFirstname = $this->db->query($query);
                                                 </script>-->
 
 
-                                                <?php
-                                                foreach($data_each1 as $row)
-                                                {
-                                                    //if($row['key']=="value")
-                                                    //{
-                                                    //echo "<script> bothData = ". json_encode($row['values'])."</script>";
-                                                    //}
-                                                    //echo '<option value="'.$row['timestampStart'].'">'.$row['timestampStart'].'</option>';
-                                                    //echo '<option value="'.$row['key'].'" onclick=\'change("all")\'>'.$row['key'].'</option>';
-                                                   // echo '<option value="'.$row['values'].'" onclick=\'changeDate(this.value)\'>'.$row['key'].'</option>';
-                                                   // echo '<option value="'.$row['key'].'" onclick=\'changeDate(this.value)\'>'.$row['key'].'</option>';
-                                                    echo '<option value="'.$row['key'].'" onclick=\'change(this.value,"all")\'>'.$row['key'].'</option>';
+                                                    <?php
+                                                    foreach($data_each1 as $row)
+                                                    {
+                                                        //if($row['key']=="value")
+                                                        //{
+                                                        //echo "<script> bothData = ". json_encode($row['values'])."</script>";
+                                                        //}
+                                                        //echo '<option value="'.$row['timestampStart'].'">'.$row['timestampStart'].'</option>';
+                                                        //echo '<option value="'.$row['key'].'" onclick=\'change("all")\'>'.$row['key'].'</option>';
+                                                        // echo '<option value="'.$row['values'].'" onclick=\'changeDate(this.value)\'>'.$row['key'].'</option>';
+                                                        // echo '<option value="'.$row['key'].'" onclick=\'changeDate(this.value)\'>'.$row['key'].'</option>';
+                                                        echo '<option value="'.$row['key'].'" onclick=\'change(this.value,"all")\'>'.$row['key'].'</option>';
 
-                                                }
+                                                    }
 
-                                                ?>
-                                            </select>
+                                                    ?>
+                                                </select>
                                             </div>
                                             <script type="text/javascript">
                                                 var bothData = <?php echo json_encode($one); ?>;;
                                             </script>
 
                                             <div class = "category"; style="float:right;">
-                                            <select >
-                                                <option value="all" onclick='change("1",this.value)'>Please Select Category</option>
-                                                <option  value="all" onclick='change("0",this.value)'><?php echo $this->lang->line('category_all'); ?></option>
-                                                <option value="0" onclick='change("0",this.value)'><?php echo $this->lang->line('category_0'); ?></option>
-                                                <option value="1" onclick='change("0",this.value)'><?php echo $this->lang->line('category_1'); ?></option>
-                                                <option  value="2" onclick='change("0",this.value)'><?php echo $this->lang->line('category_2'); ?></option>
-                                                <option  value="3" onclick='change("0",this.value)'><?php echo $this->lang->line('category_3'); ?></option>
-                                                <option  value="4" onclick='change("0",this.value)'><?php echo $this->lang->line('category_4'); ?></option>
-                                                <option  value="5" onclick='change("0",this.value)'><?php echo $this->lang->line('category_5'); ?></option>
-                                                <option  value="6" onclick='change("0",this.value)'><?php echo $this->lang->line('category_6'); ?></option>
-                                                <option  value="7" onclick='change("0",this.value)'><?php echo $this->lang->line('category_7'); ?></option>
-                                                <option  value="8" onclick='change("0",this.value)'><?php echo $this->lang->line('category_8'); ?></option>
-                                                <option value="9" onclick='change("0",this.value)'><?php echo $this->lang->line('category_9'); ?></option>
-                                                <option  value="10" onclick='change("0",this.value)'><?php echo $this->lang->line('category_10'); ?></option>
+                                                <select >
+                                                    <option value="all" onclick='change("1",this.value)'>Please Select Category</option>
+                                                    <option  value="all" onclick='change("0",this.value)'><?php echo $this->lang->line('category_all'); ?></option>
+                                                    <option value="0" onclick='change("0",this.value)'><?php echo $this->lang->line('category_0'); ?></option>
+                                                    <option value="1" onclick='change("0",this.value)'><?php echo $this->lang->line('category_1'); ?></option>
+                                                    <option  value="2" onclick='change("0",this.value)'><?php echo $this->lang->line('category_2'); ?></option>
+                                                    <option  value="3" onclick='change("0",this.value)'><?php echo $this->lang->line('category_3'); ?></option>
+                                                    <option  value="4" onclick='change("0",this.value)'><?php echo $this->lang->line('category_4'); ?></option>
+                                                    <option  value="5" onclick='change("0",this.value)'><?php echo $this->lang->line('category_5'); ?></option>
+                                                    <option  value="6" onclick='change("0",this.value)'><?php echo $this->lang->line('category_6'); ?></option>
+                                                    <option  value="7" onclick='change("0",this.value)'><?php echo $this->lang->line('category_7'); ?></option>
+                                                    <option  value="8" onclick='change("0",this.value)'><?php echo $this->lang->line('category_8'); ?></option>
+                                                    <option value="9" onclick='change("0",this.value)'><?php echo $this->lang->line('category_9'); ?></option>
+                                                    <option  value="10" onclick='change("0",this.value)'><?php echo $this->lang->line('category_10'); ?></option>
                                                 </select>
                                             </div>
                                             </br>
@@ -765,9 +450,9 @@ $residentsFirstname = $this->db->query($query);
                                     <img class="profilePic" style="width:130px;height:130px;" src="<?=base_url() ?>assets/photos/profilePicTest_caregiver.jpg" alt="Profielfoto">
                                 </div>
                             </div>
-                            <div class="row" style="padding-top: 40px; vertical-align: bottom;">
-                                <div class="col-8" style="vertical-align: central;">
-                                   <p class="personal_text_2" style="padding-top: 4vh;"> <?php echo $this->lang->line('dash_chooselang'); ?> </p>
+                            <div class="row" style="padding-top: 40px;">
+                                <div class="col-8">
+                                    <p class="personal_text"> <?php echo $this->lang->line('dash_chooselang'); ?> </p>
                                 </div>
                                 <div class="col-4" style="padding-top: 12px;">
                                     <select style="width:100%" onchange="javascript:window.location.href='<?php echo base_url(); ?>MultiLanguageSwitcher/switcher/'+this.value;">
@@ -776,17 +461,17 @@ $residentsFirstname = $this->db->query($query);
                                     </select>
                                 </div>
                             </div>
-                                <div class="row" style="padding-top: 40px;">
-                                    <div class="col-4">
-                                        <p class="personal_text_2" style="padding-top: 0.5vh;"> <?php echo $this->lang->line('dash_email'); ?></p>
-                                    </div>
-                                    <div class="col-8">
-                                        <p class="personal_text_2" style="text-align: end;"> <?php if ($email->num_rows() > 0)
-                                            {
-                                                $row = $email->row();
-                                                echo $row->email;
-                                            }  ?></p>
-                                    </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <p class="personal_text"> <?php echo $this->lang->line('dash_email'); ?></p>
+                                </div>
+                                <div class="col-6">
+                                    <p class="personal_text" style="text-align: right;"> <?php if ($email->num_rows() > 0)
+                                        {
+                                            $row = $email->row();
+                                            echo $row->email;
+                                        }  ?></p>
+                                </div>
 
                             </div>
                             <!--                            <div class="row" style="padding-top: 40px;">-->
@@ -803,43 +488,325 @@ $residentsFirstname = $this->db->query($query);
                         </div>
                     </div>
 
+                    <div class="tab-pane" role="tabpanel" id="tab-3" style="padding:1%;max-height:94vh;overflow-y:scroll;">
+                        <div class="card register-card">
 
+
+
+                            <h3 class="title_registration"><?php echo $this->lang->line('title'); ?></h3>
+
+                            <form method="post" action="<?= site_url('Dashboard/dashboard_reg') ?>">
+                                <table align="center" cellpadding = "10">
+
+                                    <tr>
+                                        <td>*<?php echo $this->lang->line('first'); ?>:  </td>
+                                        <td><input type="text" name="firstname" maxlength="30" placeholder="<?php echo $this->lang->line('firstname_placeholder_register'); ?>" required/>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>*<?php echo $this->lang->line('last'); ?>: </td>
+                                        <td><input type="text" name="name" maxlength="30" placeholder="<?php echo $this->lang->line('lastname_placeholder_register'); ?>"required/>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><?php echo $this->lang->line('birth'); ?></td>
+
+                                        <td>
+                                            <select name="Birthday_day" id="Birthday_day" style="width: 29%" >
+                                                <option value="-1"><?php echo $this->lang->line('day'); ?></option>
+                                                <option value="1">1</option>
+                                                <option value="2">2</option>
+                                                <option value="3">3</option>
+
+                                                <option value="4">4</option>
+                                                <option value="5">5</option>
+                                                <option value="6">6</option>
+                                                <option value="7">7</option>
+                                                <option value="8">8</option>
+                                                <option value="9">9</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+
+                                                <option value="13">13</option>
+                                                <option value="14">14</option>
+                                                <option value="15">15</option>
+                                                <option value="16">16</option>
+                                                <option value="17">17</option>
+                                                <option value="18">18</option>
+                                                <option value="19">19</option>
+                                                <option value="20">20</option>
+                                                <option value="21">21</option>
+
+                                                <option value="22">22</option>
+                                                <option value="23">23</option>
+                                                <option value="24">24</option>
+                                                <option value="25">25</option>
+                                                <option value="26">26</option>
+                                                <option value="27">27</option>
+                                                <option value="28">28</option>
+                                                <option value="29">29</option>
+                                                <option value="30">30</option>
+
+                                                <option value="31">31</option>
+                                            </select>
+
+                                            <select id="Birthday_Month" name="Birthday_Month" style="width: 35%" >
+                                                <option value="-1"><?php echo $this->lang->line('month'); ?></option>
+                                                <option value="January"><?php echo $this->lang->line('januari_register'); ?></option>
+                                                <option value="February"><?php echo $this->lang->line('februari_register'); ?></option>
+                                                <option value="March"><?php echo $this->lang->line('march_register'); ?></option>
+                                                <option value="April"><?php echo $this->lang->line('april_register'); ?></option>
+                                                <option value="May"><?php echo $this->lang->line('may_register'); ?></option>
+                                                <option value="June"><?php echo $this->lang->line('june_register'); ?></option>
+                                                <option value="July"><?php echo $this->lang->line('july_register'); ?></option>
+                                                <option value="August"><?php echo $this->lang->line('august_register'); ?></option>
+                                                <option value="September"><?php echo $this->lang->line('september_register'); ?></option>
+                                                <option value="October"><?php echo $this->lang->line('october_register'); ?></option>
+                                                <option value="November"><?php echo $this->lang->line('november_register'); ?></option>
+                                                <option value="December"><?php echo $this->lang->line('december_register'); ?></option>
+                                            </select>
+
+                                            <select name="Birthday_Year" id="Birthday_Year" style="width: 30%" >
+
+                                                <option value="-1"><?php echo $this->lang->line('year'); ?></option>
+
+                                                <option value="1990">2000</option>
+
+                                                <option value="1999">1999</option>
+                                                <option value="1998">1998</option>
+                                                <option value="1997">1997</option>
+                                                <option value="1996">1996</option>
+                                                <option value="1995">1995</option>
+                                                <option value="1994">1994</option>
+                                                <option value="1993">1993</option>
+                                                <option value="1992">1992</option>
+                                                <option value="1991">1991</option>
+                                                <option value="1990">1990</option>
+
+                                                <option value="1989">1989</option>
+                                                <option value="1988">1988</option>
+                                                <option value="1987">1987</option>
+                                                <option value="1986">1986</option>
+                                                <option value="1985">1985</option>
+                                                <option value="1984">1984</option>
+                                                <option value="1983">1983</option>
+                                                <option value="1982">1982</option>
+                                                <option value="1981">1981</option>
+                                                <option value="1980">1980</option>
+
+                                                <option value="1979">1979</option>
+                                                <option value="1978">1978</option>
+                                                <option value="1977">1977</option>
+                                                <option value="1976">1976</option>
+                                                <option value="1975">1975</option>
+                                                <option value="1974">1974</option>
+                                                <option value="1973">1973</option>
+                                                <option value="1972">1972</option>
+                                                <option value="1971">1971</option>
+                                                <option value="1970">1970</option>
+
+                                                <option value="1969">1969</option>
+                                                <option value="1968">1968</option>
+                                                <option value="1967">1967</option>
+                                                <option value="1966">1966</option>
+                                                <option value="1965">1965</option>
+                                                <option value="1964">1964</option>
+                                                <option value="1963">1963</option>
+                                                <option value="1962">1962</option>
+                                                <option value="1961">1961</option>
+                                                <option value="1960">1960</option>
+
+                                                <option value="1959">1959</option>
+                                                <option value="1958">1958</option>
+                                                <option value="1957">1957</option>
+                                                <option value="1956">1956</option>
+                                                <option value="1955">1955</option>
+                                                <option value="1954">1954</option>
+                                                <option value="1953">1953</option>
+                                                <option value="1952">1952</option>
+                                                <option value="1951">1951</option>
+                                                <option value="1950">1950</option>
+
+                                                <option value="1949">1949</option>
+                                                <option value="1948">1948</option>
+                                                <option value="1947">1947</option>
+                                                <option value="1946">1946</option>
+                                                <option value="1945">1945</option>
+                                                <option value="1944">1944</option>
+                                                <option value="1943">1943</option>
+                                                <option value="1942">1942</option>
+                                                <option value="1941">1941</option>
+                                                <option value="1940">1940</option>
+
+                                                <option value="1939">1939</option>
+                                                <option value="1938">1938</option>
+                                                <option value="1937">1937</option>
+                                                <option value="1936">1936</option>
+                                                <option value="1935">1935</option>
+                                                <option value="1934">1934</option>
+                                                <option value="1933">1933</option>
+                                                <option value="1932">1932</option>
+                                                <option value="1931">1931</option>
+                                                <option value="1930">1930</option>
+
+                                                <option value="1929">1929</option>
+                                                <option value="1928">1928</option>
+                                                <option value="1927">1927</option>
+                                                <option value="1926">1926</option>
+                                                <option value="1925">1925</option>
+                                                <option value="1924">1924</option>
+                                                <option value="1923">1923</option>
+                                                <option value="1922">1922</option>
+                                                <option value="1921">1921</option>
+                                                <option value="1920">1920</option>
+
+                                                <option value="1919">1919</option>
+                                                <option value="1918">1918</option>
+                                                <option value="1917">1917</option>
+                                                <option value="1916">1916</option>
+                                                <option value="1915">1915</option>
+                                                <option value="1914">1914</option>
+                                                <option value="1913">1913</option>
+                                                <option value="1912">1912</option>
+                                                <option value="1911">1911</option>
+                                                <option value="1910">1910</option>
+
+                                                <option value="1909">1909</option>
+                                                <option value="1908">1908</option>
+                                                <option value="1907">1907</option>
+                                                <option value="1906">1906</option>
+                                                <option value="1905">1905</option>
+                                                <option value="1904">1904</option>
+                                                <option value="1903">1903</option>
+                                                <option value="1902">1902</option>
+                                                <option value="1901">1901</option>
+                                                <option value="1900">1900</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><?php echo $this->lang->line('contact'); ?>: </td>
+                                        <td>
+                                            <input type="number" name="Mobile_Number" maxlength="10" placeholder="number" />
+                                        </td>
+                                    </tr>
+
+                                    <!--<tr>
+                                        <td>GENDER</td>
+                                        <td>
+                                            Male <input type="radio" name="Gender" value="Male" />
+                                            Female <input type="radio" name="Gender" value="Female" />
+                                        </td>
+                                    </tr>-->
+
+                                    <tr>
+                                        <td>*PIN CODE: </td>
+                                        <td><input type="password" name="Pin_Code" maxlength="4" placeholder="pin" required/>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>*PIN CODE CONFIRM: </td>
+                                        <td><input type="password" name="Pin_Code_2" maxlength="4" placeholder="pin" required/>
+                                        </td>
+                                    </tr>
+
+
+                                    <!-- <tr>
+                                         <td>NATIONALITY</td>
+                                         <td><input type="text" name="Nationality" value="Belgium" readonly="readonly" /></td>
+                                     </tr>-->
+
+                                    <tr>
+                                        <br/>
+                                        <td>*<?php echo $this->lang->line('language'); ?>: </td>
+                                        <td>
+
+                                            <input type="radio" name="Radio" value="Dutch" checked>
+                                            <?php echo $this->lang->line('dutch'); ?>
+                                            <input type="radio" name="Radio" value="English" >
+                                            <?php echo $this->lang->line('english'); ?>
+                                            <input type="radio" name="Radio" value="French">
+                                            <?php echo $this->lang->line('french'); ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>*<?php echo $this->lang->line('room'); ?>: </td>
+                                        <td><input type="text" name="Room_Id" maxlength="100" placeholder="room id" required/></td>
+                                    </tr>
+                                    <tr>
+                                        <td>*<?php echo $this->lang->line('bed'); ?>: </td>
+                                        <td><input type="text" name="Bed_Id" maxlength="10" placeholder="bed id" required/></td>
+                                    </tr>
+
+                                    <!--<tr>
+                                         <td>EMAIL</td>
+                                         <td>
+                                             <input type="text" name="email" maxlength="30" />
+                                         </td>
+                                     </tr>-->
+
+
+
+                                    <tr>
+                                        <td><?php echo $this->lang->line('floor'); ?>: </td>
+                                        <td>
+
+                                            <input type="radio" name="floor" value="GroundFloor" checked>
+                                            <?php echo $this->lang->line('floor1'); ?>
+                                            <input type="radio" name="floor" value="FirstFloor">
+                                            <?php echo $this->lang->line('floor2'); ?>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>        </td>
+                                        <td>
+                                            <input type="radio" name="floor" value="SecondFloor">
+                                            <?php echo $this->lang->line('floor3'); ?>
+                                            <input type="radio" name="floor" value="ThirdFloor">
+                                            <?php echo $this->lang->line('floor4'); ?>
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><?php echo $this->lang->line('privileges'); ?>: </td>
+                                        <td>
+                                            <input type="text" name="Privileges" maxlength="200" placeholder="<?php echo $this->lang->line('privileges_optional'); ?>" />
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td colspan="2" align="center">
+                                            <input type="submit" value="Send">
+
+
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td> * =  <?php echo $this->lang->line('required'); ?>add</td>
+                                    </tr>
+                                </table>
+                            </form>
+
+
+
+
+                        </div>
                     </div>
                 </div>
             </div>
-<!--        </div>-->
+        </div>
+        <!--        </div>-->
         <div class="col-3" style="background-color:#c7de6e;padding:0;">
             <div style="height:5%;"></div>
             <div class="searchdiv" style="text-align:center;margin:15px;">
                 <h2 class="notes-title"><?php echo $this->lang->line('dash_notes'); ?></h2>
 
-
-                    <button class="btn btn-primary btn-lg" type="button" style="min-width:100%;background-color:#009489;border:none;" data-toggle="modal" data-target="#myModal"><?php echo $this->lang->line('dash_add'); ?></button>
-                    <!--Modal-->
-                <form method="post" action="<?= site_url('Caregiver_controller/add_note') ?>">
-                    <div id="myModal" class="modal fade" role="dialog">
-                        <div class="modal-dialog">
-
-                            <!-- Modal content-->
-                            <div class="modal-content">
-                                <div class="modal-header">
-
-                                    <h4 class="modal-title"><?php echo $this->lang->line('dash_add'); ?></h4>
-                                </div>
-                                <div class="modal-body" >
-                                    <textarea class="form-control"  style="min-width: 100%" type="text" name="note" maxlength="1023" ></textarea>
-                                </div>
-                                <div class="modal-footer">
-                                    <input type="submit" value="Save" class="btn btn-default">
-                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </form>
-
-            </div>
+                <a  href=<?=base_url()?>index.php/Caregiver_controller/add_note class="link1">
+                    <button class="btn btn-primary btn-lg" type="button" style="min-width:100%;background-color:#009489;border:none;"><?php echo $this->lang->line('dash_add'); ?></button></div>
+            </a>
 
             <div style="height:2%;"></div>
 
@@ -964,10 +931,10 @@ $residentsFirstname = $this->db->query($query);
 </script>
 <script>
     var face_changers = document.querySelectorAll('.btnFlip'),
-    f1_container = document.getElementById('register-card');
+        f1_container = document.getElementById('register-card');
 
     for(var i = 0; i < face_changers.length; i++){
-    face_changers[i].addEventListener('click', function(e) {
+        face_changers[i].addEventListener('click', function(e) {
             f1_container.classList.toggle('hover_effect');
             e.preventDefault();
         }, false)
@@ -1032,19 +999,19 @@ $residentsFirstname = $this->db->query($query);
 
 <script type="text/javascript">
 
-   // var bothData1[];
+    // var bothData1[];
 
-  /*  function changeDate(value)
-    {
-        for (index = 0; index < bothDataRaw.length; ++index)
-        {
-            if(bothData.key==value)
-            {
-                bothData1.push(bothDataRaw.values);
-            }
-        }
-        bothData = bothdata1;
-    }*/
+    /*  function changeDate(value)
+      {
+          for (index = 0; index < bothDataRaw.length; ++index)
+          {
+              if(bothData.key==value)
+              {
+                  bothData1.push(bothDataRaw.values);
+              }
+          }
+          bothData = bothdata1;
+      }*/
 
 
 
@@ -1060,7 +1027,7 @@ $residentsFirstname = $this->db->query($query);
             //console.log(date);
             if (data5[index]['key'] === date)
             {
-               bothData = data5[index]['values'];
+                bothData = data5[index]['values'];
                 //console.log(data5[index]['values']);
             }
         }
@@ -1476,5 +1443,3 @@ $residentsFirstname = $this->db->query($query);
 </script>
 
 </html>
-
-

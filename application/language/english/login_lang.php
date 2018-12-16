@@ -13,5 +13,7 @@ $lang['login_password'] = 'Password';
 $lang['login_forgot'] = 'Forgot your password?';
 $lang['login_click'] = 'Click Here!';
 $lang['caregiver_login_title'] = "Caregiver Login | Welcome";
+$lang['login_face'] = 'Log in with picture: ';
+$lang['alternative'] = 'Log in with pincode:';
 
 ?>

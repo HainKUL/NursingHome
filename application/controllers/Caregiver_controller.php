@@ -98,7 +98,7 @@ class Caregiver_controller extends CI_Controller{
         // ADD NOTE
         if ($_POST) {
             // receive all input values from the form
-            $userid = (int) $_POST['id'];
+            $userid = $_SESSION['id'];
             $query = "SELECT passwordHash FROM Caregivers WHERE email = ".$this->db->escape($_POST['note'])." LIMIT 1;";
             // form validation
             if (empty($userID) || empty($note)) { /*TODO*/ }

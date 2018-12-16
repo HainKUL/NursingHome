@@ -30,6 +30,6 @@ $lang['login_capture'] = 'Take Picture';
 $lang['login_bypass'] = 'Login bypass';
 
 $lang['register_firstname'] = 'First name';
-$lang['register_lasttname'] = 'Last name';
+$lang['register_lastname'] = 'Last name';
 $lang['register_birthday'] = 'Birthday';
 $lang['register_id'] = 'ID';

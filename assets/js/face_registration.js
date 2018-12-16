@@ -54,9 +54,11 @@ function snapshot() {
     ctx.drawImage(video, 0,0, canvas.width, canvas.height);
     var img1 = new Image();
     img1.src = canvas.toDataURL();
-    var id = '<%=Session["reg_id"]%>';
-     var ip = document.getElementById('ip').value;
-    datad = "{\r\n    \"image\":\"" + img1.src+ "\",\r\n    \"subject_id\":\"" + ip + "\",\r\n    \"gallery_name\":\"Demo\"\r\n}";
+    // var ip = document.getElementById('ip').value;
+    var ip = document.getElementsByTagName("h4")[0].innerHTML;
+    var cgid=document.getElementsByTagName("h5")[0].innerHTML;
+    console.log(ip);
+    datad = "{\r\n    \"image\":\"" + img1.src+ "\",\r\n    \"subject_id\":\"" + ip + "\",\r\n    \"gallery_name\":\"Demoxx\"\r\n}";
     var settings = {
         "async": true,
         "crossDomain": true,
@@ -78,13 +80,13 @@ function snapshot() {
             //Materialize.toast("Image Trained succesfully by name " +response.images[0].transaction.subject_id+ " in gallery name " +response.images[0].transaction.gallery_name, 4000);
             console.log("successfully registered")
             alert("successfully registered")
-            // let newUrl = site_url.concat("/index.php/Dashboard/dashboard")
-            // console.log(newUrl);
-            // //set a timer
-            // setTimeout(myFunc,1000);
-            // function myFunc() {
-            //     window.location.href = newUrl;
-            // }
+            //let base_url = window.location.origin.concat("/a18ux04");
+            //if(base_url!="http://localhost/a18ux04")
+            let    base_url = "https://a18ux04.studev.groept.be";
+            let newUrl = base_url.concat("/index.php/Dashboard/registrationsucces/").concat(cgid);
+
+            console.log(newUrl);
+            window.location.href = newUrl;
         }
         else{
             //Materialize.toast("Unable to Train Image", 4000);

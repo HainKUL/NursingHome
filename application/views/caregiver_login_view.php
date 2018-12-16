@@ -23,7 +23,7 @@
 
 
             <div class="container" id="card-inside">
-                <form method="post" action="<?=base_url()?>/index.php/Caregiver_controller/login">
+                <form method="post" action="<?=base_url()?>index.php/Caregiver_controller/login">
                 <div class="row" >
                     <div class="col-2">
                     </div>
@@ -40,11 +40,8 @@
                     </div>
                     <div class="col-8">
 
-                            <p style="padding-top: 15%; font-size: 32px;">
-                                <label><?php echo $this->lang->line('login_username'); ?>:</label>
-                                <input style="line-height: 32px;" type="text" name="email" id="email" class="form-control" name="email" />
-
-                            </p>
+                        <p style="padding-top: 15%; font-size: 32px; padding-right: 12px; padding-left: 7px;"><?php echo $this->lang->line('login_username'); ?>:</p>
+                        <p style="padding-right: 12px; padding-left: 7px;"> <input style="line-height: 32px; padding-left: 7px; width: 15vw;" type="text" name="email" id="email" class="form-control" name="email" /></p>
 
                     </div>
                     <div class="col-2">
@@ -53,12 +50,10 @@
                 <div class="row" >
                     <div class="col-2">
                     </div>
-                    <div class="col-8">
+                    <div class="col-8" style="align-content: end;">
 
-                            <p style="padding-top: 15%; font-size: 32px; padding-right: 12px; padding-left: 7px;">
-                                <label><?php echo $this->lang->line('login_password'); ?>:</label>
-                                <input style="line-height: 32px;" type="password" name="password" id="password" class="form-control" name="password" />
-                            </p>
+                        <p style="padding-top: 10%; font-size: 32px; padding-right: 12px; padding-left: 7px;"><?php echo $this->lang->line('login_password'); ?>:</p>
+                        <p style="padding-right: 12px; padding-left: 7px;"><input  style="line-height: 32px; padding-left: 7px; width: 15vw;" type="password" name="password" id="password" class="form-control" name="password" /></p>
 
                     </div>
                     <div class="col-2">
@@ -77,6 +72,7 @@
                     <div class="col-2">
                     </div>
                 </div>
+
 
                 </form>
 
