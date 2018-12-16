@@ -100,6 +100,11 @@ class Dashboard extends CI_Controller
         }
 
     }
+    public function dashboard_register()
+    {
+        $data = 'oeps';
+        $this->load->view('dashboard_register', $data);
+    }
 
 
 

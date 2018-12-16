@@ -46,7 +46,7 @@ class Caregiver_controller extends CI_Controller{
     }
 
 
-    public function getnotes($context, $time1, $time2){
+    public function getnotes($context, $time1, $time2){ //TODO remove times as argument, or use them
         //$query = "SELECT noteText, author, timestamp FROM Notes WHERE timestamp >= $time1 AND timestamp < $time2;";
         $query = "SELECT noteText, author timestamp FROM Notes;";
         $result = $this->db->query($query);
@@ -98,7 +98,7 @@ class Caregiver_controller extends CI_Controller{
         // ADD NOTE
         if ($_POST) {
             // receive all input values from the form
-            $userid = (int) $_POST['id'];
+            $userid = $_SESSION['id'];
             $query = "SELECT passwordHash FROM Caregivers WHERE email = ".$this->db->escape($_POST['note'])." LIMIT 1;";
             // form validation
             if (empty($userID) || empty($note)) { /*TODO*/ }
