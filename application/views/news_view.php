@@ -34,7 +34,7 @@ if(!isset($_SESSION["resident"]))
         <div class="col-md-10">
         </div>
         <div class="col-md-2" style="padding-bottom:10px" >
-            <a class="link1" href="<?=base_url()?>/Homepage_controller/residentHome/<?php echo $_SESSION['id']?>">
+            <a class="link1" href="<?=base_url()?>index.php/Homepage_controller/residentHome/<?php echo $_SESSION['id']?>">
             <button type="button" class ="btn btn-default button_back float-right" >
                 <?php echo $this->lang->line('buttonBack'); ?>
             </button>
