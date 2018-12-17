@@ -23,13 +23,24 @@ class Dashboard extends CI_Controller
         $this->load->model("Bar_chart_model");
     }
 
-    public function dashboard() {
+    public function dashboard($residentID = 42) {    //TODO remove this default
+        /*graphs*/
         $data_each1 = $this->Bar_chart_model->get_each();
         $data['data_each1'] = $data_each1;
         $data_one = $this->Bar_chart_model->get_one();
         $data['one'] =   $data_one;
         $data1 = $this->Our_chart_model->get_avg();
         $data['data1'] = $data1;
+
+        /*resident info*/
+        $sql = "SELECT * FROM Residents WHERE idResidents = $residentID LIMIT 1";
+        $result = $this->db->query($sql);
+        $data['theFirstName'] =    $result->result_array()[0]["firstName"];
+        $data['name'] =         $result->result_array()[0]["name"];
+        $data['dateOfBirth'] =  $result->result_array()[0]["dateOfBirth"];
+        $data['roomNumber'] =   $result->result_array()[0]["roomNumber"];
+        $data['bedNumber'] =    $result->result_array()[0]["bedNumber"];
+
         $this->load->view('dashboard', $data);
     }
     public function dashboard_reg(){
