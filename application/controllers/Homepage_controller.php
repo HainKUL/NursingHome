@@ -85,6 +85,7 @@ class Homepage_controller extends CI_Controller
             $result = $this->db->query($query);
             $_SESSION['id']=$result->result()[0]->idResidents;
             $lang = $result->result()[0]->preferences;
+            echo $lang;
 
             if($result->num_rows() === 0)   {
                 $this->session->set_flashdata('flash_data', 'name or password incorrect!');
@@ -116,7 +117,7 @@ class Homepage_controller extends CI_Controller
         $this->residentHome($userId);
         $lang=$_SESSION['lang'];
         if($lang == 'Engels') $lang='english';
-        echo "<script>window.location.href='".base_url()."MultiLanguageSwitcher/switcher/'".$lang.";</script>";
+        echo "<script>window.location.href='".base_url()."index.php/MultiLanguageSwitcher/switcher/'".$lang.";</script>";
 
 
     }
