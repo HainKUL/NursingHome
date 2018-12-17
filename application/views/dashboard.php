@@ -538,7 +538,7 @@ $residentsFirstname = $this->db->query($query);
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>*PIN CODE CONFIRM: </td>
+                                    <td>*PIN CODE BEVESTIGEN: </td>
                                     <td><input type="password" name="Pin_Code_2" maxlength="4" placeholder="pin" required/>
                                     </td>
                                 </tr>
