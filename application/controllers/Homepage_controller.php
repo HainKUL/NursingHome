@@ -115,7 +115,8 @@ class Homepage_controller extends CI_Controller
     public function succeslogin($userId){
         $_SESSION['resident']="yes";
         $this->residentHome($userId);
-        $lang=$_SESSION['lang'];
+        //$lang=$_SESSION['lang'];
+        $lang = 'english'; //TODO remove this circumvent (and fix the big it avoids)
         if($lang == 'Engels') $lang='english';
         echo "<script>window.location.href='".base_url()."index.php/MultiLanguageSwitcher/switcher/'".$lang.";</script>";
 
