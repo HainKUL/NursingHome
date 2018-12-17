@@ -648,9 +648,9 @@ $residentsFirstname = $this->db->query($query);
                                     </div>
                                 </div>
                                 <div class="card-text">
-                                    <div class="card-birthdate"><?php echo $this->lang->line('birthday'); ?><span id="card-birthdate">22/06/1996</span></div>
-                                    <div class="card-room"><?php echo $this->lang->line('roomnum'); ?><span id="card-room">502</span></div>
-                                    <div class="card-bed"><?php echo $this->lang->line('bednum'); ?><span id="card-bed">1</span></div>
+                                    <div class="card-birthdate"><?php echo $this->lang->line('birthday'); ?><span id="card-birthdate"> <?php echo $dateOfBirth ?> </span></div>
+                                    <div class="card-room"><?php echo $this->lang->line('roomnum'); ?><span id="card-room"> <?php echo $roomNumber ?> </span></div>
+                                    <div class="card-bed"><?php echo $this->lang->line('bednum'); ?><span id="card-bed"> <?php echo $bedNumber ?> </span></div>
                                     <div class="card-privileges"><?php echo $this->lang->line('privileges'); ?><span id="card-privileges">: can go outside</span></div>
                                 </div>
                                 <div class="radarChart"></div>
