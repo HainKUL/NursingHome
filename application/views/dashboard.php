@@ -644,9 +644,13 @@ $residentsFirstname = $this->db->query($query);
                                 <div class="card-top">
                                     <div class="card-head">
                                         <img class="card-picture" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
-                                        <span class="card-name" id="residentName"></span>
+                                        <span class="card-name" id="residentName"> <?php echo $theFirstName." ".$name; ?>
+                                        </span>
+
+
                                     </div>
                                 </div>
+
                                 <div class="card-text">
                                     <div class="card-birthdate"><?php echo $this->lang->line('birthday'); ?><span id="card-birthdate"> <?php echo $dateOfBirth ?> </span></div>
                                     <div class="card-room"><?php echo $this->lang->line('roomnum'); ?><span id="card-room"> <?php echo $roomNumber ?> </span></div>
@@ -957,8 +961,12 @@ $residentsFirstname = $this->db->query($query);
         var element = document.getElementById(id)
         element.classList.add("btn-active")
         currentButtonID = id
+       // if(window.location.href.contains("localhost")   {
+            window.location.replace("http://localhost:8888/a18ux04/index.php/Dashboard/dashboard/".concat(id)); //TODO!!!!
+        //}
 
-        document.getElementById("residentName").innerText = id + "<?php echo $this->lang->line('dash_profile'); ?>"
+
+        //document.getElementById("residentName").innerText = id + "<?php echo $this->lang->line('dash_profile'); ?>"
     }
 
 </script>
