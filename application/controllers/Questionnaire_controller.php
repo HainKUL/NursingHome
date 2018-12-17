@@ -84,7 +84,7 @@ class Questionnaire_controller extends CI_Controller{
         else if(isset($_GET['sometimes']))  $this->Question_model->send_confirmation($question, 3, $idSubmission);
         else if(isset($_GET['mostly']))     $this->Question_model->send_confirmation($question, 4, $idSubmission);
         else if(isset($_GET['always']))     $this->Question_model->send_confirmation($question, 5, $idSubmission);
-        else if(isset($_GET['Previous']))   {$this->question($question - 1); return;}
+        else if(isset($_GET['terug_naar_vorige_vraag']))   {$this->question($question - 1); return;}
         else $submit = 0;
    //TODO extract method and deduplicate
         $sql =
