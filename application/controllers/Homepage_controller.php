@@ -115,7 +115,7 @@ class Homepage_controller extends CI_Controller
         $_SESSION['resident']="yes";
         $this->residentHome($userId);
         //$lang=$_SESSION['lang'];
-        $lang = 'english'; //TODO remove this circumvent (and fix the big it avoids)
+        $lang = 'dutch'; //TODO remove this circumvent (and fix the big it avoids)
         if($lang == 'Engels') $lang='english';
         echo "<script>window.location.href='".base_url()."MultiLanguageSwitcher/switcher/'".$lang.";</script>";
 
