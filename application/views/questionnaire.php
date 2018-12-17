@@ -40,7 +40,7 @@ if(!isset($_SESSION["resident"]))
         }
 
         function residentHome() {
-            let url="<?=base_url()?>".concat("Homepage_controller/residentHome")
+            let url="<?=base_url()?>".concat("index.php/Homepage_controller/residentHome")
             window.location.href = url;
         }
 
@@ -63,7 +63,7 @@ if(!isset($_SESSION["resident"]))
             <div class="col-2">
             </div>
             <div class="col-1" id ="test">
-                <a href=<?=base_url()?>/Homepage_controller/residentHome/<?php echo $_SESSION['id']?>>
+                <a href=<?=base_url()?>index.php/Homepage_controller/residentHome/<?php echo $_SESSION['id']?>>
                     <button type="button"class="btn btn-default button_back float-right" ><?php echo $this->lang->line('Back'); ?></button>
                 </a>
             </div>
