@@ -962,7 +962,8 @@ $residentsFirstname = $this->db->query($query);
         element.classList.add("btn-active")
         currentButtonID = id
        // if(window.location.href.contains("localhost")   {
-            window.location.replace("http://localhost:8888/a18ux04/index.php/Dashboard/dashboard/".concat(id)); //TODO change to server URL and find better solution
+       //      window.location.replace("http://localhost:8888/a18ux04/index.php/Dashboard/dashboard/".concat(id)); //TODO change to server URL and find better solution
+        window.location.replace("https://a18ux04.studev.groept.be/index.php/Dashboard/dashboard/".concat(id));
         //}
 
 
