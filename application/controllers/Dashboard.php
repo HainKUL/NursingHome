@@ -23,7 +23,7 @@ class Dashboard extends CI_Controller
         $this->load->model("Bar_chart_model");
     }
 
-    public function dashboard($residentID = 42) {    //TODO remove this default
+    public function dashboard($residentID = 26) {    //TODO remove this default
         /*graphs*/
         $data_each1 = $this->Bar_chart_model->get_each();
         $data['data_each1'] = $data_each1;
