@@ -157,7 +157,7 @@ $residents = $this->db->query($query);
     $query = "SELECT email FROM Caregivers WHERE Caregivers.idCaregivers = $currentID;";
     $email = $this->db->query($query);
 
-$query = "SELECT firstName FROM Residents ORDER BY firstName;";
+$query = "SELECT firstName, name FROM Residents ORDER BY firstName;";
 $residentsFirstname = $this->db->query($query);
     ?>
 
@@ -167,7 +167,7 @@ $residentsFirstname = $this->db->query($query);
             echo "[";
             foreach ($residentsFirstname->result_array() as $row) {
                 echo '"';
-                echo $row['firstName'];
+                echo $row['firstName']." ".$row['name'];
                 echo '",';
 
             }
