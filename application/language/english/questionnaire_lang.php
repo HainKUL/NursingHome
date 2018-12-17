@@ -7,7 +7,7 @@
  */
 $lang['title'] = 'Care for you| GraceAge';
 $lang['Quit'] = 'Quit';
-$lang['Return'] = 'Previous question';
+$lang['Return'] = 'terug_naar_vorige_vraag'; //TODO re-translate
 
 $lang['button_never'] = 'never';
 $lang['button_rarely'] = 'rarely';
