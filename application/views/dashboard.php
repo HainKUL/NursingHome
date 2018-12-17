@@ -150,14 +150,14 @@ $currentID = $_SESSION['id'];
 $this->load->database();
 $query = "SELECT Notes.noteText, Notes.author, Notes.timestamp, Caregivers.firstName FROM Notes INNER JOIN Caregivers on Notes.author = Caregivers.idCaregivers ORDER BY Notes.timestamp DESC;";
 $result = $this->db->query($query);
-$query = "SELECT firstName, name, idResidents, YEAR(CURRENT_TIMESTAMP) - YEAR(dateOfBirth) - (RIGHT(CURRENT_TIMESTAMP, 5) < RIGHT(dateOfBirth, 5)) as age FROM Residents;";
+$query = "SELECT firstName, name, idResidents, YEAR(CURRENT_TIMESTAMP) - YEAR(dateOfBirth) - (RIGHT(CURRENT_TIMESTAMP, 5) < RIGHT(dateOfBirth, 5)) as age FROM Residents ORDER BY firstName;";
 $residents = $this->db->query($query);
     $query = "SELECT firstName FROM Caregivers WHERE $currentID = Caregivers.idCaregivers;";
     $firstName = $this->db->query($query);
     $query = "SELECT email FROM Caregivers WHERE Caregivers.idCaregivers = $currentID;";
     $email = $this->db->query($query);
 
-$query = "SELECT firstName FROM Residents;";
+$query = "SELECT firstName FROM Residents ORDER BY firstName;";
 $residentsFirstname = $this->db->query($query);
     ?>
 
@@ -962,7 +962,7 @@ $residentsFirstname = $this->db->query($query);
         element.classList.add("btn-active")
         currentButtonID = id
        // if(window.location.href.contains("localhost")   {
-            window.location.replace("http://localhost:8888/a18ux04/index.php/Dashboard/dashboard/".concat(id)); //TODO!!!!
+            window.location.replace("http://localhost:8888/a18ux04/index.php/Dashboard/dashboard/".concat(id)); //TODO change to server URL and find better solution
         //}
 
 
