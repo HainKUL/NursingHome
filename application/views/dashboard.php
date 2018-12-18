@@ -23,7 +23,7 @@ if(!isset($_SESSION['caregiver']))
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/ >
 
     <!-- Google fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 
     <!-- D3.js -->
@@ -33,7 +33,7 @@ if(!isset($_SESSION['caregiver']))
 
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
+    <!--<link rel="stylesheet" href="/resources/demos/style.css">-->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
@@ -659,7 +659,7 @@ $residentsFirstname = $this->db->query($query);
                                 </div>
                                 <div class="radarChart"></div>
 
-                                <script src="../../assets/js/radarChart.js"></script>
+                                <script src="<?=base_url() ?>assets/js/radarChart.js"></script>
                                 <script type="text/javascript">
                                     var data = <?php echo json_encode($data1); ?>;
                                 </script>
@@ -691,32 +691,13 @@ $residentsFirstname = $this->db->query($query);
 
                                             </br>
                                             <div class = "date" style="float:left;">
-                                            <select class="form-control">
-                                                <option value="100">Please Select Date</option>
-                                                <!--<script>
-                                                    var bothData[];
-                                                    function changeDate(v)
-                                                    {
-                                                        bothData = <?php json_encode(v);?>";
-                                                    }
-                                                </script>-->
-
-
+                                                <select onchange="change(this.value,'all');"  name = "date" id = "date" class="input">
+                                                <option disabled selected>Please Select Date</option>
                                                 <?php
                                                 foreach($data_each1 as $row)
                                                 {
-                                                    //if($row['key']=="value")
-                                                    //{
-                                                    //echo "<script> bothData = ". json_encode($row['values'])."</script>";
-                                                    //}
-                                                    //echo '<option value="'.$row['timestampStart'].'">'.$row['timestampStart'].'</option>';
-                                                    //echo '<option value="'.$row['key'].'" onclick=\'change("all")\'>'.$row['key'].'</option>';
-                                                   // echo '<option value="'.$row['values'].'" onclick=\'changeDate(this.value)\'>'.$row['key'].'</option>';
-                                                   // echo '<option value="'.$row['key'].'" onclick=\'changeDate(this.value)\'>'.$row['key'].'</option>';
-                                                    echo '<option value="'.$row['key'].'" onclick=\'change(this.value,"all")\'>'.$row['key'].'</option>';
-
+                                                    echo '<option value="'.$row['key'].'">'.$row['key'].'</option>';
                                                 }
-
                                                 ?>
                                             </select>
                                             </div>
@@ -725,20 +706,20 @@ $residentsFirstname = $this->db->query($query);
                                             </script>
 
                                             <div class = "category"; style="float:right;">
-                                            <select >
-                                                <option value="all" onclick='change("1",this.value)'>Please Select Category</option>
-                                                <option  value="all" onclick='change("0",this.value)'><?php echo $this->lang->line('category_all'); ?></option>
-                                                <option value="0" onclick='change("0",this.value)'><?php echo $this->lang->line('category_0'); ?></option>
-                                                <option value="1" onclick='change("0",this.value)'><?php echo $this->lang->line('category_1'); ?></option>
-                                                <option  value="2" onclick='change("0",this.value)'><?php echo $this->lang->line('category_2'); ?></option>
-                                                <option  value="3" onclick='change("0",this.value)'><?php echo $this->lang->line('category_3'); ?></option>
-                                                <option  value="4" onclick='change("0",this.value)'><?php echo $this->lang->line('category_4'); ?></option>
-                                                <option  value="5" onclick='change("0",this.value)'><?php echo $this->lang->line('category_5'); ?></option>
-                                                <option  value="6" onclick='change("0",this.value)'><?php echo $this->lang->line('category_6'); ?></option>
-                                                <option  value="7" onclick='change("0",this.value)'><?php echo $this->lang->line('category_7'); ?></option>
-                                                <option  value="8" onclick='change("0",this.value)'><?php echo $this->lang->line('category_8'); ?></option>
-                                                <option value="9" onclick='change("0",this.value)'><?php echo $this->lang->line('category_9'); ?></option>
-                                                <option  value="10" onclick='change("0",this.value)'><?php echo $this->lang->line('category_10'); ?></option>
+                                                <select onchange="change('0',this.value);"  name = "cate" id = "cate" class="input">
+                                                <option disabled selected>Please Select Category</option>
+                                                <option  value="all" ><?php echo $this->lang->line('category_all'); ?></option>
+                                                <option value="0" ><?php echo $this->lang->line('category_0'); ?></option>
+                                                <option value="1" ><?php echo $this->lang->line('category_1'); ?></option>
+                                                <option  value="2" ><?php echo $this->lang->line('category_2'); ?></option>
+                                                <option  value="3" ><?php echo $this->lang->line('category_3'); ?></option>
+                                                <option  value="4" ><?php echo $this->lang->line('category_4'); ?></option>
+                                                <option  value="5" ><?php echo $this->lang->line('category_5'); ?></option>
+                                                <option  value="6" ><?php echo $this->lang->line('category_6'); ?></option>
+                                                <option  value="7" ><?php echo $this->lang->line('category_7'); ?></option>
+                                                <option  value="8" ><?php echo $this->lang->line('category_8'); ?></option>
+                                                <option value="9" ><?php echo $this->lang->line('category_9'); ?></option>
+                                                <option  value="10" ><?php echo $this->lang->line('category_10'); ?></option>
                                                 </select>
                                             </div>
                                             </br>
