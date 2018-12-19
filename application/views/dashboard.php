@@ -332,13 +332,13 @@ $residentsFirstname = $this->db->query($query);
 
                                 <tr>
                                     <td>*<?php echo $this->lang->line('first'); ?>:  </td>
-                                    <td><input type="text" name="firstname" maxlength="30" placeholder="<?php echo $this->lang->line('firstname_placeholder_register'); ?>" required/>
+                                    <td><input type="text" pattern="[a-z A-Z'éèëï-]{1,20}" name="firstname" maxlength="30" placeholder="<?php echo $this->lang->line('firstname_placeholder_register'); ?>" required/>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td>*<?php echo $this->lang->line('last'); ?>: </td>
-                                    <td><input type="text" name="name" maxlength="30" placeholder="<?php echo $this->lang->line('lastname_placeholder_register'); ?>"required/>
+                                    <td><input type="text" pattern="[a-z A-Z'éèëï-]{1,20}" name="name" maxlength="30" placeholder="<?php echo $this->lang->line('lastname_placeholder_register'); ?>"required/>
                                     </td>
                                 </tr>
 
@@ -522,7 +522,7 @@ $residentsFirstname = $this->db->query($query);
                                 <tr>
                                     <td><?php echo $this->lang->line('contact'); ?>: </td>
                                     <td>
-                                        <input type="number" name="Mobile_Number" maxlength="10" placeholder="number" />
+                                        <input type="number" pattern="[0-9]{0,10}" name="Mobile_Number" maxlength="10" placeholder="0478704235" />
                                     </td>
                                 </tr>
 
@@ -536,12 +536,12 @@ $residentsFirstname = $this->db->query($query);
 
                                 <tr>
                                     <td>*PIN CODE: </td>
-                                    <td><input type="password" id="password" name="Pin_Code" maxlength="4" placeholder="pin" required/>
+                                    <td><input type="password" id="password" pattern="[0-9]{0,4}" name="Pin_Code" maxlength="4" placeholder="1234" required/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>*PIN CODE BEVESTIGEN: </td>
-                                    <td><input type="password" id="password_confirm" name="Pin_Code_2" maxlength="4" placeholder="pin" oninput="check(this)" required/>
+                                    <td><input type="password" id="password_confirm" pattern="[0-9]{0,4}" name="Pin_Code_2" maxlength="4" placeholder="1234" oninput="check(this)" required/>
                                     </td>
                                 </tr>
 
@@ -565,11 +565,11 @@ $residentsFirstname = $this->db->query($query);
                                 </tr>
                                 <tr>
                                     <td>*<?php echo $this->lang->line('room'); ?>: </td>
-                                    <td><input type="text" name="Room_Id" maxlength="100" placeholder="room id" required/></td>
+                                    <td><input type="text" pattern="[A-Z a-z0-9]{0,4}" name="Room_Id" maxlength="100" placeholder="room id" required/></td>
                                 </tr>
                                 <tr>
                                     <td>*<?php echo $this->lang->line('bed'); ?>: </td>
-                                    <td><input type="text" name="Bed_Id" maxlength="10" placeholder="bed id" required/></td>
+                                    <td><input type="text" pattern="[A-Z a-z0-9]{0,4}" name="Bed_Id" maxlength="10" placeholder="bed id" required/></td>
                                 </tr>
 
                                 <!--<tr>
@@ -604,7 +604,7 @@ $residentsFirstname = $this->db->query($query);
                                 <tr>
                                     <td><?php echo $this->lang->line('privileges'); ?>: </td>
                                     <td>
-                                        <input type="text" name="Privileges" maxlength="200" placeholder="<?php echo $this->lang->line('privileges_optional'); ?>" />
+                                        <input type="text" pattern="[A-Z a-z0-9'éèëï-]{0,200}" name="Privileges" maxlength="200" placeholder="<?php echo $this->lang->line('privileges_optional'); ?>" />
                                     </td>
                                 </tr>
 
@@ -813,7 +813,7 @@ $residentsFirstname = $this->db->query($query);
                                     <h4 class="modal-title"><?php echo $this->lang->line('dash_add'); ?></h4>
                                 </div>
                                 <div class="modal-body" >
-                                    <textarea class="form-control"  style="min-width: 100%" type="text" name="note" maxlength="1023" ></textarea>
+                                    <textarea class="form-control" pattern="[A-Z a-z0-9'()+!-]{1,1023}" style="min-width: 100%" type="text" name="note" maxlength="1023" ></textarea>
                                 </div>
                                 <div class="modal-footer">
                                     <input type="submit" value="Save" class="btn btn-default">
