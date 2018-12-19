@@ -63,17 +63,17 @@
         </tr>
     <tr>
         <td><label><?php echo $this->lang->line('register_firstname'); ?>: </label></td>
-        <td><input type="text" name="firstname" id="firstname" class="form-control"  /></td>
+        <td><input type="text" pattern="[a-z A-Z'éèëï-]{1,20}" name="firstname" id="firstname" class="form-control"  /></td>
     </tr>
     <tr>
 
         <td><label><?php echo $this->lang->line('register_lastname'); ?>: </label></td>
-        <td><input type="text" name="name" id="name" class="form-control"  /></td>
+        <td><input type="text" pattern="[a-z A-Z'éèëï-]{1,20}" name="name" id="name" class="form-control"  /></td>
     </tr>
     <tr>
 
         <td><label>Pincode:</label></td>
-        <td><input type="password" name="pincode" id="pincode" class="form-control"  /></td>
+        <td><input type="password" pattern="[0-9]{1,4}" name="pincode" id="pincode" class="form-control"  /></td>
     </tr>
 
     <tr>

@@ -62,6 +62,8 @@ $lang['november_register'] = "November";
 $lang['december_register'] = "December";
 $lang['privileges_optional'] = "Optional";
 $lang['required'] = "Required";
+$lang['pin_match'] = "Pincodes must match";
+$lang['admin'] = "Administrator";
 
 $lang['password_forgot_title'] = "Forgot Password";
 $lang['password_forgot_head'] = "Forgot Password?";

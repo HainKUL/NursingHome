@@ -23,7 +23,7 @@ if(!isset($_SESSION['caregiver']))
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/ >
 
     <!-- Google fonts -->
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 
     <!-- D3.js -->
@@ -33,7 +33,7 @@ if(!isset($_SESSION['caregiver']))
 
 
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
+    <!--<link rel="stylesheet" href="/resources/demos/style.css">-->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
@@ -152,10 +152,10 @@ $query = "SELECT Notes.noteText, Notes.author, Notes.timestamp, Caregivers.first
 $result = $this->db->query($query);
 $query = "SELECT firstName, name, idResidents, YEAR(CURRENT_TIMESTAMP) - YEAR(dateOfBirth) - (RIGHT(CURRENT_TIMESTAMP, 5) < RIGHT(dateOfBirth, 5)) as age FROM Residents ORDER BY firstName;";
 $residents = $this->db->query($query);
-    $query = "SELECT firstName FROM Caregivers WHERE $currentID = Caregivers.idCaregivers;";
-    $firstName = $this->db->query($query);
-    $query = "SELECT email FROM Caregivers WHERE Caregivers.idCaregivers = $currentID;";
-    $email = $this->db->query($query);
+$query = "SELECT firstName FROM Caregivers WHERE $currentID = Caregivers.idCaregivers;";
+$firstName = $this->db->query($query);
+$query = "SELECT email FROM Caregivers WHERE Caregivers.idCaregivers = $currentID;";
+$email = $this->db->query($query);
 
 $query = "SELECT firstName, name FROM Residents ORDER BY firstName;";
 $residentsFirstname = $this->db->query($query);
@@ -218,6 +218,8 @@ $residentsFirstname = $this->db->query($query);
                             <img class="profilePic" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
                         <span class="resident-nameage"><div class="button-name"><?php
                         echo $row['firstName'];
+                        echo " ";
+                        echo $row['name'];
                         ?></div><div class="button-age"><?php
                         echo $row['age'] ?></div>
                             <?php
@@ -330,13 +332,13 @@ $residentsFirstname = $this->db->query($query);
 
                                 <tr>
                                     <td>*<?php echo $this->lang->line('first'); ?>:  </td>
-                                    <td><input type="text" name="firstname" maxlength="30" placeholder="<?php echo $this->lang->line('firstname_placeholder_register'); ?>" required/>
+                                    <td><input type="text" pattern="[a-z A-Z'éèëï-]{1,20}" name="firstname" maxlength="30" placeholder="<?php echo $this->lang->line('firstname_placeholder_register'); ?>" required/>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td>*<?php echo $this->lang->line('last'); ?>: </td>
-                                    <td><input type="text" name="name" maxlength="30" placeholder="<?php echo $this->lang->line('lastname_placeholder_register'); ?>"required/>
+                                    <td><input type="text" pattern="[a-z A-Z'éèëï-]{1,20}" name="name" maxlength="30" placeholder="<?php echo $this->lang->line('lastname_placeholder_register'); ?>"required/>
                                     </td>
                                 </tr>
 
@@ -520,7 +522,7 @@ $residentsFirstname = $this->db->query($query);
                                 <tr>
                                     <td><?php echo $this->lang->line('contact'); ?>: </td>
                                     <td>
-                                        <input type="number" name="Mobile_Number" maxlength="10" placeholder="number" />
+                                        <input type="number" pattern="[0-9]{0,10}" name="Mobile_Number" maxlength="10" placeholder="0478704235" />
                                     </td>
                                 </tr>
 
@@ -534,15 +536,14 @@ $residentsFirstname = $this->db->query($query);
 
                                 <tr>
                                     <td>*PIN CODE: </td>
-                                    <td><input type="password" name="Pin_Code" maxlength="4" placeholder="pin" required/>
+                                    <td><input type="password" id="password" pattern="[0-9]{0,4}" name="Pin_Code" maxlength="4" placeholder="1234" required/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>*PIN CODE BEVESTIGEN: </td>
-                                    <td><input type="password" name="Pin_Code_2" maxlength="4" placeholder="pin" required/>
+                                    <td><input type="password" id="password_confirm" pattern="[0-9]{0,4}" name="Pin_Code_2" maxlength="4" placeholder="1234" oninput="check(this)" required/>
                                     </td>
                                 </tr>
-
 
                                 <!-- <tr>
                                      <td>NATIONALITY</td>
@@ -564,11 +565,11 @@ $residentsFirstname = $this->db->query($query);
                                 </tr>
                                 <tr>
                                     <td>*<?php echo $this->lang->line('room'); ?>: </td>
-                                    <td><input type="text" name="Room_Id" maxlength="100" placeholder="room id" required/></td>
+                                    <td><input type="text" pattern="[A-Z a-z0-9]{0,4}" name="Room_Id" maxlength="100" placeholder="room id" required/></td>
                                 </tr>
                                 <tr>
                                     <td>*<?php echo $this->lang->line('bed'); ?>: </td>
-                                    <td><input type="text" name="Bed_Id" maxlength="10" placeholder="bed id" required/></td>
+                                    <td><input type="text" pattern="[A-Z a-z0-9]{0,4}" name="Bed_Id" maxlength="10" placeholder="bed id" required/></td>
                                 </tr>
 
                                 <!--<tr>
@@ -603,7 +604,7 @@ $residentsFirstname = $this->db->query($query);
                                 <tr>
                                     <td><?php echo $this->lang->line('privileges'); ?>: </td>
                                     <td>
-                                        <input type="text" name="Privileges" maxlength="200" placeholder="<?php echo $this->lang->line('privileges_optional'); ?>" />
+                                        <input type="text" pattern="[A-Z a-z0-9'éèëï-]{0,200}" name="Privileges" maxlength="200" placeholder="<?php echo $this->lang->line('privileges_optional'); ?>" />
                                     </td>
                                 </tr>
 
@@ -634,7 +635,7 @@ $residentsFirstname = $this->db->query($query);
                 <ul class="nav nav-tabs" style="text-align:center;border:none;">
                     <li class="nav-item" style="width:33%;"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1" style="border:none;" onclick="loadDiv1()"><?php echo $this->lang->line('dash_questionnaire'); ?></a></li>
                     <li class="nav-item" style="width:33%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2" style="border:none;" onclick="loadDiv2()"><?php echo $this->lang->line('dash_poll'); ?></a></li>
-                    <li class="nav-item" style="width:34%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3" style="border:none;" onclick="loadDiv3()"><?php echo $this->lang->line('dash_personal'); ?></a></li>
+                    <li class="nav-item" style="width:34%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3" style="border:none;" onclick="loadDiv3()"><?php echo $this->lang->line('admin'); ?></a></li>
 
                 </ul>
                 <div class="tab-content">
@@ -659,7 +660,7 @@ $residentsFirstname = $this->db->query($query);
                                 </div>
                                 <div class="radarChart"></div>
 
-                                <script src="../../assets/js/radarChart.js"></script>
+                                <script src="<?=base_url() ?>assets/js/radarChart.js"></script>
                                 <script type="text/javascript">
                                     var data = <?php echo json_encode($data1); ?>;
                                 </script>
@@ -691,32 +692,13 @@ $residentsFirstname = $this->db->query($query);
 
                                             </br>
                                             <div class = "date" style="float:left;">
-                                            <select class="form-control">
-                                                <option value="100">Please Select Date</option>
-                                                <!--<script>
-                                                    var bothData[];
-                                                    function changeDate(v)
-                                                    {
-                                                        bothData = <?php json_encode(v);?>";
-                                                    }
-                                                </script>-->
-
-
+                                                <select onchange="change(this.value,'all');"  name = "date" id = "date" class="input">
+                                                <option disabled selected>Please Select Date</option>
                                                 <?php
                                                 foreach($data_each1 as $row)
                                                 {
-                                                    //if($row['key']=="value")
-                                                    //{
-                                                    //echo "<script> bothData = ". json_encode($row['values'])."</script>";
-                                                    //}
-                                                    //echo '<option value="'.$row['timestampStart'].'">'.$row['timestampStart'].'</option>';
-                                                    //echo '<option value="'.$row['key'].'" onclick=\'change("all")\'>'.$row['key'].'</option>';
-                                                   // echo '<option value="'.$row['values'].'" onclick=\'changeDate(this.value)\'>'.$row['key'].'</option>';
-                                                   // echo '<option value="'.$row['key'].'" onclick=\'changeDate(this.value)\'>'.$row['key'].'</option>';
-                                                    echo '<option value="'.$row['key'].'" onclick=\'change(this.value,"all")\'>'.$row['key'].'</option>';
-
+                                                    echo '<option value="'.$row['key'].'">'.$row['key'].'</option>';
                                                 }
-
                                                 ?>
                                             </select>
                                             </div>
@@ -725,20 +707,20 @@ $residentsFirstname = $this->db->query($query);
                                             </script>
 
                                             <div class = "category"; style="float:right;">
-                                            <select >
-                                                <option value="all" onclick='change("1",this.value)'>Please Select Category</option>
-                                                <option  value="all" onclick='change("0",this.value)'><?php echo $this->lang->line('category_all'); ?></option>
-                                                <option value="0" onclick='change("0",this.value)'><?php echo $this->lang->line('category_0'); ?></option>
-                                                <option value="1" onclick='change("0",this.value)'><?php echo $this->lang->line('category_1'); ?></option>
-                                                <option  value="2" onclick='change("0",this.value)'><?php echo $this->lang->line('category_2'); ?></option>
-                                                <option  value="3" onclick='change("0",this.value)'><?php echo $this->lang->line('category_3'); ?></option>
-                                                <option  value="4" onclick='change("0",this.value)'><?php echo $this->lang->line('category_4'); ?></option>
-                                                <option  value="5" onclick='change("0",this.value)'><?php echo $this->lang->line('category_5'); ?></option>
-                                                <option  value="6" onclick='change("0",this.value)'><?php echo $this->lang->line('category_6'); ?></option>
-                                                <option  value="7" onclick='change("0",this.value)'><?php echo $this->lang->line('category_7'); ?></option>
-                                                <option  value="8" onclick='change("0",this.value)'><?php echo $this->lang->line('category_8'); ?></option>
-                                                <option value="9" onclick='change("0",this.value)'><?php echo $this->lang->line('category_9'); ?></option>
-                                                <option  value="10" onclick='change("0",this.value)'><?php echo $this->lang->line('category_10'); ?></option>
+                                                <select onchange="change('0',this.value);"  name = "cate" id = "cate" class="input">
+                                                <option disabled selected>Please Select Category</option>
+                                                <option  value="all" ><?php echo $this->lang->line('category_all'); ?></option>
+                                                <option value="0" ><?php echo $this->lang->line('category_0'); ?></option>
+                                                <option value="1" ><?php echo $this->lang->line('category_1'); ?></option>
+                                                <option  value="2" ><?php echo $this->lang->line('category_2'); ?></option>
+                                                <option  value="3" ><?php echo $this->lang->line('category_3'); ?></option>
+                                                <option  value="4" ><?php echo $this->lang->line('category_4'); ?></option>
+                                                <option  value="5" ><?php echo $this->lang->line('category_5'); ?></option>
+                                                <option  value="6" ><?php echo $this->lang->line('category_6'); ?></option>
+                                                <option  value="7" ><?php echo $this->lang->line('category_7'); ?></option>
+                                                <option  value="8" ><?php echo $this->lang->line('category_8'); ?></option>
+                                                <option value="9" ><?php echo $this->lang->line('category_9'); ?></option>
+                                                <option  value="10" ><?php echo $this->lang->line('category_10'); ?></option>
                                                 </select>
                                             </div>
                                             </br>
@@ -831,7 +813,7 @@ $residentsFirstname = $this->db->query($query);
                                     <h4 class="modal-title"><?php echo $this->lang->line('dash_add'); ?></h4>
                                 </div>
                                 <div class="modal-body" >
-                                    <textarea class="form-control"  style="min-width: 100%" type="text" name="note" maxlength="1023" ></textarea>
+                                    <textarea class="form-control" pattern="[A-Z a-z0-9'()+!-]{1,1023}" style="min-width: 100%" type="text" name="note" maxlength="1023" ></textarea>
                                 </div>
                                 <div class="modal-footer">
                                     <input type="submit" value="Save" class="btn btn-default">
@@ -849,10 +831,10 @@ $residentsFirstname = $this->db->query($query);
 
             <div role="tablist" id="accordion-1" style="border:none;text-align:right;">
                 <div class="card notes-card active">
-                    <div class="card-header notes-card-head" role="tab">
+                    <div id="cardhead1" class="card-header notes-card-head card-head-active" role="tab">
                         <h5 class="mb-0">
-                            <a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-1 .item-1" href="div#accordion-1 .item-1" class="btn-notes">
-                                <?php echo $this->lang->line('dash_today'); ?>&nbsp;</a>
+                            <a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-1 .item-1" href="div#accordion-1 .item-1" class="btn-notes" onclick="rotate1()">
+                                <?php echo $this->lang->line('dash_today'); ?>&nbsp;<span id="caret1" class="fa fa-caret-left activefa"></span></a>
                         </h5>
                     </div>
                     <div class="collapse show item-1 notes-content" role="tabpanel" data-parent="#accordion-1">
@@ -882,8 +864,10 @@ $residentsFirstname = $this->db->query($query);
                     </div>
                 </div>
                 <div class="card notes-card">
-                    <div class="card-header notes-card-head" role="tab">
-                        <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-2" href="div#accordion-1 .item-2" class="btn-notes"><?php echo $this->lang->line('dash_this_week'); ?>&nbsp;</a></h5>
+                    <div id="cardhead2" class="card-header notes-card-head" role="tab">
+                        <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-2" href="div#accordion-1 .item-2" class="btn-notes" onclick="rotate2()">
+                                <?php echo $this->lang->line('dash_this_week'); ?>&nbsp;<span id="caret2" class="fa fa-caret-left"></span></a>
+                        </h5>
                     </div>
                     <div class="collapse item-2 notes-content" role="tabpanel" data-parent="#accordion-1">
                         <div class="card-body">
@@ -909,8 +893,10 @@ $residentsFirstname = $this->db->query($query);
                     </div>
                 </div>
                 <div class="card notes-card">
-                    <div class="card-header notes-card-head" role="tab">
-                        <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-3" href="div#accordion-1 .item-3" class="btn-notes"><?php echo $this->lang->line('dash_archive'); ?>&nbsp;</a></h5>
+                    <div id="cardhead3" class="card-header notes-card-head" role="tab">
+                        <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-3" href="div#accordion-1 .item-3" class="btn-notes" onclick="rotate3()">
+                                <?php echo $this->lang->line('dash_archive'); ?>&nbsp;<span id="caret3" class="fa fa-caret-left"></span></a>
+                        </h5>
                     </div>
                     <div class="collapse item-3 notes-content" role="tabpanel" data-parent="#accordion-1">
                         <div class="card-body">
@@ -949,7 +935,15 @@ $residentsFirstname = $this->db->query($query);
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
 
-
+<script>
+    function check(input) {
+        if (input.value != document.getElementById('password').value) {
+            input.setCustomValidity('<?php echo $this->lang->line('pin_match'); ?>');
+        } else {
+            input.setCustomValidity('');
+        }
+    }
+</script>
 <script>
     var currentButtonID
     function loadResident(id){
@@ -996,6 +990,58 @@ $residentsFirstname = $this->db->query($query);
         currentButtonID = id
     }
 
+</script>
+
+<script>
+    currentTab = 1
+    function rotate1(){
+        if(currentTab != 1) {
+            document.getElementById("caret1").classList.add("activefa")
+            document.getElementById("caret2").classList.remove("activefa")
+            document.getElementById("caret3").classList.remove("activefa")
+            document.getElementById("cardhead1").classList.add("card-head-active")
+            document.getElementById("cardhead2").classList.remove("card-head-active")
+            document.getElementById("cardhead3").classList.remove("card-head-active")
+            currentTab = 1
+        }
+        else{
+            document.getElementById("caret1").classList.remove("activefa")
+            document.getElementById("cardhead1").classList.remove("card-head-active")
+            currentTab = 0
+        }
+    }
+    function rotate2(){
+        if(currentTab != 2) {
+            document.getElementById("caret1").classList.remove("activefa")
+            document.getElementById("caret2").classList.add("activefa")
+            document.getElementById("caret3").classList.remove("activefa")
+            document.getElementById("cardhead1").classList.remove("card-head-active")
+            document.getElementById("cardhead2").classList.add("card-head-active")
+            document.getElementById("cardhead3").classList.remove("card-head-active")
+            currentTab = 2;
+        }
+        else{
+            document.getElementById("caret2").classList.remove("activefa")
+            document.getElementById("cardhead2").classList.remove("card-head-active")
+            currentTab = 0
+        }
+    }
+    function rotate3(){
+        if(currentTab != 3) {
+            document.getElementById("caret1").classList.remove("activefa")
+            document.getElementById("caret2").classList.remove("activefa")
+            document.getElementById("caret3").classList.add("activefa")
+            document.getElementById("cardhead1").classList.remove("card-head-active")
+            document.getElementById("cardhead2").classList.remove("card-head-active")
+            document.getElementById("cardhead3").classList.add("card-head-active")
+            currentTab = 3
+        }
+        else{
+            document.getElementById("caret3").classList.remove("activefa")
+            document.getElementById("cardhead3").classList.remove("card-head-active")
+            currentTab = 0
+        }
+    }
 </script>
 
 <script>
