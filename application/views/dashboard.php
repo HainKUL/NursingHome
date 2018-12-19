@@ -536,15 +536,14 @@ $residentsFirstname = $this->db->query($query);
 
                                 <tr>
                                     <td>*PIN CODE: </td>
-                                    <td><input type="password" name="Pin_Code" maxlength="4" placeholder="pin" required/>
+                                    <td><input type="password" id="password" name="Pin_Code" maxlength="4" placeholder="pin" required/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>*PIN CODE BEVESTIGEN: </td>
-                                    <td><input type="password" name="Pin_Code_2" maxlength="4" placeholder="pin" required/>
+                                    <td><input type="password" id="password_confirm" name="Pin_Code_2" maxlength="4" placeholder="pin" oninput="check(this)" required/>
                                     </td>
                                 </tr>
-
 
                                 <!-- <tr>
                                      <td>NATIONALITY</td>
@@ -636,7 +635,7 @@ $residentsFirstname = $this->db->query($query);
                 <ul class="nav nav-tabs" style="text-align:center;border:none;">
                     <li class="nav-item" style="width:33%;"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1" style="border:none;" onclick="loadDiv1()"><?php echo $this->lang->line('dash_questionnaire'); ?></a></li>
                     <li class="nav-item" style="width:33%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2" style="border:none;" onclick="loadDiv2()"><?php echo $this->lang->line('dash_poll'); ?></a></li>
-                    <li class="nav-item" style="width:34%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3" style="border:none;" onclick="loadDiv3()"><?php echo $this->lang->line('dash_personal'); ?></a></li>
+                    <li class="nav-item" style="width:34%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3" style="border:none;" onclick="loadDiv3()"><?php echo $this->lang->line('admin'); ?></a></li>
 
                 </ul>
                 <div class="tab-content">
@@ -932,7 +931,15 @@ $residentsFirstname = $this->db->query($query);
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
 
-
+<script>
+    function check(input) {
+        if (input.value != document.getElementById('password').value) {
+            input.setCustomValidity('<?php echo $this->lang->line('pin_match'); ?>');
+        } else {
+            input.setCustomValidity('');
+        }
+    }
+</script>
 <script>
     var currentButtonID
     function loadResident(id){

@@ -69,6 +69,8 @@ $lang['personal_settings'] = "Persoonlijke instellingen";
 $lang['grouping'] = "Groepering";
 $lang['register_button'] = "Registreer nieuwe bewoner";
 $lang['required'] = "Verplicht";
+$lang['pin_match'] = "De pincodes moeten overeenkomen";
+$lang['admin'] = "Administrator";
 
 $lang['password_forgot_title'] = "Wachtwoord Vergeten";
 $lang['password_forgot_head'] = "Wachtwoord vergeten?";
