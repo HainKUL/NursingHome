@@ -831,10 +831,10 @@ $residentsFirstname = $this->db->query($query);
 
             <div role="tablist" id="accordion-1" style="border:none;text-align:right;">
                 <div class="card notes-card active">
-                    <div class="card-header notes-card-head" role="tab">
+                    <div id="cardhead1" class="card-header notes-card-head card-head-active" role="tab">
                         <h5 class="mb-0">
-                            <a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-1 .item-1" href="div#accordion-1 .item-1" class="btn-notes">
-                                <?php echo $this->lang->line('dash_today'); ?>&nbsp;</a>
+                            <a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-1 .item-1" href="div#accordion-1 .item-1" class="btn-notes" onclick="rotate1()">
+                                <?php echo $this->lang->line('dash_today'); ?>&nbsp;<span id="caret1" class="fa fa-caret-left activefa"></span></a>
                         </h5>
                     </div>
                     <div class="collapse show item-1 notes-content" role="tabpanel" data-parent="#accordion-1">
@@ -864,8 +864,10 @@ $residentsFirstname = $this->db->query($query);
                     </div>
                 </div>
                 <div class="card notes-card">
-                    <div class="card-header notes-card-head" role="tab">
-                        <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-2" href="div#accordion-1 .item-2" class="btn-notes"><?php echo $this->lang->line('dash_this_week'); ?>&nbsp;</a></h5>
+                    <div id="cardhead2" class="card-header notes-card-head" role="tab">
+                        <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-2" href="div#accordion-1 .item-2" class="btn-notes" onclick="rotate2()">
+                                <?php echo $this->lang->line('dash_this_week'); ?>&nbsp;<span id="caret2" class="fa fa-caret-left"></span></a>
+                        </h5>
                     </div>
                     <div class="collapse item-2 notes-content" role="tabpanel" data-parent="#accordion-1">
                         <div class="card-body">
@@ -891,8 +893,10 @@ $residentsFirstname = $this->db->query($query);
                     </div>
                 </div>
                 <div class="card notes-card">
-                    <div class="card-header notes-card-head" role="tab">
-                        <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-3" href="div#accordion-1 .item-3" class="btn-notes"><?php echo $this->lang->line('dash_archive'); ?>&nbsp;</a></h5>
+                    <div id="cardhead3" class="card-header notes-card-head" role="tab">
+                        <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-3" href="div#accordion-1 .item-3" class="btn-notes" onclick="rotate3()">
+                                <?php echo $this->lang->line('dash_archive'); ?>&nbsp;<span id="caret3" class="fa fa-caret-left"></span></a>
+                        </h5>
                     </div>
                     <div class="collapse item-3 notes-content" role="tabpanel" data-parent="#accordion-1">
                         <div class="card-body">
@@ -986,6 +990,58 @@ $residentsFirstname = $this->db->query($query);
         currentButtonID = id
     }
 
+</script>
+
+<script>
+    currentTab = 1
+    function rotate1(){
+        if(currentTab != 1) {
+            document.getElementById("caret1").classList.add("activefa")
+            document.getElementById("caret2").classList.remove("activefa")
+            document.getElementById("caret3").classList.remove("activefa")
+            document.getElementById("cardhead1").classList.add("card-head-active")
+            document.getElementById("cardhead2").classList.remove("card-head-active")
+            document.getElementById("cardhead3").classList.remove("card-head-active")
+            currentTab = 1
+        }
+        else{
+            document.getElementById("caret1").classList.remove("activefa")
+            document.getElementById("cardhead1").classList.remove("card-head-active")
+            currentTab = 0
+        }
+    }
+    function rotate2(){
+        if(currentTab != 2) {
+            document.getElementById("caret1").classList.remove("activefa")
+            document.getElementById("caret2").classList.add("activefa")
+            document.getElementById("caret3").classList.remove("activefa")
+            document.getElementById("cardhead1").classList.remove("card-head-active")
+            document.getElementById("cardhead2").classList.add("card-head-active")
+            document.getElementById("cardhead3").classList.remove("card-head-active")
+            currentTab = 2;
+        }
+        else{
+            document.getElementById("caret2").classList.remove("activefa")
+            document.getElementById("cardhead2").classList.remove("card-head-active")
+            currentTab = 0
+        }
+    }
+    function rotate3(){
+        if(currentTab != 3) {
+            document.getElementById("caret1").classList.remove("activefa")
+            document.getElementById("caret2").classList.remove("activefa")
+            document.getElementById("caret3").classList.add("activefa")
+            document.getElementById("cardhead1").classList.remove("card-head-active")
+            document.getElementById("cardhead2").classList.remove("card-head-active")
+            document.getElementById("cardhead3").classList.add("card-head-active")
+            currentTab = 3
+        }
+        else{
+            document.getElementById("caret3").classList.remove("activefa")
+            document.getElementById("cardhead3").classList.remove("card-head-active")
+            currentTab = 0
+        }
+    }
 </script>
 
 <script>
