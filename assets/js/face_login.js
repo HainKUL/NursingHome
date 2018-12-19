@@ -30,11 +30,11 @@ function startWebcam() {
     } else {
         console.log("getUserMedia not supported");
     }
+    init();
 }
 
-//---------------------
-// TAKE A SNAPSHOT CODE
-//---------------------
+
+
 var canvas, ctx;
 
 function init() {

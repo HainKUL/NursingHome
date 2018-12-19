@@ -80,7 +80,7 @@ if(!isset($_SESSION['id']))
             height: 40px;
         }
         #button2{
-            width: 300px;
+            width: 400px;
             height: 40px;
         }
         #container{
@@ -113,17 +113,14 @@ if(!isset($_SESSION['id']))
 </head>
 
 
-<body onload="init()">
+<body onload="startWebcam();">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 <div class="container-fluid">
     <div class="row" style="height:100vh;">
         <div class="col-3" id="div1" style="background-color:#009489;padding:0;"></div>
-
-        <div class="col-6" style="background-color:#f9f9f9;padding:0px;">
-
+        <div class="col-6" style="background-color:#f9f9f9;padding:0;">
             <div style="width:100%;">
-
                 <ul class="nav nav-tabs" style="text-align:center;border:none;">
                     <li class="nav-item" style="width:25%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-1" style="border:none;"><?php echo $this->lang->line('dash_questionnaire'); ?></a></li>
                     <li class="nav-item" style="width:25%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2" style="border:none;" ><?php echo $this->lang->line('dash_poll'); ?></a></li>
@@ -132,18 +129,12 @@ if(!isset($_SESSION['id']))
                 </ul>
             </div>
 
-            <div style="padding:5%;max-height:94vh;overflow-y:scroll;">
-                <h3 class="title_registration"><?php echo $this->lang->line('title'); ?></h3>
+            <div style="padding:0;max-height:94vh;overflow-y:scroll;margin-top: 10px">
+                <h5 class="title_registration" style="padding: 5px"><?php echo $this->lang->line('title'); ?></h5>
                 <div>
-                    <form  method="post">
-                        <!--                                    ID:<input type="text" class="validate" id="ip">-->
-                        <h4 type="text" class="validate" id="ip"><?php echo $_SESSION['reg_id'] ?></h4>
-                        <h5 type="text" class="validate" id="cgid"><?php echo $_SESSION['id'] ?></h5>
-
-                    </form>
                     <div id="container">
-                        <button  id="button1" onclick="startWebcam();"><?php echo $this->lang->line('login_start'); ?></button>
-                        <br/><br/>
+<!--                        <button  id="button1" onclick="startWebcam();">--><?php //echo $this->lang->line('login_start'); ?><!--</button>-->
+<!--                        <br/><br/>-->
                         <button  id="button2" onclick="snapshot();"><?php echo $this->lang->line('login_capture'); ?></button>
                         <br/><br/>
                     </div>
@@ -152,7 +143,12 @@ if(!isset($_SESSION['id']))
                         <br/>
                         <canvas  class="center" id="myCanvas" width="400" height="300"></canvas>
                     </div>
+                    <form  method="post">
+                        <h4 type="text" class="validate" id="ip"><?php echo $_SESSION['reg_id'] ?></h4>
+                        <h5 type="text" class="validate" id="cgid"><?php echo $_SESSION['id'] ?></h5>
+                    </form>
                     <a href="<?=base_url()?>Dashboard/registrationsucces/<?php echo $_SESSION['id'] ?>"><button >login bypass</button></a>
+                    <br/>
                 </div>
             </div>
         </div>
