@@ -58,8 +58,8 @@ function snapshot() {
         "method": "POST",
         "headers": {
             "content-type": "application/json",
-            "app_id": "c09c520d",
-            "app_key": "3f38ca5aeaac24c10eb08945e6f277b7",
+            "app_id": "76389211",
+            "app_key": "235ed78f4f2967f3f4648ee6557623dc",
             "cache-control": "no-cache"
         },
         "processData": false,
