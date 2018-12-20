@@ -2,19 +2,15 @@ function RadarChart(id, data) {
     //////////////////////////////////////////////////////////////
     //////////////////////// Set-Up //////////////////////////////
     //////////////////////////////////////////////////////////////
-
+    var color = d3.scale.ordinal()
+        .range(["#6ba32d","#00e028","#a6ff4d"]);
 
     //var margin = {top: 150, right: 70, bottom: 100, left: 100},
 
-    var margin = {top: 120, right: 60, bottom: 40, left: 60},
-        legendPosition = {x: 220, y: 10},
-        width = Math.min(400, window.innerWidth - 10) - margin.left - margin.right,
-        height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20); //////////////////////////////////////////////////////////////
-    //////////////////// Draw the Chart //////////////////////////
-    //////////////////////////////////////////////////////////////
-
-    var color = d3.scale.ordinal()
-        .range(["#42f4b0","#CCCC00","#00A0B0","#EDC951"]);
+    var margin = {top: 120, right: 60, bottom: 60, left: 70},
+        legendPosition = {x: 320, y: 20},
+        width = Math.min(430, window.innerWidth - 10) - margin.left - margin.right,
+        height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20);
 
 
     var options = {
@@ -54,22 +50,9 @@ function RadarChart(id, data) {
         value: "value",
         sortAreas: true,
     };
-    //////////////////////////////////////////////////////////////
-    //////////////////////// Set-Up //////////////////////////////
-    //////////////////////////////////////////////////////////////
-
-
-    //var margin = {top: 150, right: 70, bottom: 100, left: 100},
-
-    var margin = {top: 120, right: 60, bottom: 40, left: 60},
-        legendPosition = {x: 220, y: 10},
-        width = Math.min(400, window.innerWidth - 10) - margin.left - margin.right,
-        height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20); //////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
     //////////////////// Draw the Chart //////////////////////////
     //////////////////////////////////////////////////////////////
-
-    var color = d3.scale.ordinal()
-        .range(["#42f4b0","#CCCC00","#00A0B0","#EDC951"]);
 
 
     var radarChartOptions = {

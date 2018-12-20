@@ -39,7 +39,14 @@ class Our_chart_model extends CI_Model
         foreach ($query->result_array() as $row)
         {
             $data['category'] = $row['category'];
-            $data['timestampStart'] = $row['timestampStart'];
+            if((time()+3600)-strtotime($row['timestampStart']) < 86400)
+            {
+                $data['timestampStart']= substr($row['timestampStart'],11,5);
+            }
+            else
+            {
+                $data['timestampStart']= substr($row['timestampStart'],5,11);
+            }
             $data['answer'] = $row['answer'];
             //echo(json_encode($query));
             $rawdata[]=$data;

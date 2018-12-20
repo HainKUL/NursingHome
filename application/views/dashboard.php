@@ -669,25 +669,19 @@ $residentsFirstname = $this->db->query($query);
                                     <div class="card-bed"><?php echo $this->lang->line('bednum'); ?><span id="card-bed"> <?php echo $bedNumber ?> </span></div>
                                     <div class="card-privileges"><?php echo $this->lang->line('privileges'); ?><span id="card-privileges">: can go outside</span></div>
                                 </div>
-                                <div class="radarChart"></div>
 
+                                <div class="radarChart"></div>
                                 <script src="<?=base_url() ?>assets/js/radarChart.js"></script>
                                 <script type="text/javascript">
                                     var data = <?php echo json_encode($data1); ?>;
                                 </script>
 
                                 <script>
-                                    //Load the data and Call function to draw the Radar chart
                                     RadarChart(".radarChart", data);
                                 </script>
                             </div>
                         </div>
-                        <!--<div class="card questionnaire-card">
-                            <div class="card-body">
-                                <h4 class="card-title"><?php echo $this->lang->line('dash_outliers'); ?></h4>
-                                <p class="card-text">Super trouper beams are gonna blind me. But I won't feel blue. Like I always do. 'Cause somewhere in the crowd there's you. I was sick and tired of everything. When I called you last night from Glasgow. All I do is eat and sleep and sing. Wishing every show was the last show (wishing every show was the last show). So imagine I was glad to hear you're coming (glad to hear you're coming). Suddenly I feel all right. (And suddenly it's gonna be). And it's gonna be so different. When I'm on the stage tonight. Tonight the super trouper lights are gonna find me. Shining like the sun (sup-p-per troup-p-per). Smiling, having fun (sup-p-per troup-p-per). Feeling like a number one. Tonight the super trouper beams are gonna blind me. But I won't feel blue (sup-p-per troup-p-per). Like I always do (sup-p-per troup-p-per). 'Cause somewhere in the crowd there's you.</p>
-                            </div>
-                        </div>-->
+
                         <div class="card questionnaire-card">
                             <div class="card-body">
                                 </br>
@@ -786,17 +780,6 @@ $residentsFirstname = $this->db->query($query);
                                     </div>
 
                             </div>
-                            <!--                            <div class="row" style="padding-top: 40px;">-->
-                            <!--                                <div class="col-12">-->
-                            <!--                                     <a href="--><?//=base_url()?><!--Dashboard/logout">-->
-                            <!--                                       <button class="btn btn-primary btn-lg" type="button" style="min-width:100%;background-color:#009489;border:none;">-->
-                            <!--                                            --><?php //echo $this->lang->line('dash_logout'); ?>
-                            <!--                                        </button>-->
-                            <!--                                    </a>-->
-                            <!--                                </div>-->
-                            <!---->
-                            <!--                            </div>-->
-
                         </div>
                     </div>
 
@@ -1153,29 +1136,8 @@ $residentsFirstname = $this->db->query($query);
 
 </script>
 
-<!--<script type="text/javascript">
-   // var bothDataRaw = <?php echo json_encode($data_each1); ?>;
-</script>
-<script type="text/javascript">
-    var bothData = <?php echo json_encode($one); ?>;;
-</script>-->
 
 <script type="text/javascript">
-
-   // var bothData1[];
-
-  /*  function changeDate(value)
-    {
-        for (index = 0; index < bothDataRaw.length; ++index)
-        {
-            if(bothData.key==value)
-            {
-                bothData1.push(bothDataRaw.values);
-            }
-        }
-        bothData = bothdata1;
-    }*/
-
 
 
 
