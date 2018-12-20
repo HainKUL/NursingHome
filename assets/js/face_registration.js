@@ -33,7 +33,7 @@ function startWebcam() {
         console.log("getUserMedia not supported");
     }
 
-    init();
+    //init();
 }
 
 //---------------------
