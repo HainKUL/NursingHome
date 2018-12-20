@@ -76,7 +76,7 @@ if(!isset($_SESSION['id']))
         }
 
         #button1{
-            width: 300px;
+            width: 400px;
             height: 40px;
         }
         #button2{
