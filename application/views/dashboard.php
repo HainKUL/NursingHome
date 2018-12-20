@@ -552,7 +552,7 @@ $residentsFirstname = $this->db->query($query);
                                 </tr>
                                 <tr>
                                     <td>*PIN CODE BEVESTIGEN: </td>
-                                    <td><input type="password" id="password_confirm" oninput="checkInput(this.id)" pattern="[0-9]{0,4}" name="Pin_Code_2" maxlength="4" placeholder="1234" oninput="check(this)" required/>
+                                    <td><input type="password" id="password_confirm" pattern="[0-9]{0,4}" name="Pin_Code_2" maxlength="4" placeholder="1234" oninput="check(this)" required/>
                                     </td>
                                 </tr>
 
@@ -974,6 +974,7 @@ $residentsFirstname = $this->db->query($query);
         } else {
             input.setCustomValidity('');
         }
+        checkInput('password_confirm')
     }
 </script>
 <script>
