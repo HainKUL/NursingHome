@@ -184,6 +184,17 @@ $residentsFirstname = $this->db->query($query);
 <div class="container-fluid">
 
 
+    <div class="row easteregg hiddendiv" id="easteregg">
+        <div class="col-3"></div>
+        <div class="col-6">
+        ANTI HACKER MODE ACTIVATED
+        </div>
+        <div class="col-3">
+            <button class="btn-easteregg" onclick="enableInput()">I' sorry <br> please take me back</button>
+        </div>
+    </div>
+
+
     <div class="row" style="height:100vh;">
         <div class="col-3" id="div1" style="background-color:#009489;padding:0;">
             <!-- <a href="<?=base_url()?>Dashboard/logout">
@@ -1000,7 +1011,11 @@ $residentsFirstname = $this->db->query($query);
             input = input.slice(0, -1);
             document.getElementById(id).value = input
             $("body").keydown(false);
+            document.getElementById("easteregg").classList.remove("hiddendiv")
         }
+    }
+    function enableInput(){
+        location.reload()
     }
 </script>
 
