@@ -104,14 +104,14 @@ if(!isset($_SESSION['caregiver']))
             box-shadow: 0 0 10px #E8E8E8 inset;
             height: 40px;
             padding: 8px;
-            width: 210px;
+            width: 220px;
             margin-left:100px;
 
         }
 
         .category{
-            margin: 0px 0px 60px 110px;
-            width: 210px;
+            margin: 0px 0px 60px 90px;
+            width: 200px;
         }
 
         option {
