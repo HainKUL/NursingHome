@@ -197,6 +197,15 @@ btn-notes {
     font-size: 45px;
 }
 
+.answer{
+    text-align:left;
+    color:black;
+    font-family: "Avenir Next Condensed";
+    font-weight: 400;
+    font-size: 45px;
+}
+
+
 .notes-title{
     text-align:left;
     font-family: "Avenir Next Condensed";
@@ -210,6 +219,19 @@ btn-notes {
      font-weight: 400;
      font-size: 30px;
  }
+
+.date{
+    font-family: "Avenir Next Condensed";
+    font-weight: 300;
+    font-size: 17px;
+}
+
+
+.category{
+    font-family: "Avenir Next Condensed";
+    font-weight: 300;
+    font-size: 17px;
+}
 
 .personal_text_2{
     font-family: "Avenir Next Condensed";

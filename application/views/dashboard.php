@@ -44,7 +44,7 @@ if(!isset($_SESSION['caregiver']))
 
     <style>
         body {
-            font-family: 'Open Sans', sans-serif;
+            font-family: "Helvetica Neue";
             font-size: 11px;
             font-weight: 300;
             fill: #242424;
@@ -81,7 +81,7 @@ if(!isset($_SESSION['caregiver']))
         .form-radio:checked::before
         {
             position: absolute;
-            font: 13px/1 'Open Sans', sans-serif;
+            font: 13px/1 'Avenir Next Condensed';
             left: 11px;
             top: 7px;
             content: '\02143';
@@ -685,8 +685,7 @@ $residentsFirstname = $this->db->query($query);
                         <div class="card questionnaire-card">
                             <div class="card-body">
                                 </br>
-                                <h4 class="card-title"><?php echo $this->lang->line('dash_answers'); ?></h4>
-                                <!--<h3><?php echo $this->lang->line('category_title2'); ?></h3>-->
+                                <h2 class="answer"><?php echo $this->lang->line('dash_answers'); ?></h2>
                                 <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
                                 <script src="//d3js.org/d3.v4.min.js"></script>
                                 <script src="https://d3js.org/d3.v4.min.js"></script>
