@@ -25,4 +25,4 @@ $lang['category_time2'] ='last time';
 $lang['category_time3'] ='the time before last time';
 $lang['category_all'] ='OVERVIEW';
 $lang['category_ans'] ='';
-$lang['category_score'] ='Score of the questions';
+$lang['category_score'] ='SCORE OF THE QUESTIONS';

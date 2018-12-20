@@ -49,9 +49,7 @@ if(!isset($_SESSION['caregiver']))
             font-weight: 300;
             fill: #242424;
             text-align: center;
-            /*text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;*/
             cursor: default;
-
         }
         .bar:hover{
             fill: red;
@@ -98,7 +96,7 @@ if(!isset($_SESSION['caregiver']))
 
 
         select {
-            font-family: sans-serif;
+            font-family:  "Helvetica Neue";
             font-size: 30px;
             background: none repeat scroll 0 0 #FFFFFF;
             border: 1px solid #E5E5E5;
@@ -112,11 +110,9 @@ if(!isset($_SESSION['caregiver']))
         }
 
         .category{
-            margin: 0px 0px 0px 40px;
+            margin: 0px 0px 60px 110px;
             width: 210px;
         }
-
-
 
         option {
             direction: ltr;
@@ -124,7 +120,7 @@ if(!isset($_SESSION['caregiver']))
 
         label
         {
-            font: 300 16px/1.7 'Open Sans', sans-serif;
+            font: 300 16px/1.7 'Helvetica Neue';
             color: #666;
             cursor: pointer;
         }
@@ -697,7 +693,7 @@ $residentsFirstname = $this->db->query($query);
                                             </br>
                                             <div class = "date" style="float:left;">
                                                 <select onchange="change(this.value,'all');"  name = "date" id = "date" class="input">
-                                                <option disabled selected>Please Select Date</option>
+                                                <option disabled selected><?php echo $this->lang->line('dash_select_date'); ?></option>
                                                 <?php
                                                 foreach($data_each1 as $row)
                                                 {
@@ -712,7 +708,7 @@ $residentsFirstname = $this->db->query($query);
 
                                             <div class = "category"; style="float:right;">
                                                 <select onchange="change('0',this.value);"  name = "cate" id = "cate" class="input">
-                                                <option disabled selected>Please Select Category</option>
+                                                <option disabled selected><?php echo $this->lang->line('dash_select_cat'); ?></option>
                                                 <option  value="all" ><?php echo $this->lang->line('category_all'); ?></option>
                                                 <option value="0" ><?php echo $this->lang->line('category_0'); ?></option>
                                                 <option value="1" ><?php echo $this->lang->line('category_1'); ?></option>
@@ -1419,9 +1415,9 @@ $residentsFirstname = $this->db->query($query);
 
 
     //set up chart
-    var margin = {top: 20, right:20, bottom: 280, left: 60};
-    var width = 380;
-    var height = 300;
+    var margin = {top: 10, right:0, bottom: 280, left: 50};
+    var width = 480;
+    var height = 250;
 
     var chart = d3.select(".chart")
         .attr("width", width + margin.left + margin.right)
@@ -1467,13 +1463,23 @@ $residentsFirstname = $this->db->query($query);
     //add labels
     chart
         .append("text")
-        .attr("transform", "translate(-35," + (height + margin.bottom) / 2 + ") rotate(-90)")
+        .attr("transform", "translate(-35," + (height -140+ margin.bottom) / 2 + ") rotate(-90)")
+        .style("font-size", "18px")
+        .style("padding", "8px")
+        .style("font-weight", "400")
+        .style("font-family", "Avenir Next Condensed")
         .text("<?php echo $this->lang->line('category_score'); ?>");
+
+
 
     chart
         .append("text")
         .attr("transform", "translate(" + (width / 2) + "," + (height + margin.bottom - 5) + ")")
+        .style("font-size", "18px")
+        .style("font-weight", "400")
+        .style("font-family", "Avenir Next Condensed")
         .text("<?php echo $this->lang->line('category_ans'); ?>");
+
 
 
     //use bothData to begin with
