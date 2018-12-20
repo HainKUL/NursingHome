@@ -145,6 +145,8 @@ if(!isset($_SESSION['caregiver']))
 </head>
 <body>
 
+
+
 <?php
 $currentID = $_SESSION['id'];
 $this->load->database();
@@ -184,6 +186,15 @@ $residentsFirstname = $this->db->query($query);
 <div class="container-fluid">
 
 
+    <div class="row easteregg hiddendiv" id="easteregg">
+        <div class="col-3"></div>
+        <div class="col-6">
+        ANTI HACKER MODE ACTIVATED
+        </div>
+        <div class="col-3">
+            <button class="btn-easteregg" onclick="enableInput()">I' sorry <br> please take me back</button>
+        </div>
+    </div>
     <div class="row" style="height:100vh;">
         <div class="col-3" id="div1" style="background-color:#009489;padding:0;">
             <!-- <a href="<?=base_url()?>Dashboard/logout">
@@ -206,7 +217,7 @@ $residentsFirstname = $this->db->query($query);
                     </div>
                 </div>
                 <div class="ui-widget" >
-                    <input id="tags" for="tags" class ="searchbar" type="search" placeholder="<?php echo $this->lang->line('search'); ?>">
+                    <input id="tags" for="tags" oninput="checkInput(this.id)" class ="searchbar" type="search" placeholder="<?php echo $this->lang->line('search'); ?>">
                 </div>
             </div>
             <div style="overflow-y:scroll;max-height:68vh;">
@@ -332,13 +343,13 @@ $residentsFirstname = $this->db->query($query);
 
                                 <tr>
                                     <td>*<?php echo $this->lang->line('first'); ?>:  </td>
-                                    <td><input type="text" pattern="[a-z A-Z'éèëï-]{1,20}" name="firstname" maxlength="30" placeholder="<?php echo $this->lang->line('firstname_placeholder_register'); ?>" required/>
+                                    <td><input type="text" id="inputfirst" oninput="checkInput(this.id)" pattern="[a-z A-Z'éèëï-]{1,20}" name="firstname" maxlength="30" placeholder="<?php echo $this->lang->line('firstname_placeholder_register'); ?>" required/>
                                     </td>
                                 </tr>
 
                                 <tr>
                                     <td>*<?php echo $this->lang->line('last'); ?>: </td>
-                                    <td><input type="text" pattern="[a-z A-Z'éèëï-]{1,20}" name="name" maxlength="30" placeholder="<?php echo $this->lang->line('lastname_placeholder_register'); ?>"required/>
+                                    <td><input type="text" id="inputlast" oninput="checkInput(this.id)" pattern="[a-z A-Z'éèëï-]{1,20}" name="name" maxlength="30" placeholder="<?php echo $this->lang->line('lastname_placeholder_register'); ?>"required/>
                                     </td>
                                 </tr>
 
@@ -522,7 +533,7 @@ $residentsFirstname = $this->db->query($query);
                                 <tr>
                                     <td><?php echo $this->lang->line('contact'); ?>: </td>
                                     <td>
-                                        <input type="number" pattern="[0-9]{0,10}" name="Mobile_Number" maxlength="10" placeholder="0478704235" />
+                                        <input type="text" id="inputcontact" oninput="checkInput(this.id)" pattern="[0-9]{0,10}" name="Mobile_Number" maxlength="10" placeholder="0478704235" />
                                     </td>
                                 </tr>
 
@@ -536,12 +547,12 @@ $residentsFirstname = $this->db->query($query);
 
                                 <tr>
                                     <td>*PIN CODE: </td>
-                                    <td><input type="password" id="password" pattern="[0-9]{0,4}" name="Pin_Code" maxlength="4" placeholder="1234" required/>
+                                    <td><input type="password" id="password" oninput="checkInput(this.id)" pattern="[0-9]{0,4}" name="Pin_Code" maxlength="4" placeholder="1234" required/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>*PIN CODE BEVESTIGEN: </td>
-                                    <td><input type="password" id="password_confirm" pattern="[0-9]{0,4}" name="Pin_Code_2" maxlength="4" placeholder="1234" oninput="check(this)" required/>
+                                    <td><input type="password" id="password_confirm" oninput="checkInput(this.id)" pattern="[0-9]{0,4}" name="Pin_Code_2" maxlength="4" placeholder="1234" oninput="check(this)" required/>
                                     </td>
                                 </tr>
 
@@ -565,11 +576,11 @@ $residentsFirstname = $this->db->query($query);
                                 </tr>
                                 <tr>
                                     <td>*<?php echo $this->lang->line('room'); ?>: </td>
-                                    <td><input type="text" pattern="[A-Z a-z0-9]{0,4}" name="Room_Id" maxlength="100" placeholder="room id" required/></td>
+                                    <td><input type="text" id="inputroom" oninput="checkInput(this.id)" pattern="[A-Z a-z0-9]{0,4}" name="Room_Id" maxlength="100" placeholder="room id" required/></td>
                                 </tr>
                                 <tr>
                                     <td>*<?php echo $this->lang->line('bed'); ?>: </td>
-                                    <td><input type="text" pattern="[A-Z a-z0-9]{0,4}" name="Bed_Id" maxlength="10" placeholder="bed id" required/></td>
+                                    <td><input type="text" id="inputbed" oninput="checkInput(this.id)" pattern="[A-Z a-z0-9]{0,4}" name="Bed_Id" maxlength="10" placeholder="bed id" required/></td>
                                 </tr>
 
                                 <!--<tr>
@@ -604,7 +615,7 @@ $residentsFirstname = $this->db->query($query);
                                 <tr>
                                     <td><?php echo $this->lang->line('privileges'); ?>: </td>
                                     <td>
-                                        <input type="text" pattern="[A-Z a-z0-9'éèëï-]{0,200}" name="Privileges" maxlength="200" placeholder="<?php echo $this->lang->line('privileges_optional'); ?>" />
+                                        <input type="text" id="inputprivileges" oninput="checkInput(this.id)" pattern="[A-Z a-z0-9'éèëï-]{0,200}" name="Privileges" maxlength="200" placeholder="<?php echo $this->lang->line('privileges_optional'); ?>" />
                                     </td>
                                 </tr>
 
@@ -795,7 +806,10 @@ $residentsFirstname = $this->db->query($query);
             </div>
 <!--        </div>-->
         <div class="col-3" style="background-color:#c7de6e;padding:0;">
-            <div style="height:5%;"></div>
+            <div style="height:5%;">
+                <span id="openfullscreen" class="fa fa-arrows-alt btn-fullscreen" onclick="openFullscreen()"></span>
+                <span id="closefullscreen" class="fa fa-times btn-fullscreen hiddendiv" onclick="closeFullscreen()"></span>
+            </div>
             <div class="searchdiv" style="text-align:center;margin:15px;">
                 <h2 class="notes-title"><?php echo $this->lang->line('dash_notes'); ?></h2>
 
@@ -813,7 +827,7 @@ $residentsFirstname = $this->db->query($query);
                                     <h4 class="modal-title"><?php echo $this->lang->line('dash_add'); ?></h4>
                                 </div>
                                 <div class="modal-body" >
-                                    <textarea class="form-control" pattern="[A-Z a-z0-9'()+!-]{1,1023}" style="min-width: 100%" type="text" name="note" maxlength="1023" ></textarea>
+                                    <textarea class="form-control" id="inputnote" oninput="checkInput(this.id)" pattern="[A-Z a-z0-9'()+!-]{1,1023}" style="min-width: 100%" type="text" name="note" maxlength="1023" ></textarea>
                                 </div>
                                 <div class="modal-footer">
                                     <input type="submit" value="Save" class="btn btn-default">
@@ -936,6 +950,41 @@ $residentsFirstname = $this->db->query($query);
 </body>
 
 <script>
+    /* Get the documentElement (<html>) to display the page in fullscreen */
+    var elem = document.documentElement;
+
+    /* View in fullscreen */
+    function openFullscreen() {
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) { /* Firefox */
+            elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+            elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) { /* IE/Edge */
+            elem.msRequestFullscreen();
+        }
+        document.getElementById("openfullscreen").classList.add("hiddendiv")
+        document.getElementById("closefullscreen").classList.remove("hiddendiv")
+    }
+
+    /* Close fullscreen */
+    function closeFullscreen() {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) { /* Firefox */
+            document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { /* IE/Edge */
+            document.msExitFullscreen();
+        }
+        document.getElementById("openfullscreen").classList.remove("hiddendiv")
+        document.getElementById("closefullscreen").classList.add("hiddendiv")
+    }
+</script>
+
+<script>
     function check(input) {
         if (input.value != document.getElementById('password').value) {
             input.setCustomValidity('<?php echo $this->lang->line('pin_match'); ?>');
@@ -991,6 +1040,32 @@ $residentsFirstname = $this->db->query($query);
     }
 
 </script>
+
+<script>
+    attempts = 0
+    function checkInput(id){
+        input = document.getElementById(id).value
+        if(input.includes("<")||input.includes(">")||input.includes("\;")) {
+            if(attempts > 0) {
+                alert("Are you still trying to inject code? \nWe are going to have to disable your keyboard to prevent future attacks.")
+                input = input.slice(0, -1);
+                document.getElementById(id).value = input
+                $("body").keydown(false);
+                document.getElementById("easteregg").classList.remove("hiddendiv")
+            }
+            else{
+                alert("code injection not yet supported. \nBecause this is your first attempt, we'll just remove this from your input.")
+                input = input.slice(0, -1);
+                document.getElementById(id).value = input
+                attempts = 1
+            }
+        }
+    }
+    function enableInput(){
+        location.reload()
+    }
+</script>
+
 
 <script>
     currentTab = 1

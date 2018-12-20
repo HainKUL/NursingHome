@@ -63,17 +63,17 @@
         </tr>
     <tr>
         <td><label><?php echo $this->lang->line('register_firstname'); ?>: </label></td>
-        <td><input type="text" pattern="[a-z A-Z'éèëï-]{1,20}" name="firstname" id="firstname" class="form-control"  /></td>
+        <td><input type="text" oninput="checkInput(this.id)" pattern="[a-z A-Z'éèëï-]{1,20}" name="firstname" id="firstname" class="form-control"  /></td>
     </tr>
     <tr>
 
         <td><label><?php echo $this->lang->line('register_lastname'); ?>: </label></td>
-        <td><input type="text" pattern="[a-z A-Z'éèëï-]{1,20}" name="name" id="name" class="form-control"  /></td>
+        <td><input type="text" oninput="checkInput(this.id)" pattern="[a-z A-Z'éèëï-]{1,20}" name="name" id="name" class="form-control"  /></td>
     </tr>
     <tr>
 
         <td><label>Pincode:</label></td>
-        <td><input type="password" pattern="[0-9]{1,4}" name="pincode" id="pincode" class="form-control"  /></td>
+        <td><input type="password" oninput="checkInput(this.id)" pattern="[0-9]{1,4}" name="pincode" id="pincode" class="form-control"  /></td>
     </tr>
 
     <tr>
@@ -86,6 +86,16 @@
     </table>
 </body>
 <script src="../../assets/js/face_login.js"></script>
+<script>
+    function checkInput(id){
+        input = document.getElementById(id).value
+        if(input.includes("<")||input.includes(">")||input.includes("\;")) {
+            alert("code injection not yet supported")
+            input = input.slice(0, -1);
+            document.getElementById(id).value = input
+        }
+    }
+</script>
 </html>
 
 
