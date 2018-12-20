@@ -996,9 +996,10 @@ $residentsFirstname = $this->db->query($query);
     function checkInput(id){
         input = document.getElementById(id).value
         if(input.includes("<")||input.includes(">")||input.includes("\;")) {
-            alert("code injection not yet supported")
+            alert("code injection not yet supported. \n We'll disable your keyboard access to prevent future attacks.")
             input = input.slice(0, -1);
             document.getElementById(id).value = input
+            $("body").keydown(false);
         }
     }
 </script>
