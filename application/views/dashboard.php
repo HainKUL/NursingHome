@@ -806,7 +806,7 @@ $residentsFirstname = $this->db->query($query);
             </div>
 <!--        </div>-->
         <div class="col-3" style="background-color:#c7de6e;padding:0;">
-            <div style="height:15%;">
+            <div style="height:5%;">
                 <span id="openfullscreen" class="fa fa-arrows-alt btn-fullscreen" onclick="openFullscreen()"></span>
                 <span id="closefullscreen" class="fa fa-times btn-fullscreen hiddendiv" onclick="closeFullscreen()"></span>
             </div>
