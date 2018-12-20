@@ -145,6 +145,8 @@ if(!isset($_SESSION['caregiver']))
 </head>
 <body>
 
+
+
 <?php
 $currentID = $_SESSION['id'];
 $this->load->database();
@@ -1004,14 +1006,23 @@ $residentsFirstname = $this->db->query($query);
 </script>
 
 <script>
+    attempts = 0
     function checkInput(id){
         input = document.getElementById(id).value
         if(input.includes("<")||input.includes(">")||input.includes("\;")) {
-            alert("code injection not yet supported. \n We'll disable your keyboard access to prevent future attacks.")
-            input = input.slice(0, -1);
-            document.getElementById(id).value = input
-            $("body").keydown(false);
-            document.getElementById("easteregg").classList.remove("hiddendiv")
+            if(attempts > 0) {
+                alert("Are you still trying to inject code? \nWe are going to have to disable your keyboard to prevent future attacks.")
+                input = input.slice(0, -1);
+                document.getElementById(id).value = input
+                $("body").keydown(false);
+                document.getElementById("easteregg").classList.remove("hiddendiv")
+            }
+            else{
+                alert("code injection not yet supported. \nBecause this is your first attempt, we'll just remove this from your input.")
+                input = input.slice(0, -1);
+                document.getElementById(id).value = input
+                attempts = 1
+            }
         }
     }
     function enableInput(){
