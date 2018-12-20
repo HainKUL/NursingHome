@@ -355,7 +355,7 @@ function RadarChart(id, data) {
     }//wrap
 
     // on mouseover for the legend symbol
-    function cellover(d) {
+    /*function cellover(d) {
         //Dim all blobs
         d3.selectAll(".radarArea")
             .transition().duration(200)
@@ -372,7 +372,7 @@ function RadarChart(id, data) {
         d3.selectAll(".radarArea")
             .transition().duration(200)
             .style("fill-opacity", cfg.opacityArea);
-    }
+    }*/
 
     /////////////////////////////////////////////////////////
     /////////////////// Draw the Legend /////////////////////
@@ -391,8 +391,8 @@ function RadarChart(id, data) {
         .labels(cfg.color.domain().map(function(d){
             return data[d][0][areaName];
         }))
-        .on("cellover", function(d){ cellover(d); })
-        .on("cellout", function(d) { cellout(); });
+        //.on("cellover", function(d){ cellover(d); })
+        //.on("cellout", function(d) { cellout(); });
 
     svg.select(".legendOrdinal")
         .call(legendOrdinal);
