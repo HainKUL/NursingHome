@@ -195,8 +195,6 @@ $residentsFirstname = $this->db->query($query);
             <button class="btn-easteregg" onclick="enableInput()">I' sorry <br> please take me back</button>
         </div>
     </div>
-
-
     <div class="row" style="height:100vh;">
         <div class="col-3" id="div1" style="background-color:#009489;padding:0;">
             <!-- <a href="<?=base_url()?>Dashboard/logout">
@@ -808,7 +806,10 @@ $residentsFirstname = $this->db->query($query);
             </div>
 <!--        </div>-->
         <div class="col-3" style="background-color:#c7de6e;padding:0;">
-            <div style="height:5%;"></div>
+            <div style="height:15%;">
+                <span id="openfullscreen" class="fa fa-arrows-alt btn-fullscreen" onclick="openFullscreen()"></span>
+                <span id="closefullscreen" class="fa fa-times btn-fullscreen hiddendiv" onclick="closeFullscreen()"></span>
+            </div>
             <div class="searchdiv" style="text-align:center;margin:15px;">
                 <h2 class="notes-title"><?php echo $this->lang->line('dash_notes'); ?></h2>
 
@@ -947,6 +948,41 @@ $residentsFirstname = $this->db->query($query);
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </body>
+
+<script>
+    /* Get the documentElement (<html>) to display the page in fullscreen */
+    var elem = document.documentElement;
+
+    /* View in fullscreen */
+    function openFullscreen() {
+        if (elem.requestFullscreen) {
+            elem.requestFullscreen();
+        } else if (elem.mozRequestFullScreen) { /* Firefox */
+            elem.mozRequestFullScreen();
+        } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+            elem.webkitRequestFullscreen();
+        } else if (elem.msRequestFullscreen) { /* IE/Edge */
+            elem.msRequestFullscreen();
+        }
+        document.getElementById("openfullscreen").classList.add("hiddendiv")
+        document.getElementById("closefullscreen").classList.remove("hiddendiv")
+    }
+
+    /* Close fullscreen */
+    function closeFullscreen() {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) { /* Firefox */
+            document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) { /* IE/Edge */
+            document.msExitFullscreen();
+        }
+        document.getElementById("openfullscreen").classList.remove("hiddendiv")
+        document.getElementById("closefullscreen").classList.add("hiddendiv")
+    }
+</script>
 
 <script>
     function check(input) {
