@@ -8,8 +8,8 @@ function RadarChart(id, data) {
     //var margin = {top: 150, right: 70, bottom: 100, left: 100},
 
     var margin = {top: 120, right: 60, bottom: 60, left: 70},
-        legendPosition = {x: 320, y: 20},
-        width = Math.min(430, window.innerWidth - 10) - margin.left - margin.right,
+        legendPosition = {x: 400, y: 20},
+        width = Math.min(510, window.innerWidth - 10) - margin.left - margin.right,
         height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20);
 
 
