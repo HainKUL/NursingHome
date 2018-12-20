@@ -113,8 +113,7 @@ if(!isset($_SESSION['id']))
 </head>
 
 
-<!--<body onload="startWebcam();">-->
-<body onload="init()">
+<body onload="startWebcam()">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 <div class="container-fluid">
@@ -134,8 +133,8 @@ if(!isset($_SESSION['id']))
                 <h5 class="title_registration" style="padding: 5px"><?php echo $this->lang->line('title'); ?></h5>
                 <div>
                     <div id="container">
-                        <button  id="button1" onclick="startWebcam();"><?php echo $this->lang->line('login_start'); ?></button>
-                        <br/><br/>
+<!--                        <button  id="button1" onclick="startWebcam();">--><?php //echo $this->lang->line('login_start'); ?><!--</button>-->
+<!--                        <br/><br/>-->
                         <button  id="button2" onclick="snapshot();"><?php echo $this->lang->line('login_capture'); ?></button>
                         <br/><br/>
                     </div>

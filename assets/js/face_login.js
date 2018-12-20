@@ -18,7 +18,8 @@ function startWebcam() {
             // successCallback
             function(localMediaStream) {
                 video = document.querySelector('video');
-                video.src = window.URL.createObjectURL(localMediaStream);
+                // video.src = window.URL.createObjectURL(localMediaStream);
+                video.srcObject = localMediaStream;
                 webcamStream = localMediaStream;
             },
 
@@ -30,19 +31,20 @@ function startWebcam() {
     } else {
         console.log("getUserMedia not supported");
     }
-    //init();
 }
 
 
 
 var canvas, ctx;
+canvas = document.getElementById("myCanvas");
+ctx = canvas.getContext('2d');
 
-function init() {
-    // Get the canvas and obtain a context for
-    // drawing in it
-    canvas = document.getElementById("myCanvas");
-    ctx = canvas.getContext('2d');
-}
+// function init() {
+//     Get the canvas and obtain a context for
+//     drawing in it
+//     canvas = document.getElementById("myCanvas");
+//     ctx = canvas.getContext('2d');
+// }
 
 function snapshot() {
     ctx.drawImage(video, 0,0, canvas.width, canvas.height);
