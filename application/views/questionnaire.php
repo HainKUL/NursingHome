@@ -131,7 +131,7 @@ if(!isset($_SESSION["resident"]))
 
         </div>
 
-        <div class="row" style="padding-top: 10%">
+        <div class="row" >
 
             <div class="col-12">
                 <div id="progress">
@@ -144,7 +144,6 @@ if(!isset($_SESSION["resident"]))
             <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
                 <input type="submit" name=<?php echo $this->lang->line('Return');?> value="<?php echo $this->lang->line('Return');?>" id="previous" class="button1">
             </form>
-
         </div>
     </div>
 
