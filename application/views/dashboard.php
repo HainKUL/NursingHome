@@ -104,7 +104,7 @@ if(!isset($_SESSION['caregiver']))
             box-shadow: 0 0 10px #E8E8E8 inset;
             height: 40px;
             padding: 8px;
-            width: 220px;
+            width: 210px;
             margin-left:100px;
 
         }
@@ -120,7 +120,7 @@ if(!isset($_SESSION['caregiver']))
 
         label
         {
-            font: 300 16px/1.7 'Helvetica Neue';
+            font: 300 16px/1.7 'Open Sans', sans-serif;
             color: #666;
             cursor: pointer;
         }
@@ -1240,7 +1240,7 @@ $residentsFirstname = $this->db->query($query);
                 return d.category;
             }));
             //set domain for y axis
-            yChart.domain([0, d3.max(bothData, function (d) {
+            yChart.domain([1, d3.max(bothData, function (d) {
                 return d.answer;
             })]);
 
@@ -1331,7 +1331,7 @@ $residentsFirstname = $this->db->query($query);
             return d.question;
         }));
         //set domain for y axis
-        yChart.domain([0, d3.max(data, function (d) {
+        yChart.domain([1, d3.max(data, function (d) {
             return +d.answer;
         })]);
 
@@ -1437,7 +1437,7 @@ $residentsFirstname = $this->db->query($query);
 
     var yAxis = d3.axisLeft(yChart)
         .ticks(5)
-        .tickValues([0, 1, 2, 3, 4, 5]);
+        .tickValues([1, 2, 3, 4, 5]);
 
 
     //set up axes
@@ -1472,13 +1472,13 @@ $residentsFirstname = $this->db->query($query);
 
 
 
-    chart
+    /*chart
         .append("text")
-        .attr("transform", "translate(" + (width / 2) + "," + (height + margin.bottom - 5) + ")")
+        .attr("transform", "translate(" + (width / 2) + "," + (height + margin.bottom) + ")")
         .style("font-size", "18px")
         .style("font-weight", "400")
         .style("font-family", "Avenir Next Condensed")
-        .text("<?php echo $this->lang->line('category_ans'); ?>");
+        .text("<php echo $this->lang->line('category_ans'); ?>");*/
 
 
 
@@ -1489,7 +1489,7 @@ $residentsFirstname = $this->db->query($query);
     }));
     //set domain for y axis
     //yChart.domain( [0, d3.max(bothData, function(d){ return +d.answer; },)] );
-    yChart.domain([0, d3.max(bothData, function (d) {
+    yChart.domain([1, d3.max(bothData, function (d) {
         return d.answer;
     })]);
 
