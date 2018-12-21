@@ -104,7 +104,7 @@ if(!isset($_SESSION['caregiver']))
             box-shadow: 0 0 10px #E8E8E8 inset;
             height: 40px;
             padding: 8px;
-            width: 220px;
+            width: 210px;
             margin-left:100px;
 
         }
@@ -120,7 +120,7 @@ if(!isset($_SESSION['caregiver']))
 
         label
         {
-            font: 300 16px/1.7 'Helvetica Neue';
+            font: 300 16px/1.7 'Open Sans', sans-serif;
             color: #666;
             cursor: pointer;
         }
@@ -709,7 +709,6 @@ $residentsFirstname = $this->db->query($query);
                                             <div class = "category"; style="float:right;">
                                                 <select onchange="change('0',this.value);"  name = "cate" id = "cate" class="input">
                                                 <option disabled selected><?php echo $this->lang->line('dash_select_cat'); ?></option>
-                                                <option  value="all" ><?php echo $this->lang->line('category_all'); ?></option>
                                                 <option value="0" ><?php echo $this->lang->line('category_0'); ?></option>
                                                 <option value="1" ><?php echo $this->lang->line('category_1'); ?></option>
                                                 <option  value="2" ><?php echo $this->lang->line('category_2'); ?></option>
@@ -721,6 +720,7 @@ $residentsFirstname = $this->db->query($query);
                                                 <option  value="8" ><?php echo $this->lang->line('category_8'); ?></option>
                                                 <option value="9" ><?php echo $this->lang->line('category_9'); ?></option>
                                                 <option  value="10" ><?php echo $this->lang->line('category_10'); ?></option>
+                                                    <option  value="all" ><?php echo $this->lang->line('category_all'); ?></option>
                                                 </select>
                                             </div>
                                             </br>
@@ -980,21 +980,18 @@ $residentsFirstname = $this->db->query($query);
             previous.classList.remove("btn-active")
         }
 
-        //console.log(config['base_url']);
-
-
         var element = document.getElementById(id)
         element.classList.add("btn-active")
         currentButtonID = id
 
         let base_url = window.location.origin.concat("/a18ux04");
-
-        // if(base_url!="http://localhost/a18ux04")
+        console.log(base_url);
+        //if(base_url!="http://localhost/a18ux04")
         if(!base_url.includes("localhost"))
             base_url = "https://a18ux04.studev.groept.be";
-        console.log(base_url);
+
         let newUrl = base_url.concat("/index.php/Dashboard/dashboard/").concat(id);
-        //window.location.href = newUrl;
+        window.location.href = newUrl;
 
         //document.getElementById("residentName").innerText = id + "<?php echo $this->lang->line('dash_profile'); ?>"
     }
@@ -1247,7 +1244,7 @@ $residentsFirstname = $this->db->query($query);
                 return d.category;
             }));
             //set domain for y axis
-            yChart.domain([0, d3.max(bothData, function (d) {
+            yChart.domain([1, d3.max(bothData, function (d) {
                 return d.answer;
             })]);
 
@@ -1338,7 +1335,7 @@ $residentsFirstname = $this->db->query($query);
             return d.question;
         }));
         //set domain for y axis
-        yChart.domain([0, d3.max(data, function (d) {
+        yChart.domain([1, d3.max(data, function (d) {
             return +d.answer;
         })]);
 
@@ -1422,9 +1419,9 @@ $residentsFirstname = $this->db->query($query);
 
 
     //set up chart
-    var margin = {top: 10, right:0, bottom: 280, left: 50};
-    var width = 480;
-    var height = 250;
+    var margin = {top: 10, right:0, bottom: 280, left: 25};
+    var width = 490;
+    var height = 200;
 
     var chart = d3.select(".chart")
         .attr("width", width + margin.left + margin.right)
@@ -1434,17 +1431,20 @@ $residentsFirstname = $this->db->query($query);
 
     var xChart = d3.scaleBand()
         .range([0, width]);
+        //.nice();
 
     var yChart;
     yChart = d3.scaleLinear()
         .range([height, 0]);
 
 
+
     var xAxis = d3.axisBottom(xChart);
+
 
     var yAxis = d3.axisLeft(yChart)
         .ticks(5)
-        .tickValues([0, 1, 2, 3, 4, 5]);
+        .tickValues([1, 2, 3, 4, 5]);
 
 
     //set up axes
@@ -1477,18 +1477,6 @@ $residentsFirstname = $this->db->query($query);
         .style("font-family", "Avenir Next Condensed")
         .text("<?php echo $this->lang->line('category_score'); ?>");
 
-
-
-    chart
-        .append("text")
-        .attr("transform", "translate(" + (width / 2) + "," + (height + margin.bottom - 5) + ")")
-        .style("font-size", "18px")
-        .style("font-weight", "400")
-        .style("font-family", "Avenir Next Condensed")
-        .text("<?php echo $this->lang->line('category_ans'); ?>");
-
-
-
     //use bothData to begin with
     //update(bothData);
     xChart.domain(bothData.map(function (d) {
@@ -1496,7 +1484,7 @@ $residentsFirstname = $this->db->query($query);
     }));
     //set domain for y axis
     //yChart.domain( [0, d3.max(bothData, function(d){ return +d.answer; },)] );
-    yChart.domain([0, d3.max(bothData, function (d) {
+    yChart.domain([1, d3.max(bothData, function (d) {
         return d.answer;
     })]);
 

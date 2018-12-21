@@ -77,8 +77,9 @@ function snapshot() {
             console.log(m.images[0].candidates[0].subject_id);//show the id returned from the cloud
             //switch to user page
             let base_url = window.location.origin.concat("/a18ux04");
-            console.log(base_url);
-            if(base_url!="http://localhost/a18ux04")
+            //console.log(base_url);
+            // if(base_url!="http://localhost/a18ux04")
+            if(!base_url.includes("localhost"))
                 base_url = "https://a18ux04.studev.groept.be";
             console.log(base_url);
             //need to match name with id in db, or alternatively send query with name instead of id
