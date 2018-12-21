@@ -980,17 +980,21 @@ $residentsFirstname = $this->db->query($query);
             previous.classList.remove("btn-active")
         }
 
+        //console.log(config['base_url']);
+
+
         var element = document.getElementById(id)
         element.classList.add("btn-active")
         currentButtonID = id
 
         let base_url = window.location.origin.concat("/a18ux04");
-        console.log(base_url);
-        if(base_url!="http://localhost/a18ux04")
-            base_url = "https://a18ux04.studev.groept.be";
 
+        // if(base_url!="http://localhost/a18ux04")
+        if(!base_url.includes("localhost"))
+            base_url = "https://a18ux04.studev.groept.be";
+        console.log(base_url);
         let newUrl = base_url.concat("/index.php/Dashboard/dashboard/").concat(id);
-        window.location.href = newUrl;
+        //window.location.href = newUrl;
 
         //document.getElementById("residentName").innerText = id + "<?php echo $this->lang->line('dash_profile'); ?>"
     }
