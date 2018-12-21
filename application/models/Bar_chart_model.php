@@ -34,7 +34,7 @@ class Bar_chart_model extends CI_Model
             //$data['questionNum'] = $row['questionNum'];
             $data['answer'] = $row['answer'];
             $data['category'] = $row['category'];
-            $data['timestampStart']= substr($row['timestampStart'],5,11);
+            $data['timestampStart']= substr($row['timestampStart'],0,16);
             //$data['timestampStart'] = $row['timestampStart'];
             //echo json_encode($bothData);
             $rawdata[]=$data;
