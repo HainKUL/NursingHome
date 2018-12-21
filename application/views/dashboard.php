@@ -986,7 +986,8 @@ $residentsFirstname = $this->db->query($query);
 
         let base_url = window.location.origin.concat("/a18ux04");
         console.log(base_url);
-        if(base_url!="http://localhost/a18ux04")
+        //if(base_url!="http://localhost/a18ux04")
+        if(!base_url.includes("localhost"))
             base_url = "https://a18ux04.studev.groept.be";
 
         let newUrl = base_url.concat("/index.php/Dashboard/dashboard/").concat(id);
@@ -1430,6 +1431,7 @@ $residentsFirstname = $this->db->query($query);
 
     var xChart = d3.scaleBand()
         .range([0, width]);
+        //.nice();
 
     var yChart;
     yChart = d3.scaleLinear()

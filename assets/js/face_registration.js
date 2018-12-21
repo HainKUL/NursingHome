@@ -81,7 +81,8 @@ function snapshot() {
             console.log("successfully registered")
             alert("successfully registered")
             let base_url = window.location.origin.concat("/a18ux04");
-            if(base_url!="http://localhost/a18ux04")
+            if(!base_url.includes("localhost"))
+            //if(base_url!="http://localhost/a18ux04")
                 base_url = "https://a18ux04.studev.groept.be";
             let newUrl = base_url.concat("/index.php/Dashboard/registrationsucces/").concat(cgid);
 
