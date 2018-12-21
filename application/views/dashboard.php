@@ -1415,9 +1415,9 @@ $residentsFirstname = $this->db->query($query);
 
 
     //set up chart
-    var margin = {top: 10, right:0, bottom: 280, left: 50};
-    var width = 480;
-    var height = 250;
+    var margin = {top: 10, right:0, bottom: 280, left: 25};
+    var width = 490;
+    var height = 200;
 
     var chart = d3.select(".chart")
         .attr("width", width + margin.left + margin.right)
@@ -1469,18 +1469,6 @@ $residentsFirstname = $this->db->query($query);
         .style("font-weight", "400")
         .style("font-family", "Avenir Next Condensed")
         .text("<?php echo $this->lang->line('category_score'); ?>");
-
-
-
-    /*chart
-        .append("text")
-        .attr("transform", "translate(" + (width / 2) + "," + (height + margin.bottom) + ")")
-        .style("font-size", "18px")
-        .style("font-weight", "400")
-        .style("font-family", "Avenir Next Condensed")
-        .text("<php echo $this->lang->line('category_ans'); ?>");*/
-
-
 
     //use bothData to begin with
     //update(bothData);
