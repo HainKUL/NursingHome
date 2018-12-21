@@ -1433,7 +1433,9 @@ $residentsFirstname = $this->db->query($query);
         .range([height, 0]);
 
 
+
     var xAxis = d3.axisBottom(xChart);
+
 
     var yAxis = d3.axisLeft(yChart)
         .ticks(5)
