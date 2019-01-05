@@ -51,6 +51,7 @@ class Questionnaire_controller extends CI_Controller{
         $data = array_merge($data1, $data2);//merge two array
 
         // text
+        /* //TODO remove this block? (not used?)
         $data['page_title'] = 'Care for you';
         $data['button_text'] = "Quit!";
         $data['agree'] = 'How do you agree with the following statement:';
@@ -61,12 +62,22 @@ class Questionnaire_controller extends CI_Controller{
         $data['button_mostly'] = "Mostly";
         $data['button_always'] = "Always";
 
-        $data['quit'] = "Quit!";
+        $data['quit'] = "Quit!";*/
         $data['user_id'] = $_SESSION["user_id"];
+
+        // add information about previous answer given to this question
+        $idSubmission = $_SESSION["idSubmission"];
+        $prevAnswer = -1;
+        $sql =
+            "SELECT * FROM Responses WHERE Responses.questionNum = '$question' AND submission = '$idSubmission';";
+        $result = $this->db->query($sql);
+        if($result->num_rows() != 0) {
+            $prevAnswer = $this->db->query($sql)->result_array()[0]["answer"]; // get id of submission to resume
+        }
+        $data['highlight_answer'] = $prevAnswer;
 
         //pass data to the view(the page)
         $this->parser->parse('questionnaire',$data);//variables sent to html content
-
 	}
 
 	public function update()
