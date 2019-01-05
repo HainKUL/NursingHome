@@ -185,10 +185,10 @@ $residentsFirstname = $this->db->query($query);
     <div class="row easteregg hiddendiv" id="easteregg">
         <div class="col-3"></div>
         <div class="col-6">
-        ANTI HACKER MODE ACTIVATED
+            <i class="fa fa-exclamation-circle rotating"></i> ANTI HACKER MODE ACTIVATED <i class="fa fa-exclamation-circle rotating"></i>
         </div>
         <div class="col-3">
-            <button class="btn-easteregg" onclick="enableInput()">I' sorry <br> please take me back</button>
+            <button class="btn-easteregg" onclick="enableInput()">I'm sorry <br> please take me back</button>
         </div>
     </div>
     <div class="row" style="height:100vh;">
@@ -785,8 +785,8 @@ $residentsFirstname = $this->db->query($query);
 <!--        </div>-->
         <div class="col-3" style="background-color:#c7de6e;padding:0;">
             <div style="height:5%;">
-                <span id="openfullscreen" class="fa fa-arrows-alt btn-fullscreen" onclick="openFullscreen()"></span>
-                <span id="closefullscreen" class="fa fa-times btn-fullscreen hiddendiv" onclick="closeFullscreen()"></span>
+                <span id="openfullscreen" class="fa fa-expand btn-fullscreen" onclick="openFullscreen()"></span>
+                <span id="closefullscreen" class="fa fa-compress btn-fullscreen hiddendiv" onclick="closeFullscreen()"></span>
             </div>
             <div class="searchdiv" style="text-align:center;margin:15px;">
                 <h2 class="notes-title"><?php echo $this->lang->line('dash_notes'); ?></h2>

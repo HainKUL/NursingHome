@@ -15,7 +15,6 @@ if(!isset($_SESSION["resident"]))
     <title> Questionnaire</title>
     <link rel="icon" href="<?=base_url()?>assets/photos/favicon3.ico" type="image/gif" sizes="16x16">
 
-    <link href="<?= base_url()?>assets/css/features.css" rel="stylesheet" type="text/css"/>
     <meta charset="UTF-8" />
     <link href="https://fonts.googleapis.com/css?family=Dosis:400,500,600,700" rel="stylesheet">
 
@@ -24,7 +23,7 @@ if(!isset($_SESSION["resident"]))
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <!-- Custom CSS one for localhost, the other for on the server-->
-    <link href="<?=base_url()?>assets/css/features.css" rel="stylesheet" type="text/css"/>
+    <link href="<?=base_url()?>assets/css/questionnaire.css" rel="stylesheet" type="text/css"/>
 
     <?php if(isset($jslibs_to_load)) foreach ($jslibs_to_load as $jslib) : ?>
         <script src="<?= base_url()?>assets/js/<?=$jslib?>"></script>
@@ -50,103 +49,84 @@ if(!isset($_SESSION["resident"]))
 
 <body>
 
-<div class="container card ">
+    <div class="container-fluid">
 
-    <div id="card">
-
-        <div class="row" >
-            <div class="col-8">
-                <h2>
-                    <p>{category}</p>
-                </h2>
+        <div class="row header">
+            <div class="col-1"></div>
+            <div class="col-5 header-title">
+                <p>{category}</p>
             </div>
-            <div class="col-2">
-            </div>
-            <div class="col-1" id ="test">
-                <a href=<?=base_url()?>index.php/Homepage_controller/residentHome/<?php echo $_SESSION['id']?>>
-                    <button type="button"class="btn btn-default button_back float-right" ><?php echo $this->lang->line('Back'); ?></button>
+            <div class="col-5 header-button" id ="test">
+                <a class="button_back" href=<?=base_url()?>index.php/Homepage_controller/residentHome/<?php echo $_SESSION['id']?>>
+                    <?php echo $this->lang->line('Back'); ?>
                 </a>
             </div>
+            <div class="col-1"></div>
         </div>
 
-        <div class="row" id="second_row">
-            <div class="col-12">
-                <div id ="text_question">
-                    <!-- <p>{agree}</p> -->
-                </div>
-            </div>
-        </div>
-
-        <div class="row" id="third_row">
-            <!--
-            <div class="col-12">
-                <div id="text">
+        <div class="row question-row">
+                <div class="col-12 question">
                     <p>{question}</p>
                 </div>
-            </div>
-            -->
-            <div class="col-12" style="text-align: center">
-                <h1>
-                    <p>{question}</p>
-                </h1>
-            </div>
         </div>
 
-        <div class="row" style="padding-top: 10%" >
+        <div class="row button-row">
 
-            <div class="col-1">
-            </div>
-            <div class="col-2">
-                <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
-                    <input type="submit" name="never" value="<?php echo $this->lang->line('button_never');?>" id="never" class="button_menu">
-                </form>
-            </div>
+                <div class="col-1">
+                </div>
+                <div class="col-2">
+                    <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
+                        <input type="submit" name="never" value="<?php echo $this->lang->line('button_never');?>" id="never" class="button_menu">
+                    </form>
+                </div>
 
-            <div class="col-2">
-                <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
-                    <input type="submit" name="rarely" value="<?php echo $this->lang->line('button_rarely');?>" id="rarely" class="button_menu">
-                </form>
-            </div>
+                <div class="col-2">
+                    <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
+                        <input type="submit" name="rarely" value="<?php echo $this->lang->line('button_rarely');?>" id="rarely" class="button_menu">
+                    </form>
+                </div>
 
-            <div class="col-2">
-                <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
-                    <input type="submit" name="sometimes" value="<?php echo $this->lang->line('button_sometimes');?>" id="sometime" class="button_menu">
-                </form>
-            </div>
+                <div class="col-2">
+                    <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
+                        <input type="submit" name="sometimes" value="<?php echo $this->lang->line('button_sometimes');?>" id="sometime" class="button_menu">
+                    </form>
+                </div>
 
-            <div class="col-2">
-                <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
-                    <input type="submit" name="mostly" value="<?php echo $this->lang->line('button_mostly');?>" id="mostly" class="button_menu">
-                </form>
-            </div>
+                <div class="col-2">
+                    <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
+                        <input type="submit" name="mostly" value="<?php echo $this->lang->line('button_mostly');?>" id="mostly" class="button_menu">
+                    </form>
+                </div>
 
-            <div class="col-2">
-                <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
-                    <input type="submit" name="always" value="<?php echo $this->lang->line('button_always');?>" id="always" class="button_menu">
-                </form>
-            </div>
+                <div class="col-2">
+                    <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
+                        <input type="submit" name="always" value="<?php echo $this->lang->line('button_always');?>" id="always" class="button_menu">
+                    </form>
+                </div>
 
-            <div class="col-1">
-            </div>
+                <div class="col-1">
+                </div>
 
         </div>
 
-        <div class="row" >
-
-            <div class="col-12">
-                <div id="progress">
-                    <progress value={progress} max ="52"></progress>
+        <div class="row progress-row">
+                <div class="col-3"></div>
+                <div class="col-6 progress-border">
+                    <div class="progress-bar" style="width:calc(100%*{progress}/52)"></div>
                     <p>{progress}/52</p>
                 </div>
+                <div class="col-3"></div>
+        </div>
+
+        <div class="row back-row">
+            <div class="col-1"></div>
+            <div class="col-2">
+                <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
+                    <input type="submit" name=<?php echo $this->lang->line('Return');?> value="<?php echo $this->lang->line('Return');?>" id="previous" class="button-previous">
+                </form>
             </div>
         </div>
-        <div class="col-2">
-            <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
-                <input type="submit" name=<?php echo $this->lang->line('Return');?> value="<?php echo $this->lang->line('Return');?>" id="previous" class="button1">
-            </form>
-        </div>
     </div>
-
 </body>
 
 </html>

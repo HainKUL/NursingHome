@@ -1,0 +1,103 @@
+body{
+    height: 100vh;
+    /*background: #ebf1fa; !* Old browsers *!*/
+    /*background: -moz-linear-gradient(top,  #ebf1fa 50.9%, #ffffff 51%); !* FF3.6-15 *!*/
+    /*background: -webkit-linear-gradient(top,  #ebf1fa 50.9%,#ffffff 51%); !* Chrome10-25,Safari5.1-6 *!*/
+    /*background: linear-gradient(to bottom,  #ebf1fa 50.9%,#ffffff 51%); !* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ *!*/
+    /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebf1fa', endColorstr='#ffffff',GradientType=0 ); !* IE6-9 *!*/
+    font-family: "Avenir Next Condensed";
+}
+
+.header{
+    height:10vh;
+    background-color: #7386AC;
+}
+
+.header-title{
+    color:whitesmoke;
+    padding:2vh;
+    font-size:20pt;
+    font-weight:100;
+}
+
+.header-button{
+    padding:2vh;
+    text-align: right;
+    color:whitesmoke;
+    font-size:20pt;
+    font-weight:100;
+    background-color:#7386AC;
+}
+
+.button_back{
+    color:whitesmoke;
+    font-size:20pt;
+    font-weight:100;
+}
+
+.question-row{
+    height:35vh;
+}
+
+.question{
+    background: #ebf1fa;
+    padding-top:50px;
+    font-size: 35pt;
+    text-align: center;
+    font-family: "Helvetica Neue";
+    color: #2A383D;
+}
+
+.button-row{
+    background: #ebf1fa; /* Old browsers */
+    background: -moz-linear-gradient(top,  #ebf1fa 50.9%, #ffffff 51%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top,  #ebf1fa 50.9%,#ffffff 51%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom,  #ebf1fa 50.9%,#ffffff 51%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebf1fa', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+}
+
+.button_menu{
+    background-color: #D65637;
+    border:none;
+    font-size:38pt;
+    border-radius: 10px;
+    width:100%;
+    color:whitesmoke;
+    box-shadow: 0px 3px 0px 0px rgba(168,149,142,1);
+}
+
+.button_menu:hover{
+    background-color: #EF7046;
+}
+
+.progress-row{
+    padding-top:15vh;
+    padding-left:5vh;
+    padding-right:5vh;
+    margin-bottom:10vh;
+    text-align: center;
+}
+
+.progress-border{
+    padding:0px;
+    background-color: #EBF1FA;
+    height:18px;
+}
+
+.progress-bar{
+    background-color: #7386AC;
+    height:18px;
+    margin-bottom:10px;
+}
+
+.button-previous{
+    color: #7387AC;
+    border-color: #7387AC;
+    background-color: #FFFFFF;
+    border-style: solid;
+    border-radius: 10px;
+    border-width: 1px;
+    /*padding:15px;*/
+    font-size: 24pt;
+    width:100%;
+}
