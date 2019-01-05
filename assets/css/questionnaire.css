@@ -112,3 +112,7 @@ body{
     font-size: 20pt;
     width:100%;
 }
+
+.button-hidden{
+    display: none;
+}

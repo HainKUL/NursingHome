@@ -126,7 +126,8 @@ if(!isset($_SESSION["resident"]))
             <div class="col-1"></div>
             <div class="col-2">
                 <form action="<?= site_url('questionnaire_controller/update') ?>" method="get">
-                    <input type="submit" name=<?php echo $this->lang->line('Return');?> value="<?php echo $this->lang->line('Return');?>" id="previous" class="button-previous">
+                    <input type="submit" name=<?php echo $this->lang->line('Return');?> value="<?php echo $this->lang->line('Return');?>" id="previous"
+                    class=<?php if($question_id > 1) echo "button-previous"; else echo "button-hidden"?>>
                 </form>
             </div>
         </div>

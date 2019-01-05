@@ -64,6 +64,7 @@ class Questionnaire_controller extends CI_Controller{
 
         $data['quit'] = "Quit!";*/
         $data['user_id'] = $_SESSION["user_id"];
+        $data['question_id'] = $question;
 
         // add information about previous answer given to this question
         $idSubmission = $_SESSION["idSubmission"];
