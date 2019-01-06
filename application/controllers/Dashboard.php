@@ -1,49 +1,46 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-/**
- * Created by PhpStorm.
- * User: Weihao
- * Date: 11/15/18
- * Time: 20:22
- */
+
 
 class Dashboard extends CI_Controller
 {
-    function __construct() {
+    function __construct()
+    {
         parent::__construct();
         $this->load->library('session');
-        //if(empty($this->session->userdata('idCaregivers'))) {
-        //    $this->session->set_flashdata('flash_data', 'You don\'t have access!');
-        //    redirect('Caregiver_controller/login');
-        //}
-        //$this->load->model('Our_chart_model');
         $this->load->helper('url');
-        // $this->load->library('form_validation');
         $this->load->helper('string');
         $this->load->model("Our_chart_model");
         $this->load->model("Bar_chart_model");
     }
 
-    public function dashboard($residentID = 26) {    //TODO remove this default
-        /*graphs*/
-        $data_each1 = $this->Bar_chart_model->get_each();
-        $data['data_each1'] = $data_each1;
-        $data_one = $this->Bar_chart_model->get_one();
-        $data['one'] =   $data_one;
-        $data1 = $this->Our_chart_model->get_avg();
-        $data['data1'] = $data1;
 
-        /*resident info*/
+    public function dashboard($residentID = 26)  //TODO remove this default
+    {
+        /* graphs */
+        $data_graph_each = $this->Bar_chart_model->get_each();
+        $data_graph_one = $this->Bar_chart_model->get_one();
+        $data_graph_avg = $this->Our_chart_model->get_avg();
+
+        /* resident info */
         $sql = "SELECT * FROM Residents WHERE idResidents = $residentID LIMIT 1";
         $result = $this->db->query($sql);
+
+        /* load the view */
         $data['theFirstName'] =    $result->result_array()[0]["firstName"];
         $data['name'] =         $result->result_array()[0]["name"];
         $data['dateOfBirth'] =  $result->result_array()[0]["dateOfBirth"];
         $data['roomNumber'] =   $result->result_array()[0]["roomNumber"];
         $data['bedNumber'] =    $result->result_array()[0]["bedNumber"];
+        $data['data_graph_each'] = $data_graph_each;
+        $data['one'] =   $data_graph_one;
+        $data['data_graph_avg'] = $data_graph_avg;
 
         $this->load->view('dashboard', $data);
     }
-    public function dashboard_reg(){
+
+
+    public function dashboard_reg()
+    {
         $errors = array();
         if ($_POST) {
             // receive all input values from the form
@@ -63,8 +60,6 @@ class Dashboard extends CI_Controller
             $nr=$this->db->escape($_POST['Mobile_Number']);
             $pref_array=array($lang,$floor,$nr);
             $pref=serialize($pref_array);
-
-
 
             // form validation: ensure that the form is correctly filled ...
             // by adding (array_push()) corresponding error unto $errors array
@@ -118,16 +113,22 @@ class Dashboard extends CI_Controller
     }
 
 
-
-    public function logout() {
+    public function logout()
+    {
 
         session_destroy();
         redirect('/Homepage_controller/home');
     }
-    public function registrationsucces($userId){
+
+
+    public function registrationsucces($userId)
+    {
         $_SESSION['resident']="yes";
         redirect('/Dashboard/dashboard');
 
     }
+
+
+
 
 }

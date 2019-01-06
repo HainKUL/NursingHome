@@ -669,7 +669,7 @@ $residentsFirstname = $this->db->query($query);
                                 <div class="radarChart"></div>
                                 <script src="<?=base_url() ?>assets/js/radarChart.js"></script>
                                 <script type="text/javascript">
-                                    var data = <?php echo json_encode($data1); ?>;
+                                    var data = <?php echo json_encode($data_graph_avg); ?>;
                                 </script>
 
                                 <script>
@@ -695,7 +695,7 @@ $residentsFirstname = $this->db->query($query);
                                                 <select onchange="change(this.value,'all');"  name = "date" id = "date" class="input">
                                                 <option disabled selected><?php echo $this->lang->line('dash_select_date'); ?></option>
                                                 <?php
-                                                foreach($data_each1 as $row)
+                                                foreach($data_graph_each as $row)
                                                 {
                                                     echo '<option value="'.$row['key'].'">'.$row['key'].'</option>';
                                                 }
@@ -1144,7 +1144,7 @@ $residentsFirstname = $this->db->query($query);
     //functions for toggling between data
     function change(date,value) {
 
-        var data5 = <?php echo json_encode($data_each1); ?>;
+        var data5 = <?php echo json_encode($data_graph_each); ?>;
 
 
         for (var index = 0; index < data5.length; ++index) {
