@@ -157,7 +157,9 @@ $email = $this->db->query($query);
 
 $query = "SELECT firstName, name FROM Residents ORDER BY firstName;";
 $residentsFirstname = $this->db->query($query);
-    ?>
+?>
+
+
 
 <script>
     $( function() {
@@ -172,15 +174,15 @@ $residentsFirstname = $this->db->query($query);
             echo "]";
             ?>
 
-        $( "#tags" ).autocomplete({
-            source: availableTags
-        });
+            $( "#tags" ).autocomplete({
+                source: availableTags
+            });
     } );
 </script>
 
 
-<div class="container-fluid">
 
+<div class="container-fluid">
 
     <div class="row easteregg hiddendiv" id="easteregg">
         <div class="col-3"></div>
@@ -213,25 +215,15 @@ $residentsFirstname = $this->db->query($query);
                     </div>
                 </div>
                 <div class="ui-widget" >
-                    <input id="tags" for="tags" oninput="checkInput(this.id)" class ="searchbar" type="search" placeholder="<?php echo $this->lang->line('search'); ?>">
+                    <form name="form" action="" method="get">
+                        <input id="tags" name="filter" for="tags" class ="searchbar" oninput="checkInput(this.id)" type="search" placeholder="<?php echo $this->lang->line('search'); ?>">
+                    </form>
                 </div>
             </div>
             <div style="overflow-y:scroll;max-height:68vh;">
                 <div class="btn-group-vertical btn-group-lg" role="group" style="width:100%;">
                     <?php
-                    foreach ($residents->result_array() as $row) {
-                        ?><button class="btn btn-primary btn-resident" id="<?php echo $row['idResidents']?>" type="button" onclick="loadResident(this.id)">
-                        <div class="resident-button">
-                            <img class="profilePic" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
-                        <span class="resident-nameage"><div class="button-name"><?php
-                        echo $row['firstName'];
-                        echo " ";
-                        echo $row['name'];
-                        ?></div><div class="button-age"><?php
-                        echo $row['age'] ?></div>
-                            <?php
-                            ?></span></div></button><?php
-                    }
+                        displayResidents($residents);
                     ?>
 
                 </div>
@@ -309,11 +301,11 @@ $residentsFirstname = $this->db->query($query);
                 </div>
             </div>
             <div style="height:50vh; padding:60% 10%;">
-            <a href="<?=base_url()?>index.php/Dashboard/logout" style="padding:20% 10%;">
-                <button class="btn btn-primary btn-lg" type="button" style="width:80%;background-color:#00675F;border:none;color:#DEEAE9">
-                    <?php echo $this->lang->line('dash_logout'); ?>
-                </button>
-            </a>
+                <a href="<?=base_url()?>index.php/Dashboard/logout" style="padding:20% 10%;">
+                    <button class="btn btn-primary btn-lg" type="button" style="width:80%;background-color:#00675F;border:none;color:#DEEAE9">
+                        <?php echo $this->lang->line('dash_logout'); ?>
+                    </button>
+                </a>
             </div>
 
 
@@ -564,9 +556,9 @@ $residentsFirstname = $this->db->query($query);
 
                                         <input type="radio" name="Radio" value="Dutch" checked>
                                         <?php echo $this->lang->line('dutch'); ?>
-                                        <input type="radio" name="Radio" value="English" >
+                                            <input type="radio" name="Radio" value="English" >
                                         <?php echo $this->lang->line('english'); ?>
-                                        <input type="radio" name="Radio" value="French">
+                                            <input type="radio" name="Radio" value="French">
                                         <?php echo $this->lang->line('french'); ?>
                                     </td>
                                 </tr>
@@ -594,7 +586,7 @@ $residentsFirstname = $this->db->query($query);
 
                                         <input type="radio" name="floor" value="GroundFloor" checked>
                                         <?php echo $this->lang->line('floor1'); ?>
-                                        <input type="radio" name="floor" value="FirstFloor">
+                                            <input type="radio" name="floor" value="FirstFloor">
                                         <?php echo $this->lang->line('floor2'); ?>
                                     </td>
                                 </tr>
@@ -603,7 +595,7 @@ $residentsFirstname = $this->db->query($query);
                                     <td>
                                         <input type="radio" name="floor" value="SecondFloor">
                                         <?php echo $this->lang->line('floor3'); ?>
-                                        <input type="radio" name="floor" value="ThirdFloor">
+                                            <input type="radio" name="floor" value="ThirdFloor">
                                         <?php echo $this->lang->line('floor4'); ?>
 
                                     </td>
@@ -693,14 +685,14 @@ $residentsFirstname = $this->db->query($query);
                                             </br>
                                             <div class = "date" style="float:left;">
                                                 <select onchange="change(this.value,'all');"  name = "date" id = "date" class="input">
-                                                <option disabled selected><?php echo $this->lang->line('dash_select_date'); ?></option>
-                                                <?php
-                                                foreach($data_each1 as $row)
-                                                {
+                                                    <option disabled selected><?php echo $this->lang->line('dash_select_date'); ?></option>
+                                                    <?php
+                                                    foreach($data_each1 as $row)
+                                                    {
                                                     echo '<option value="'.$row['key'].'">'.$row['key'].'</option>';
-                                                }
-                                                ?>
-                                            </select>
+                                                    }
+                                                    ?>
+                                                </select>
                                             </div>
                                             <script type="text/javascript">
                                                 var bothData = <?php echo json_encode($one); ?>;;
@@ -708,18 +700,18 @@ $residentsFirstname = $this->db->query($query);
 
                                             <div class = "category"; style="float:right;">
                                                 <select onchange="change('0',this.value);"  name = "cate" id = "cate" class="input">
-                                                <option disabled selected><?php echo $this->lang->line('dash_select_cat'); ?></option>
-                                                <option value="0" ><?php echo $this->lang->line('category_0'); ?></option>
-                                                <option value="1" ><?php echo $this->lang->line('category_1'); ?></option>
-                                                <option  value="2" ><?php echo $this->lang->line('category_2'); ?></option>
-                                                <option  value="3" ><?php echo $this->lang->line('category_3'); ?></option>
-                                                <option  value="4" ><?php echo $this->lang->line('category_4'); ?></option>
-                                                <option  value="5" ><?php echo $this->lang->line('category_5'); ?></option>
-                                                <option  value="6" ><?php echo $this->lang->line('category_6'); ?></option>
-                                                <option  value="7" ><?php echo $this->lang->line('category_7'); ?></option>
-                                                <option  value="8" ><?php echo $this->lang->line('category_8'); ?></option>
-                                                <option value="9" ><?php echo $this->lang->line('category_9'); ?></option>
-                                                <option  value="10" ><?php echo $this->lang->line('category_10'); ?></option>
+                                                    <option disabled selected><?php echo $this->lang->line('dash_select_cat'); ?></option>
+                                                    <option value="0" ><?php echo $this->lang->line('category_0'); ?></option>
+                                                    <option value="1" ><?php echo $this->lang->line('category_1'); ?></option>
+                                                    <option  value="2" ><?php echo $this->lang->line('category_2'); ?></option>
+                                                    <option  value="3" ><?php echo $this->lang->line('category_3'); ?></option>
+                                                    <option  value="4" ><?php echo $this->lang->line('category_4'); ?></option>
+                                                    <option  value="5" ><?php echo $this->lang->line('category_5'); ?></option>
+                                                    <option  value="6" ><?php echo $this->lang->line('category_6'); ?></option>
+                                                    <option  value="7" ><?php echo $this->lang->line('category_7'); ?></option>
+                                                    <option  value="8" ><?php echo $this->lang->line('category_8'); ?></option>
+                                                    <option value="9" ><?php echo $this->lang->line('category_9'); ?></option>
+                                                    <option  value="10" ><?php echo $this->lang->line('category_10'); ?></option>
                                                     <option  value="all" ><?php echo $this->lang->line('category_all'); ?></option>
                                                 </select>
                                             </div>
@@ -743,8 +735,8 @@ $residentsFirstname = $this->db->query($query);
                                 <div class="col-8">
                                     <p class="personal_text"> <?php echo $this->lang->line('hello'); if ($firstName->num_rows() > 0)
                                         {
-                                            $row = $firstName->row();
-                                            echo $row->firstName;
+                                        $row = $firstName->row();
+                                        echo $row->firstName;
                                         } ?>!</p>
                                 </div>
                                 <div class="col-4">
@@ -753,7 +745,7 @@ $residentsFirstname = $this->db->query($query);
                             </div>
                             <div class="row" style="padding-top: 40px; vertical-align: bottom;">
                                 <div class="col-8" style="vertical-align: central;">
-                                   <p class="personal_text_2" style="padding-top: 4vh;"> <?php echo $this->lang->line('dash_chooselang'); ?> </p>
+                                    <p class="personal_text_2" style="padding-top: 4vh;"> <?php echo $this->lang->line('dash_chooselang'); ?> </p>
                                 </div>
                                 <div class="col-4" style="padding-top: 12px;">
                                     <select style="width:100%" onchange="javascript:window.location.href='<?php echo base_url(); ?>MultiLanguageSwitcher/switcher/'+this.value;">
@@ -762,27 +754,27 @@ $residentsFirstname = $this->db->query($query);
                                     </select>
                                 </div>
                             </div>
-                                <div class="row" style="padding-top: 40px;">
-                                    <div class="col-4">
-                                        <p class="personal_text_2" style="padding-top: 0.5vh;"> <?php echo $this->lang->line('dash_email'); ?></p>
-                                    </div>
-                                    <div class="col-8">
-                                        <p class="personal_text_2" style="text-align: end;"> <?php if ($email->num_rows() > 0)
-                                            {
-                                                $row = $email->row();
-                                                echo $row->email;
-                                            }  ?></p>
-                                    </div>
+                            <div class="row" style="padding-top: 40px;">
+                                <div class="col-4">
+                                    <p class="personal_text_2" style="padding-top: 0.5vh;"> <?php echo $this->lang->line('dash_email'); ?></p>
+                                </div>
+                                <div class="col-8">
+                                    <p class="personal_text_2" style="text-align: end;"> <?php if ($email->num_rows() > 0)
+                                        {
+                                        $row = $email->row();
+                                        echo $row->email;
+                                        }  ?></p>
+                                </div>
 
                             </div>
                         </div>
                     </div>
 
 
-                    </div>
                 </div>
             </div>
-<!--        </div>-->
+        </div>
+        <!--        </div>-->
         <div class="col-3" style="background-color:#c7de6e;padding:0;">
             <div style="height:5%;">
                 <span id="openfullscreen" class="fa fa-expand btn-fullscreen" onclick="openFullscreen()"></span>
@@ -792,8 +784,8 @@ $residentsFirstname = $this->db->query($query);
                 <h2 class="notes-title"><?php echo $this->lang->line('dash_notes'); ?></h2>
 
 
-                    <button class="btn btn-primary btn-lg" type="button" style="min-width:100%;background-color:#009489;border:none;" data-toggle="modal" data-target="#myModal"><?php echo $this->lang->line('dash_add'); ?></button>
-                    <!--Modal-->
+                <button class="btn btn-primary btn-lg" type="button" style="min-width:100%;background-color:#009489;border:none;" data-toggle="modal" data-target="#myModal"><?php echo $this->lang->line('dash_add'); ?></button>
+                <!--Modal-->
                 <form method="post" action="<?= site_url('Caregiver_controller/add_note') ?>">
                     <div id="myModal" class="modal fade" role="dialog">
                         <div class="modal-dialog">
@@ -833,23 +825,23 @@ $residentsFirstname = $this->db->query($query);
                         <div class="card-body">
                             <?php
                             foreach ($result->result_array() as $row) {
-                                if((time()+3600)-strtotime($row['timestamp']) < 86400){
-                                    ?><div class="note-box"><?php
-                                    ?><p class="note-heading"><b><?php
+                            if((time()+3600)-strtotime($row['timestamp']) < 86400){
+                            ?><div class="note-box"><?php
+                                ?><p class="note-heading"><b><?php
                                         echo $row['firstName'];
                                         ?></b><span class="note-timestamp"><?php
-                                    for($i = 0; $i < 11; $i++) {
+                                        for($i = 0; $i < 11; $i++) {
                                         $row['timestamp'][$i] = ' ';
-                                    }
-                                    $row['timestamp'][16] = ' ';
-                                    $row['timestamp'][17] = ' ';
-                                    $row['timestamp'][18] = ' ';
-                                    echo $row['timestamp'];
-                                    ?></span><?php
+                                        }
+                                        $row['timestamp'][16] = ' ';
+                                        $row['timestamp'][17] = ' ';
+                                        $row['timestamp'][18] = ' ';
+                                        echo $row['timestamp'];
+                                        ?></span><?php
                                     ?></p><?php
-                                    echo $row['noteText'];
-                                    ?></div><?php
-                                }
+                                echo $row['noteText'];
+                                ?></div><?php
+                            }
                             }
                             ?>
                         </div>
@@ -865,20 +857,20 @@ $residentsFirstname = $this->db->query($query);
                         <div class="card-body">
                             <?php
                             foreach ($result->result_array() as $row) {
-                                if((time()+3600)-strtotime($row['timestamp']) < 604800){
-                                    ?><div class="note-box"><?php
-                                    ?><p class="note-heading"><b><?php
+                            if((time()+3600)-strtotime($row['timestamp']) < 604800){
+                            ?><div class="note-box"><?php
+                                ?><p class="note-heading"><b><?php
                                         echo $row['firstName'];
                                         ?></b><span class="note-timestamp"><?php
-                                    for($i = 11; $i < 20; $i++) {
+                                        for($i = 11; $i < 20; $i++) {
                                         $row['timestamp'][$i] = ' ';
-                                    }
-                                    echo $row['timestamp'];
-                                    ?></span><?php
+                                        }
+                                        echo $row['timestamp'];
+                                        ?></span><?php
                                     ?></p><?php
-                                    echo $row['noteText'];
-                                    ?></div><?php
-                                }
+                                echo $row['noteText'];
+                                ?></div><?php
+                            }
                             }
                             ?>
                         </div>
@@ -894,16 +886,16 @@ $residentsFirstname = $this->db->query($query);
                         <div class="card-body">
                             <?php
                             foreach ($result->result_array() as $row) {
-                                ?><div class="note-box"><?php
+                            ?><div class="note-box"><?php
                                 ?><p class="note-heading"><b><?php
-                                    echo $row['firstName'];
-                                    ?></b><span class="note-timestamp"><?php
-                                for($i = 11; $i < 20; $i++) {
-                                    $row['timestamp'][$i] = ' ';
-                                }
-                                echo $row['timestamp'];
-                                ?></span><?php
-                                ?></p><?php
+                                        echo $row['firstName'];
+                                        ?></b><span class="note-timestamp"><?php
+                                        for($i = 11; $i < 20; $i++) {
+                                        $row['timestamp'][$i] = ' ';
+                                        }
+                                        echo $row['timestamp'];
+                                        ?></span><?php
+                                    ?></p><?php
                                 echo $row['noteText'];
                                 ?></div><?php
                             }
@@ -997,12 +989,80 @@ $residentsFirstname = $this->db->query($query);
     }
 
 </script>
+
+<?php
+function displayResidents($residents){
+
+    if (isset($_GET['filter'])) {
+        $input = $_GET['filter'];
+        /*$input = 'Andr'; */
+        if ($input == '') {
+            foreach ($residents->result_array() as $row) {
+                ?>
+                <button class="btn btn-primary btn-resident" id="<?php echo $row['idResidents'] ?>" type="button"
+                        onclick="loadResident(this.id)">
+                <div class="resident-button">
+                    <img class="profilePic" src="<?= base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
+                    <span class="resident-nameage"><div class="button-name"><?php
+                            echo $row['firstName'];
+                            echo " ";
+                            echo $row['name'];
+                            ?></div><div class="button-age"><?php
+                            echo $row['age'] ?></div>
+                        <?php
+                        ?></span></div></button><?php
+            }
+        } else {
+            foreach ($residents->result_array() as $row) {
+                $fullname = $row['firstName'];
+                $fullname .= " ".$row['name'];
+                if (strpos($fullname, $input) !== false) {
+                    ?>
+                <button class="btn btn-primary btn-resident" id="<?php echo $row['idResidents'] ?>" type="button"
+                        onclick="loadResident(this.id)">
+                    <div class="resident-button">
+                        <img class="profilePic" src="<?= base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
+                        <span class="resident-nameage"><div class="button-name"><?php
+                                echo $row['firstName'];
+                                echo " ";
+                                echo $row['name'];
+                                ?></div><div class="button-age"><?php
+                                echo $row['age'] ?></div>
+                            <?php
+                            ?></span></div></button><?php
+                }
+
+            }
+        }
+    }
+
+    else {
+        foreach ($residents->result_array() as $row) {
+        ?>
+        <button class="btn btn-primary btn-resident" id="<?php echo $row['idResidents'] ?>" type="button"
+                onclick="loadResident(this.id)">
+            <div class="resident-button">
+                <img class="profilePic" src="<?= base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
+                <span class="resident-nameage"><div class="button-name"><?php
+                        echo $row['firstName'];
+                        echo " ";
+                        echo $row['name'];
+                        ?></div><div class="button-age"><?php
+                        echo $row['age'] ?></div>
+                    <?php
+                    ?></span></div></button><?php
+        }
+
+    }
+}
+?>
+
 <script>
     var face_changers = document.querySelectorAll('.btnFlip'),
-    f1_container = document.getElementById('register-card');
+        f1_container = document.getElementById('register-card');
 
     for(var i = 0; i < face_changers.length; i++){
-    face_changers[i].addEventListener('click', function(e) {
+        face_changers[i].addEventListener('click', function(e) {
             f1_container.classList.toggle('hover_effect');
             e.preventDefault();
         }, false)
@@ -1152,7 +1212,7 @@ $residentsFirstname = $this->db->query($query);
             //console.log(date);
             if (data5[index]['key'] === date)
             {
-               bothData = data5[index]['values'];
+                bothData = data5[index]['values'];
                 //console.log(data5[index]['values']);
             }
         }
@@ -1431,7 +1491,7 @@ $residentsFirstname = $this->db->query($query);
 
     var xChart = d3.scaleBand()
         .range([0, width]);
-        //.nice();
+    //.nice();
 
     var yChart;
     yChart = d3.scaleLinear()
