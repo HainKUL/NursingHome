@@ -903,6 +903,13 @@ $residentsFirstname = $this->db->query($query);
                         </div>
                     </div>
                 </div>
+                <div style="margin-top: 5%">
+                    <a href="<?=base_url()?>index.php/Dashboard/logout" style="padding:20% 10%;">
+                        <button class="btn btn-primary btn-lg" type="button" style="width:80%;background-color:#009489;;border:none;">
+                            <?php echo $this->lang->line('dash_logout'); ?>
+                        </button>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
