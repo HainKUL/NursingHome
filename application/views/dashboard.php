@@ -242,7 +242,7 @@ $residentsFirstname = $this->db->query($query);
                 <div class="btn-group-vertical btn-group-lg" role="group" style="width:100%;">
                     <button class="btn btn-primary btn-resident" id="settings1" type="button" onclick="settingsButton(this.id)">
                         <div class="resident-button">
-                            <img class="profilePic" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
+                            <img class="profilePic" src="<?=base_url() ?>assets/photos/food.png" alt="Avatar">
                             <span style="font-weight:100">
                                 FOOD
                             </span>
@@ -250,7 +250,7 @@ $residentsFirstname = $this->db->query($query);
                     </button>
                     <button class="btn btn-primary btn-resident" id="settings2" type="button" onclick="settingsButton(this.id)">
                         <div class="resident-button">
-                            <img class="profilePic" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
+                            <img class="profilePic" src="<?=base_url() ?>assets/photos/activity.jpeg" alt="Avatar">
                             <span style="font-weight:100">
                                 ACTIVITIES
                             </span>
@@ -273,7 +273,7 @@ $residentsFirstname = $this->db->query($query);
                 <div class="btn-group-vertical btn-group-lg" role="group" style="width:100%;">
                     <button class="btn btn-primary btn-resident " id="settings1" type="button" onclick="settingsButton(this.id)">
                         <div class="resident-button">
-                            <img class="profilePic" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
+                            <img class="profilePic" src="<?=base_url() ?>assets/photos/setting.png" alt="Avatar">
                             <span style="font-weight:100">
                                 <?php echo $this->lang->line('personal_settings');?>
                             </span>
@@ -289,7 +289,7 @@ $residentsFirstname = $this->db->query($query);
                     </button>-->
                     <button class="btn btn-primary btn-resident  btn-info btn-lg" id="settings2" type="button" onclick="settingsButton(this.id);"data-toggle="modal" data-target="#myModal2">
                         <div class="resident-button">
-                            <img class="profilePic" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
+                            <img class="profilePic" src="<?=base_url() ?>assets/photos/add.png" alt="Avatar">
                             <span style="font-weight:100">
                                 <?php echo $this->lang->line('register_button');?>
                             </span>
@@ -643,7 +643,7 @@ $residentsFirstname = $this->db->query($query);
                             <div class="card-body">
                                 <div class="card-top">
                                     <div class="card-head">
-                                        <img class="card-picture" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
+                                        <img class="card-picture" src="<?=base_url() ?>assets/photos/elder1.jpg" alt="Avatar">
                                         <span class="card-name" id="residentName"> <?php echo $theFirstName." ".$name; ?>
                                         </span>
 
@@ -740,7 +740,7 @@ $residentsFirstname = $this->db->query($query);
                                         } ?>!</p>
                                 </div>
                                 <div class="col-4">
-                                    <img class="profilePic" style="width:130px;height:130px;" src="<?=base_url() ?>assets/photos/profilePicTest_caregiver.jpg" alt="Profielfoto">
+                                    <img class="profilePic" style="width:130px;height:130px;" src="<?=base_url() ?>assets/photos/Caregiver-center.jpg" alt="Profielfoto">
                                 </div>
                             </div>
                             <div class="row" style="padding-top: 40px; vertical-align: bottom;">

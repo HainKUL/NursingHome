@@ -84,8 +84,9 @@ class Homepage_controller extends CI_Controller
             $query = "SELECT pinHash, idResidents,preferences name FROM Residents WHERE name = $name AND firstname = $firstname LIMIT 1;";
             $result = $this->db->query($query);
             $_SESSION['id']=$result->result()[0]->idResidents;
-            $lang = $result->result()[0]->preferences;
-            echo $lang;
+
+
+
 
             if($result->num_rows() === 0)   {
                 $this->session->set_flashdata('flash_data', 'name or password incorrect!');
@@ -97,10 +98,11 @@ class Homepage_controller extends CI_Controller
                 $this->session->set_userdata($data);
                 $_SESSION["resident"]="yes";
                 $_SESSION['lang']=$lang;
-                if($lang == 'Engels') $lang='english';
+                if($lang == 'English') $lang="english";
                 echo "<script>window.location.href='".base_url()."MultiLanguageSwitcher/switcher/'".$lang.";</script>";
                 redirect('Homepage_controller/residentHome/'.$_SESSION['id']); // Has something to do with not being able to remove index.php in url
-            } else {
+            }
+            else {
                 $succes = "Login failed: wrong password";
                 echo "<script> alert('".$succes."'); window.location.href='".base_url()."index.php/Face_Login_controller/face_login'; </script>";
             }
@@ -117,7 +119,7 @@ class Homepage_controller extends CI_Controller
         $this->residentHome($userId);
         //$lang=$_SESSION['lang'];
         $lang = 'Dutch'; //TODO remove this circumvent (and fix the big it avoids)
-        if($lang == 'Engels') $lang='english';
+        if($lang == 'English') $lang='english';
         echo "<script>window.location.href='".base_url()."index.php/MultiLanguageSwitcher/switcher/'".$lang.";</script>";
 
 
