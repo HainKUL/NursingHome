@@ -1002,7 +1002,7 @@ function displayResidents($residents){
                 <button class="btn btn-primary btn-resident" id="<?php echo $row['idResidents'] ?>" type="button"
                         onclick="loadResident(this.id)">
                 <div class="resident-button">
-                    <img class="profilePic" src="<?= base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
+                    <img class="profilePic" src="<?= base_url() ?>assets/photos/elder1.jpg" alt="Avatar">
                     <span class="resident-nameage"><div class="button-name"><?php
                             echo $row['firstName'];
                             echo " ";
@@ -1021,7 +1021,7 @@ function displayResidents($residents){
                 <button class="btn btn-primary btn-resident" id="<?php echo $row['idResidents'] ?>" type="button"
                         onclick="loadResident(this.id)">
                     <div class="resident-button">
-                        <img class="profilePic" src="<?= base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
+                        <img class="profilePic" src="<?= base_url() ?>assets/photos/elder2.jpg" alt="Avatar">
                         <span class="resident-nameage"><div class="button-name"><?php
                                 echo $row['firstName'];
                                 echo " ";
@@ -1042,7 +1042,7 @@ function displayResidents($residents){
         <button class="btn btn-primary btn-resident" id="<?php echo $row['idResidents'] ?>" type="button"
                 onclick="loadResident(this.id)">
             <div class="resident-button">
-                <img class="profilePic" src="<?= base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
+                <img class="profilePic" src="<?= base_url() ?>assets/photos/id.png" alt="Avatar">
                 <span class="resident-nameage"><div class="button-name"><?php
                         echo $row['firstName'];
                         echo " ";
