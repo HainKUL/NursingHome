@@ -866,12 +866,12 @@ $residentsFirstname = $this->db->query($query);
     amountOfTabs = 0;
     function loadDiv(id){
         if(id > amountOfTabs) amountOfTabs = id;
-        for(var i = 0; i < amountOfTabs; i++)   {
+        for(var i = 1; i < amountOfTabs + 1; i++)   {
             if(i == id) {
-                var element = document.getElementById("div".concat(id));
+                var element = document.getElementById("div".concat(i.toString()));
                 element.classList.remove("hiddendiv");
             }
-            else document.getElementById("div".concat(id)).classList.add("hiddendiv");
+            else document.getElementById("div".concat(i.toString())).classList.add("hiddendiv");
         }
     }
 </script>
