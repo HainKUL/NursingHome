@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by IntelliJ IDEA.
- * User: Haien
- * Date: 11/20/2018
- * Time: 15:53
- */
 
 class Face_Login_controller extends CI_Controller{
     public function __construct(){
@@ -28,10 +22,7 @@ class Face_Login_controller extends CI_Controller{
         $data['welcome'] = 'Hello, Welcome 😊';
         $data['start'] = 'Start Camera';
         $data['capture'] = 'Take Picture';
-//        $data['registration'] = 'Registration';
         $data['login'] = 'Login';
         $this->parser->parse('face_login',$data);
     }
-
-
 }
