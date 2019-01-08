@@ -150,11 +150,7 @@ body{
     padding-top: 5vh;
     padding-bottom:5vh;
     box-shadow: 0px 0px 40px 10px rgba(0,0,0,0.1);
-    background: #ebf1fa; /* Old browsers */
-    background: -moz-linear-gradient(top,  #ebf1fa 40%,#ebf1fa 45%,#ffffff 50%,#ffffff 55%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(top, #ebf1fa 40%,#ebf1fa 45%,#ffffff 50%,#ffffff 55%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(to bottom,  #ebf1fa 35%,#ffffff 60%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebf1fa', endColorstr='#ffffff',GradientType=0 ); /* IE6-9 */
+    background: #ffffff;
 }
 
 .button-icon{
