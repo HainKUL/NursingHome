@@ -33,3 +33,5 @@ $lang['register_firstname'] = 'Voornaam';
 $lang['register_lastname'] = 'Achternaam';
 $lang['register_birthday'] = 'Verjaardag';
 $lang['register_id'] = 'ID';
+
+$lang['welcome'] = 'Welkom';
