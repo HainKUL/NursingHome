@@ -29,11 +29,72 @@ class Dashboard extends CI_Controller
         $data['data_each1'] = $data_each1;
         $data_one = $this->Bar_chart_model->get_one();
         $data['one'] =   $data_one;
-        $data1 = $this->Our_chart_model->get_avg();
+        $data_avg = $this->Bar_chart_model->get_average();
+        $data['data_avg'] =  $data_avg;
+        $data2 = $this->Our_chart_model->get_avg();
+        $data['data2'] = $data2;
+
+        $sql1 = "SELECT category,catergoryID,submission,timestampStart,AVG(answer) AS answer FROM ((Questions
+               INNER JOIN Responses
+               ON Questions.idQuestions=Responses.questionNum)
+               INNER JOIN Submissions
+               ON Submissions.idSubmissions=Responses.submission)
+               WHERE completed = '1' AND idResident = '$residentID' AND submission IN (
+               #SELECT max(idSubmissions) as submission
+               SELECT idSubmissions as submission
+               FROM Submissions
+               WHERE completed = '1' AND idResident = '$residentID' )
+               GROUP BY  category,catergoryID,timestampStart,submission
+               ORDER BY submission DESC,catergoryID";
+        $query = $this->db->query($sql1);
+
+        foreach ($query->result_array() as $row)
+        {
+            $data['category'] = $row['category'];
+            if((time()+3600)-strtotime($row['timestampStart']) < 86400)
+            {
+                $data['timestampStart']= substr($row['timestampStart'],11,5);
+            }
+            else
+            {
+                $data['timestampStart']= substr($row['timestampStart'],5,11);
+            }
+            $data['answer'] = $row['answer'];
+            //echo(json_encode($query));
+            $data4[]=$data;
+            //echo(json_encode($data));
+        }
+
+        if (empty($data4))
+        {
+            $data1 = null;
+        }
+        else{
+
+                //change_array_key( $rawdata, $old_key, $new_key)
+
+                foreach ($data4 as $value)
+                {
+                    $time= $value['timestampStart'];
+                    $x[$time][]= $value;
+                }
+                $bothData= $x;
+
+                foreach ($bothData as $key =>$v)
+                {
+                    $data11["key"] = $key;
+                    $data11["values"] = $v;
+                    $data22[]=$data11;
+                    unset($data11);
+                }
+                $sliced_array = array_slice($data22, 0, 3);
+                $data1 = $sliced_array;
+            }
+
         $data['data1'] = $data1;
 
         /*resident info*/
-        $sql = "SELECT * FROM Residents WHERE idResidents = $residentID LIMIT 1";
+        $sql = "SELECT * FROM Residents WHERE idResidents = '$residentID ' LIMIT 1";
         $result = $this->db->query($sql);
         $data['theFirstName'] =    $result->result_array()[0]["firstName"];
         $data['name'] =         $result->result_array()[0]["name"];
@@ -43,6 +104,8 @@ class Dashboard extends CI_Controller
 
         $this->load->view('dashboard', $data);
     }
+
+
     public function dashboard_reg(){
         $errors = array();
         if ($_POST) {

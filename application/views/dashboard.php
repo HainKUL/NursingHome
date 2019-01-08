@@ -223,14 +223,14 @@ $residentsFirstname = $this->db->query($query);
                         ?><button class="btn btn-primary btn-resident" id="<?php echo $row['idResidents']?>" type="button" onclick="loadResident(this.id)">
                         <div class="resident-button">
                             <img class="profilePic" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
-                        <span class="resident-nameage"><div class="button-name"><?php
-                        echo $row['firstName'];
-                        echo " ";
-                        echo $row['name'];
-                        ?></div><div class="button-age"><?php
-                        echo $row['age'] ?></div>
-                            <?php
-                            ?></span></div></button><?php
+                            <span class="resident-nameage"><div class="button-name"><?php
+                                    echo $row['firstName'];
+                                    echo " ";
+                                    echo $row['name'];
+                                    ?></div><div class="button-age"><?php
+                                    echo $row['age'] ?></div>
+                                <?php
+                                ?></span></div></button><?php
                     }
                     ?>
 
@@ -670,10 +670,18 @@ $residentsFirstname = $this->db->query($query);
                                 <script src="<?=base_url() ?>assets/js/radarChart.js"></script>
                                 <script type="text/javascript">
                                     var data = <?php echo json_encode($data1); ?>;
+                                    var data2 = <?php echo json_encode($data2); ?>;
                                 </script>
 
                                 <script>
-                                    RadarChart(".radarChart", data);
+                                    if(data !== null && data !== '')
+                                    {
+                                        RadarChart(".radarChart", data);
+                                    }
+                                    else
+                                    {
+                                        RadarChart1(".radarChart", data2);
+                                    }
                                 </script>
                             </div>
                         </div>
