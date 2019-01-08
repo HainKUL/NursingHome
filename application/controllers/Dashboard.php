@@ -25,12 +25,12 @@ class Dashboard extends CI_Controller
 
     public function dashboard($residentID = 26) {    //TODO remove this default
         /*graphs*/
-        $data_each1 = $this->Bar_chart_model->get_each();
-        $data['data_each1'] = $data_each1;
-        $data_one = $this->Bar_chart_model->get_one();
-        $data['one'] =   $data_one;
-        $data_avg = $this->Bar_chart_model->get_average();
-        $data['data_avg'] =  $data_avg;
+        //$data_each1 = $this->Bar_chart_model->get_each();
+        //$data['data_each1'] = $data_each1;
+        //$data_one = $this->Bar_chart_model->get_one();
+        //$data['one'] =   $data_one;
+        //$data_avg = $this->Bar_chart_model->get_average();
+        //$data['data_avg'] =  $data_avg;
         $data2 = $this->Our_chart_model->get_avg();
         $data['data2'] = $data2;
 
@@ -92,6 +92,64 @@ class Dashboard extends CI_Controller
             }
 
         $data['data1'] = $data1;
+
+
+        $where = "idResident ='$residentID' AND completed = '1'";
+        $this->db->select('*,idResident');
+        $this->db->from('Questions,Submissions');
+        $this->db->where($where);
+        $this->db->where('Submissions.idSubmissions=Responses.submission');
+        $this->db->join('Responses', 'Questions.idQuestions=Responses.questionNum');
+        $query = $this->db->get();
+
+        foreach ($query->result_array() as $row) {
+            $data['catergoryID'] = $row['catergoryID'];
+            $data['question'] = $row['question'];
+            //$data['questionNum'] = $row['questionNum'];
+            $data['answer'] = $row['answer'];
+            $data['category'] = $row['category'];
+            //$data['timestampStart']= substr($row['timestampStart'],0,16);
+            $data['timestampStart'] = $row['timestampStart'];
+            //echo json_encode($bothData);
+            $rawdata[]=$data;
+            //print_r(json_encode($bothData));
+        }
+
+
+        if (empty($rawdata))
+        {
+            $data_one = null;
+            $data_each1=null;
+        }
+        else{
+            foreach ($rawdata as $value)
+            {
+                $time= $value['timestampStart'];
+                $x[$time][]= $value;
+            }
+            $bothData= $x;
+
+            $sliced_array = array_slice($bothData, 0, 1);
+
+            foreach($sliced_array as $v)
+            {
+                $target = $v;
+            }
+
+            $data_one = $target;
+            $data['one'] =   $data_one;
+
+            foreach ($bothData as $key =>$v)
+            {
+                $data11["key"] = $key;
+                $data11["values"] = $v;
+                $data22[]=$data11;
+                unset($data11);
+            }
+
+            $data_each1=$data22;
+            $data['data_each1'] = $data_each1;
+        }
 
         /*resident info*/
         $sql = "SELECT * FROM Residents WHERE idResidents = '$residentID ' LIMIT 1";

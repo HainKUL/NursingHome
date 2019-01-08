@@ -96,7 +96,7 @@ class Bar_chart_model extends CI_Model
     }
 
 
-    public function get_average()
+   /* public function get_average()
     {
         $query=$this->db->
         query("SELECT category,catergoryID,submission,timestampStart,AVG(answer) AS answer FROM ((Questions
@@ -140,7 +140,7 @@ class Bar_chart_model extends CI_Model
             unset($data11);
         }
         return $bothData;
-    }
+    }*/
 
     function __destruct() {
         $this->db->close();
