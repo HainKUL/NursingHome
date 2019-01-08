@@ -13,32 +13,34 @@ class Questionnaire_controller extends CI_Controller{
 
 	public function questionnaire_start($userID){
         $_SESSION["user_id"] = $userID;
-	    //find submission to resume
-        $sql = "SELECT * FROM Submissions WHERE idResident = $userID AND completed <> 1 LIMIT 1";
+	    //make/find submission to start/resume
+        $sql = "SELECT idSubmissions FROM Submissions WHERE idResident = $userID AND completed <> 1 LIMIT 1";
         $result = $this->db->query($sql);
         if($result->num_rows() === 0) { // no submission to resume, start new one
             $query = "INSERT INTO Submissions (idResident, completed) VALUES(".$this->db->escape($userID).", 0)";
             $this->db->query($query);
             $idSubmission = $this->db->insert_id();
-        } else
-        $idSubmission = $this->db->query($sql)->result_array()[0]["idSubmissions"]; // get id of submission to resume
+        } else {
+            $rows = $this->db->query($sql)->result_array();
+            $idSubmission = $rows[0]["idSubmissions"]; // get id of submission to resume
+        }
 
         //update session and launch questionnaire
         $_SESSION["idSubmission"] = $idSubmission;
 
     //TODO extract method and deduplicate
         $sql =
-            "SELECT * FROM Questions WHERE NOT EXISTS (SELECT * FROM Responses WHERE Questions.idQuestions = Responses.questionNum AND submission = '$idSubmission');";
+            "SELECT idQuestions FROM Questions WHERE NOT EXISTS "
+           ."(SELECT idResponses FROM Responses WHERE Questions.idQuestions = Responses.questionNum AND submission = '$idSubmission');";
         $result = $this->db->query($sql);
         if($result->num_rows() === 0) {
+            $nextQuestion = 0;
             $this->Question_model->set_submission_complete($idSubmission);
             redirect('questionnaire_controller/done');
         } else {
-            $nextQuestion = $result->result_array()[0]["idQuestions"];
-            //TODO FIX PREVIOUS BUTTON (return)
-            //TODO catch refresh (don't go to next question on F5)
+            $rows = $result->result_array();
+            $nextQuestion = $rows[0]["idQuestions"];
         }
-
         $this->question($nextQuestion);
 	}
 
@@ -70,10 +72,11 @@ class Questionnaire_controller extends CI_Controller{
         $idSubmission = $_SESSION["idSubmission"];
         $prevAnswer = -1;
         $sql =
-            "SELECT * FROM Responses WHERE Responses.questionNum = '$question' AND submission = '$idSubmission';";
+            "SELECT answer FROM Responses WHERE Responses.questionNum = '$question' AND submission = '$idSubmission';";
         $result = $this->db->query($sql);
         if($result->num_rows() != 0) {
-            $prevAnswer = $this->db->query($sql)->result_array()[0]["answer"]; // get id of submission to resume
+            $rows = $this->db->query($sql)->result_array();
+            $prevAnswer = $rows[0]["answer"]; // get id of submission to resume
         }
         $data['highlight_answer'] = $prevAnswer;
 
@@ -81,13 +84,13 @@ class Questionnaire_controller extends CI_Controller{
         $this->parser->parse('questionnaire',$data);//variables sent to html content
 	}
 
+
 	public function update()
     {
         $idSubmission = $_SESSION["idSubmission"];
         $question = $_SESSION["Current_Question"];
         //$userID = $_SESSION["idUser"];
         $userID = 1; //TODO remove override once session is fixed
-
 
         //send confimation to db;
         $submit = 1;
@@ -98,50 +101,46 @@ class Questionnaire_controller extends CI_Controller{
         else if(isset($_GET['always']))     $this->Question_model->send_confirmation($question, 5, $idSubmission);
         else if(isset($_GET['vorige_vraag']))   {$this->question($question - 1); return;}
         else $submit = 0;
-   //TODO extract method and deduplicate
+        //TODO extract method and deduplicate
         $sql =
-            "SELECT * FROM Questions WHERE NOT EXISTS (SELECT * FROM Responses WHERE Questions.idQuestions = Responses.questionNum AND submission = '$idSubmission');";
+            "SELECT idQuestions FROM Questions WHERE NOT EXISTS "
+            ."(SELECT idResponses FROM Responses WHERE Questions.idQuestions = Responses.questionNum AND submission = '$idSubmission');";
         $result = $this->db->query($sql);
         if($result->num_rows() === 0) {
             $this->Question_model->set_submission_complete($idSubmission);
             redirect('questionnaire_controller/done');
         } else {
             $nextQuestion = $result->result_array()[0]["idQuestions"];
-            //TODO FIX PREVIOUS BUTTON (return)
-            //TODO catch refresh (don't go to next question on F5)
-            //reload page
             if($submit == 1) $this->question($nextQuestion);
-            //else $this->question($nextQuestion - 2);
         }
     }
 
 
     public function forgot(){
-        $data['page_title'] = 'Wachtwoord Vergeten';
-        $data['head_message'] = 'Wachtwoord vergeten?';
+        $data['page_title']     = 'Wachtwoord Vergeten';
+        $data['head_message']   = 'Wachtwoord vergeten?';
         $data['first_sentence'] = "Geen probleem! Geef uw e-mail adres in en er zal u een nieuw wachtwoord opgestuurd worden";
-        $data['button_text'] = "<button id='button'>Verstuur e-mail!</button>";
+        $data['button_text']    = "<button id='button'>Verstuur e-mail!</button>";
         $this->parser->parse('password_forgot', $data);
     }
 
-
     public function done(){
-        $data['page_title'] = 'Klaar!';
-        $data['head_message'] = 'Goed gedaan! 😊';
+        $data['page_title']     = 'Klaar!';
+        $data['head_message']   = 'Goed gedaan! 😊';
         $data['first_sentence'] = "U heeft al de vragen ingevuld!";
-        $data['second_sentence'] = "Klik op de onderstaande knop om terug te gaan naar het beginscherm";
+        $data['second_sentence']= "Klik op de onderstaande knop om terug te gaan naar het beginscherm";
         $data['button_text'] = "Klik hier!";
         $this->parser->parse('done_with_questionnaire', $data);
     }
 
     public function menu(){
         $data['page_title'] = 'Menu';
-        $data['first'] = "Vragenlijst invullen";
-        $data['second'] = "Vragen van verzorgsters";
-        $data['third'] = "Nieuws van vandaag";
-        $data['fourth'] = "Sportnieuws";
-        $data['fifth'] = "Het weer";
-        $data['logout'] = "Afmelden";
+        $data['first']      = "Vragenlijst invullen";
+        $data['second']     = "Vragen van verzorgsters";
+        $data['third']      = "Nieuws van vandaag";
+        $data['fourth']     = "Sportnieuws";
+        $data['fifth']      = "Het weer";
+        $data['logout']     = "Afmelden";
         $this->parser->parse('olderadultmenu', $data);
     }
 }

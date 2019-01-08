@@ -25,6 +25,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 
+
+/* change base URL automatically based on host OS, and localhost vs online */
 $local_list = ['127.0.0.1', '::1'];
 if (in_array($_SERVER['REMOTE_ADDR'], $local_list)) {
     if (!(stristr($_SERVER['HTTP_USER_AGENT'], 'Mac') === FALSE)) $config['base_url'] = 'http://localhost:8888/a18ux04/';

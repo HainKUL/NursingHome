@@ -1,11 +1,4 @@
-
 <?php
-/**
- * Created by PhpStorm.
- * User: Weihao
- * Date: 11/26/18
- * Time: 19:20
- */
 
 class Bar_chart_model extends CI_Model
 {
