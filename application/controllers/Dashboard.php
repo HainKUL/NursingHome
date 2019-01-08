@@ -25,8 +25,8 @@ class Dashboard extends CI_Controller
 
     public function dashboard($residentID = 26) {    //TODO remove this default
         /*graphs*/
-        //$data_each1 = $this->Bar_chart_model->get_each();
-        //$data['data_each1'] = $data_each1;
+        $data_each1 = $this->Bar_chart_model->get_each();
+        $data['data_each1'] = $data_each1;
         //$data_one = $this->Bar_chart_model->get_one();
         //$data['one'] =   $data_one;
         //$data_avg = $this->Bar_chart_model->get_average();
@@ -147,8 +147,9 @@ class Dashboard extends CI_Controller
                 unset($data11);
             }
 
-            $data_each1=$data22;
+            //$data_each1=$data22;
             $data['data_each1'] = $data_each1;
+
         }
 
         /*resident info*/

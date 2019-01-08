@@ -702,16 +702,23 @@ $residentsFirstname = $this->db->query($query);
                                             <div class = "date" style="float:left;">
                                                 <select onchange="change(this.value,'all');"  name = "date" id = "date" class="input">
                                                 <option disabled selected><?php echo $this->lang->line('dash_select_date'); ?></option>
-                                                <?php
-                                                foreach($data_each1 as $row)
-                                                {
-                                                    echo '<option value="'.$row['key'].'">'.$row['key'].'</option>';
-                                                }
-                                                ?>
+
+                                                            <?php
+                                                                    if(isset($one))
+                                                                    {
+                                                                        foreach($data_each1 as $row)
+                                                                        {
+                                                                            echo '<option value="'.$row['key'].'">'.$row['key'].'</option>';
+                                                                        }
+                                                                    }
+
+                                                            ?>
+
+
                                             </select>
                                             </div>
                                             <script type="text/javascript">
-                                                var bothData = <?php echo json_encode($one); ?>;;
+                                                var bothData = <?php echo json_encode($one); ?>;
                                             </script>
 
                                             <div class = "category"; style="float:right;">
