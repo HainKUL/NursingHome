@@ -443,10 +443,18 @@ $residentsFirstname = $this->db->query($query);
                                 <div class="radarChart"></div>
                                 <script src="<?=base_url() ?>assets/js/radarChart.js"></script>
                                 <script type="text/javascript">
-                                    var data = <?php echo json_encode($data_graph_avg); ?>;
+                                    var data = <?php echo json_encode($data1); ?>;
+                                    var data2 = <?php echo json_encode($data2); ?>;
                                 </script>
                                 <script>
-                                    RadarChart(".radarChart", data);
+                                    if(data !== null && data !== '')
+                                    {
+                                        RadarChart(".radarChart", data);
+                                    }
+                                    else
+                                    {
+                                        RadarChart1(".radarChart", data2);
+                                    }
                                 </script>
                             </div>
                         </div>
@@ -466,11 +474,16 @@ $residentsFirstname = $this->db->query($query);
                                                 <select onchange="change(this.value,'all');"  name = "date" id = "date" class="input">
                                                     <option disabled selected><?php echo $this->lang->line('dash_select_date'); ?></option>
                                                     <?php
-                                                    foreach($data_graph_each as $row)
+                                                    if(isset($one))
                                                     {
-                                                    echo '<option value="'.$row['key'].'">'.$row['key'].'</option>';
+                                                        foreach($data_each1 as $row)
+                                                        {
+                                                            echo '<option value="'.$row['key'].'">'.$row['key'].'</option>';
+                                                        }
                                                     }
+
                                                     ?>
+
                                                 </select>
                                             </div>
                                             <script type="text/javascript">
@@ -925,7 +938,7 @@ $residentsFirstname = $this->db->query($query);
 
     //function for toggling between data
     function change(date,category) {
-        var data5 = <?php echo json_encode($data_graph_each); ?>;
+        var data5 = <?php echo json_encode($data_each1); ?>;
 
         for (var index = 0; index < data5.length; ++index) {
             if (data5[index]['key'] === date) {

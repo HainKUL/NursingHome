@@ -16,26 +16,142 @@ class Dashboard extends CI_Controller
 
     public function dashboard($residentID = 26)  //TODO remove this default
     {
-        /* graphs */
-        $data_graph_each = $this->Bar_chart_model->get_each();
-        $data_graph_one  = $this->Bar_chart_model->get_one();
-        $data_graph_avg  = $this->Our_chart_model->get_avg();
+        /*graphs*/
+        $data_each1 = $this->Bar_chart_model->get_each();
+        $data['data_each1'] = $data_each1;
+        //$data_one = $this->Bar_chart_model->get_one();
+        //$data['one'] =   $data_one;
+        //$data_avg = $this->Bar_chart_model->get_average();
+        //$data['data_avg'] =  $data_avg;
+        $data2 = $this->Our_chart_model->get_avg();
+        $data['data2'] = $data2;
 
-        /* resident info */
-        $sql = "SELECT firstName, name, dateOfBirth, roomNumber, bedNumber FROM Residents "
-                    ."WHERE idResidents = $residentID LIMIT 1";
+        $sql1 = "SELECT category,catergoryID,submission,timestampStart,AVG(answer) AS answer FROM ((Questions
+               INNER JOIN Responses
+               ON Questions.idQuestions=Responses.questionNum)
+               INNER JOIN Submissions
+               ON Submissions.idSubmissions=Responses.submission)
+               WHERE completed = '1' AND idResident = '$residentID' AND submission IN (
+               #SELECT max(idSubmissions) as submission
+               SELECT idSubmissions as submission
+               FROM Submissions
+               WHERE completed = '1' AND idResident = '$residentID' )
+               GROUP BY  category,catergoryID,timestampStart,submission
+               ORDER BY submission DESC,catergoryID";
+        $query = $this->db->query($sql1);
+
+        foreach ($query->result_array() as $row)
+        {
+            $data['category'] = $row['category'];
+            if((time()+3600)-strtotime($row['timestampStart']) < 86400)
+            {
+                $data['timestampStart']= substr($row['timestampStart'],11,5);
+            }
+            else
+            {
+                $data['timestampStart']= substr($row['timestampStart'],5,11);
+            }
+            $data['answer'] = $row['answer'];
+            //echo(json_encode($query));
+            $data4[]=$data;
+            //echo(json_encode($data));
+        }
+
+        if (empty($data4))
+        {
+            $data1 = null;
+        }
+        else{
+
+            //change_array_key( $rawdata, $old_key, $new_key)
+
+            foreach ($data4 as $value)
+            {
+                $time= $value['timestampStart'];
+                $x[$time][]= $value;
+            }
+            $bothData= $x;
+
+            foreach ($bothData as $key =>$v)
+            {
+                $data11["key"] = $key;
+                $data11["values"] = $v;
+                $data22[]=$data11;
+                unset($data11);
+            }
+            $sliced_array = array_slice($data22, 0, 3);
+            $data1 = $sliced_array;
+        }
+
+        $data['data1'] = $data1;
+
+
+        $where = "idResident ='$residentID' AND completed = '1'";
+        $this->db->select('*,idResident');
+        $this->db->from('Questions,Submissions');
+        $this->db->where($where);
+        $this->db->where('Submissions.idSubmissions=Responses.submission');
+        $this->db->join('Responses', 'Questions.idQuestions=Responses.questionNum');
+        $query = $this->db->get();
+
+        foreach ($query->result_array() as $row) {
+            $data['catergoryID'] = $row['catergoryID'];
+            $data['question'] = $row['question'];
+            //$data['questionNum'] = $row['questionNum'];
+            $data['answer'] = $row['answer'];
+            $data['category'] = $row['category'];
+            //$data['timestampStart']= substr($row['timestampStart'],0,16);
+            $data['timestampStart'] = $row['timestampStart'];
+            //echo json_encode($bothData);
+            $rawdata[]=$data;
+            //print_r(json_encode($bothData));
+        }
+
+
+        if (empty($rawdata))
+        {
+            $data_one = null;
+            $data_each1=null;
+        }
+        else{
+            foreach ($rawdata as $value)
+            {
+                $time= $value['timestampStart'];
+                $x[$time][]= $value;
+            }
+            $bothData= $x;
+
+            $sliced_array = array_slice($bothData, 0, 1);
+
+            foreach($sliced_array as $v)
+            {
+                $target = $v;
+            }
+
+            $data_one = $target;
+            $data['one'] =   $data_one;
+
+            foreach ($bothData as $key =>$v)
+            {
+                $data11["key"] = $key;
+                $data11["values"] = $v;
+                $data22[]=$data11;
+                unset($data11);
+            }
+
+            //$data_each1=$data22;
+            $data['data_each1'] = $data_each1;
+
+        }
+
+        /*resident info*/
+        $sql = "SELECT * FROM Residents WHERE idResidents = '$residentID ' LIMIT 1";
         $result = $this->db->query($sql);
-
-        /* load the view */
-        $rows = $result->result_array();
-        $data['theFirstName']   = $rows[0]["firstName"];
-        $data['name']           = $rows[0]["name"];
-        $data['dateOfBirth']    = $rows[0]["dateOfBirth"];
-        $data['roomNumber']     = $rows[0]["roomNumber"];
-        $data['bedNumber']      = $rows[0]["bedNumber"];
-        $data['data_graph_each']= $data_graph_each;
-        $data['one']            = $data_graph_one;
-        $data['data_graph_avg'] = $data_graph_avg;
+        $data['theFirstName'] =    $result->result_array()[0]["firstName"];
+        $data['name'] =         $result->result_array()[0]["name"];
+        $data['dateOfBirth'] =  $result->result_array()[0]["dateOfBirth"];
+        $data['roomNumber'] =   $result->result_array()[0]["roomNumber"];
+        $data['bedNumber'] =    $result->result_array()[0]["bedNumber"];
 
         $this->load->view('dashboard', $data);
     }
