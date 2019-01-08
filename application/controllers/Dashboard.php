@@ -145,13 +145,14 @@ class Dashboard extends CI_Controller
         }
 
         /*resident info*/
-        $sql = "SELECT * FROM Residents WHERE idResidents = '$residentID ' LIMIT 1";
+        $sql = "SELECT firstName, name, dateOfBirth, roomNumber, bedNumber FROM Residents "
+            ."WHERE idResidents = $residentID LIMIT 1";
         $result = $this->db->query($sql);
-        $data['theFirstName'] =    $result->result_array()[0]["firstName"];
-        $data['name'] =         $result->result_array()[0]["name"];
-        $data['dateOfBirth'] =  $result->result_array()[0]["dateOfBirth"];
-        $data['roomNumber'] =   $result->result_array()[0]["roomNumber"];
-        $data['bedNumber'] =    $result->result_array()[0]["bedNumber"];
+        $data['theFirstName'] = $result->result_array()[0]["firstName"];
+        $data['name']         = $result->result_array()[0]["name"];
+        $data['dateOfBirth']  = $result->result_array()[0]["dateOfBirth"];
+        $data['roomNumber']   = $result->result_array()[0]["roomNumber"];
+        $data['bedNumber']    = $result->result_array()[0]["bedNumber"];
 
         $this->load->view('dashboard', $data);
     }
@@ -227,10 +228,7 @@ class Dashboard extends CI_Controller
 
 
     public function logout()
-
-
     {
-
         session_destroy();
         redirect('/Homepage_controller/home');
     }

@@ -13,9 +13,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
-
     <meta charset="UTF-8">
     <title>Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -36,7 +34,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!--    <script src="--><?//= base_url()?><!--assets/js/trail.js"></script>-->
 
-
+    <!-- TODO move to some css file! -->
     <style>
         body {
             font-family: "Helvetica Neue";
@@ -113,12 +111,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <!-- Custom CSS-->
-
     <link href="<?= base_url()?>assets/css/dashboard.css" rel="stylesheet" type="text/css"/>
-
-
 </head>
-
 
 
 <body>
@@ -149,7 +143,6 @@ $residentsFirstname = $this->db->query($query);
             foreach ($residentsFirstname->result_array() as $row) echo '"' . $row['firstName']." ".$row['name'] . '",';
             echo "]";
         ?>
-
         $( "#tags" ).autocomplete( {source: availableTags } );
     });
 </script>
@@ -166,9 +159,8 @@ $residentsFirstname = $this->db->query($query);
             <button class="btn-easteregg" onclick="enableInput()">I'm sorry <br> please take me back</button>
         </div>
     </div>
+
     <div class="row" style="height:100vh;">
-
-
         <div class="col-3" id="div1" style="background-color:#009489;padding:0;">
             <!-- <a href="<?=base_url()?>Dashboard/logout">
             <button class="btn btn-primary btn-lg" type="button" style="min-width:100%;background-color:#009489;border:none;" >
@@ -203,7 +195,6 @@ $residentsFirstname = $this->db->query($query);
                 </div>
             </div>
         </div>
-
 
         <div class="col-3 hiddendiv" id="div2" style="background-color:#009489;padding:0;">
             <div style="height:5%;"></div>
@@ -340,17 +331,17 @@ $residentsFirstname = $this->db->query($query);
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>*PIN CODE: </td>
+                                    <td>*PIN CODE: </td>            <!-- TODO translate -->
                                     <td><input type="password" id="password" oninput="checkInput(this.id)" pattern="[0-9]{0,4}" name="Pin_Code" maxlength="4" placeholder="1234" required/>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>*PIN CODE BEVESTIGEN: </td>
+                                    <td>*PIN CODE BEVESTIGEN: </td>  <!-- TODO translate -->
                                     <td><input type="password" id="password_confirm" pattern="[0-9]{0,4}" name="Pin_Code_2" maxlength="4" placeholder="1234" oninput="check(this)" required/>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <br/>
+                                    <br>
                                     <td>*<?php echo $this->lang->line('language'); ?>: </td>
                                     <td>
                                         <input type="radio" name="Radio" value="Dutch" checked>
@@ -421,7 +412,6 @@ $residentsFirstname = $this->db->query($query);
                     <li class="nav-item" style="width:33%;"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1" style="border:none;" onclick="loadDiv(1)"><?php echo $this->lang->line('dash_questionnaire'); ?></a></li>
                     <li class="nav-item" style="width:33%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2" style="border:none;" onclick="loadDiv(2)"><?php echo $this->lang->line('dash_poll'); ?></a></li>
                     <li class="nav-item" style="width:34%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3" style="border:none;" onclick="loadDiv(3)"><?php echo $this->lang->line('admin'); ?></a></li>
-
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="tab-1" style="padding:5%;max-height:94vh;overflow-y:scroll;">
@@ -483,7 +473,6 @@ $residentsFirstname = $this->db->query($query);
                                                     }
 
                                                     ?>
-
                                                 </select>
                                             </div>
                                             <script type="text/javascript">
@@ -527,7 +516,8 @@ $residentsFirstname = $this->db->query($query);
                                         {
                                         $row = $firstName->row();
                                         echo $row->firstName;
-                                        } ?>!</p>
+                                        }
+                                    ?></p>
                                 </div>
                                 <div class="col-4">
                                     <img class="profilePic" style="width:130px;height:130px;" src="<?=base_url() ?>assets/photos/Caregiver-center.jpg" alt="Profielfoto">
@@ -553,9 +543,9 @@ $residentsFirstname = $this->db->query($query);
                                         {
                                         $row = $email->row();
                                         echo $row->email;
-                                        }  ?></p>
+                                        }
+                                    ?></p>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -790,9 +780,10 @@ $residentsFirstname = $this->db->query($query);
                     <img class="profilePic" src="<?= base_url() ?>assets/photos/id.png" alt="Avatar">
                     <span class="resident-nameage">
                         <div class="button-name">
-                        <?php echo $row['firstName']." ".$row['name']; ?>
-                        </div><div class="button-age">
-                        <?php echo $row['age'] ?>
+                            <?php echo $row['firstName']." ".$row['name']; ?>
+                        </div>
+                        <div class="button-age">
+                            <?php echo $row['age'] ?>
                         </div>
                     </span>
                 </div>
@@ -912,7 +903,6 @@ $residentsFirstname = $this->db->query($query);
 
     //set up axes
     var xAxis = d3.axisBottom(xChart);
-
     var yAxis = d3.axisLeft(yChart)
         .ticks(5)
         .tickValues([1, 2, 3, 4, 5]);
