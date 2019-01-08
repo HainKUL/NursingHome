@@ -33,3 +33,5 @@ $lang['register_firstname'] = 'First name';
 $lang['register_lastname'] = 'Last name';
 $lang['register_birthday'] = 'Birthday';
 $lang['register_id'] = 'ID';
+
+$lang['welcome'] = 'Welcome';
