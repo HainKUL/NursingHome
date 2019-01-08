@@ -878,204 +878,77 @@ $residentsFirstname = $this->db->query($query);
 
 
 <script type="text/javascript">
-    //functions for toggling between data
-    function change(date,value) {
+    //set up chart
+    var margin = {top: 10, right:0, bottom: 280, left: 25};
+    var width = 490;
+    var height = 200;
+
+    var chart = d3.select(".chart")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    var xChart = d3.scaleBand()
+        .range([0, width]);
+    //.nice();
+
+    var yChart;
+    yChart = d3.scaleLinear()
+        .range([height, 0]);
+
+    //set up axes
+    var xAxis = d3.axisBottom(xChart);
+
+    var yAxis = d3.axisLeft(yChart)
+        .ticks(5)
+        .tickValues([1, 2, 3, 4, 5]);
+
+    chart.append("g")
+        .attr("class", "y axis")
+
+    chart.append("g")
+        .attr("class", "xAxis")
+
+    //add labels
+    chart
+        .append("text")
+        .attr("transform", "translate(-35," + (height -140+ margin.bottom) / 2 + ") rotate(-90)")
+        .style("font-size", "18px")
+        .style("padding", "8px")
+        .style("font-weight", "400")
+        .style("font-family", "Avenir Next Condensed")
+        .text("<?php echo $this->lang->line('category_score'); ?>");
+
+    update(bothData, true);
+
+
+    //function for toggling between data
+    function change(date,category) {
         var data5 = <?php echo json_encode($data_graph_each); ?>;
 
         for (var index = 0; index < data5.length; ++index) {
-            //console.log(data5[index]['key']);
-            //console.log(date);
-            if (data5[index]['key'] === date)
-            {
+            if (data5[index]['key'] === date) {
                 bothData = data5[index]['values'];
-                //console.log(data5[index]['values']);
+                break;
             }
         }
 
-        var data_1 = [];
-        var data_2 = [];
-        var data_3 = [];
-        var data_4 = [];
-        var data_5 = [];
-        var data_6 = [];
-        var data_7 = [];
-        var data_8 = [];
-        var data_9 = [];
-        var data_10 = [];
-        var data_11 = [];
-
-        //var bothData = <?php echo json_encode($one); ?>;;
-
-        for (var i = 0; i < bothData.length; i++) {
-            if (bothData[i]["catergoryID"] === "0") {
-                data_1.push(bothData[i]);
-            } else if (bothData[i]["catergoryID"] === "1") {
-                data_2.push(bothData[i]);
+        if(category !== 'all') {
+            var data = [];
+            for (var i = 0; i < bothData.length; i++) {
+                if (bothData[i]["catergoryID"] == category) data.push(bothData[i]);
             }
-            else if (bothData[i]["catergoryID"] === "2") {
-                data_3.push(bothData[i]);
-            }
-            else if (bothData[i]["catergoryID"] === "3") {
-                data_4.push(bothData[i]);
-            }
-            else if (bothData[i]["catergoryID"] === "4") {
-                data_5.push(bothData[i]);
-            }
-            else if (bothData[i]["catergoryID"] === "5") {
-                data_6.push(bothData[i]);
-            }
-            else if (bothData[i]["catergoryID"] === "6") {
-                data_7.push(bothData[i]);
-            }
-            else if (bothData[i]["catergoryID"] === "7") {
-                data_8.push(bothData[i]);
-            }
-            else if (bothData[i]["catergoryID"] === "8") {
-                data_9.push(bothData[i]);
-            }
-            else if (bothData[i]["catergoryID"] === "9") {
-                data_10.push(bothData[i]);
-            }
-            else if (bothData[i]["catergoryID"] === "10") {
-                data_11.push(bothData[i]);
-            }
-
-        }
-
-
-        if (value === '0') {
-            update(data_1);
-        } else if (value === '1') {
-            update(data_2);
-        } else if (value === '2') {
-            update(data_3);
-        }
-        else if (value === '3') {
-            update(data_4);
-        }
-        else if (value === '4') {
-            update(data_5);
-        }
-        else if (value === '5') {
-            update(data_6);
-        }
-        else if (value === '6') {
-            update(data_7);
-        }
-        else if (value === '7') {
-            update(data_8);
-        }
-        else if (value === '8') {
-            update(data_9);
-        }
-        else if (value === '9') {
-            update(data_10);
-        }
-        else if (value === '10') {
-            update(data_11);
-        }
-        else if (value === 'all'){
-            xChart.domain(bothData.map(function (d) {
-                return d.category;
-            }));
-            //set domain for y axis
-            yChart.domain([1, d3.max(bothData, function (d) {
-                return d.answer;
-            })]);
-
-            //get the width of each bar
-            var barWidth = width / bothData.length;
-
-            //select all bars on the graph, take them out, and exit the previous data set.
-            //then you can add/enter the new data set
-            var bars = chart.selectAll(".bar")
-                .remove()
-                .exit()
-                .data(bothData)
-            //now actually give each rectangle the corresponding data
-            bars.enter()
-                .append("rect")
-                .attr("class", "bar")
-                .attr("x", function (d, i) {
-                    return i * barWidth + 1
-                })
-                .attr("y", function (d) {
-                    return yChart(d.answer);
-                })
-                .attr("height", function (d) {
-                    return height - yChart(d.answer);
-                })
-                .attr("width", barWidth - 1)
-                .attr("fill", function (d) {
-                    if (d.catergoryID === "0") {
-                        return "rgb(216,230,173)";
-                    } else if (d.catergoryID === "1") {
-                        return "rgb(173,216,230)";
-                    }
-                    else if (d.catergoryID === "2") {
-                        return "rgb(230,187,173)";
-                    }
-                    else if (d.catergoryID === "3") {
-                        return "rgb(138,149,240)";
-                    }
-                    else if (d.catergoryrID === "4") {
-                        return "rgb(200,235,208)";
-                    }
-                    else if (d.catergoryID === "5") {
-                        return "rgb(133,266,246)";
-                    }
-                    else if (d.catergoryID === "6") {
-                        return "rgb(187,187,187)";
-                    }
-                    else if (d.catergoryID === "7") {
-                        return "rgb(193,226,204)";
-                    }
-                    else if (d.catergoryID === "8") {
-                        return "rgb(234,145,152)";
-                    }
-                    else if (d.catergoryID === "9") {
-                        return "rgb(252,244,144)";
-                    }
-                    else if (d.catergoryID === "10") {
-                        return "rgb(157,174,147)";
-                    }
-                    else {
-                        return "rgb(14,174,294)";
-                    }
-                });
-            //left axis
-            chart.select('.y')
-                .call(yAxis)
-            //bottom axis
-            chart.select('.xAxis')
-                .attr("transform", "translate(0," + height + ")")
-                .call(xAxis)
-                .selectAll("text")
-                .style("text-anchor", "end")
-                .attr("dx", "-.8em")
-                .attr("dy", ".15em")
-                .attr("transform", function (d) {
-                    return "rotate(-65)";
-                });
-
-
-        }
-
+            update(data, false);
+        } else update(bothData, true);
     }
 
 
-    function update(data) {
-        //set domain for the x axis
-        xChart.domain(data.map(function (d) {
-            return d.question;
-        }));
-        //set domain for y axis
-        yChart.domain([1, d3.max(data, function (d) {
-            return +d.answer;
-        })]);
-
-        //get the width of each bar
-        var barWidth = width / data.length;
+    function update(data, overview) {
+        if(overview) xChart.domain(data.map(function(d) { return d.category; })); //set domain for x axis (overview graph)
+        else         xChart.domain(data.map(function(d) { return d.question; })); // '' (category graph
+        yChart.domain([1, d3.max(data, function (d) { return d.answer; })]);   //set domain for y axis
+        var barWidth = width / data.length; //get the width of each bar
 
         //select all bars on the graph, take them out, and exit the previous data set.
         //then you can add/enter the new data set
@@ -1098,40 +971,19 @@ $residentsFirstname = $this->db->query($query);
             })
             .attr("width", barWidth - 1)
             .attr("fill", function (d) {
-                if (d.catergoryID === "0") {
-                    return "rgb(216,230,173)";
-                } else if (d.catergoryID === "1") {
-                    return "rgb(173,216,230)";
-                }
-                else if (d.catergoryID === "2") {
-                    return "rgb(230,187,173)";
-                }
-                else if (d.catergoryID === "3") {
-                    return "rgb(138,149,240)";
-                }
-                else if (d.catergoryrID === "4") {
-                    return "rgb(200,235,208)";
-                }
-                else if (d.catergoryID === "5") {
-                    return "rgb(133,266,246)";
-                }
-                else if (d.catergoryID === "6") {
-                    return "rgb(187,187,187)";
-                }
-                else if (d.catergoryID === "7") {
-                    return "rgb(193,226,204)";
-                }
-                else if (d.catergoryID === "8") {
-                    return "rgb(234,145,152)";
-                }
-                else if (d.catergoryID === "9") {
-                    return "rgb(252,244,144)";
-                }
-                else if (d.catergoryID === "10") {
-                    return "rgb(157,174,147)";
-                }
-                else {
-                    return "rgb(14,174,294)";
+                switch (d.catergoryID) {
+                    case "0" : return "rgb(216,230,173)";
+                    case "1" : return "rgb(173,216,230)";
+                    case "2" : return "rgb(230,187,173)";
+                    case "3" : return "rgb(138,149,240)";
+                    case "4" : return "rgb(200,235,208)";
+                    case "5" : return "rgb(133,266,246)";
+                    case "6" : return "rgb(187,187,187)";
+                    case "7" : return "rgb(193,226,204)";
+                    case "8" : return "rgb(234,145,152)";
+                    case "9" : return "rgb(252,244,144)";
+                    case "10": return "rgb(157,174,147)";
+                    default  : return "rgb(014,174,294)";
                 }
             });
         //left axis
@@ -1148,157 +1000,8 @@ $residentsFirstname = $this->db->query($query);
             .attr("transform", function (d) {
                 return "rotate(-65)";
             });
-
-
     }//end update
 
-
-    //set up chart
-    var margin = {top: 10, right:0, bottom: 280, left: 25};
-    var width = 490;
-    var height = 200;
-
-    var chart = d3.select(".chart")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-    var xChart = d3.scaleBand()
-        .range([0, width]);
-    //.nice();
-
-    var yChart;
-    yChart = d3.scaleLinear()
-        .range([height, 0]);
-
-
-
-    var xAxis = d3.axisBottom(xChart);
-
-
-    var yAxis = d3.axisLeft(yChart)
-        .ticks(5)
-        .tickValues([1, 2, 3, 4, 5]);
-
-
-    //set up axes
-    //left axis
-    chart.append("g")
-        .attr("class", "y axis")
-        .call(yAxis)
-
-
-    //bottom axis
-    chart.append("g")
-        .attr("class", "xAxis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis)
-        .selectAll("text")
-        .style("text-anchor", "end")
-        .attr("dx", "-.8em")
-        .attr("dy", ".15em")
-        .attr("transform", function (d) {
-            return "rotate(-65)";
-        });
-
-    //add labels
-    chart
-        .append("text")
-        .attr("transform", "translate(-35," + (height -140+ margin.bottom) / 2 + ") rotate(-90)")
-        .style("font-size", "18px")
-        .style("padding", "8px")
-        .style("font-weight", "400")
-        .style("font-family", "Avenir Next Condensed")
-        .text("<?php echo $this->lang->line('category_score'); ?>");
-
-    //use bothData to begin with
-    //update(bothData);
-    xChart.domain(bothData.map(function (d) {
-        return d.category;
-    }));
-    //set domain for y axis
-    //yChart.domain( [0, d3.max(bothData, function(d){ return +d.answer; },)] );
-    yChart.domain([1, d3.max(bothData, function (d) {
-        return d.answer;
-    })]);
-
-    //get the width of each bar
-    var barWidth = width / bothData.length;
-
-    //select all bars on the graph, take them out, and exit the previous data set.
-    //then you can add/enter the new data set
-    var bars = chart.selectAll(".bar")
-        .remove()
-        .exit()
-        .data(bothData)
-    //now actually give each rectangle the corresponding data
-    bars.enter()
-        .append("rect")
-        .attr("class", "bar")
-        .attr("x", function (d, i) {
-            return i * barWidth + 1
-        })
-        .attr("y", function (d) {
-            return yChart(d.answer);
-        })
-        .attr("height", function (d) {
-            return height - yChart(d.answer);
-        })
-        .attr("width", barWidth - 1)
-        .attr("fill", function (d) {
-            if (d.catergoryID === "0") {
-                return "rgb(216,230,173)";
-            } else if (d.catergoryID === "1") {
-                return "rgb(173,216,230)";
-            }
-            else if (d.catergoryID === "2") {
-                return "rgb(230,187,173)";
-            }
-            else if (d.catergoryID === "3") {
-                return "rgb(138,149,240)";
-            }
-            else if (d.catergoryrID === "4") {
-                return "rgb(200,235,208)";
-            }
-            else if (d.catergoryID === "5") {
-                return "rgb(133,266,246)";
-            }
-            else if (d.catergoryID === "6") {
-                return "rgb(187,187,187)";
-            }
-            else if (d.catergoryID === "7") {
-                return "rgb(193,226,204)";
-            }
-            else if (d.catergoryID === "8") {
-                return "rgb(234,145,152)";
-            }
-            else if (d.catergoryID === "9") {
-                return "rgb(252,244,144)";
-            }
-            else if (d.catergoryID === "10") {
-                return "rgb(157,174,147)";
-            }
-            else {
-                return "rgb(14,174,294)";
-            }
-        });
-
-    //left axis
-    chart.select('.y')
-        .call(yAxis)
-
-    //bottom axis
-    chart.select('.xAxis')
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis)
-        .selectAll("text")
-        .style("text-anchor", "end")
-        .attr("dx", "-.8em")
-        .attr("dy", ".1em")
-        .attr("transform", function (d) {
-            return "rotate(-65)";
-        });
 
 
 </script>
