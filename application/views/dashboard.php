@@ -503,7 +503,8 @@ $residentsFirstname = $this->db->query($query);
                                             <br>
                                             <br>
                                         </div>
-                                        <svg class='chart'></svg>
+                                        <svg class='chart' viewBox="0 0 530 400"
+                                             perserveAspectRatio="xMinYMid">> </svg>
                                     </div>
                                 </div>
                             </div>
@@ -926,9 +927,7 @@ $residentsFirstname = $this->db->query($query);
         .style("font-weight", "400")
         .style("font-family", "Avenir Next Condensed")
         .text("<?php echo $this->lang->line('category_score'); ?>");
-
     update(bothData, true);
-
 
     //function for toggling between data
     function change(date,category) {
