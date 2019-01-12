@@ -87,6 +87,10 @@
         {
             background-color: #f1f1f1;
         }
+        .category{
+            margin: 0px 0px 0px 50px;
+            width: 210px;
+        }
 
         select {
             font-family:  "Helvetica Neue";
