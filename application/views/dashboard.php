@@ -88,7 +88,7 @@
             background-color: #f1f1f1;
         }
         .category{
-            margin: 0px 0px 0px 50px;
+            margin: 0px 0px 0px 100px;
             width: 210px;
         }
 
