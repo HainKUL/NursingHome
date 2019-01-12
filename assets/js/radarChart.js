@@ -536,8 +536,10 @@ function RadarChart1(id, data) {
 
     //Initiate the radar chart SVG
     var svg = d3.select(id).append("svg")
-        .attr("width",  cfg.w + cfg.margin.left + cfg.margin.right)
-        .attr("height", cfg.h + cfg.margin.top + cfg.margin.bottom)
+        .attr("preserveAspectRatio", "xMinYMin meet")
+        .attr("viewBox", "0 30 520 580")
+        //.attr("width",  cfg.w + cfg.margin.left + cfg.margin.right)
+        //.attr("height", cfg.h + cfg.margin.top + cfg.margin.bottom)
         .attr("class", "radar"+id);
     //Append a g element
     var g = svg.append("g")
