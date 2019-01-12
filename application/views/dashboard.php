@@ -504,7 +504,7 @@ $residentsFirstname = $this->db->query($query);
                                             <br>
                                         </div>
                                         <svg class='chart' viewBox="0 0 530 400"
-                                             perserveAspectRatio="xMinYMid">> </svg>
+                                             perserveAspectRatio="xMinYMid"> </svg>
                                     </div>
                                 </div>
                             </div>

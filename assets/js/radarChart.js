@@ -8,7 +8,7 @@ function RadarChart(id, data) {
     //var margin = {top: 150, right: 70, bottom: 100, left: 100},
 
     var margin = {top: 120, right: 60, bottom: 60, left: 70},
-        legendPosition = {x: 400, y: 20},
+        legendPosition = {x: 400, y: 40},
         width = Math.min(510, window.innerWidth - 10) - margin.left - margin.right,
         height = Math.min(width, window.innerHeight - margin.top - margin.bottom - 20);
 
@@ -132,8 +132,10 @@ function RadarChart(id, data) {
 
     //Initiate the radar chart SVG
     var svg = d3.select(id).append("svg")
-        .attr("width",  cfg.w + cfg.margin.left + cfg.margin.right)
-        .attr("height", cfg.h + cfg.margin.top + cfg.margin.bottom)
+        .attr("preserveAspectRatio", "xMinYMin meet")
+        .attr("viewBox", "0 30 520 580")
+        //.attr("width",  cfg.w + cfg.margin.left + cfg.margin.right)
+        //.attr("height", cfg.h + cfg.margin.top + cfg.margin.bottom)
         .attr("class", "radar"+id);
     //Append a g element
     var g = svg.append("g")
