@@ -87,7 +87,8 @@ function snapshot() {
         }
         //if user not identified
         else{
-            Materialize.toast('Sorry, please try again ☹');
+            //Materialize.toast('Sorry, please try again ☹');
+            alert("Sorry, please try again ☹")
         }
     });
 }
