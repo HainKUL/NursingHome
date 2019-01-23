@@ -78,6 +78,8 @@ class Homepage_controller extends CI_Controller
             $rows           = $result->result();
             $_SESSION['id'] = $rows[0]->idResidents;
 
+            $lang = $rows[0]->preferences;
+
             if($result->num_rows() === 0) {
                 $this->session->set_flashdata('flash_data', 'name or password incorrect!');
                 redirect('Homepage_controller/login');

@@ -10,7 +10,8 @@ if(!isset($_SESSION["resident"]))
     exit();
 
 }
-echo $_SESSION['lang'];
+//echo $_SESSION['lang'];
+//echo $_SESSION['birth'];
 ?>
 <!DOCTYPE html>
 <meta charset="UTF-8">
