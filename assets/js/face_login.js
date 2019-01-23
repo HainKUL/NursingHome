@@ -68,6 +68,9 @@ function snapshot() {
         "data": datad
     };
 
+    //loading in process
+    console.log("verifying in process");
+
     $.ajax(settings).done(function (response) {
         var m = response;
 
