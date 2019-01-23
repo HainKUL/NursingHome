@@ -9,6 +9,7 @@
 $lang['title'] = 'Uw zorg| GraceAge';
 $lang['Quit'] = 'Stop';
 $lang['Return'] = 'vorige_vraag';
+$lang['vorige'] = 'Vorige vraag';
 
 $lang['button_never'] = 'nooit';
 $lang['button_rarely'] = 'zelden';
