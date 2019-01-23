@@ -9,8 +9,7 @@ var webcamStream;
 function startWebcam() {
     if (navigator.getUserMedia) {
         navigator.getUserMedia (
-            // constraints
-            {
+            {// constraints
                 video: true,
                 audio: false
             },
@@ -33,26 +32,15 @@ function startWebcam() {
     }
 }
 
-
-
 var canvas, ctx;
 canvas = document.getElementById("myCanvas");
 ctx = canvas.getContext('2d');
-
-// function init() {
-//     Get the canvas and obtain a context for
-//     drawing in it
-//     canvas = document.getElementById("myCanvas");
-//     ctx = canvas.getContext('2d');
-// }
 
 function snapshot() {
     ctx.drawImage(video, 0,0, canvas.width, canvas.height);
     var img1 = new Image();
     img1.src = canvas.toDataURL();
-    // var x = document.getElementById("myAudio");
-    // x.play();
-    datad = "{\r\n    \"image\":\"" + img1.src+ "\",\r\n    \"gallery_name\":\"Demoxx\"\r\n}"
+    datad = "{\r\n    \"image\":\"" + img1.src+ "\",\r\n    \"gallery_name\":\"Project\"\r\n}"
     var settings = {
         "async": true,
         "crossDomain": true,
@@ -60,8 +48,8 @@ function snapshot() {
         "method": "POST",
         "headers": {
             "content-type": "application/json",
-            "app_id": "be2b0e8f",
-            "app_key": "e70abd362f22c94e636e5bf7ae4018f3",
+            "app_id": "3d48ca50",
+            "app_key": "e9e2ad6e32b4224227e2fd1347a6c3ec",
             "cache-control": "no-cache"
         },
         "processData": false,
