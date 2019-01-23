@@ -43,7 +43,7 @@ if (isset($_POST['reg_user'])) {
         redirect('Caregiver_controller/change_password');
     }
 
-    $hash = $result->result()[0]->passwordHash;
+    $hash = $result->result[0]->passwordHash;
 
     if(password_verify($_POST['password_old'], $hash)) {
         // generate a new 16-character salt string

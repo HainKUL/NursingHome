@@ -34,7 +34,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!--    <script src="--><?//= base_url()?><!--assets/js/trail.js"></script>-->
 
-    <!-- TODO move to some css file! -->
+    <!-- TODO move to some css file!
     <style>
         body {
             font-family: "Helvetica Neue";
@@ -55,8 +55,8 @@
         .form-radio
         {
             -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
+            -moz-appearance: none;   /*TODO  is appearance necessary?
+            appearance: none;*/
             display: inline-block;
             position: relative;
             background-color: #f1f1f1;
@@ -88,7 +88,7 @@
             background-color: #f1f1f1;
         }
         .category{
-            margin: 0px 0px 0px 80px;
+            margin: 0 0 0 80px;
             width: 210px;
         }
 
@@ -103,7 +103,7 @@
             padding: 8px;
             width: 210px;
             margin-left:100px;
-    </style>
+    </style>-->
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -321,7 +321,7 @@ $residentsFirstname = $this->db->query($query);
                                         <select name="Birthday_Year" id="Birthday_Year" style="width: 30%" >
                                             <option value="-1"><?php echo $this->lang->line('year'); ?></option>
                                             <?php
-                                            for($i = 1900; $i < 2000; $i++) { //TODO DATEPICKER!!
+                                            for($i = 2000; $i > 1900; $i--) { //TODO DATEPICKER!!
                                                 echo '<option value = "'.$i.'">'.$i.'</option>';
                                             }
                                             ?>
@@ -410,7 +410,7 @@ $residentsFirstname = $this->db->query($query);
 
 
         <div class="col-3 hiddendiv" id="div4" style="background-color:#009489;padding:0;"></div>
-        <div class="col-6" style="background-color:#f9f9f9;padding:0px;">
+        <div class="col-6" style="background-color:#f9f9f9;padding:0;">
             <div style="width:100%;">
                 <ul class="nav nav-tabs" style="text-align:center;border:none;">
                     <li class="nav-item" style="width:33%;"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1" style="border:none;" onclick="loadDiv(1)"><?php echo $this->lang->line('dash_questionnaire'); ?></a></li>
@@ -722,8 +722,8 @@ $residentsFirstname = $this->db->query($query);
         } else if (elem.msRequestFullscreen) { /* IE/Edge */
             elem.msRequestFullscreen();
         }
-        document.getElementById("openfullscreen").classList.add("hiddendiv")
-        document.getElementById("closefullscreen").classList.remove("hiddendiv")
+        document.getElementById("openfullscreen").classList.add("hiddendiv");
+        document.getElementById("closefullscreen").classList.remove("hiddendiv");
     }
 
     /* Close fullscreen */
@@ -737,8 +737,8 @@ $residentsFirstname = $this->db->query($query);
         } else if (document.msExitFullscreen) { /* IE/Edge */
             document.msExitFullscreen();
         }
-        document.getElementById("openfullscreen").classList.remove("hiddendiv")
-        document.getElementById("closefullscreen").classList.add("hiddendiv")
+        document.getElementById("openfullscreen").classList.remove("hiddendiv");
+        document.getElementById("closefullscreen").classList.add("hiddendiv");
     }
 </script>
 
@@ -756,7 +756,7 @@ $residentsFirstname = $this->db->query($query);
 
 
 <script>
-    var currentButtonID
+    var currentButtonID;
     function loadResident(id) {
         if(currentButtonID) {
             var previous = document.getElementById(currentButtonID);
@@ -820,7 +820,7 @@ $residentsFirstname = $this->db->query($query);
 
 
 <script>
-    var currentButtonID
+    var currentButtonID;
     function settingsButton(id) {
         if(currentButtonID){
             var previous = document.getElementById(currentButtonID)
