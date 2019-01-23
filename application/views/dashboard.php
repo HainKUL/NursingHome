@@ -34,7 +34,7 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!--    <script src="--><?//= base_url()?><!--assets/js/trail.js"></script>-->
 
-    <!-- TODO move to some css file!
+    <!-- TODO move to some css file!-->
     <style>
         body {
             font-family: "Helvetica Neue";
@@ -103,7 +103,7 @@
             padding: 8px;
             width: 210px;
             margin-left:100px;
-    </style>-->
+    </style>
 
     <!-- Required meta tags -->
     <meta charset="utf-8">

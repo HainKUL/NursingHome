@@ -72,14 +72,11 @@ class Homepage_controller extends CI_Controller
         if($_POST) {
             $name      = $this->db->escape($_POST['name']);
             $firstname = $this->db->escape($_POST['firstname']);
-            $query     = "SELECT pinHash, idResidents,preferences,dateOfBirth name FROM Residents "
+            $query     = "SELECT pinHash, idResidents,preferences name FROM Residents "
                         ."WHERE name = $name AND firstname = $firstname LIMIT 1;";
             $result         = $this->db->query($query);
             $rows           = $result->result();
             $_SESSION['id'] = $rows[0]->idResidents;
-            $_SESSION['birth']=$rows[0]->dateOfBirth;
-
-            $lang = $rows[0]->preferences;
 
             $lang = $rows[0]->preferences;
 
