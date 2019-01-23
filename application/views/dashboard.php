@@ -1,21 +1,18 @@
 <?php
-if(!isset($_SESSION['caregiver']))
-{
-
-
-    echo "<script> 
-                    alert('You are not logged in!'); 
-                    window.location.href='".base_url()."Caregiver_controller/login';
-          </script>";
-
-    exit();
-
-}
-
+    if(!isset($_SESSION['caregiver'])) {
+        echo "<script> 
+                        alert('You are not logged in!'); 
+                        window.location.href='".base_url()."Caregiver_controller/login';
+              </script>";
+        exit();
+    }
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Dashboard</title>
@@ -30,18 +27,14 @@ if(!isset($_SESSION['caregiver']))
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/1.3.0/d3-legend.js" charset="utf-8"></script>
 
-
-
+    <!-- JQuery -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <!--<link rel="stylesheet" href="/resources/demos/style.css">-->
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-
-
     <!--    <script src="--><?//= base_url()?><!--assets/js/trail.js"></script>-->
 
-
+    <!-- TODO move to some css file! -->
     <style>
         body {
             font-family: "Helvetica Neue";
@@ -58,6 +51,7 @@ if(!isset($_SESSION['caregiver']))
         .radio{
             text-align: end;
         }
+
         .form-radio
         {
             -webkit-appearance: none;
@@ -93,7 +87,10 @@ if(!isset($_SESSION['caregiver']))
         {
             background-color: #f1f1f1;
         }
-
+        .category{
+            margin: 0px 0px 0px 80px;
+            width: 210px;
+        }
 
         select {
             font-family:  "Helvetica Neue";
@@ -106,26 +103,8 @@ if(!isset($_SESSION['caregiver']))
             padding: 8px;
             width: 210px;
             margin-left:100px;
-
-        }
-
-        .category{
-            margin: 0px 0px 60px 90px;
-            width: 200px;
-        }
-
-        option {
-            direction: ltr;
-        }
-
-        label
-        {
-            font: 300 16px/1.7 'Open Sans', sans-serif;
-            color: #666;
-            cursor: pointer;
-        }
-
     </style>
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -136,17 +115,18 @@ if(!isset($_SESSION['caregiver']))
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
     <!-- Custom CSS-->
-
     <link href="<?= base_url()?>assets/css/dashboard.css" rel="stylesheet" type="text/css"/>
 </head>
+
+
 <body>
 
-
-
 <?php
+//TODO probably move queries to controller?
 $currentID = $_SESSION['id'];
 $this->load->database();
-$query = "SELECT Notes.noteText, Notes.author, Notes.timestamp, Caregivers.firstName FROM Notes INNER JOIN Caregivers on Notes.author = Caregivers.idCaregivers ORDER BY Notes.timestamp DESC;";
+$query = "SELECT Notes.noteText, Notes.author, Notes.timestamp, Caregivers.firstName FROM Notes ".
+            "INNER JOIN Caregivers on Notes.author = Caregivers.idCaregivers ORDER BY Notes.timestamp DESC;";
 $result = $this->db->query($query);
 $query = "SELECT firstName, name, idResidents, YEAR(CURRENT_TIMESTAMP) - YEAR(dateOfBirth) - (RIGHT(CURRENT_TIMESTAMP, 5) < RIGHT(dateOfBirth, 5)) as age FROM Residents ORDER BY firstName;";
 $residents = $this->db->query($query);
@@ -154,38 +134,28 @@ $query = "SELECT firstName FROM Caregivers WHERE $currentID = Caregivers.idCareg
 $firstName = $this->db->query($query);
 $query = "SELECT email FROM Caregivers WHERE Caregivers.idCaregivers = $currentID;";
 $email = $this->db->query($query);
-
 $query = "SELECT firstName, name FROM Residents ORDER BY firstName;";
 $residentsFirstname = $this->db->query($query);
 ?>
 
 
-
 <script>
-    $( function() {
-        var availableTags =  <?php
+    $(function() {
+        var availableTags =
+        <?php
             echo "[";
-            foreach ($residentsFirstname->result_array() as $row) {
-                echo '"';
-                echo $row['firstName']." ".$row['name'];
-                echo '",';
-
-            }
+            foreach ($residentsFirstname->result_array() as $row) echo '"' . $row['firstName']." ".$row['name'] . '",';
             echo "]";
-            ?>
-
-            $( "#tags" ).autocomplete({
-                source: availableTags
-            });
-    } );
+        ?>
+        $( "#tags" ).autocomplete( {source: availableTags } );
+    });
 </script>
 
 
 
 <div class="container-fluid">
-
     <div class="row easteregg hiddendiv" id="easteregg">
-        <div class="col-3"></div>
+        <div class="col-3"> </div>
         <div class="col-6">
             <i class="fa fa-exclamation-circle rotating"></i> ANTI HACKER MODE ACTIVATED <i class="fa fa-exclamation-circle rotating"></i>
         </div>
@@ -193,6 +163,7 @@ $residentsFirstname = $this->db->query($query);
             <button class="btn-easteregg" onclick="enableInput()">I'm sorry <br> please take me back</button>
         </div>
     </div>
+
     <div class="row" style="height:100vh;">
         <div class="col-3" id="div1" style="background-color:#009489;padding:0;">
             <!-- <a href="<?=base_url()?>Dashboard/logout">
@@ -203,6 +174,7 @@ $residentsFirstname = $this->db->query($query);
             <div style="height:5%;"></div>
             <div class="searchdiv" style="text-align:center;margin:15px;">
                 <h2 class="floornumber"><?php echo $this->lang->line('dash_floor'); ?> 1</h2>
+                <!--
                 <div class="dropdown">
                     <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button"><?php echo $this->lang->line('dash_select_floor'); ?></button>
                     <div class="dropdown-menu" role="menu">
@@ -214,6 +186,7 @@ $residentsFirstname = $this->db->query($query);
                         <a class="dropdown-item" role="presentation" href="#"><?php echo $this->lang->line('sixth_floor'); ?></a>
                     </div>
                 </div>
+                -->
                 <div class="ui-widget" >
                     <form name="form" action="" method="get">
                         <input id="tags" name="filter" for="tags" class ="searchbar" oninput="checkInput(this.id)" type="search" placeholder="<?php echo $this->lang->line('search'); ?>">
@@ -222,13 +195,11 @@ $residentsFirstname = $this->db->query($query);
             </div>
             <div style="overflow-y:scroll;max-height:68vh;">
                 <div class="btn-group-vertical btn-group-lg" role="group" style="width:100%;">
-                    <?php
-                        displayResidents($residents);
-                    ?>
-
+                    <?php displayResidents($residents); ?>
                 </div>
             </div>
         </div>
+
         <div class="col-3 hiddendiv" id="div2" style="background-color:#009489;padding:0;">
             <div style="height:5%;"></div>
             <h2 class="floornumber" style="padding:15px"><?php echo $this->lang->line('polls');?></h2>
@@ -238,7 +209,6 @@ $residentsFirstname = $this->db->query($query);
                 </button>
             </a>
             <div style="overflow-y:scroll;max-height:70vh;">
-
                 <div class="btn-group-vertical btn-group-lg" role="group" style="width:100%;">
                     <button class="btn btn-primary btn-resident" id="settings1" type="button" onclick="settingsButton(this.id)">
                         <div class="resident-button">
@@ -258,14 +228,9 @@ $residentsFirstname = $this->db->query($query);
                     </button>
                 </div>
             </div>
-
-
-
-
-
-
-
         </div>
+
+
         <div class="col-3 hiddendiv" id="div3" style="background-color:#009489;padding:0;">
             <div style="height:5%;"></div>
             <h2 class="floornumber" style="padding:15px"><?php echo $this->lang->line('personal');?></h2>
@@ -293,10 +258,7 @@ $residentsFirstname = $this->db->query($query);
                             <span style="font-weight:100">
                                 <?php echo $this->lang->line('register_button');?>
                             </span>
-
-
                         </div>
-
                     </button>
                 </div>
             </div>
@@ -307,83 +269,40 @@ $residentsFirstname = $this->db->query($query);
                     </button>
                 </a>
             </div>
-
-
-
-
-
-
-
         </div>
-        <form method="post" action="<?= site_url('Dashboard/dashboard_reg') ?>">
 
+        <form method="post" action="<?= site_url('Dashboard/dashboard_reg') ?>">
             <div id="myModal2" class="modal fade" role="dialog">
                 <div class="modal-dialog modal-lg">
 
                     <!-- Modal content-->
                     <div class="modal-content">
                         <div class="modal-header">
-
                             <h4 class="modal-title"><?php echo $this->lang->line('register_button'); ?></h4>
                         </div>
                         <div class="modal-body">
                             <table align="center" cellpadding = "5">
-
                                 <tr>
                                     <td>*<?php echo $this->lang->line('first'); ?>:  </td>
                                     <td><input type="text" id="inputfirst" oninput="checkInput(this.id)" pattern="[a-z A-Z'éèëï-]{1,20}" name="firstname" maxlength="30" placeholder="<?php echo $this->lang->line('firstname_placeholder_register'); ?>" required/>
                                     </td>
                                 </tr>
-
                                 <tr>
                                     <td>*<?php echo $this->lang->line('last'); ?>: </td>
                                     <td><input type="text" id="inputlast" oninput="checkInput(this.id)" pattern="[a-z A-Z'éèëï-]{1,20}" name="name" maxlength="30" placeholder="<?php echo $this->lang->line('lastname_placeholder_register'); ?>"required/>
                                     </td>
                                 </tr>
-
                                 <tr>
                                     <td><?php echo $this->lang->line('birth'); ?></td>
-
                                     <td>
                                         <select name="Birthday_day" id="Birthday_day" style="width: 29%" >
                                             <option value="-1"><?php echo $this->lang->line('day'); ?></option>
-                                            <option value="1">1</option>
-                                            <option value="2">2</option>
-                                            <option value="3">3</option>
-
-                                            <option value="4">4</option>
-                                            <option value="5">5</option>
-                                            <option value="6">6</option>
-                                            <option value="7">7</option>
-                                            <option value="8">8</option>
-                                            <option value="9">9</option>
-                                            <option value="10">10</option>
-                                            <option value="11">11</option>
-                                            <option value="12">12</option>
-
-                                            <option value="13">13</option>
-                                            <option value="14">14</option>
-                                            <option value="15">15</option>
-                                            <option value="16">16</option>
-                                            <option value="17">17</option>
-                                            <option value="18">18</option>
-                                            <option value="19">19</option>
-                                            <option value="20">20</option>
-                                            <option value="21">21</option>
-
-                                            <option value="22">22</option>
-                                            <option value="23">23</option>
-                                            <option value="24">24</option>
-                                            <option value="25">25</option>
-                                            <option value="26">26</option>
-                                            <option value="27">27</option>
-                                            <option value="28">28</option>
-                                            <option value="29">29</option>
-                                            <option value="30">30</option>
-
-                                            <option value="31">31</option>
+                                            <?php
+                                                for($i = 1; $i < 31; $i++) { //TODO DATEPICKER!!
+                                                    echo '<option value = "'.$i.'">'.$i.'</option>';
+                                                }
+                                            ?>
                                         </select>
-
                                         <select id="Birthday_Month" name="Birthday_Month" style="width: 35%" >
                                             <option value="-1"><?php echo $this->lang->line('month'); ?></option>
                                             <option value="January"><?php echo $this->lang->line('januari_register'); ?></option>
@@ -399,161 +318,36 @@ $residentsFirstname = $this->db->query($query);
                                             <option value="November"><?php echo $this->lang->line('november_register'); ?></option>
                                             <option value="December"><?php echo $this->lang->line('december_register'); ?></option>
                                         </select>
-
                                         <select name="Birthday_Year" id="Birthday_Year" style="width: 30%" >
-
                                             <option value="-1"><?php echo $this->lang->line('year'); ?></option>
-
-                                            <option value="1990">2000</option>
-
-                                            <option value="1999">1999</option>
-                                            <option value="1998">1998</option>
-                                            <option value="1997">1997</option>
-                                            <option value="1996">1996</option>
-                                            <option value="1995">1995</option>
-                                            <option value="1994">1994</option>
-                                            <option value="1993">1993</option>
-                                            <option value="1992">1992</option>
-                                            <option value="1991">1991</option>
-                                            <option value="1990">1990</option>
-
-                                            <option value="1989">1989</option>
-                                            <option value="1988">1988</option>
-                                            <option value="1987">1987</option>
-                                            <option value="1986">1986</option>
-                                            <option value="1985">1985</option>
-                                            <option value="1984">1984</option>
-                                            <option value="1983">1983</option>
-                                            <option value="1982">1982</option>
-                                            <option value="1981">1981</option>
-                                            <option value="1980">1980</option>
-
-                                            <option value="1979">1979</option>
-                                            <option value="1978">1978</option>
-                                            <option value="1977">1977</option>
-                                            <option value="1976">1976</option>
-                                            <option value="1975">1975</option>
-                                            <option value="1974">1974</option>
-                                            <option value="1973">1973</option>
-                                            <option value="1972">1972</option>
-                                            <option value="1971">1971</option>
-                                            <option value="1970">1970</option>
-
-                                            <option value="1969">1969</option>
-                                            <option value="1968">1968</option>
-                                            <option value="1967">1967</option>
-                                            <option value="1966">1966</option>
-                                            <option value="1965">1965</option>
-                                            <option value="1964">1964</option>
-                                            <option value="1963">1963</option>
-                                            <option value="1962">1962</option>
-                                            <option value="1961">1961</option>
-                                            <option value="1960">1960</option>
-
-                                            <option value="1959">1959</option>
-                                            <option value="1958">1958</option>
-                                            <option value="1957">1957</option>
-                                            <option value="1956">1956</option>
-                                            <option value="1955">1955</option>
-                                            <option value="1954">1954</option>
-                                            <option value="1953">1953</option>
-                                            <option value="1952">1952</option>
-                                            <option value="1951">1951</option>
-                                            <option value="1950">1950</option>
-
-                                            <option value="1949">1949</option>
-                                            <option value="1948">1948</option>
-                                            <option value="1947">1947</option>
-                                            <option value="1946">1946</option>
-                                            <option value="1945">1945</option>
-                                            <option value="1944">1944</option>
-                                            <option value="1943">1943</option>
-                                            <option value="1942">1942</option>
-                                            <option value="1941">1941</option>
-                                            <option value="1940">1940</option>
-
-                                            <option value="1939">1939</option>
-                                            <option value="1938">1938</option>
-                                            <option value="1937">1937</option>
-                                            <option value="1936">1936</option>
-                                            <option value="1935">1935</option>
-                                            <option value="1934">1934</option>
-                                            <option value="1933">1933</option>
-                                            <option value="1932">1932</option>
-                                            <option value="1931">1931</option>
-                                            <option value="1930">1930</option>
-
-                                            <option value="1929">1929</option>
-                                            <option value="1928">1928</option>
-                                            <option value="1927">1927</option>
-                                            <option value="1926">1926</option>
-                                            <option value="1925">1925</option>
-                                            <option value="1924">1924</option>
-                                            <option value="1923">1923</option>
-                                            <option value="1922">1922</option>
-                                            <option value="1921">1921</option>
-                                            <option value="1920">1920</option>
-
-                                            <option value="1919">1919</option>
-                                            <option value="1918">1918</option>
-                                            <option value="1917">1917</option>
-                                            <option value="1916">1916</option>
-                                            <option value="1915">1915</option>
-                                            <option value="1914">1914</option>
-                                            <option value="1913">1913</option>
-                                            <option value="1912">1912</option>
-                                            <option value="1911">1911</option>
-                                            <option value="1910">1910</option>
-
-                                            <option value="1909">1909</option>
-                                            <option value="1908">1908</option>
-                                            <option value="1907">1907</option>
-                                            <option value="1906">1906</option>
-                                            <option value="1905">1905</option>
-                                            <option value="1904">1904</option>
-                                            <option value="1903">1903</option>
-                                            <option value="1902">1902</option>
-                                            <option value="1901">1901</option>
-                                            <option value="1900">1900</option>
+                                            <?php
+                                            for($i = 1900; $i < 2000; $i++) { //TODO DATEPICKER!!
+                                                echo '<option value = "'.$i.'">'.$i.'</option>';
+                                            }
+                                            ?>
                                         </select>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td><?php echo $this->lang->line('contact'); ?>: </td>
                                     <td>
-                                        <input type="text" id="inputcontact" oninput="checkInput(this.id)" pattern="[0-9]{0,10}" name="Mobile_Number" maxlength="10" placeholder="0478704235" />
+                                        <input type="text" id="inputcontact" oninput="checkInput(this.id)" pattern="[0-9]{0,10}" name="Mobile_Number" maxlength="15" placeholder="0478704235" />
                                     </td>
                                 </tr>
-
-                                <!--<tr>
-                                    <td>GENDER</td>
-                                    <td>
-                                        Male <input type="radio" name="Gender" value="Male" />
-                                        Female <input type="radio" name="Gender" value="Female" />
-                                    </td>
-                                </tr>-->
-
                                 <tr>
-                                    <td>*PIN CODE: </td>
+                                    <td>*PIN CODE: </td>            <!-- TODO translate -->
                                     <td><input type="password" id="password" oninput="checkInput(this.id)" pattern="[0-9]{0,4}" name="Pin_Code" maxlength="4" placeholder="1234" required/>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>*PIN CODE BEVESTIGEN: </td>
+                                    <td>*PIN CODE BEVESTIGEN: </td>  <!-- TODO translate -->
                                     <td><input type="password" id="password_confirm" pattern="[0-9]{0,4}" name="Pin_Code_2" maxlength="4" placeholder="1234" oninput="check(this)" required/>
                                     </td>
                                 </tr>
-
-                                <!-- <tr>
-                                     <td>NATIONALITY</td>
-                                     <td><input type="text" name="Nationality" value="Belgium" readonly="readonly" /></td>
-                                 </tr>-->
-
                                 <tr>
-                                    <br/>
+                                    <br>
                                     <td>*<?php echo $this->lang->line('language'); ?>: </td>
                                     <td>
-
                                         <input type="radio" name="Radio" value="Dutch" checked>
                                         <?php echo $this->lang->line('dutch'); ?>
                                             <input type="radio" name="Radio" value="English" >
@@ -570,16 +364,6 @@ $residentsFirstname = $this->db->query($query);
                                     <td>*<?php echo $this->lang->line('bed'); ?>: </td>
                                     <td><input type="text" id="inputbed" oninput="checkInput(this.id)" pattern="[A-Z a-z0-9]{0,4}" name="Bed_Id" maxlength="10" placeholder="bed id" required/></td>
                                 </tr>
-
-                                <!--<tr>
-                                     <td>EMAIL</td>
-                                     <td>
-                                         <input type="text" name="email" maxlength="30" />
-                                     </td>
-                                 </tr>-->
-
-
-
                                 <tr>
                                     <td><?php echo $this->lang->line('floor'); ?>: </td>
                                     <td>
@@ -591,13 +375,12 @@ $residentsFirstname = $this->db->query($query);
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>        </td>
+                                    <td> </td>
                                     <td>
                                         <input type="radio" name="floor" value="SecondFloor">
                                         <?php echo $this->lang->line('floor3'); ?>
                                             <input type="radio" name="floor" value="ThirdFloor">
                                         <?php echo $this->lang->line('floor4'); ?>
-
                                     </td>
                                 </tr>
                                 <tr>
@@ -606,12 +389,9 @@ $residentsFirstname = $this->db->query($query);
                                         <input type="text" id="inputprivileges" oninput="checkInput(this.id)" pattern="[A-Z a-z0-9'éèëï-]{0,200}" name="Privileges" maxlength="200" placeholder="<?php echo $this->lang->line('privileges_optional'); ?>" />
                                     </td>
                                 </tr>
-
                                 <tr>
                                     <td colspan="2" align="center">
                                         <input type="submit" value="Send">
-
-
                                     </td>
                                 </tr>
                                 <tr>
@@ -623,19 +403,19 @@ $residentsFirstname = $this->db->query($query);
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
-
                 </div>
             </div>
         </form>
-        <div class="col-3 hiddendiv" id="div4" style="background-color:#009489;padding:0;">
-        </div>
+
+
+
+        <div class="col-3 hiddendiv" id="div4" style="background-color:#009489;padding:0;"></div>
         <div class="col-6" style="background-color:#f9f9f9;padding:0px;">
             <div style="width:100%;">
                 <ul class="nav nav-tabs" style="text-align:center;border:none;">
-                    <li class="nav-item" style="width:33%;"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1" style="border:none;" onclick="loadDiv1()"><?php echo $this->lang->line('dash_questionnaire'); ?></a></li>
-                    <li class="nav-item" style="width:33%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2" style="border:none;" onclick="loadDiv2()"><?php echo $this->lang->line('dash_poll'); ?></a></li>
-                    <li class="nav-item" style="width:34%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3" style="border:none;" onclick="loadDiv3()"><?php echo $this->lang->line('admin'); ?></a></li>
-
+                    <li class="nav-item" style="width:33%;"><a class="nav-link active" role="tab" data-toggle="tab" href="#tab-1" style="border:none;" onclick="loadDiv(1)"><?php echo $this->lang->line('dash_questionnaire'); ?></a></li>
+                    <li class="nav-item" style="width:33%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-2" style="border:none;" onclick="loadDiv(2)"><?php echo $this->lang->line('dash_poll'); ?></a></li>
+                    <li class="nav-item" style="width:34%;"><a class="nav-link" role="tab" data-toggle="tab" href="#tab-3" style="border:none;" onclick="loadDiv(3)"><?php echo $this->lang->line('admin'); ?></a></li>
                 </ul>
                 <div class="tab-content">
                     <div class="tab-pane active" role="tabpanel" id="tab-1" style="padding:5%;max-height:94vh;overflow-y:scroll;">
@@ -646,33 +426,35 @@ $residentsFirstname = $this->db->query($query);
                                         <img class="card-picture" src="<?=base_url() ?>assets/photos/elder1.jpg" alt="Avatar">
                                         <span class="card-name" id="residentName"> <?php echo $theFirstName." ".$name; ?>
                                         </span>
-
-
                                     </div>
                                 </div>
-
                                 <div class="card-text">
                                     <div class="card-birthdate"><?php echo $this->lang->line('birthday'); ?><span id="card-birthdate"> <?php echo $dateOfBirth ?> </span></div>
                                     <div class="card-room"><?php echo $this->lang->line('roomnum'); ?><span id="card-room"> <?php echo $roomNumber ?> </span></div>
                                     <div class="card-bed"><?php echo $this->lang->line('bednum'); ?><span id="card-bed"> <?php echo $bedNumber ?> </span></div>
                                     <div class="card-privileges"><?php echo $this->lang->line('privileges'); ?><span id="card-privileges">: can go outside</span></div>
                                 </div>
-
                                 <div class="radarChart"></div>
                                 <script src="<?=base_url() ?>assets/js/radarChart.js"></script>
                                 <script type="text/javascript">
                                     var data = <?php echo json_encode($data1); ?>;
+                                    var data2 = <?php echo json_encode($data2); ?>;
                                 </script>
-
                                 <script>
-                                    RadarChart(".radarChart", data);
+                                    if(data !== null && data !== '')
+                                    {
+                                        RadarChart(".radarChart", data);
+                                    }
+                                    else
+                                    {
+                                        RadarChart1(".radarChart", data2);
+                                    }
                                 </script>
                             </div>
                         </div>
-
                         <div class="card questionnaire-card">
                             <div class="card-body">
-                                </br>
+                                <br>
                                 <h2 class="answer"><?php echo $this->lang->line('dash_answers'); ?></h2>
                                 <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
                                 <script src="//d3js.org/d3.v4.min.js"></script>
@@ -681,16 +463,19 @@ $residentsFirstname = $this->db->query($query);
                                 <div class='container'>
                                     <div class='row'>
                                         <div class='radio'>
-
-                                            </br>
+                                            <br>
                                             <div class = "date" style="float:left;">
                                                 <select onchange="change(this.value,'all');"  name = "date" id = "date" class="input">
                                                     <option disabled selected><?php echo $this->lang->line('dash_select_date'); ?></option>
                                                     <?php
-                                                    foreach($data_each1 as $row)
+                                                    if(isset($one))
                                                     {
-                                                    echo '<option value="'.$row['key'].'">'.$row['key'].'</option>';
+                                                        foreach($data_each1 as $row)
+                                                        {
+                                                            echo '<option value="'.$row['key'].'">'.$row['key'].'</option>';
+                                                        }
                                                     }
+
                                                     ?>
                                                 </select>
                                             </div>
@@ -715,12 +500,11 @@ $residentsFirstname = $this->db->query($query);
                                                     <option  value="all" ><?php echo $this->lang->line('category_all'); ?></option>
                                                 </select>
                                             </div>
-                                            </br>
-                                            </br>
-
+                                            <br>
+                                            <br>
                                         </div>
-                                        <svg class='chart'>
-                                        </svg>
+                                        <svg class='chart' viewBox="0 0 530 400"
+                                             perserveAspectRatio="xMinYMid"> </svg>
                                     </div>
                                 </div>
                             </div>
@@ -737,7 +521,8 @@ $residentsFirstname = $this->db->query($query);
                                         {
                                         $row = $firstName->row();
                                         echo $row->firstName;
-                                        } ?>!</p>
+                                        }
+                                    ?></p>
                                 </div>
                                 <div class="col-4">
                                     <img class="profilePic" style="width:130px;height:130px;" src="<?=base_url() ?>assets/photos/Caregiver-center.jpg" alt="Profielfoto">
@@ -763,18 +548,18 @@ $residentsFirstname = $this->db->query($query);
                                         {
                                         $row = $email->row();
                                         echo $row->email;
-                                        }  ?></p>
+                                        }
+                                    ?></p>
                                 </div>
-
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
-        <!--        </div>-->
+
+
+
         <div class="col-3" style="background-color:#c7de6e;padding:0;">
             <div style="height:5%;">
                 <span id="openfullscreen" class="fa fa-expand btn-fullscreen" onclick="openFullscreen()"></span>
@@ -782,18 +567,14 @@ $residentsFirstname = $this->db->query($query);
             </div>
             <div class="searchdiv" style="text-align:center;margin:15px;">
                 <h2 class="notes-title"><?php echo $this->lang->line('dash_notes'); ?></h2>
-
-
                 <button class="btn btn-primary btn-lg" type="button" style="min-width:100%;background-color:#009489;border:none;" data-toggle="modal" data-target="#myModal"><?php echo $this->lang->line('dash_add'); ?></button>
                 <!--Modal-->
                 <form method="post" action="<?= site_url('Caregiver_controller/add_note') ?>">
                     <div id="myModal" class="modal fade" role="dialog">
                         <div class="modal-dialog">
-
                             <!-- Modal content-->
                             <div class="modal-content">
                                 <div class="modal-header">
-
                                     <h4 class="modal-title"><?php echo $this->lang->line('dash_add'); ?></h4>
                                 </div>
                                 <div class="modal-body" >
@@ -804,11 +585,9 @@ $residentsFirstname = $this->db->query($query);
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 </div>
                             </div>
-
                         </div>
                     </div>
                 </form>
-
             </div>
 
             <div style="height:2%;"></div>
@@ -817,88 +596,87 @@ $residentsFirstname = $this->db->query($query);
                 <div class="card notes-card active">
                     <div id="cardhead1" class="card-header notes-card-head card-head-active" role="tab">
                         <h5 class="mb-0">
-                            <a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-1 .item-1" href="div#accordion-1 .item-1" class="btn-notes" onclick="rotate1()">
-                                <?php echo $this->lang->line('dash_today'); ?>&nbsp;<span id="caret1" class="fa fa-caret-left activefa"></span></a>
+                            <a data-toggle="collapse" aria-expanded="true" aria-controls="accordion-1 .item-1" href="div#accordion-1 .item-1" class="btn-notes" onclick="rotate(1)">
+                                <?php echo $this->lang->line('dash_today'); ?>&nbsp;<span id="caret1" class="fa fa-caret-left activefa"></span>
+                            </a>
                         </h5>
                     </div>
                     <div class="collapse show item-1 notes-content" role="tabpanel" data-parent="#accordion-1">
                         <div class="card-body">
                             <?php
-                            foreach ($result->result_array() as $row) {
-                            if((time()+3600)-strtotime($row['timestamp']) < 86400){
-                            ?><div class="note-box"><?php
-                                ?><p class="note-heading"><b><?php
-                                        echo $row['firstName'];
-                                        ?></b><span class="note-timestamp"><?php
-                                        for($i = 0; $i < 11; $i++) {
-                                        $row['timestamp'][$i] = ' ';
-                                        }
-                                        $row['timestamp'][16] = ' ';
-                                        $row['timestamp'][17] = ' ';
-                                        $row['timestamp'][18] = ' ';
-                                        echo $row['timestamp'];
-                                        ?></span><?php
-                                    ?></p><?php
-                                echo $row['noteText'];
-                                ?></div><?php
-                            }
-                            }
+                                foreach ($result->result_array() as $row) {
+                                    if((time()+3600)-strtotime($row['timestamp']) < 86400){
+                                        ?><div class="note-box"><?php
+                                            ?><p class="note-heading"><b><?php
+                                                echo $row['firstName'];
+                                                ?></b><span class="note-timestamp"><?php
+                                                    for($i = 0; $i < 11; $i++) $row['timestamp'][$i] = ' ';
+                                                    $row['timestamp'][16] = ' ';
+                                                    $row['timestamp'][17] = ' ';
+                                                    $row['timestamp'][18] = ' ';
+                                                    echo $row['timestamp'];
+                                                ?></span><?php
+                                            ?></p><?php
+                                            echo $row['noteText'];
+                                        ?></div><?php
+                                    }
+                                }
                             ?>
                         </div>
                     </div>
                 </div>
                 <div class="card notes-card">
                     <div id="cardhead2" class="card-header notes-card-head" role="tab">
-                        <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-2" href="div#accordion-1 .item-2" class="btn-notes" onclick="rotate2()">
-                                <?php echo $this->lang->line('dash_this_week'); ?>&nbsp;<span id="caret2" class="fa fa-caret-left"></span></a>
+                        <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-2" href="div#accordion-1 .item-2" class="btn-notes" onclick="rotate(2)">
+                            <?php echo $this->lang->line('dash_this_week'); ?>&nbsp;<span id="caret2" class="fa fa-caret-left"></span></a>
                         </h5>
                     </div>
                     <div class="collapse item-2 notes-content" role="tabpanel" data-parent="#accordion-1">
                         <div class="card-body">
                             <?php
-                            foreach ($result->result_array() as $row) {
-                            if((time()+3600)-strtotime($row['timestamp']) < 604800){
-                            ?><div class="note-box"><?php
-                                ?><p class="note-heading"><b><?php
-                                        echo $row['firstName'];
-                                        ?></b><span class="note-timestamp"><?php
-                                        for($i = 11; $i < 20; $i++) {
-                                        $row['timestamp'][$i] = ' ';
-                                        }
-                                        echo $row['timestamp'];
-                                        ?></span><?php
-                                    ?></p><?php
-                                echo $row['noteText'];
-                                ?></div><?php
-                            }
-                            }
+                                foreach ($result->result_array() as $row) {
+                                    if((time()+3600)-strtotime($row['timestamp']) < 604800){
+                                        ?><div class="note-box"><?php
+                                            ?><p class="note-heading"><b><?php
+                                                echo $row['firstName'];
+                                                ?></b><span class="note-timestamp"><?php
+                                                    for($i = 11; $i < 20; $i++) {
+                                                        $row['timestamp'][$i] = ' ';
+                                                    }
+                                                    echo $row['timestamp'];
+                                                ?></span><?php
+                                            ?></p><?php
+                                            echo $row['noteText'];
+                                        ?></div><?php
+                                    }
+                                }
                             ?>
                         </div>
                     </div>
                 </div>
                 <div class="card notes-card">
                     <div id="cardhead3" class="card-header notes-card-head" role="tab">
-                        <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-3" href="div#accordion-1 .item-3" class="btn-notes" onclick="rotate3()">
-                                <?php echo $this->lang->line('dash_archive'); ?>&nbsp;<span id="caret3" class="fa fa-caret-left"></span></a>
+                        <h5 class="mb-0"><a data-toggle="collapse" aria-expanded="false" aria-controls="accordion-1 .item-3" href="div#accordion-1 .item-3" class="btn-notes" onclick="rotate(3)">
+                            <?php echo $this->lang->line('dash_archive'); ?>&nbsp;<span id="caret3" class="fa fa-caret-left"></span></a>
                         </h5>
                     </div>
                     <div class="collapse item-3 notes-content" role="tabpanel" data-parent="#accordion-1">
                         <div class="card-body">
                             <?php
-                            foreach ($result->result_array() as $row) {
-                            ?><div class="note-box"><?php
-                                ?><p class="note-heading"><b><?php
-                                        echo $row['firstName'];
-                                        ?></b><span class="note-timestamp"><?php
-                                        for($i = 11; $i < 20; $i++) {
-                                        $row['timestamp'][$i] = ' ';
-                                        }
-                                        echo $row['timestamp'];
-                                        ?></span><?php
-                                    ?></p><?php
-                                echo $row['noteText'];
-                                ?></div><?php
-                            }
+                                foreach ($result->result_array() as $row) {
+                                    ?><div class="note-box"><?php
+                                        ?><p class="note-heading"><?php
+                                            ?><b><?php
+                                                echo $row['firstName'];
+                                            ?></b><?php
+                                            ?><span class="note-timestamp"><?php
+                                                for($i = 11; $i < 20; $i++) $row['timestamp'][$i] = ' ';
+                                                echo $row['timestamp'];
+                                            ?></span><?php
+                                        ?></p><?php
+                                        echo $row['noteText'];
+                                    ?></div><?php
+                                }
                             ?>
                         </div>
                     </div>
@@ -917,14 +695,16 @@ $residentsFirstname = $this->db->query($query);
 
 
 
-
-
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <!--<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+
+
 </body>
+
+
 
 <script>
     /* Get the documentElement (<html>) to display the page in fullscreen */
@@ -961,6 +741,7 @@ $residentsFirstname = $this->db->query($query);
     }
 </script>
 
+
 <script>
     function check(input) {
         if (input.value != document.getElementById('password').value) {
@@ -968,101 +749,61 @@ $residentsFirstname = $this->db->query($query);
         } else {
             input.setCustomValidity('');
         }
-        checkInput('password_confirm')
+        checkInput('password_confirm');
     }
 </script>
+
+
 <script>
     var currentButtonID
-    function loadResident(id){
-        if(currentButtonID){
-            var previous = document.getElementById(currentButtonID)
-            previous.classList.remove("btn-active")
+    function loadResident(id) {
+        if(currentButtonID) {
+            var previous = document.getElementById(currentButtonID);
+            previous.classList.remove("btn-active");
         }
 
-        var element = document.getElementById(id)
-        element.classList.add("btn-active")
-        currentButtonID = id
+        var element = document.getElementById(id);
+        element.classList.add("btn-active");
+        currentButtonID = id;
 
         let base_url = window.location.origin.concat("/a18ux04");
         console.log(base_url);
-        //if(base_url!="http://localhost/a18ux04")
         if(!base_url.includes("localhost"))
             base_url = "https://a18ux04.studev.groept.be";
 
         let newUrl = base_url.concat("/index.php/Dashboard/dashboard/").concat(id);
         window.location.href = newUrl;
-
         //document.getElementById("residentName").innerText = id + "<?php echo $this->lang->line('dash_profile'); ?>"
     }
-
 </script>
 
-<?php
-function displayResidents($residents){
 
-    if (isset($_GET['filter'])) {
-        $input = $_GET['filter'];
-        /*$input = 'Andr'; */
-        if ($input == '') {
-            foreach ($residents->result_array() as $row) {
-                ?>
-                <button class="btn btn-primary btn-resident" id="<?php echo $row['idResidents'] ?>" type="button"
-                        onclick="loadResident(this.id)">
-                <div class="resident-button">
-                    <img class="profilePic" src="<?= base_url() ?>assets/photos/elder1.jpg" alt="Avatar">
-                    <span class="resident-nameage"><div class="button-name"><?php
-                            echo $row['firstName'];
-                            echo " ";
-                            echo $row['name'];
-                            ?></div><div class="button-age"><?php
-                            echo $row['age'] ?></div>
-                        <?php
-                        ?></span></div></button><?php
-            }
-        } else {
-            foreach ($residents->result_array() as $row) {
-                $fullname = $row['firstName'];
-                $fullname .= " ".$row['name'];
-                if (strpos($fullname, $input) !== false) {
-                    ?>
-                <button class="btn btn-primary btn-resident" id="<?php echo $row['idResidents'] ?>" type="button"
-                        onclick="loadResident(this.id)">
-                    <div class="resident-button">
-                        <img class="profilePic" src="<?= base_url() ?>assets/photos/elder2.jpg" alt="Avatar">
-                        <span class="resident-nameage"><div class="button-name"><?php
-                                echo $row['firstName'];
-                                echo " ";
-                                echo $row['name'];
-                                ?></div><div class="button-age"><?php
-                                echo $row['age'] ?></div>
-                            <?php
-                            ?></span></div></button><?php
-                }
+<?php function displayResidents($residents) {
+    if (isset($_GET['filter'])) $input = $_GET['filter'];
+    else $input ='';
 
-            }
-        }
-    }
-
-    else {
-        foreach ($residents->result_array() as $row) {
-        ?>
-        <button class="btn btn-primary btn-resident" id="<?php echo $row['idResidents'] ?>" type="button"
+    foreach ($residents->result_array() as $row) {
+        $fullname = $row['firstName']." ".$row['name'];
+        if($input== '' || strpos($fullname, $input) !== false) {
+            ?>
+            <button class="btn btn-primary btn-resident" id="<?php echo $row['idResidents'] ?>" type="button"
                 onclick="loadResident(this.id)">
-            <div class="resident-button">
-                <img class="profilePic" src="<?= base_url() ?>assets/photos/id.png" alt="Avatar">
-                <span class="resident-nameage"><div class="button-name"><?php
-                        echo $row['firstName'];
-                        echo " ";
-                        echo $row['name'];
-                        ?></div><div class="button-age"><?php
-                        echo $row['age'] ?></div>
-                    <?php
-                    ?></span></div></button><?php
+                <div class="resident-button">
+                    <img class="profilePic" src="<?= base_url() ?>assets/photos/id.png" alt="Avatar">
+                    <span class="resident-nameage">
+                        <div class="button-name">
+                            <?php echo $row['firstName']." ".$row['name']; ?>
+                        </div>
+                        <div class="button-age">
+                            <?php echo $row['age'] ?>
+                        </div>
+                    </span>
+                </div>
+            </button><?php
         }
-
     }
-}
-?>
+} ?>
+
 
 <script>
     var face_changers = document.querySelectorAll('.btnFlip'),
@@ -1074,43 +815,43 @@ function displayResidents($residents){
             e.preventDefault();
         }, false)
     }
-
 </script>
+
+
 <script>
     var currentButtonID
-    function settingsButton(id){
+    function settingsButton(id) {
         if(currentButtonID){
             var previous = document.getElementById(currentButtonID)
             previous.classList.remove("btn-active")
         }
-
         var element = document.getElementById(id)
         element.classList.add("btn-active")
         currentButtonID = id
     }
-
 </script>
 
+
 <script>
-    attempts = 0
+    attempts = 0;
     function checkInput(id){
         input = document.getElementById(id).value
         if(input.includes("<")||input.includes(">")||input.includes("\;")) {
             if(attempts > 0) {
                 alert("Are you still trying to inject code? \nWe are going to have to disable your keyboard to prevent future attacks.")
                 input = input.slice(0, -1);
-                document.getElementById(id).value = input
+                document.getElementById(id).value = input;
                 $("body").keydown(false);
                 document.getElementById("easteregg").classList.remove("hiddendiv")
-            }
-            else{
+            } else{
                 alert("code injection not yet supported. \nBecause this is your first attempt, we'll just remove this from your input.")
                 input = input.slice(0, -1);
-                document.getElementById(id).value = input
-                attempts = 1
+                document.getElementById(id).value = input;
+                attempts = 1;
             }
         }
     }
+
     function enableInput(){
         location.reload()
     }
@@ -1118,296 +859,109 @@ function displayResidents($residents){
 
 
 <script>
-    currentTab = 1
-    function rotate1(){
-        if(currentTab != 1) {
-            document.getElementById("caret1").classList.add("activefa")
-            document.getElementById("caret2").classList.remove("activefa")
-            document.getElementById("caret3").classList.remove("activefa")
-            document.getElementById("cardhead1").classList.add("card-head-active")
-            document.getElementById("cardhead2").classList.remove("card-head-active")
-            document.getElementById("cardhead3").classList.remove("card-head-active")
-            currentTab = 1
-        }
-        else{
-            document.getElementById("caret1").classList.remove("activefa")
-            document.getElementById("cardhead1").classList.remove("card-head-active")
-            currentTab = 0
-        }
-    }
-    function rotate2(){
-        if(currentTab != 2) {
-            document.getElementById("caret1").classList.remove("activefa")
-            document.getElementById("caret2").classList.add("activefa")
-            document.getElementById("caret3").classList.remove("activefa")
-            document.getElementById("cardhead1").classList.remove("card-head-active")
-            document.getElementById("cardhead2").classList.add("card-head-active")
-            document.getElementById("cardhead3").classList.remove("card-head-active")
-            currentTab = 2;
-        }
-        else{
-            document.getElementById("caret2").classList.remove("activefa")
-            document.getElementById("cardhead2").classList.remove("card-head-active")
-            currentTab = 0
-        }
-    }
-    function rotate3(){
-        if(currentTab != 3) {
-            document.getElementById("caret1").classList.remove("activefa")
-            document.getElementById("caret2").classList.remove("activefa")
-            document.getElementById("caret3").classList.add("activefa")
-            document.getElementById("cardhead1").classList.remove("card-head-active")
-            document.getElementById("cardhead2").classList.remove("card-head-active")
-            document.getElementById("cardhead3").classList.add("card-head-active")
-            currentTab = 3
-        }
-        else{
-            document.getElementById("caret3").classList.remove("activefa")
-            document.getElementById("cardhead3").classList.remove("card-head-active")
-            currentTab = 0
+    currentTab = 1;
+    function rotate(id){
+        if(currentTab != id) {
+            if(currentTab != 0) { //close currently open tab, if any
+                document.getElementById("caret".concat(currentTab)).classList.remove("activefa")
+                document.getElementById("cardhead".concat(currentTab)).classList.remove("card-head-active")
+            }
+            document.getElementById("caret".concat(id)).classList.add("activefa")
+            document.getElementById("cardhead".concat(id)).classList.add("card-head-active")
+            currentTab = id;
+        } else {    //close this tab, it was already open when clicked
+            document.getElementById("caret".concat(currentTab)).classList.remove("activefa")
+            document.getElementById("cardhead".concat(currentTab)).classList.remove("card-head-active")
+            currentTab = 0;
         }
     }
 </script>
 
+
 <script>
-    function loadDiv1(){
-        document.getElementById("div2").classList.add("hiddendiv")
-        document.getElementById("div3").classList.add("hiddendiv")
-        document.getElementById("div4").classList.add("hiddendiv")
-        var element = document.getElementById("div1")
-        element.classList.remove("hiddendiv")
+    amountOfTabs = 0;
+    function loadDiv(id){
+        if(id > amountOfTabs) amountOfTabs = id;
+        for(var i = 1; i < amountOfTabs + 1; i++)   {
+            if(i == id) {
+                var element = document.getElementById("div".concat(i.toString()));
+                element.classList.remove("hiddendiv");
+            }
+            else document.getElementById("div".concat(i.toString())).classList.add("hiddendiv");
+        }
     }
-    function loadDiv2(){
-        document.getElementById("div1").classList.add("hiddendiv")
-        document.getElementById("div3").classList.add("hiddendiv")
-        document.getElementById("div4").classList.add("hiddendiv")
-        var element = document.getElementById("div2")
-        element.classList.remove("hiddendiv")
-    }
-    function loadDiv3(){
-        document.getElementById("div1").classList.add("hiddendiv")
-        document.getElementById("div2").classList.add("hiddendiv")
-        document.getElementById("div4").classList.add("hiddendiv")
-        var element = document.getElementById("div3")
-        element.classList.remove("hiddendiv")
-    }
-    function loadDiv4(){
-        document.getElementById("div1").classList.add("hiddendiv")
-        document.getElementById("div2").classList.add("hiddendiv")
-        document.getElementById("div3").classList.add("hiddendiv")
-        var element = document.getElementById("div4")
-        element.classList.remove("hiddendiv")
-    }
-
-
-
 </script>
 
 
 <script type="text/javascript">
+    //set up chart
+    var margin = {top: 10, right:0, bottom: 280, left: 25};
+    var width = 490;
+    var height = 200;
 
+    var chart = d3.select(".chart")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+    var xChart = d3.scaleBand()
+        .range([0, width]);
+    //.nice();
 
-    //functions for toggling between data
-    function change(date,value) {
+    var yChart;
+    yChart = d3.scaleLinear()
+        .range([height, 0]);
 
+    //set up axes
+    var xAxis = d3.axisBottom(xChart);
+    var yAxis = d3.axisLeft(yChart)
+        .ticks(5)
+        .tickValues([1, 2, 3, 4, 5]);
+
+    chart.append("g")
+        .attr("class", "y axis")
+
+    chart.append("g")
+        .attr("class", "xAxis")
+
+    //add labels
+    chart
+        .append("text")
+        .attr("transform", "translate(-35," + (height -140+ margin.bottom) / 2 + ") rotate(-90)")
+        .style("font-size", "18px")
+        .style("padding", "8px")
+        .style("font-weight", "400")
+        .style("font-family", "Avenir Next Condensed")
+        .text("<?php echo $this->lang->line('category_score'); ?>");
+    update(bothData, true);
+
+    //function for toggling between data
+    function change(date,category) {
         var data5 = <?php echo json_encode($data_each1); ?>;
 
-
         for (var index = 0; index < data5.length; ++index) {
-            //console.log(data5[index]['key']);
-            //console.log(date);
-            if (data5[index]['key'] === date)
-            {
+            if (data5[index]['key'] === date) {
                 bothData = data5[index]['values'];
-                //console.log(data5[index]['values']);
+                break;
             }
         }
 
-        var data_1 = [];
-        var data_2 = [];
-        var data_3 = [];
-        var data_4 = [];
-        var data_5 = [];
-        var data_6 = [];
-        var data_7 = [];
-        var data_8 = [];
-        var data_9 = [];
-        var data_10 = [];
-        var data_11 = [];
-
-        //var bothData = <?php echo json_encode($one); ?>;;
-
-        for (var i = 0; i < bothData.length; i++) {
-            if (bothData[i]["catergoryID"] === "0") {
-                data_1.push(bothData[i]);
-            } else if (bothData[i]["catergoryID"] === "1") {
-                data_2.push(bothData[i]);
+        if(category !== 'all') {
+            var data = [];
+            for (var i = 0; i < bothData.length; i++) {
+                if (bothData[i]["catergoryID"] == category) data.push(bothData[i]);
             }
-            else if (bothData[i]["catergoryID"] === "2") {
-                data_3.push(bothData[i]);
-            }
-            else if (bothData[i]["catergoryID"] === "3") {
-                data_4.push(bothData[i]);
-            }
-            else if (bothData[i]["catergoryID"] === "4") {
-                data_5.push(bothData[i]);
-            }
-            else if (bothData[i]["catergoryID"] === "5") {
-                data_6.push(bothData[i]);
-            }
-            else if (bothData[i]["catergoryID"] === "6") {
-                data_7.push(bothData[i]);
-            }
-            else if (bothData[i]["catergoryID"] === "7") {
-                data_8.push(bothData[i]);
-            }
-            else if (bothData[i]["catergoryID"] === "8") {
-                data_9.push(bothData[i]);
-            }
-            else if (bothData[i]["catergoryID"] === "9") {
-                data_10.push(bothData[i]);
-            }
-            else if (bothData[i]["catergoryID"] === "10") {
-                data_11.push(bothData[i]);
-            }
-
-        }
-
-
-        if (value === '0') {
-            update(data_1);
-        } else if (value === '1') {
-            update(data_2);
-        } else if (value === '2') {
-            update(data_3);
-        }
-        else if (value === '3') {
-            update(data_4);
-        }
-        else if (value === '4') {
-            update(data_5);
-        }
-        else if (value === '5') {
-            update(data_6);
-        }
-        else if (value === '6') {
-            update(data_7);
-        }
-        else if (value === '7') {
-            update(data_8);
-        }
-        else if (value === '8') {
-            update(data_9);
-        }
-        else if (value === '9') {
-            update(data_10);
-        }
-        else if (value === '10') {
-            update(data_11);
-        }
-        else if (value === 'all'){
-            xChart.domain(bothData.map(function (d) {
-                return d.category;
-            }));
-            //set domain for y axis
-            yChart.domain([1, d3.max(bothData, function (d) {
-                return d.answer;
-            })]);
-
-            //get the width of each bar
-            var barWidth = width / bothData.length;
-
-            //select all bars on the graph, take them out, and exit the previous data set.
-            //then you can add/enter the new data set
-            var bars = chart.selectAll(".bar")
-                .remove()
-                .exit()
-                .data(bothData)
-            //now actually give each rectangle the corresponding data
-            bars.enter()
-                .append("rect")
-                .attr("class", "bar")
-                .attr("x", function (d, i) {
-                    return i * barWidth + 1
-                })
-                .attr("y", function (d) {
-                    return yChart(d.answer);
-                })
-                .attr("height", function (d) {
-                    return height - yChart(d.answer);
-                })
-                .attr("width", barWidth - 1)
-                .attr("fill", function (d) {
-                    if (d.catergoryID === "0") {
-                        return "rgb(216,230,173)";
-                    } else if (d.catergoryID === "1") {
-                        return "rgb(173,216,230)";
-                    }
-                    else if (d.catergoryID === "2") {
-                        return "rgb(230,187,173)";
-                    }
-                    else if (d.catergoryID === "3") {
-                        return "rgb(138,149,240)";
-                    }
-                    else if (d.catergoryrID === "4") {
-                        return "rgb(200,235,208)";
-                    }
-                    else if (d.catergoryID === "5") {
-                        return "rgb(133,266,246)";
-                    }
-                    else if (d.catergoryID === "6") {
-                        return "rgb(187,187,187)";
-                    }
-                    else if (d.catergoryID === "7") {
-                        return "rgb(193,226,204)";
-                    }
-                    else if (d.catergoryID === "8") {
-                        return "rgb(234,145,152)";
-                    }
-                    else if (d.catergoryID === "9") {
-                        return "rgb(252,244,144)";
-                    }
-                    else if (d.catergoryID === "10") {
-                        return "rgb(157,174,147)";
-                    }
-                    else {
-                        return "rgb(14,174,294)";
-                    }
-                });
-            //left axis
-            chart.select('.y')
-                .call(yAxis)
-            //bottom axis
-            chart.select('.xAxis')
-                .attr("transform", "translate(0," + height + ")")
-                .call(xAxis)
-                .selectAll("text")
-                .style("text-anchor", "end")
-                .attr("dx", "-.8em")
-                .attr("dy", ".15em")
-                .attr("transform", function (d) {
-                    return "rotate(-65)";
-                });
-
-
-        }
-
+            update(data, false);
+        } else update(bothData, true);
     }
 
 
-    function update(data) {
-        //set domain for the x axis
-        xChart.domain(data.map(function (d) {
-            return d.question;
-        }));
-        //set domain for y axis
-        yChart.domain([1, d3.max(data, function (d) {
-            return +d.answer;
-        })]);
-
-        //get the width of each bar
-        var barWidth = width / data.length;
+    function update(data, overview) {
+        if(overview) xChart.domain(data.map(function(d) { return d.category; })); //set domain for x axis (overview graph)
+        else         xChart.domain(data.map(function(d) { return d.question; })); // '' (category graph
+        yChart.domain([1, d3.max(data, function (d) { return d.answer; })]);   //set domain for y axis
+        var barWidth = width / data.length; //get the width of each bar
 
         //select all bars on the graph, take them out, and exit the previous data set.
         //then you can add/enter the new data set
@@ -1430,40 +984,19 @@ function displayResidents($residents){
             })
             .attr("width", barWidth - 1)
             .attr("fill", function (d) {
-                if (d.catergoryID === "0") {
-                    return "rgb(216,230,173)";
-                } else if (d.catergoryID === "1") {
-                    return "rgb(173,216,230)";
-                }
-                else if (d.catergoryID === "2") {
-                    return "rgb(230,187,173)";
-                }
-                else if (d.catergoryID === "3") {
-                    return "rgb(138,149,240)";
-                }
-                else if (d.catergoryrID === "4") {
-                    return "rgb(200,235,208)";
-                }
-                else if (d.catergoryID === "5") {
-                    return "rgb(133,266,246)";
-                }
-                else if (d.catergoryID === "6") {
-                    return "rgb(187,187,187)";
-                }
-                else if (d.catergoryID === "7") {
-                    return "rgb(193,226,204)";
-                }
-                else if (d.catergoryID === "8") {
-                    return "rgb(234,145,152)";
-                }
-                else if (d.catergoryID === "9") {
-                    return "rgb(252,244,144)";
-                }
-                else if (d.catergoryID === "10") {
-                    return "rgb(157,174,147)";
-                }
-                else {
-                    return "rgb(14,174,294)";
+                switch (d.catergoryID) {
+                    case "0" : return "rgb(216,230,173)";
+                    case "1" : return "rgb(173,216,230)";
+                    case "2" : return "rgb(230,187,173)";
+                    case "3" : return "rgb(138,149,240)";
+                    case "4" : return "rgb(200,235,208)";
+                    case "5" : return "rgb(133,266,246)";
+                    case "6" : return "rgb(187,187,187)";
+                    case "7" : return "rgb(193,226,204)";
+                    case "8" : return "rgb(234,145,152)";
+                    case "9" : return "rgb(252,244,144)";
+                    case "10": return "rgb(157,174,147)";
+                    default  : return "rgb(014,174,294)";
                 }
             });
         //left axis
@@ -1480,157 +1013,8 @@ function displayResidents($residents){
             .attr("transform", function (d) {
                 return "rotate(-65)";
             });
-
-
     }//end update
 
-
-    //set up chart
-    var margin = {top: 10, right:0, bottom: 280, left: 25};
-    var width = 490;
-    var height = 200;
-
-    var chart = d3.select(".chart")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
-        .append("g")
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-
-    var xChart = d3.scaleBand()
-        .range([0, width]);
-    //.nice();
-
-    var yChart;
-    yChart = d3.scaleLinear()
-        .range([height, 0]);
-
-
-
-    var xAxis = d3.axisBottom(xChart);
-
-
-    var yAxis = d3.axisLeft(yChart)
-        .ticks(5)
-        .tickValues([1, 2, 3, 4, 5]);
-
-
-    //set up axes
-    //left axis
-    chart.append("g")
-        .attr("class", "y axis")
-        .call(yAxis)
-
-
-    //bottom axis
-    chart.append("g")
-        .attr("class", "xAxis")
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis)
-        .selectAll("text")
-        .style("text-anchor", "end")
-        .attr("dx", "-.8em")
-        .attr("dy", ".15em")
-        .attr("transform", function (d) {
-            return "rotate(-65)";
-        });
-
-    //add labels
-    chart
-        .append("text")
-        .attr("transform", "translate(-35," + (height -140+ margin.bottom) / 2 + ") rotate(-90)")
-        .style("font-size", "18px")
-        .style("padding", "8px")
-        .style("font-weight", "400")
-        .style("font-family", "Avenir Next Condensed")
-        .text("<?php echo $this->lang->line('category_score'); ?>");
-
-    //use bothData to begin with
-    //update(bothData);
-    xChart.domain(bothData.map(function (d) {
-        return d.category;
-    }));
-    //set domain for y axis
-    //yChart.domain( [0, d3.max(bothData, function(d){ return +d.answer; },)] );
-    yChart.domain([1, d3.max(bothData, function (d) {
-        return d.answer;
-    })]);
-
-    //get the width of each bar
-    var barWidth = width / bothData.length;
-
-    //select all bars on the graph, take them out, and exit the previous data set.
-    //then you can add/enter the new data set
-    var bars = chart.selectAll(".bar")
-        .remove()
-        .exit()
-        .data(bothData)
-    //now actually give each rectangle the corresponding data
-    bars.enter()
-        .append("rect")
-        .attr("class", "bar")
-        .attr("x", function (d, i) {
-            return i * barWidth + 1
-        })
-        .attr("y", function (d) {
-            return yChart(d.answer);
-        })
-        .attr("height", function (d) {
-            return height - yChart(d.answer);
-        })
-        .attr("width", barWidth - 1)
-        .attr("fill", function (d) {
-            if (d.catergoryID === "0") {
-                return "rgb(216,230,173)";
-            } else if (d.catergoryID === "1") {
-                return "rgb(173,216,230)";
-            }
-            else if (d.catergoryID === "2") {
-                return "rgb(230,187,173)";
-            }
-            else if (d.catergoryID === "3") {
-                return "rgb(138,149,240)";
-            }
-            else if (d.catergoryrID === "4") {
-                return "rgb(200,235,208)";
-            }
-            else if (d.catergoryID === "5") {
-                return "rgb(133,266,246)";
-            }
-            else if (d.catergoryID === "6") {
-                return "rgb(187,187,187)";
-            }
-            else if (d.catergoryID === "7") {
-                return "rgb(193,226,204)";
-            }
-            else if (d.catergoryID === "8") {
-                return "rgb(234,145,152)";
-            }
-            else if (d.catergoryID === "9") {
-                return "rgb(252,244,144)";
-            }
-            else if (d.catergoryID === "10") {
-                return "rgb(157,174,147)";
-            }
-            else {
-                return "rgb(14,174,294)";
-            }
-        });
-
-    //left axis
-    chart.select('.y')
-        .call(yAxis)
-
-    //bottom axis
-    chart.select('.xAxis')
-        .attr("transform", "translate(0," + height + ")")
-        .call(xAxis)
-        .selectAll("text")
-        .style("text-anchor", "end")
-        .attr("dx", "-.8em")
-        .attr("dy", ".1em")
-        .attr("transform", function (d) {
-            return "rotate(-65)";
-        });
 
 
 </script>

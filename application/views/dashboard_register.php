@@ -342,7 +342,7 @@ $residentsFirstname = $this->db->query($query);
 
                                 <script src="../../assets/js/radarChart.js"></script>
                                 <script type="text/javascript">
-                                    var data = <?php echo json_encode($data1); ?>;
+                                    var data = <?php echo json_encode($data_graph_avg); ?>;
                                 </script>
 
                                 <script>
@@ -384,7 +384,7 @@ $residentsFirstname = $this->db->query($query);
 
 
                                                     <?php
-                                                    foreach($data_each1 as $row)
+                                                    foreach($data_graph_each as $row)
                                                     {
                                                         //if($row['key']=="value")
                                                         //{
@@ -991,7 +991,7 @@ $residentsFirstname = $this->db->query($query);
 </script>
 
 <!--<script type="text/javascript">
-   // var bothDataRaw = <?php echo json_encode($data_each1); ?>;
+   // var bothDataRaw = <?php echo json_encode($data_graph_each); ?>;
 </script>
 <script type="text/javascript">
     var bothData = <?php echo json_encode($one); ?>;;
@@ -1019,7 +1019,7 @@ $residentsFirstname = $this->db->query($query);
     //functions for toggling between data
     function change(date,value) {
 
-        var data5 = <?php echo json_encode($data_each1); ?>;
+        var data5 = <?php echo json_encode($data_graph_each); ?>;
 
 
         for (var index = 0; index < data5.length; ++index) {

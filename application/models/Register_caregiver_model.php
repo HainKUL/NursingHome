@@ -1,8 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Martijn
- */
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Register_caregiver_model extends CI_Model

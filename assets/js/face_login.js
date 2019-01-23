@@ -60,8 +60,8 @@ function snapshot() {
         "method": "POST",
         "headers": {
             "content-type": "application/json",
-            "app_id": "76389211",
-            "app_key": "235ed78f4f2967f3f4648ee6557623dc",
+            "app_id": "be2b0e8f",
+            "app_key": "e70abd362f22c94e636e5bf7ae4018f3",
             "cache-control": "no-cache"
         },
         "processData": false,
@@ -85,7 +85,7 @@ function snapshot() {
             //need to match name with id in db, or alternatively send query with name instead of id
             let userID = m.images[0].candidates[0].subject_id;
             //let newUrl = base_url.concat("/index.php/Questionnaire_controller/questionnaire_start/").concat(userID);
-            let newUrl = base_url.concat("/index.php/Homepage_controller/succeslogin/").concat(userID);
+            let newUrl = base_url.concat("/index.php/Homepage_controller/successlogin/").concat(userID);
 
             console.log(newUrl);
             //set a timer

@@ -5,7 +5,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Caregiver_controller extends CI_Controller{
 
-    function __construct(){
+    function __construct()
+    {
         parent::__construct();
         $this->load->library('parser');
         $this->load->helper('url');
@@ -17,7 +18,8 @@ class Caregiver_controller extends CI_Controller{
     }
 
 
-    public function login(){
+    public function login()
+    {
         //$data['head_message'] = 'Caregiver Login | Welcome'; //TODO remove
 
         if($_POST) {
@@ -49,44 +51,20 @@ class Caregiver_controller extends CI_Controller{
         }
         $this->load->view("caregiver_login_view");
     }
+    
 
-
-    /**
-        Note: context-specific notes are supported by the database, but currently not used by the application (context is ignored)
-     */
-    public function getnotes($context, $time1, $time2){
-        //$query = "SELECT noteText, author, timestamp FROM Notes WHERE context = $context AND timestamp >= $time1 AND timestamp < $time2;";
-        $query = "SELECT noteText, author timestamp FROM Notes;";
-        $result = $this->db->query($query);
-        return $result;
-    }
-
-
-    public function dashboard(){
-        $data_graph_each = $this->Bar_chart_model->get_each();
-        $data['data_graph_each'] = $data_graph_each;
-        $avg_data = $this->Our_chart_model->get_avg();
-        $data['avg_data'] = $avg_data;
-        $this->load->view('dashboard', $data);
-    }
-
-
-    public function forgot(){
-        $data['page_title'] = 'Wachtwoord Vergeten';    //TODO translate
-        $data['head_message'] = 'Wachtwoord vergeten?';
+    public function forgot()
+    {
+        $data['page_title']     = 'Wachtwoord Vergeten';    //TODO translate
+        $data['head_message']   = 'Wachtwoord vergeten?';
         $data['first_sentence'] = "Geen probleem! Geef uw e-mail adres in en er zal u een nieuw wachtwoord opgestuurd worden";
-        $data['button_text'] = "<button id='button'>Verstuur e-mail!</button>";
+        $data['button_text']    = "<button id='button'>Verstuur e-mail!</button>";
         $this->parser->parse('password_forgot', $data);
     }
 
 
-    public function registration(){
-        $data['page_title'] = 'registration';   //TODO translate
-        $this->parser->parse('registration', $data);
-    }
-
-
-    public function add_note(){
+    public function add_note()
+    {
         $data['page_title'] = 'add note';   //TODO translate
         if ($_POST) {
             /* receive all input values from the form */
@@ -100,13 +78,14 @@ class Caregiver_controller extends CI_Controller{
                 }
             }
             header('location: index.php');
-            redirect('Caregiver_controller/dashboard'); //TODO without argument this causes errors!
+            redirect('Dashboard/dashboard');
         }
         $this->parser->parse('add_note', $data);
     }
 
 
-    public function registration_caregiver(){
+    public function registration_caregiver()
+    {
         $data['page_title'] = 'registration_caregiver';
         $errors = array();
 

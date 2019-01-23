@@ -1,25 +1,21 @@
 <?php
 class Question_model extends CI_Model{
 
-    public function get_question($question){
-        $query=$this->db->query("SELECT * FROM a18ux04.Questions WHERE idQuestions = $question");
-        if(count($query->result_array()) == 0) {
-            return 0;
-        }
-
-        foreach ($query->result_array() as $row) //TODO de-stupify (foreach over 1 element??)
-        {
-            $data['question'] = $row['question'];
-            $data['category'] = $row['category'];
-            $data['progress'] = $row['idQuestions'];
-        }
+    public function get_question($question) {
+        $query=$this->db->query("SELECT question, category, idQuestions FROM a18ux04.Questions WHERE idQuestions = $question");
+        if(count($query->result_array()) == 0) return 0;
+        $result = $query->result_array();
+        $row = $result[0];
+        $data['question'] = $row['question']; //TODO multilanguage support
+        $data['category'] = $row['category'];
+        $data['progress'] = $row['idQuestions'];
         return $data;
     }
 
-    public function send_confirmation($idQuestion, $idAnswer, $idSubmission){//send info to db that the question has been answered
+    public function send_confirmation($idQuestion, $idAnswer, $idSubmission){ //send info to db that the question has been answered
         $query = "UPDATE `a18ux04`.`Responses` SET `answer` = '$idAnswer' ".
                     "WHERE (`submission`='$idSubmission' AND `questionNum`='$idQuestion');";
-        $result = $this->db->query($query);
+        $this->db->query($query);
         if($this->db->affected_rows() === 0) {
             $query = " INSERT INTO `a18ux04`.`Responses` (questionNum, answer, submission)".
                             " VALUES('$idQuestion', '$idAnswer', '$idSubmission')";
@@ -27,8 +23,7 @@ class Question_model extends CI_Model{
         }
     }
 
-
-     public function set_submission_complete($idSubmission){//send info to db that all questions have been answered
+     public function set_submission_complete($idSubmission){ //send info to db that all questions have been answered
          $query = "UPDATE `a18ux04`.`Submissions` SET `completed`='1', `timestampCompleted`=now()".
          " WHERE `idSubmissions`='$idSubmission';";
          $this->db->query($query);
