@@ -17,8 +17,8 @@ class Dashboard extends CI_Controller
     public function dashboard($residentID = 26)  //TODO remove this default
     {
         /*graphs*/
-        $data_each1 = $this->Bar_chart_model->get_each();
-        $data['data_each1'] = $data_each1;
+       // $data_each1 = $this->Bar_chart_model->get_each();
+        //$data['data_each1'] = $data_each1;
         //$data_one = $this->Bar_chart_model->get_one();
         //$data['one'] =   $data_one;
         //$data_avg = $this->Bar_chart_model->get_average();
@@ -92,9 +92,9 @@ class Dashboard extends CI_Controller
         $this->db->where($where);
         $this->db->where('Submissions.idSubmissions=Responses.submission');
         $this->db->join('Responses', 'Questions.idQuestions=Responses.questionNum');
-        $query = $this->db->get();
+        $query1 = $this->db->get();
 
-        foreach ($query->result_array() as $row) {
+        foreach ($query1->result_array() as $row) {
             $data['catergoryID'] = $row['catergoryID'];
             $data['question'] = $row['question'];
             //$data['questionNum'] = $row['questionNum'];
@@ -103,43 +103,43 @@ class Dashboard extends CI_Controller
             //$data['timestampStart']= substr($row['timestampStart'],0,16);
             $data['timestampStart'] = $row['timestampStart'];
             //echo json_encode($bothData);
-            $rawdata[]=$data;
+            $rawdata1[]=$data;
             //print_r(json_encode($bothData));
         }
 
 
-        if (empty($rawdata))
+        if (empty($rawdata1))
         {
             $data_one = null;
             $data_each1=null;
         }
         else{
-            foreach ($rawdata as $value)
+            foreach ($rawdata1 as $value)
             {
                 $time= $value['timestampStart'];
-                $x[$time][]= $value;
+                $x1[$time][]= $value;
             }
-            $bothData= $x;
+            $bothData= $x1;
 
-            $sliced_array = array_slice($bothData, 0, 1);
+            $sliced_array1 = array_slice($bothData, 0, 1);
 
-            foreach($sliced_array as $v)
+            foreach($sliced_array1 as $v)
             {
-                $target = $v;
+                $target1 = $v;
             }
 
-            $data_one = $target;
+            $data_one = $target1;
             $data['one'] =   $data_one;
 
             foreach ($bothData as $key =>$v)
             {
-                $data11["key"] = $key;
-                $data11["values"] = $v;
-                $data22[]=$data11;
-                unset($data11);
+                $data111["key"] = $key;
+                $data111["values"] = $v;
+                $data222[]=$data111;
+                unset($data111);
             }
 
-            //$data_each1=$data22;
+            $data_each1=$data222;
             $data['data_each1'] = $data_each1;
 
         }
