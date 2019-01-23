@@ -359,7 +359,7 @@ $residentsFirstname = $this->db->query($query);
                         </div>-->
                         <div class="card questionnaire-card">
                             <div class="card-body">
-                                </br>
+
                                 <h4 class="card-title"><?php echo $this->lang->line('dash_answers'); ?></h4>
                                 <!--<h3><?php echo $this->lang->line('category_title2'); ?></h3>-->
                                 <script src="https://d3js.org/d3.v3.min.js" charset="utf-8"></script>
@@ -370,7 +370,7 @@ $residentsFirstname = $this->db->query($query);
                                     <div class='row'>
                                         <div class='radio'>
 
-                                            </br>
+
                                             <div class = "date" style="float:left;">
                                                 <select class="form-control">
                                                     <option value="100">Please Select Date</option>
@@ -422,8 +422,7 @@ $residentsFirstname = $this->db->query($query);
                                                     <option  value="10" onclick='change("0",this.value)'><?php echo $this->lang->line('category_10'); ?></option>
                                                 </select>
                                             </div>
-                                            </br>
-                                            </br>
+
 
                                         </div>
                                         <svg class='chart'>
@@ -806,7 +805,7 @@ $residentsFirstname = $this->db->query($query);
 
                 <a  href=<?=base_url()?>index.php/Caregiver_controller/add_note class="link1">
                     <button class="btn btn-primary btn-lg" type="button" style="min-width:100%;background-color:#009489;border:none;"><?php echo $this->lang->line('dash_add'); ?></button></div>
-            </a>
+
 
             <div style="height:2%;"></div>
 
