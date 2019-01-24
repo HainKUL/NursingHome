@@ -17,7 +17,7 @@ class Questionnaire_controller extends CI_Controller{
         $sql = "SELECT idSubmissions FROM Submissions WHERE idResident = $userID AND completed <> 1 LIMIT 1";
         $result = $this->db->query($sql);
         if($result->num_rows() === 0) { // no submission to resume, start new one
-            $query = "INSERT INTO Submissions (idResident, completed) VALUES(".$this->db->escape($userID).")";
+            $query = "INSERT INTO Submissions (idResident, completed) VALUES(".$this->db->escape($userID).",'0')";
             $this->db->query($query);
             $idSubmission = $this->db->insert_id();
         } else {
