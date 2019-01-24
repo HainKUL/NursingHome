@@ -26,11 +26,13 @@ class Dashboard extends CI_Controller
         $data2 = $this->Our_chart_model->get_avg();
         $data['data2'] = $data2;
 
-        $sql1 = "SELECT category,categoryID,submission,timestampStart,AVG(answer) AS answer FROM ((Questions
+        $sql1 = "SELECT category,categoryID,submission,timestampStart,AVG(answer) AS answer FROM (((Questions
                INNER JOIN Responses
                ON Questions.idQuestions=Responses.questionNum)
                INNER JOIN Submissions
                ON Submissions.idSubmissions=Responses.submission)
+               INNER JOIN Categories
+               ON Categories.idCategories=Questions.categoryID)
                WHERE completed = '1' AND idResident = '$residentID' AND submission IN (
                #SELECT max(idSubmissions) as submission
                SELECT idSubmissions as submission
@@ -97,7 +99,7 @@ class Dashboard extends CI_Controller
 
         foreach ($query1->result_array() as $row) {
             $data['categoryID'] = $row['categoryID'];
-            $data['question'] = $row['question'];
+            $data['question'] = $row['nl'];
             //$data['questionNum'] = $row['questionNum'];
             $data['answer'] = $row['answer'];
             $data['category'] = $row['category'];
