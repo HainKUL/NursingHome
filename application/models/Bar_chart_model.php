@@ -30,7 +30,11 @@ class Bar_chart_model extends CI_Model
                 $data['question'] = $row['question_nl'];
             //$data['questionNum'] = $row['questionNum'];
             $data['answer'] = $row['answer'];
-            $data['category'] = $row['category'];
+            //$data['category'] = $row['category'];
+            if($_SESSION["lang"] == 'English')
+                $data['category'] = $row['category_en'];
+            else
+                $data['category'] = $row['category_nl'];
             //$data['timestampStart']= substr($row['timestampStart'],0,16);
             $data['timestampStart'] = $row['timestampStart'];
             //echo json_encode($bothData);
@@ -75,7 +79,10 @@ class Bar_chart_model extends CI_Model
                 $data['question'] = $row['question_nl'];
             //$data['questionNum'] = $row['questionNum'];
             $data['answer'] = $row['answer'];
-            $data['category'] = $row['category'];
+            if($_SESSION["lang"] == 'English')
+                $data['category'] = $row['category_en'];
+            else
+                $data['category'] = $row['category_nl'];
             $data['timestampStart'] = $row['timestampStart'];
             //echo json_encode($bothData);
             $rawdata[]=$data;
