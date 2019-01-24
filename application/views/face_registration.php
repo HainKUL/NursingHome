@@ -6,7 +6,6 @@ if(!isset($_SESSION['id']))
     exit();
 
 }
-
 ?>
 
 <!DOCTYPE html>

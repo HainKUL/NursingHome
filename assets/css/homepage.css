@@ -9,6 +9,8 @@ body {
     display: flex;
     flex-direction: column;
     width: 100%;
+    background-repeat:no-repeat;
+    background-size: cover;
 }
 
 .button1{
@@ -16,9 +18,16 @@ body {
     font-family: Helvetica,Arial;
     background-color: #d1c0bf;
     box-shadow: 5px 5px #e7d6d5;
-}
-.link1
-{
     color: #221E1D;
 }
 
+
+.container_box{
+    width: 60% ;
+    background-color: #F9F5F7/*fff6e0*/;
+    box-shadow: 10px 10px #e7d6d5;
+    opacity: 0.95;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    border-radius:12px
+}

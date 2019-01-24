@@ -15,18 +15,18 @@ class Our_chart_model extends CI_Model
     public function get_avg()
     {
         $query=$this->db->
-        query("SELECT category,catergoryID,submission,timestampStart,AVG(answer) AS answer FROM ((Questions
+        query("SELECT category,categoryID,submission,timestampStart,AVG(answer) AS answer FROM ((Questions
                INNER JOIN Responses
                ON Questions.idQuestions=Responses.questionNum)
                INNER JOIN Submissions
                ON Submissions.idSubmissions=Responses.submission)
-               WHERE completed = '1' AND idResident = '1' AND submission IN (
+               WHERE completed = '1' AND idResident = '190' AND submission IN (
                #SELECT max(idSubmissions) as submission
                SELECT idSubmissions as submission
                FROM Submissions
-               WHERE completed = '1' AND idResident = '1' )
-               GROUP BY  category,catergoryID,timestampStart,submission
-               ORDER BY submission DESC,catergoryID;");
+               WHERE completed = '1' AND idResident = '190' )
+               GROUP BY  category,categoryID,timestampStart,submission
+               ORDER BY submission DESC,categoryID;");
        // $this->db->query($query);
 
 

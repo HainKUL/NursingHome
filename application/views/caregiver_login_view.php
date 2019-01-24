@@ -62,24 +62,24 @@
                     <div class="col-2"> </div>
                 </div>
             </div>
-        <div class="col-2"> </div>
+            <div class="col-2"> </div>
+        </div>
     </div>
 </div>
-
-<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-</body>
-
-
 <script>
     function checkInput(id){
-        input = document.getElementById(id).value;
+        input = document.getElementById(id).value
         if(input.includes("<")||input.includes(">")||input.includes("\;")) {
-            alert("code injection not yet supported");
+            alert("code injection not yet supported")
             input = input.slice(0, -1);
-            document.getElementById(id).value = input;
+            document.getElementById(id).value = input
         }
     }
 </script>
+</body>
+
+
+
 
 
 </html>

@@ -1,17 +1,14 @@
+<!DOCTYPE html>
 <?php
-    if(!isset($_SESSION['caregiver'])) {
-        echo "<script> 
+if(!isset($_SESSION['caregiver'])) {
+    echo "<script> 
                         alert('You are not logged in!'); 
                         window.location.href='".base_url()."Caregiver_controller/login';
               </script>";
-        exit();
-    }
+    exit();
+}
 ?>
 
-
-
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -34,7 +31,8 @@
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!--    <script src="--><?//= base_url()?><!--assets/js/trail.js"></script>-->
 
-    <!-- TODO move to some css file!
+
+    <!-- TODO move to some css file!-->
     <style>
         body {
             font-family: "Helvetica Neue";
@@ -55,8 +53,8 @@
         .form-radio
         {
             -webkit-appearance: none;
-            -moz-appearance: none;   /*TODO  is appearance necessary?
-            appearance: none;*/
+            -moz-appearance: none;
+            appearance: none;
             display: inline-block;
             position: relative;
             background-color: #f1f1f1;
@@ -102,8 +100,8 @@
             height: 40px;
             padding: 8px;
             width: 210px;
-            margin-left:100px;
-    </style>-->
+            margin-left:100px;}
+    </style>
 
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -166,27 +164,10 @@ $residentsFirstname = $this->db->query($query);
 
     <div class="row" style="height:100vh;">
         <div class="col-3" id="div1" style="background-color:#009489;padding:0;">
-            <!-- <a href="<?=base_url()?>Dashboard/logout">
-            <button class="btn btn-primary btn-lg" type="button" style="min-width:100%;background-color:#009489;border:none;" >
-                <p><?php echo $this->lang->line('dash_logout'); ?></p>
-            </button>
-            </a> -->
+
             <div style="height:5%;"></div>
             <div class="searchdiv" style="text-align:center;margin:15px;">
-                <h2 class="floornumber"><?php echo $this->lang->line('dash_floor'); ?> 1</h2>
-                <!--
-                <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false" type="button"><?php echo $this->lang->line('dash_select_floor'); ?></button>
-                    <div class="dropdown-menu" role="menu">
-                        <a class="dropdown-item" role="presentation" href="#"><?php echo $this->lang->line('first_floor'); ?></a>
-                        <a class="dropdown-item" role="presentation" href="#"><?php echo $this->lang->line('second_floor'); ?></a>
-                        <a class="dropdown-item" role="presentation" href="#"><?php echo $this->lang->line('third_floor'); ?></a>
-                        <a class="dropdown-item" role="presentation" href="#"><?php echo $this->lang->line('fourth_floor'); ?></a>
-                        <a class="dropdown-item" role="presentation" href="#"><?php echo $this->lang->line('fifth_floor'); ?></a>
-                        <a class="dropdown-item" role="presentation" href="#"><?php echo $this->lang->line('sixth_floor'); ?></a>
-                    </div>
-                </div>
-                -->
+                <h2 class="floornumber"><?php echo $this->lang->line('dash_floor'); ?> </h2>
                 <div class="ui-widget" >
                     <form name="form" action="" method="get">
                         <input id="tags" name="filter" for="tags" class ="searchbar" oninput="checkInput(this.id)" type="search" placeholder="<?php echo $this->lang->line('search'); ?>">
@@ -214,7 +195,7 @@ $residentsFirstname = $this->db->query($query);
                         <div class="resident-button">
                             <img class="profilePic" src="<?=base_url() ?>assets/photos/food.png" alt="Avatar">
                             <span style="font-weight:100">
-                                FOOD
+                                <?php echo $this->lang->line('food'); ?>
                             </span>
                         </div>
                     </button>
@@ -222,7 +203,7 @@ $residentsFirstname = $this->db->query($query);
                         <div class="resident-button">
                             <img class="profilePic" src="<?=base_url() ?>assets/photos/activity.jpeg" alt="Avatar">
                             <span style="font-weight:100">
-                                ACTIVITIES
+                                <?php echo $this->lang->line('activities'); ?>
                             </span>
                         </div>
                     </button>
@@ -244,14 +225,7 @@ $residentsFirstname = $this->db->query($query);
                             </span>
                         </div>
                     </button>
-                    <!--<button class="btn btn-primary btn-resident " id="settings2" type="button" onclick="settingsButton(this.id)">
-                        <div class="resident-button">
-                            <img class="profilePic" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
-                            <span style="font-weight:100">
-                                <?php echo $this->lang->line('grouping');?>
-                            </span>
-                        </div>
-                    </button>-->
+
                     <button class="btn btn-primary btn-resident  btn-info btn-lg" id="settings2" type="button" onclick="settingsButton(this.id);"data-toggle="modal" data-target="#myModal2">
                         <div class="resident-button">
                             <img class="profilePic" src="<?=base_url() ?>assets/photos/add.png" alt="Avatar">
@@ -262,13 +236,7 @@ $residentsFirstname = $this->db->query($query);
                     </button>
                 </div>
             </div>
-            <div style="height:50vh; padding:60% 10%;">
-                <a href="<?=base_url()?>index.php/Dashboard/logout" style="padding:20% 10%;">
-                    <button class="btn btn-primary btn-lg" type="button" style="width:80%;background-color:#00675F;border:none;color:#DEEAE9">
-                        <?php echo $this->lang->line('dash_logout'); ?>
-                    </button>
-                </a>
-            </div>
+
         </div>
 
         <form method="post" action="<?= site_url('Dashboard/dashboard_reg') ?>">
@@ -293,40 +261,11 @@ $residentsFirstname = $this->db->query($query);
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><?php echo $this->lang->line('birth'); ?></td>
+                                    <td><?php echo $this->lang->line('birth'); ?>:</td>
                                     <td>
-                                        <select name="Birthday_day" id="Birthday_day" style="width: 29%" >
-                                            <option value="-1"><?php echo $this->lang->line('day'); ?></option>
-                                            <?php
-                                                for($i = 1; $i < 31; $i++) { //TODO DATEPICKER!!
-                                                    echo '<option value = "'.$i.'">'.$i.'</option>';
-                                                }
-                                            ?>
-                                        </select>
-                                        <select id="Birthday_Month" name="Birthday_Month" style="width: 35%" >
-                                            <option value="-1"><?php echo $this->lang->line('month'); ?></option>
-                                            <option value="January"><?php echo $this->lang->line('januari_register'); ?></option>
-                                            <option value="February"><?php echo $this->lang->line('februari_register'); ?></option>
-                                            <option value="March"><?php echo $this->lang->line('march_register'); ?></option>
-                                            <option value="April"><?php echo $this->lang->line('april_register'); ?></option>
-                                            <option value="May"><?php echo $this->lang->line('may_register'); ?></option>
-                                            <option value="June"><?php echo $this->lang->line('june_register'); ?></option>
-                                            <option value="July"><?php echo $this->lang->line('july_register'); ?></option>
-                                            <option value="August"><?php echo $this->lang->line('august_register'); ?></option>
-                                            <option value="September"><?php echo $this->lang->line('september_register'); ?></option>
-                                            <option value="October"><?php echo $this->lang->line('october_register'); ?></option>
-                                            <option value="November"><?php echo $this->lang->line('november_register'); ?></option>
-                                            <option value="December"><?php echo $this->lang->line('december_register'); ?></option>
-                                        </select>
-                                        <select name="Birthday_Year" id="Birthday_Year" style="width: 30%" >
-                                            <option value="-1"><?php echo $this->lang->line('year'); ?></option>
-                                            <?php
-                                            for($i = 2000; $i > 1900; $i--) { //TODO DATEPICKER!!
-                                                echo '<option value = "'.$i.'">'.$i.'</option>';
-                                            }
-                                            ?>
-                                        </select>
-                                    </td>
+                                    <p><input type="date" id="birthday" name="birthDay" placeholder="dd-mm-yyyy"></p></td>
+
+
                                 </tr>
                                 <tr>
                                     <td><?php echo $this->lang->line('contact'); ?>: </td>
@@ -335,12 +274,12 @@ $residentsFirstname = $this->db->query($query);
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>*PIN CODE: </td>            <!-- TODO translate -->
+                                    <td>*<?php echo $this->lang->line('pin'); ?>: </td>
                                     <td><input type="password" id="password" oninput="checkInput(this.id)" pattern="[0-9]{0,4}" name="Pin_Code" maxlength="4" placeholder="1234" required/>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>*PIN CODE BEVESTIGEN: </td>  <!-- TODO translate -->
+                                    <td>*<?php echo $this->lang->line('confirm'); ?>: </td>
                                     <td><input type="password" id="password_confirm" pattern="[0-9]{0,4}" name="Pin_Code_2" maxlength="4" placeholder="1234" oninput="check(this)" required/>
                                     </td>
                                 </tr>
@@ -352,8 +291,6 @@ $residentsFirstname = $this->db->query($query);
                                         <?php echo $this->lang->line('dutch'); ?>
                                             <input type="radio" name="Radio" value="English" >
                                         <?php echo $this->lang->line('english'); ?>
-                                            <input type="radio" name="Radio" value="French">
-                                        <?php echo $this->lang->line('french'); ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -951,7 +888,7 @@ $residentsFirstname = $this->db->query($query);
         if(category !== 'all') {
             var data = [];
             for (var i = 0; i < bothData.length; i++) {
-                if (bothData[i]["catergoryID"] == category) data.push(bothData[i]);
+                if (bothData[i]["categoryID"] == category) data.push(bothData[i]);
             }
             update(data, false);
         } else update(bothData, true);
@@ -985,7 +922,7 @@ $residentsFirstname = $this->db->query($query);
             })
             .attr("width", barWidth - 1)
             .attr("fill", function (d) {
-                switch (d.catergoryID) {
+                switch (d.categoryID) {
                     case "0" : return "rgb(216,230,173)";
                     case "1" : return "rgb(173,216,230)";
                     case "2" : return "rgb(230,187,173)";
@@ -1019,6 +956,7 @@ $residentsFirstname = $this->db->query($query);
 
 
 </script>
+
 
 </html>
 
