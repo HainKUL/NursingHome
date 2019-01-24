@@ -289,7 +289,7 @@ $residentsFirstname = $this->db->query($query);
                     <button class="btn btn-primary btn-resident " id="settings2" type="button" onclick="settingsButton(this.id);">
                         <div class="resident-button">
                             <img class="profilePic" src="<?=base_url() ?>assets/photos/profilePicTest.jpg" alt="Avatar">
-                            <a style="color: white; font-weight: 100;" href="dashboard"><span class="btn" style="font-weight:100">
+                            <a style="color: white; font-weight: 100;" href="dashboard_register"><span class="btn" style="font-weight:100">
 
                                 <?php echo $this->lang->line('register_button');?>
 
@@ -338,24 +338,8 @@ $residentsFirstname = $this->db->query($query);
                                     <div class="card-bed"><?php echo $this->lang->line('bednum'); ?><span id="card-bed">1</span></div>
                                     <div class="card-privileges"><?php echo $this->lang->line('privileges'); ?><span id="card-privileges">: can go outside</span></div>
                                 </div>
-                                <div class="radarChart"></div>
 
-                                <script src="../../assets/js/radarChart.js"></script>
-                                <script type="text/javascript">
-                                    var data = <?php echo json_encode($data_graph_avg); ?>;
-                                </script>
 
-                                <script>
-                                    //Load the data and Call function to draw the Radar chart
-                                    RadarChart(".radarChart", data);
-                                </script>
-                            </div>
-                        </div>
-                        <!--<div class="card questionnaire-card">
-                            <div class="card-body">
-                                <h4 class="card-title"><?php echo $this->lang->line('dash_outliers'); ?></h4>
-                                <p class="card-text">Super trouper beams are gonna blind me. But I won't feel blue. Like I always do. 'Cause somewhere in the crowd there's you. I was sick and tired of everything. When I called you last night from Glasgow. All I do is eat and sleep and sing. Wishing every show was the last show (wishing every show was the last show). So imagine I was glad to hear you're coming (glad to hear you're coming). Suddenly I feel all right. (And suddenly it's gonna be). And it's gonna be so different. When I'm on the stage tonight. Tonight the super trouper lights are gonna find me. Shining like the sun (sup-p-per troup-p-per). Smiling, having fun (sup-p-per troup-p-per). Feeling like a number one. Tonight the super trouper beams are gonna blind me. But I won't feel blue (sup-p-per troup-p-per). Like I always do (sup-p-per troup-p-per). 'Cause somewhere in the crowd there's you.</p>
-                            </div>
                         </div>-->
                         <div class="card questionnaire-card">
                             <div class="card-body">

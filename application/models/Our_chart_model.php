@@ -20,11 +20,11 @@ class Our_chart_model extends CI_Model
                ON Questions.idQuestions=Responses.questionNum)
                INNER JOIN Submissions
                ON Submissions.idSubmissions=Responses.submission)
-               WHERE completed = '1' AND idResident = '1' AND submission IN (
+               WHERE completed = '1' AND idResident = '190' AND submission IN (
                #SELECT max(idSubmissions) as submission
                SELECT idSubmissions as submission
                FROM Submissions
-               WHERE completed = '1' AND idResident = '1' )
+               WHERE completed = '1' AND idResident = '190' )
                GROUP BY  category,catergoryID,timestampStart,submission
                ORDER BY submission DESC,catergoryID;");
        // $this->db->query($query);
