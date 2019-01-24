@@ -154,6 +154,11 @@ class Dashboard extends CI_Controller
         $data['roomNumber']   = $result->result_array()[0]["roomNumber"];
         $data['bedNumber']    = $result->result_array()[0]["bedNumber"];
 
+        // queries that used to be in view
+        $currentID = $_SESSION['id'];
+        $query = "SELECT email FROM Caregivers WHERE Caregivers.idCaregivers = $currentID;";
+        $data['email'] = $this->db->query($query);
+
         $this->load->view('dashboard', $data);
     }
 

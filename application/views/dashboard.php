@@ -130,8 +130,8 @@ $query = "SELECT firstName, name, idResidents, YEAR(CURRENT_TIMESTAMP) - YEAR(da
 $residents = $this->db->query($query);
 $query = "SELECT firstName FROM Caregivers WHERE $currentID = Caregivers.idCaregivers;";
 $firstName = $this->db->query($query);
-$query = "SELECT email FROM Caregivers WHERE Caregivers.idCaregivers = $currentID;";
-$email = $this->db->query($query);
+//$query = "SELECT email FROM Caregivers WHERE Caregivers.idCaregivers = $currentID;";
+//$email = $this->db->query($query);
 $query = "SELECT firstName, name FROM Residents ORDER BY firstName;";
 $residentsFirstname = $this->db->query($query);
 ?>
@@ -484,11 +484,7 @@ $residentsFirstname = $this->db->query($query);
                                     <p class="personal_text_2" style="padding-top: 0.5vh;"> <?php echo $this->lang->line('dash_email'); ?></p>
                                 </div>
                                 <div class="col-8">
-                                    <p class="personal_text_2" style="text-align: end;"> <?php if ($email->num_rows() > 0)
-                                        {
-                                        $row = $email->row();
-                                        echo $row->email;
-                                        }
+                                    <p class="personal_text_2" style="text-align: end;"> <?php echo $this->data['email']
                                     ?></p>
                                 </div>
                             </div>
