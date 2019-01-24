@@ -37,7 +37,7 @@ if(!isset($_SESSION["resident"]))
         </div>
         <div class="col-5 header-button" id ="test">
             <a class="button_back" href="<?=base_url()?>index.php/Homepage_controller/residentHome/<?php echo $_SESSION['id']?>">
-                <p id="logout_text"><?php echo $this->lang->line('buttonBack'); ?>
+                <p id="logout_text"><?php echo $this->lang->line('buttonBack'); ?></p>
             </a>
         </div>
         <div class="col-1"></div>
@@ -74,7 +74,7 @@ if(!isset($_SESSION["resident"]))
             <div class="row">
                 <div class="col-2"></div>
                 <div class="col-2 button-icon">
-                    <img id="menu_icon" src="<?=base_url()?>assets/photos/standaard.jpg" class="image2">
+                    <img id="menu_icon1" src="<?=base_url()?>assets/photos/standaard.jpg" class="image2">
                 </div>
                 <div class="col-6" >
                     <a href="<?=base_url()?>index.php/Homepage_controller/standard">
@@ -89,7 +89,7 @@ if(!isset($_SESSION["resident"]))
             <div class="row">
                 <div class="col-2"></div>
                 <div class="col-2 button-icon">
-                    <img id="menu_icon" src="<?=base_url()?>assets/photos/demorgen.png" class="image3">
+                    <img id="menu_icon2" src="<?=base_url()?>assets/photos/demorgen.png" class="image3">
                 </div>
                 <div class="col-6" >
                     <a href="<?=base_url()?>index.php/Homepage_controller/dm">
@@ -107,6 +107,7 @@ if(!isset($_SESSION["resident"]))
 
 
     </div>
+</div>
 </body>
 
 

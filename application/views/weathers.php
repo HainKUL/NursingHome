@@ -37,14 +37,15 @@ if(!isset($_SESSION["resident"]))
         </div>
         <div class="col-5 header-button" id ="test">
             <a class="button_back" href="<?=base_url()?>index.php/Homepage_controller/residentHome/<?php echo $_SESSION['id']?>">
-                <p id="logout_text"><?php echo $this->lang->line('buttonBack'); ?>
+                <p id="logout_text"><?php echo $this->lang->line('buttonBack'); ?></p>
             </a>
         </div>
         <div class="col-1"></div>
     </div>
-    <div class="row" ">
-    <div class="col-md-0" style="left: 0" >
-        <iframe scrolling="no" width="1800" height ="700" frameborder="0" marginwidth="0" marginheight="0" src="https://www.meteo.be/services/widget/.?postcode=3000&nbDay=2&type=11&lang=nl&bgImageId=1&bgColor=567cd2&scrolChoice=0&colorTempMax=ffffff&colorTempMin=ffffff"></iframe>
+    <div class="row" >
+        <div class="col-md-0" style="left: 0" >
+            <iframe scrolling="no" width="1800" height ="700" frameborder="0" marginwidth="0" marginheight="0" src="https://www.meteo.be/services/widget/.?postcode=3000&nbDay=2&type=11&lang=nl&bgImageId=1&bgColor=567cd2&scrolChoice=0&colorTempMax=ffffff&colorTempMin=ffffff"></iframe>
+        </div>
     </div>
 
 </div>

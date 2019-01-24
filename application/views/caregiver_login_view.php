@@ -62,15 +62,10 @@
                     <div class="col-2"> </div>
                 </div>
             </div>
-        <div class="col-2"> </div>
+            <div class="col-2"> </div>
+        </div>
     </div>
 </div>
-
-<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-
-</body>
-
-
 <script>
     function checkInput(id){
         input = document.getElementById(id).value
@@ -81,6 +76,10 @@
         }
     }
 </script>
+</body>
+
+
+
 
 
 </html>

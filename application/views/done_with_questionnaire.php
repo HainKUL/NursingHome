@@ -43,7 +43,7 @@ if(!isset($_SESSION["resident"]))
         </div>
 
     </div>
-    <div id="text_1" class="h2" align="center">
+    <div id="text_1" class="alternative" >
         <p><?php echo $this->lang->line('filled'); ?></p>
         <p><?php echo $this->lang->line('click'); ?></p>
     </div>
@@ -51,7 +51,7 @@ if(!isset($_SESSION["resident"]))
 
     <div class="row back-row">
         <div class="col-5"></div>
-        <div class="col-2" align="center">
+        <div class="col-2" >
             <a href="<?=base_url()?>questionnaire_controller/menu/<?php echo $_SESSION['id']?>">
                 <button id="button" class="button_menu" ><?php echo $this->lang->line('button'); ?></button>
             </a>

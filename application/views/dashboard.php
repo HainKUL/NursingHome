@@ -1,17 +1,14 @@
+<!DOCTYPE html>
 <?php
-    if(!isset($_SESSION['caregiver'])) {
-        echo "<script> 
+if(!isset($_SESSION['caregiver'])) {
+    echo "<script> 
                         alert('You are not logged in!'); 
                         window.location.href='".base_url()."Caregiver_controller/login';
               </script>";
-        exit();
-    }
+    exit();
+}
 ?>
 
-
-
-<!DOCTYPE html>
-<html lang="en">
 
 <head>
     <meta charset="UTF-8">
