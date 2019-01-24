@@ -30,7 +30,7 @@
                         <div class="col-2"> </div>
                         <div class="col-8">
                             <p style="padding-top: 15%; font-size: 32px; padding-right: 12px; padding-left: 7px;"><?php echo $this->lang->line('email'); ?>:</p>
-                            <p style="padding-right: 12px; padding-left: 7px;"> <input pattern="[@.a-z A-Z'éèëï-]{1,20}" style="line-height: 32px; padding-left: 7px; width: 15vw;" type="text" oninput="checkInput(this.id)" name="email" id="email" class="form-control" name="email" /></p>
+                            <p style="padding-right: 12px; padding-left: 7px;"> <input pattern="[@.a-z A-Z'éèëï-]{1,50}" style="line-height: 32px; padding-left: 7px; width: 15vw;" type="text" oninput="checkInput(this.id)" name="email" id="email" class="form-control" name="email" /></p>
                         </div>
                         <div class="col-2"> </div>
                     </div>

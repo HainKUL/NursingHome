@@ -29,17 +29,19 @@
     </div>
     <div class="row">
         <div class=" col-4"></div>
+<!--        click button to take picture-->
         <div class = "col-4 ">
-            <button type = "button" class="button_picture" onclick="snapshot();"><?php echo $this->lang->line('login_capture'); ?></button>
+            <button type = "button" class="button_picture" onclick="snapshot_login();"><?php echo $this->lang->line('login_capture'); ?></button>
         </div>
         <div class = "col-4"></div>
     </div>
     <div class="row">
         <div class="col-2"></div>
         <div class="col-8 button-box">
+<!--            touch camera to take picture-->
             <div class="row" >
                 <div class="col-1"></div>
-                <video onclick="snapshot(this)" id="video" width="400" height="300" controls autoplay></video>
+                <video onclick="snapshot_login(this)" id="video" width="400" height="300" controls autoplay></video>
                 <canvas  id="myCanvas" width="400" height="300"></canvas>
             </div>
 
@@ -60,7 +62,7 @@
                 </tr>
                 <tr>
 
-                    <td><label><?php echo $this->lang->line('pin'); ?>:</label></td>
+                    <td><label><?php echo $this->lang->line('pinc'); ?>:</label></td>
                     <td><input type="password" oninput="checkInput(this.id)" pattern="[0-9]{1,4}" name="pincode" id="pincode" class="form-control"  /></td>
                 </tr>
             </table>
@@ -75,7 +77,7 @@
     </div>
 </div>
 </body>
-<script src="../../assets/js/face_login.js"></script>
+<script src="../../assets/js/face_recognition.js"></script>
 <script>
     function checkInput(id){
         input = document.getElementById(id).value

@@ -131,14 +131,14 @@ if(!isset($_SESSION['id']))
             <div style="padding:0;max-height:94vh;overflow-y:scroll;margin-top: 10px">
                 <h5 class="title_registration" style="padding: 5px"><?php echo $this->lang->line('title'); ?></h5>
                 <div>
+<!--                    click button to take picture-->
                     <div id="container">
-<!--                        <button  id="button1" onclick="startWebcam();">--><?php //echo $this->lang->line('login_start'); ?><!--</button>-->
-<!--                        <br/><br/>-->
-                        <button  id="button2" onclick="snapshot();"><?php echo $this->lang->line('login_capture'); ?></button>
+                        <button  id="button2" onclick="snapshot_registration();"><?php echo $this->lang->line('login_capture'); ?></button>
                         <br/><br/>
                     </div>
+<!--                    touch camera to take picture-->
                     <div>
-                        <video  class="center" onclick="snapshot(this)"  class="center" id="video" margin="0" width="400" height="300" controls autoplay></video>
+                        <video  class="center" onclick="snapshot_registration(this)"  class="center" id="video" margin="0" width="400" height="300" controls autoplay></video>
                         <br/>
                         <canvas  class="center" id="myCanvas" width="400" height="300"></canvas>
                     </div>
@@ -161,7 +161,7 @@ if(!isset($_SESSION['id']))
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-<script src="../../assets/js/face_registration.js"></script>
+<script src="../../assets/js/face_recognition.js"></script>
 </body>
 
 </html>

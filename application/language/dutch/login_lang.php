@@ -14,4 +14,5 @@ $lang['login_click'] = 'Klik hier!';
 $lang['caregiver_login_title'] = "Verzorger login | Welkom";
 $lang['login_face'] = 'Meld jezelf aan met een foto:';
 $lang['alternative'] = 'Meld jezelf aan met pincode: ';
+$lang['pinc'] = 'Pincode ';
 ?>
