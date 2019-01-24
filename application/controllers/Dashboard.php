@@ -14,7 +14,7 @@ class Dashboard extends CI_Controller
     }
 
 
-    public function dashboard($residentID = 190)  //TODO remove this default
+    public function dashboard($residentID = -1)
     {
         /*graphs*/
        // $data_each1 = $this->Bar_chart_model->get_each();
@@ -148,8 +148,12 @@ class Dashboard extends CI_Controller
         }
 
         /*resident info*/
-        $sql = "SELECT firstName, name, dateOfBirth, roomNumber, bedNumber FROM Residents "
-            ."WHERE idResidents = $residentID LIMIT 1";
+        if($residentID == -1) // default, show first resident
+            $sql = "SELECT firstName, name, dateOfBirth, roomNumber, bedNumber FROM Residents "
+                  ."ORDER BY firstName LIMIT 1";
+        else
+            $sql = "SELECT firstName, name, dateOfBirth, roomNumber, bedNumber FROM Residents "
+                  ."WHERE idResidents = $residentID LIMIT 1";
         $result = $this->db->query($sql);
         $data['theFirstName'] = $result->result_array()[0]["firstName"];
         $data['name']         = $result->result_array()[0]["name"];
@@ -188,8 +192,8 @@ class Dashboard extends CI_Controller
             // form validation: ensure that the form is correctly filled ...
             // by adding (array_push()) corresponding error unto $errors array
             if (empty($name))                array_push($errors, "Name is required");
-            if (empty($firstname))           array_push($errors, "Firstname is required"); //TODO remove this restriction!
-            if (empty($birth_day))         array_push($errors, "Date of birth is required");
+            if (empty($firstname))           $firstname = ""; // not everyone has a first name. Blank field in this case
+            if (empty($birth_day))           array_push($errors, "Date of birth is required");
             if (empty($roomNumber))          array_push($errors, "Roomnumber is required");
             if (empty($bedNumber))           array_push($errors, "Bednumber is required");
             if (empty($_POST['Pin_Code']))   array_push($errors, "Pincode is required");

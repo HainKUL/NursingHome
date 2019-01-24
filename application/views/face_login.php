@@ -28,16 +28,15 @@
         <?php echo $this->lang->line('login_face'); ?>
     </div>
     <div class="row">
-        <div class=" col-4"></div>
-<!--        click button to take picture-->
-        <div class = "col-4 ">
-            <button type = "button" class="button_picture" onclick="snapshot_login();"><?php echo $this->lang->line('login_capture'); ?></button>
-        </div>
-        <div class = "col-4"></div>
-    </div>
-    <div class="row">
         <div class="col-2"></div>
         <div class="col-8 button-box">
+            <div class="row">
+            <div class=" col-4"></div>
+            <!--        click button to take picture-->
+            <div class = "col-4 " style="padding-bottom: 10px">
+                <button type = "button" class="button_picture" onclick="snapshot_login();"><?php echo $this->lang->line('login_capture'); ?></button>
+            </div>
+            <div class = "col-4"></div></div>
 <!--            touch camera to take picture-->
             <div class="row" >
                 <div class="col-1"></div>
@@ -48,27 +47,51 @@
         <div class="col-12 alternative"><?php echo $this->lang->line('alternative'); ?></div>
 
         <form method="post" action="<?=base_url()?>Homepage_controller/login">
+            <div class="row"style="padding-bottom: 10px" >
+                <div class="col-2">
+                </div>
+                <div class="col-2">
 
-            <table >
+                    <label><?php echo $this->lang->line('register_firstname'); ?>:</label>
+                </div>
+                <div class="col-4">
+                    <input type="text" oninput="checkInput(this.id)" pattern="[a-z A-Z'éèëï-]{1,20}" name="firstname" id="firstname" class="form-control"  />
+                </div>
+                <div class="col-2">
+                </div>
+            </div>
+            <div class="row" style="padding-bottom: 10px">
+                <div class="col-2">
+                </div>
+                <div class="col-2">
 
-                <tr>
-                    <td><label><?php echo $this->lang->line('register_firstname'); ?>: </label></td>
-                    <td><input type="text" oninput="checkInput(this.id)" pattern="[a-z A-Z'éèëï-]{1,20}" name="firstname" id="firstname" class="form-control"  /></td>
-                </tr>
-                <tr>
 
-                    <td><label><?php echo $this->lang->line('register_lastname'); ?>: </label></td>
-                    <td><input type="text" oninput="checkInput(this.id)" pattern="[a-z A-Z'éèëï-]{1,20}" name="name" id="name" class="form-control"  /></td>
-                </tr>
-                <tr>
+                    <label><?php echo $this->lang->line('register_lastname'); ?>:</label>
+                </div>
+                <div class="col-4">
+                    <input type="text" oninput="checkInput(this.id)" pattern="[a-z A-Z'éèëï-]{1,20}" name="name" id="name" class="form-control"  />
 
-                    <td><label><?php echo $this->lang->line('pinc'); ?>:</label></td>
-                    <td><input type="password" oninput="checkInput(this.id)" pattern="[0-9]{1,4}" name="pincode" id="pincode" class="form-control"  /></td>
-                </tr>
-            </table>
+                </div>
+                <div class="col-2">
+                </div>
+            </div>
+            <div class="row"  style="padding-bottom: 10px">
+                <div class="col-2">
+                </div>
+                <div class="col-2">
+
+                    <label><?php echo $this->lang->line('pinc'); ?>:</label>
+                </div>
+                <div class="col-4">
+                    <input type="password" oninput="checkInput(this.id)" pattern="[0-9]{1,4}" name="pincode" id="pincode" class="form-control"  />
+                </div>
+                <div class="col-2">
+                </div>
+            </div>
+
             <div class="row">
-                <div class="col-3"></div>
-                <div class="col-6">
+                <div class="col-4"></div>
+                <div class="col-4">
                         <input class="button_picture" type="submit" id="submit" value="<?php echo $this->lang->line('login_button'); ?>" />
                 </div>
              </div>
