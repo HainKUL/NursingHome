@@ -7,7 +7,7 @@
  */
 $lang['home'] = 'Keuzemenu';
 $lang['questionnaire'] = 'Vragenlijst';
-$lang['polls'] = 'Extra vragen';
+$lang['polls'] = 'EXTRA VRAGEN';
 $lang['newspaper'] = 'Krant';
 $lang['sports'] = 'Sportuitslagen';
 $lang['weather'] = 'Het weer';
