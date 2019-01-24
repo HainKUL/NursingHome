@@ -72,13 +72,24 @@ class Homepage_controller extends CI_Controller
         if($_POST) {
             $name      = $this->db->escape($_POST['name']);
             $firstname = $this->db->escape($_POST['firstname']);
-            $query     = "SELECT pinHash, idResidents,preferences name FROM Residents "
+            $query     = "SELECT pinHash, idResidents, preferences name FROM Residents "
                         ."WHERE name = $name AND firstname = $firstname LIMIT 1;";
             $result         = $this->db->query($query);
             $rows           = $result->result();
             $_SESSION['id'] = $rows[0]->idResidents;
 
-            $lang = $rows[0]->preferences;
+            //$lang = $rows[0]->preferences;
+            //$lang->bindColumn(1,$lang,PDO::PARAM_LOB);
+            //$_SESSION['lang']=$lang;
+
+
+            // get language
+            $sql = "SELECT preferences FROM Residents "
+                ."WHERE name = $name AND firstname = $firstname LIMIT 1";
+            $result = $this->db->query($sql);
+            $lang = $result->result_array()[0]["preferences"];
+            $_SESSION['lang']=$lang;
+
 
             if($result->num_rows() === 0) {
                 $this->session->set_flashdata('flash_data', 'name or password incorrect!');
@@ -90,11 +101,10 @@ class Homepage_controller extends CI_Controller
                 $data = array('id_Residents' => $rows[0]->idResidents, 'name' => $rows[0]->name);
                 $this->session->set_userdata($data);
                 $_SESSION["resident"]="yes";
-                //$lang = "English"; //TODO get lang from db
                 if($lang == 'English') $lang="english";
                 echo "<script>window.location.href='".base_url()."MultiLanguageSwitcher/switcher/'".$lang.";</script>";
                 redirect('Homepage_controller/residentHome/'.$_SESSION['id']); // Has something to do with not being able to remove index.php in url
-                //redirect('Homepage_controller/residentHome/'.$lang);
+
             } else {
                 $success = "Login failed: wrong password";
                 echo "<script> alert('".$success."'); window.location.href='".base_url()."index.php/Face_Login_controller/face_login'; </script>";
@@ -111,8 +121,8 @@ class Homepage_controller extends CI_Controller
     public function successlogin($userId){
         $_SESSION['resident']="yes";
         $this->residentHome($userId);
-        //$lang=$_SESSION['lang'];
-        $lang = 'Dutch'; //TODO remove this circumvent (and fix the bug it avoids)
+        $lang=$_SESSION['lang'];
+         //TODO remove this circumvent (and fix the bug it avoids)
         if($lang == 'English') $lang='english';
         echo "<script>window.location.href='".base_url()."index.php/MultiLanguageSwitcher/switcher/'".$lang.";</script>";
     }
