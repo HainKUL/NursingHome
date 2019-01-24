@@ -2,7 +2,9 @@
 class Question_model extends CI_Model{
 
     public function get_question($question) {
-        $query=$this->db->query("SELECT question_en, question_nl, categoryID, idQuestions FROM a18ux04.Questions WHERE idQuestions = $question");
+        $query=$this->db->query("SELECT question_en, question_nl, category, categoryID, idQuestions"
+            ." FROM a18ux04.Questions INNER JOIN a18ux04.Categories ON a18ux04.Questions.categoryID = a18ux04.Categories.idCategories"
+            ." WHERE idQuestions = $question");
         if(count($query->result_array()) == 0) return 0;
         $result = $query->result_array();
         $row = $result[0];
@@ -10,7 +12,7 @@ class Question_model extends CI_Model{
             $data['question'] = $row['question_en'];
         else
             $data['question'] = $row['question_nl'];
-        $data['category'] = $row['categoryID'];
+        $data['category'] = $row['category'];
         $data['progress'] = $row['idQuestions'];
         return $data;
     }
