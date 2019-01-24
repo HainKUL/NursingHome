@@ -25,11 +25,13 @@ class Caregiver_controller extends CI_Controller{
         if($_POST) {
             /* get credentials from database */
             $email = $this->db->escape($_POST['email']);
-            $query = "SELECT passwordHash, idCaregivers, email FROM Caregivers WHERE email = $email LIMIT 1;";
+            $query = "SELECT passwordHash, idCaregivers, email, preferences FROM Caregivers WHERE email = $email LIMIT 1;";
             $result = $this->db->query($query);
             $rows = $result->result();
             $hash = $rows[0]->passwordHash;
-
+            $lang = $rows[0]->preferences;
+            $_SESSION['lang']=$lang;
+            echo "<script>window.location.href='".base_url()."MultiLanguageSwitcher/switcher/".$lang."';</script>";
             /* check if email is registered. Show general message "email OR password is wrong" to discourage bruteforce */
             if($result->num_rows() === 0)   {
                 $this->session->set_flashdata('flash_data', 'Email or password incorrect!'); //TODO translate, add in layout somehow
@@ -47,7 +49,8 @@ class Caregiver_controller extends CI_Controller{
             $this->session->set_userdata($data);
             $_SESSION["caregiver"]="yes";
             $_SESSION['id']=$rows[0]->idCaregivers;
-            redirect('Dashboard/dashboard'); //reject login: redirect back to login page
+
+            redirect('Dashboard/dashboard');
         }
         $this->load->view("caregiver_login_view");
     }
