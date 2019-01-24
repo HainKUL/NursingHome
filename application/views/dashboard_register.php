@@ -1028,38 +1028,38 @@ $residentsFirstname = $this->db->query($query);
         var data_11 = [];
 
         //var bothData = <?php echo json_encode($one); ?>;;
-
+        //TODO shrink
         for (var i = 0; i < bothData.length; i++) {
-            if (bothData[i]["catergoryID"] === "0") {
+            if (bothData[i]["categoryID"] === "0") {
                 data_1.push(bothData[i]);
-            } else if (bothData[i]["catergoryID"] === "1") {
+            } else if (bothData[i]["categoryID"] === "1") {
                 data_2.push(bothData[i]);
             }
-            else if (bothData[i]["catergoryID"] === "2") {
+            else if (bothData[i]["categoryID"] === "2") {
                 data_3.push(bothData[i]);
             }
-            else if (bothData[i]["catergoryID"] === "3") {
+            else if (bothData[i]["categoryID"] === "3") {
                 data_4.push(bothData[i]);
             }
-            else if (bothData[i]["catergoryID"] === "4") {
+            else if (bothData[i]["categoryID"] === "4") {
                 data_5.push(bothData[i]);
             }
-            else if (bothData[i]["catergoryID"] === "5") {
+            else if (bothData[i]["categoryID"] === "5") {
                 data_6.push(bothData[i]);
             }
-            else if (bothData[i]["catergoryID"] === "6") {
+            else if (bothData[i]["categoryID"] === "6") {
                 data_7.push(bothData[i]);
             }
-            else if (bothData[i]["catergoryID"] === "7") {
+            else if (bothData[i]["categoryID"] === "7") {
                 data_8.push(bothData[i]);
             }
-            else if (bothData[i]["catergoryID"] === "8") {
+            else if (bothData[i]["categoryID"] === "8") {
                 data_9.push(bothData[i]);
             }
-            else if (bothData[i]["catergoryID"] === "9") {
+            else if (bothData[i]["categoryID"] === "9") {
                 data_10.push(bothData[i]);
             }
-            else if (bothData[i]["catergoryID"] === "10") {
+            else if (bothData[i]["categoryID"] === "10") {
                 data_11.push(bothData[i]);
             }
 
@@ -1130,36 +1130,36 @@ $residentsFirstname = $this->db->query($query);
                 })
                 .attr("width", barWidth - 1)
                 .attr("fill", function (d) {
-                    if (d.catergoryID === "0") {
+                    if (d.categoryID === "0") {
                         return "rgb(216,230,173)";
-                    } else if (d.catergoryID === "1") {
+                    } else if (d.categoryID === "1") {
                         return "rgb(173,216,230)";
                     }
-                    else if (d.catergoryID === "2") {
+                    else if (d.categoryID === "2") {
                         return "rgb(230,187,173)";
                     }
-                    else if (d.catergoryID === "3") {
+                    else if (d.categoryID === "3") {
                         return "rgb(138,149,240)";
                     }
-                    else if (d.catergoryrID === "4") {
+                    else if (d.categoryID === "4") {
                         return "rgb(200,235,208)";
                     }
-                    else if (d.catergoryID === "5") {
+                    else if (d.categoryID === "5") {
                         return "rgb(133,266,246)";
                     }
-                    else if (d.catergoryID === "6") {
+                    else if (d.categoryID === "6") {
                         return "rgb(187,187,187)";
                     }
-                    else if (d.catergoryID === "7") {
+                    else if (d.categoryID === "7") {
                         return "rgb(193,226,204)";
                     }
-                    else if (d.catergoryID === "8") {
+                    else if (d.categoryID === "8") {
                         return "rgb(234,145,152)";
                     }
-                    else if (d.catergoryID === "9") {
+                    else if (d.categoryID === "9") {
                         return "rgb(252,244,144)";
                     }
-                    else if (d.catergoryID === "10") {
+                    else if (d.categoryID === "10") {
                         return "rgb(157,174,147)";
                     }
                     else {
@@ -1221,36 +1221,36 @@ $residentsFirstname = $this->db->query($query);
             })
             .attr("width", barWidth - 1)
             .attr("fill", function (d) {
-                if (d.catergoryID === "0") {
+                if (d.categoryID === "0") {
                     return "rgb(216,230,173)";
-                } else if (d.catergoryID === "1") {
+                } else if (d.categoryID === "1") {
                     return "rgb(173,216,230)";
                 }
-                else if (d.catergoryID === "2") {
+                else if (d.categoryID === "2") {
                     return "rgb(230,187,173)";
                 }
-                else if (d.catergoryID === "3") {
+                else if (d.categoryID === "3") {
                     return "rgb(138,149,240)";
                 }
-                else if (d.catergoryrID === "4") {
+                else if (d.categoryID === "4") {
                     return "rgb(200,235,208)";
                 }
-                else if (d.catergoryID === "5") {
+                else if (d.categoryID === "5") {
                     return "rgb(133,266,246)";
                 }
-                else if (d.catergoryID === "6") {
+                else if (d.categoryID === "6") {
                     return "rgb(187,187,187)";
                 }
-                else if (d.catergoryID === "7") {
+                else if (d.categoryID === "7") {
                     return "rgb(193,226,204)";
                 }
-                else if (d.catergoryID === "8") {
+                else if (d.categoryID === "8") {
                     return "rgb(234,145,152)";
                 }
-                else if (d.catergoryID === "9") {
+                else if (d.categoryID === "9") {
                     return "rgb(252,244,144)";
                 }
-                else if (d.catergoryID === "10") {
+                else if (d.categoryID === "10") {
                     return "rgb(157,174,147)";
                 }
                 else {
@@ -1368,37 +1368,37 @@ $residentsFirstname = $this->db->query($query);
             return height - yChart(d.answer);
         })
         .attr("width", barWidth - 1)
-        .attr("fill", function (d) {
-            if (d.catergoryID === "0") {
+        .attr("fill", function (d) { //TODO deduplicate
+            if (d.categoryID === "0") {
                 return "rgb(216,230,173)";
-            } else if (d.catergoryID === "1") {
+            } else if (d.categoryID === "1") {
                 return "rgb(173,216,230)";
             }
-            else if (d.catergoryID === "2") {
+            else if (d.categoryID === "2") {
                 return "rgb(230,187,173)";
             }
-            else if (d.catergoryID === "3") {
+            else if (d.categoryID === "3") {
                 return "rgb(138,149,240)";
             }
-            else if (d.catergoryrID === "4") {
+            else if (d.categoryrID === "4") {
                 return "rgb(200,235,208)";
             }
-            else if (d.catergoryID === "5") {
+            else if (d.categoryID === "5") {
                 return "rgb(133,266,246)";
             }
-            else if (d.catergoryID === "6") {
+            else if (d.categoryID === "6") {
                 return "rgb(187,187,187)";
             }
-            else if (d.catergoryID === "7") {
+            else if (d.categoryID === "7") {
                 return "rgb(193,226,204)";
             }
-            else if (d.catergoryID === "8") {
+            else if (d.categoryID === "8") {
                 return "rgb(234,145,152)";
             }
-            else if (d.catergoryID === "9") {
+            else if (d.categoryID === "9") {
                 return "rgb(252,244,144)";
             }
-            else if (d.catergoryID === "10") {
+            else if (d.categoryID === "10") {
                 return "rgb(157,174,147)";
             }
             else {
