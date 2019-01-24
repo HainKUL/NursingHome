@@ -219,6 +219,18 @@ if(!isset($_SESSION['caregiver'])) {
                             </span>
                         </div>
                     </button>
+                    <a style="width: 100%" href="<?=base_url()?>index.php/Caregiver_controller/registration_caregiver" >
+                    <button class="btn btn-primary btn-resident " id="settings33" type="button" onclick="settingsButton(this.id); "  >
+                        <div class="resident-button">
+                            <img class="profilePic" src="<?=base_url() ?>assets/photos/add.png" alt="Avatar">
+                            <span style="font-weight:100">
+                                <?php echo $this->lang->line('add_caregiver');?>
+                            </span>
+                        </div>
+                    </button>
+                    </a>
+
+
                 </div>
             </div>
 

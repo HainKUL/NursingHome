@@ -44,6 +44,7 @@ $lang['roomnum'] = "Room number: ";
 $lang['bednum'] = "Bed number: ";
 $lang['privileges'] = "Privileges: ";
 $lang['register'] = "Register new inhabitant";
+$lang['add_caregiver'] = "Add caregiver";
 $lang['add_note_title'] = "Add a note";
 $lang['add_note_form'] = "Add note form";
 $lang['add_note_id'] = "User ID";

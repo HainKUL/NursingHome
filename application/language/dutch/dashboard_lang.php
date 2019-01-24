@@ -70,6 +70,7 @@ $lang['personal'] = "PERSOONLIJK";
 $lang['personal_settings'] = "Persoonlijke instellingen";
 $lang['grouping'] = "Groepering";
 $lang['register_button'] = "Registreer nieuwe bewoner";
+$lang['add_caregiver'] = "Voeg verzorger toe";
 $lang['required'] = "Verplicht";
 $lang['pin_match'] = "De pincodes moeten overeenkomen";
 $lang['admin'] = "Administrator";

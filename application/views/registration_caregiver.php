@@ -132,7 +132,8 @@
                         <div class="col-2">
                         </div>
                         <div class="col-8">
-                            <input type="submit" id="submit" value="Submit" />
+                            <a href="<?=base_url()?>index.php/Dashboard/dashboard" >
+                                <input type="submit" id="submit" value="Submit" /></a>
 
 
                         </div>
@@ -140,18 +141,7 @@
                         </div>
                     </div>
 
-                    <!--<div class="row" >
-                        <div class="col-2">
-                        </div>
-                        <div class="col-8">
-                            <p style="padding-top: 6%">
-                                <input type="reset" id="reset" value="Reset" />
-                            </p>
 
-                        </div>
-                        <div class="col-2">
-                        </div>
-                    </div>-->
 
                 </form>
 
