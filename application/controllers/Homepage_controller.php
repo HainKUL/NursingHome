@@ -14,7 +14,9 @@ class Homepage_controller extends CI_Controller
     public function home()
     {
         $data['page_title'] = 'homepage';
+        session_destroy();
         $this->parser->parse('Homepage_view', $data);
+
     }
 
     public function residentHome($userID)
