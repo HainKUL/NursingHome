@@ -31,14 +31,16 @@ class Caregiver_controller extends CI_Controller{
             $_SESSION['lang']=$lang;
             /* check if email is registered. Show general message "email OR password is wrong" to discourage bruteforce */
             if($result->num_rows() === 0)   {
-                $this->session->set_flashdata('flash_data', 'Email or password incorrect!'); //TODO translate, add in layout somehow
-                redirect('Caregiver_controller/login');
+                $success = "Login failed: wrong password or email";
+                echo "<script> alert('".$success."'); window.location.href='".base_url()."index.php/Caregiver_controller/login'; </script>";
+
             }
 
             /* check submitted password vs the hash in the database */
             if(! password_verify($_POST['password'], $hash)) {
-                $this->session->set_flashdata('flash_data', 'Email or password incorrect!'); //TODO translate, add in layout somehow
-                redirect('Caregiver_controller/login'); //reject login: redirect back to login page
+                $success = "Login failed: wrong password or email";
+                echo "<script> alert('".$success."'); window.location.href='".base_url()."index.php/Caregiver_controller/login'; </script>";
+
             }
 
             /* everything is fine, set session data */
