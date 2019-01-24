@@ -46,64 +46,30 @@
         <div class="col-12 alternative"><?php echo $this->lang->line('alternative'); ?></div>
 
         <form method="post" action="<?=base_url()?>Homepage_controller/login">
+
+            <table align="center" cellpadding = "10">
+
+                <tr>
+                    <td><label><?php echo $this->lang->line('register_firstname'); ?>: </label></td>
+                    <td><input type="text" oninput="checkInput(this.id)" pattern="[a-z A-Z'éèëï-]{1,20}" name="firstname" id="firstname" class="form-control"  /></td>
+                </tr>
+                <tr>
+
+                    <td><label><?php echo $this->lang->line('register_lastname'); ?>: </label></td>
+                    <td><input type="text" oninput="checkInput(this.id)" pattern="[a-z A-Z'éèëï-]{1,20}" name="name" id="name" class="form-control"  /></td>
+                </tr>
+                <tr>
+
+                    <td><label>Pincode:</label></td>
+                    <td><input type="password" oninput="checkInput(this.id)" pattern="[0-9]{1,4}" name="pincode" id="pincode" class="form-control"  /></td>
+                </tr>
+            </table>
             <div class="row">
                 <div class="col-3"></div>
-                <div class="col-2"><label><?php echo $this->lang->line('register_firstname'); ?>: </label>
+                <div class="col-6">
+                        <input class="button_picture" type="submit" id="submit" value="<?php echo $this->lang->line('login_button'); ?>" />
                 </div>
-                <div class="col-4">
-                    <input type="text" oninput="checkInput(this.id)" pattern="[a-z A-Z'éèëï-]{1,20}" name="firstname" id="firstname" class="form-control"  />
-
-                </div>
-            </div>
-
-            <div class="row"style="padding-top: 2vh">
-                <div class="col-3"></div>
-                <div class="col-2"><label><?php echo $this->lang->line('register_lastname'); ?>: </label>
-                </div>
-                <div class="col-4">
-                    <input type="text" oninput="checkInput(this.id)" pattern="[a-z A-Z'éèëï-]{1,20}" name="firstname" id="firstname" class="form-control"  />
-
-                </div>
-            </div>
-            <div class="row" style="padding-top: 2vh">
-                <div class="col-3"></div>
-                <div class="col-2"><label>Pincode: </label>
-                </div>
-                <div class="col-4">
-                    <input type="password" oninput="checkInput(this.id)" pattern="[0-9]{1,4}" name="pincode" id="pincode" class="form-control"  />
-                </div>
-            </div>
-            <div class="row"style="padding-top: 2vh">
-                <div class="col-3"></div>
-                <div class ="col-6">
-                <input class="button_picture" type="submit" id="submit" value="<?php echo $this->lang->line('login_button'); ?>" />
-                </div>
-            </div>
-           <!-- <table align="center" cellpadding = "10">
-
-            <tr>
-                <td><label><?php echo $this->lang->line('register_firstname'); ?>: </label></td>
-                <td><input type="text" oninput="checkInput(this.id)" pattern="[a-z A-Z'éèëï-]{1,20}" name="firstname" id="firstname" class="form-control"  /></td>
-            </tr>
-            <tr>
-
-                <td><label><?php echo $this->lang->line('register_lastname'); ?>: </label></td>
-                <td><input type="text" oninput="checkInput(this.id)" pattern="[a-z A-Z'éèëï-]{1,20}" name="name" id="name" class="form-control"  /></td>
-            </tr>
-            <tr>
-
-                <td><label>Pincode:</label></td>
-                <td><input type="password" oninput="checkInput(this.id)" pattern="[0-9]{1,4}" name="pincode" id="pincode" class="form-control"  /></td>
-            </tr>
-
-            <tr>
-                <td>
-
-                     <input class="button_picture" type="submit" id="submit" value="<?php echo $this->lang->line('login_button'); ?>" />
-
-                </td>
-            </tr>
-            </table>-->
+             </div>
         </form>
         </div>
     </div>
