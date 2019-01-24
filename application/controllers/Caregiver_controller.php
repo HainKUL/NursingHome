@@ -20,8 +20,6 @@ class Caregiver_controller extends CI_Controller{
 
     public function login()
     {
-        //$data['head_message'] = 'Caregiver Login | Welcome'; //TODO remove
-
         if($_POST) {
             /* get credentials from database */
             $email = $this->db->escape($_POST['email']);
