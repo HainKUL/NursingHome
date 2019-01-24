@@ -119,23 +119,6 @@ if(!isset($_SESSION['caregiver'])) {
 
 <body onload="highlightCurrent();">
 
-<?php
-//TODO probably move queries to controller?
-$currentID = $_SESSION['id'];
-$this->load->database();
-$query = "SELECT Notes.noteText, Notes.author, Notes.timestamp, Caregivers.firstName FROM Notes ".
-            "INNER JOIN Caregivers on Notes.author = Caregivers.idCaregivers ORDER BY Notes.timestamp DESC;";
-$result = $this->db->query($query);
-$query = "SELECT firstName, name, idResidents, YEAR(CURRENT_TIMESTAMP) - YEAR(dateOfBirth) - (RIGHT(CURRENT_TIMESTAMP, 5) < RIGHT(dateOfBirth, 5)) as age FROM Residents ORDER BY firstName;";
-$residents = $this->db->query($query);
-$query = "SELECT firstName FROM Caregivers WHERE $currentID = Caregivers.idCaregivers;";
-$firstName = $this->db->query($query);
-$query = "SELECT email FROM Caregivers WHERE Caregivers.idCaregivers = $currentID;";
-$email = $this->db->query($query);
-$query = "SELECT firstName, name FROM Residents ORDER BY firstName;";
-$residentsFirstname = $this->db->query($query);
-?>
-
 
 <script>
     $(function() {
@@ -457,9 +440,9 @@ $residentsFirstname = $this->db->query($query);
                         <div class="container" >
                             <div class="row" style="padding-top: 40px">
                                 <div class="col-8">
-                                    <p class="personal_text"> <?php echo $this->lang->line('hello'); if ($firstName->num_rows() > 0)
+                                    <p class="personal_text"> <?php echo $this->lang->line('hello'); if ($firstNameCaregiver->num_rows() > 0)
                                         {
-                                        $row = $firstName->row();
+                                        $row = $firstNameCaregiver->row();
                                         echo $row->firstName;
                                         }
                                     ?></p>
@@ -485,11 +468,8 @@ $residentsFirstname = $this->db->query($query);
                                     <p class="personal_text_2" style="padding-top: 0.5vh;"> <?php echo $this->lang->line('dash_email'); ?></p>
                                 </div>
                                 <div class="col-8">
-                                    <p class="personal_text_2" style="text-align: end;"> <?php if ($email->num_rows() > 0)
-                                        {
-                                        $row = $email->row();
-                                        echo $row->email;
-                                        }
+                                    <p class="personal_text_2" style="text-align: end;"> <?php
+                                        echo $email->row()->email;
                                     ?></p>
                                 </div>
                             </div>
