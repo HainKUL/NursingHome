@@ -173,8 +173,6 @@ class Dashboard extends CI_Controller
             $lang           = $this->db->escape($_POST['Radio']);
             $floor          = $this->db->escape($_POST['floor']);
             $nr             = $this->db->escape($_POST['Mobile_Number']);
-            $pref_array     = array($lang,$floor,$nr);
-            $pref           = serialize($pref_array);
 
             // form validation: ensure that the form is correctly filled ...
             // by adding (array_push()) corresponding error unto $errors array

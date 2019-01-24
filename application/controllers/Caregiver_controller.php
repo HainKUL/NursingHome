@@ -97,7 +97,7 @@ class Caregiver_controller extends CI_Controller{
             $name = $this->db->escape($_POST['name']);
             $firstname = $this->db->escape($_POST['firstname']);
             $email = $this->db->escape($_POST['email']);
-            //
+            $lang           = $this->db->escape($_POST['Radio']);
             $password_1 = $_POST['password_1'];
             $password_2 = $_POST['password_2'];
 
@@ -131,7 +131,7 @@ class Caregiver_controller extends CI_Controller{
             // pass in the password, the number of rounds, and the salt
             $passhash =  crypt($password_1, sprintf('$6$rounds=%d$%s$', $rounds, $salt));
 
-            $query = "INSERT INTO Caregivers (name, firstName, email, passwordHash) VALUES($name, $firstname, $email, '$passhash')";
+            $query = "INSERT INTO Caregivers (name, firstName, email, passwordHash,preferences) VALUES($name, $firstname, $email, '$passhash',$lang)";
             if(!($this->db->query($query))) {
                 //TODO errorcheck
             }
