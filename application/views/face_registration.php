@@ -19,84 +19,81 @@ if(!isset($_SESSION['id']))
     <!-- Google fonts -->
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+    <link type="text/css" rel="stylesheet" href="../../assets/css/face_registration.css"  media="screen"/>
 
     <!-- D3.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js" charset="utf-8"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/1.3.0/d3-legend.js" charset="utf-8"></script>
 
-
-    <!--    <script src="--><?//= base_url()?><!--assets/js/trail.js"></script>-->
-
-
-    <style>
-        body {
-            font-family: 'Open Sans', sans-serif;
-            font-size: 11px;
-            font-weight: 300;
-            fill: #242424;
-            text-align: center;
-            /*text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;*/
-            cursor: default;
-
-        }
-
-
-
-        select {
-            font-family: sans-serif;
-            font-size: 30px;
-            background: none repeat scroll 0 0 #FFFFFF;
-            border: 1px solid #E5E5E5;
-            border-radius: 5px 5px 5px 5px;
-            box-shadow: 0 0 10px #E8E8E8 inset;
-            height: 40px;
-            padding: 8px;
-            width: 210px;
-            margin-left:100px;
-
-        }
-
-
-        option {
-            direction: ltr;
-        }
-
-        label
-        {
-            font: 300 16px/1.7 'Open Sans', sans-serif;
-            color: #666;
-            cursor: pointer;
-        }
-
-        .center {
-            margin-left: auto;
-            margin-right: auto;
-            display: block
-        }
-
-        #button1{
-            width: 400px;
-            height: 40px;
-        }
-        #button2{
-            width: 400px;
-            height: 40px;
-        }
-        #container{
-            text-align: center;
-        }
-
-        h4.validate {
-            visibility: hidden;
-        }
-
-        h5.validate {
-            visibility: hidden;
-        }
-
-
-
-    </style>
+<!--    <style>-->
+<!--        body {-->
+<!--            font-family: 'Open Sans', sans-serif;-->
+<!--            font-size: 11px;-->
+<!--            font-weight: 300;-->
+<!--            fill: #242424;-->
+<!--            text-align: center;-->
+<!--            /*text-shadow: 0 1px 0 #fff, 1px 0 0 #fff, -1px 0 0 #fff, 0 -1px 0 #fff;*/-->
+<!--            cursor: default;-->
+<!---->
+<!--        }-->
+<!---->
+<!---->
+<!---->
+<!--        select {-->
+<!--            font-family: sans-serif;-->
+<!--            font-size: 30px;-->
+<!--            background: none repeat scroll 0 0 #FFFFFF;-->
+<!--            border: 1px solid #E5E5E5;-->
+<!--            border-radius: 5px 5px 5px 5px;-->
+<!--            box-shadow: 0 0 10px #E8E8E8 inset;-->
+<!--            height: 40px;-->
+<!--            padding: 8px;-->
+<!--            width: 210px;-->
+<!--            margin-left:100px;-->
+<!---->
+<!--        }-->
+<!---->
+<!---->
+<!--        option {-->
+<!--            direction: ltr;-->
+<!--        }-->
+<!---->
+<!--        label-->
+<!--        {-->
+<!--            font: 300 16px/1.7 'Open Sans', sans-serif;-->
+<!--            color: #666;-->
+<!--            cursor: pointer;-->
+<!--        }-->
+<!---->
+<!--        .center {-->
+<!--            margin-left: auto;-->
+<!--            margin-right: auto;-->
+<!--            display: block-->
+<!--        }-->
+<!---->
+<!--        #button1{-->
+<!--            width: 400px;-->
+<!--            height: 40px;-->
+<!--        }-->
+<!--        #button2{-->
+<!--            width: 400px;-->
+<!--            height: 40px;-->
+<!--        }-->
+<!--        #container{-->
+<!--            text-align: center;-->
+<!--        }-->
+<!---->
+<!--        h4.validate {-->
+<!--            visibility: hidden;-->
+<!--        }-->
+<!---->
+<!--        h5.validate {-->
+<!--            visibility: hidden;-->
+<!--        }-->
+<!---->
+<!---->
+<!---->
+<!--    </style>-->
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
