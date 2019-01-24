@@ -293,6 +293,7 @@ $residentsFirstname = $this->db->query($query);
                                         <?php echo $this->lang->line('dutch'); ?>
                                             <input type="radio" name="Radio" value="English" >
                                         <?php echo $this->lang->line('english'); ?>
+
                                     </td>
                                 </tr>
                                 <tr>

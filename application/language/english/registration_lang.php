@@ -17,6 +17,7 @@ $lang['bed'] = 'BED NUMBER';
 $lang['privileges'] = 'OPTIONAL PRIVILEGES';
 $lang['preferences'] = 'OPTIONAL PREFERENCES';
 $lang['language'] = 'LANGUAGE PREFERENCES';
+$lang['lang'] = 'Language preferences';
 $lang['dutch'] = 'Dutch';
 $lang['english'] = 'English';
 $lang['french'] = 'French';
@@ -30,3 +31,8 @@ $lang['floor4'] = 'Third floor';
 /*registration caregiver*/
 
 $lang['title'] = 'ELDERLY REGISTRATION FORM';
+
+$lang['password'] = 'Password';
+$lang['email'] = 'Email';
+$lang['pass_confirm'] = 'Repeat password';
+$lang['care_form'] = 'CAREGIVER REGISTRATION FORM';
