@@ -31,6 +31,8 @@ class Dashboard extends CI_Controller
                ON Questions.idQuestions=Responses.questionNum)
                INNER JOIN Submissions
                ON Submissions.idSubmissions=Responses.submission)
+               INNER JOIN Categories
+               ON Categories.idCategories=Questions.categoryID)
                WHERE completed = '1' AND idResident = '$residentID' AND submission IN (
                #SELECT max(idSubmissions) as submission
                SELECT idSubmissions as submission
@@ -42,7 +44,10 @@ class Dashboard extends CI_Controller
 
         foreach ($query->result_array() as $row)
         {
-            $data['category'] = $row['category'];
+            if($_SESSION["lang"] == 'English')
+                $data['category'] = $row['category_en'];
+            else
+                $data['category'] = $row['category_nl'];
             if((time()+3600)-strtotime($row['timestampStart']) < 86400)
             {
                 $data['timestampStart']= substr($row['timestampStart'],11,5);
@@ -103,7 +108,10 @@ class Dashboard extends CI_Controller
                 $data['question'] = $row['question_nl'];
             //$data['questionNum'] = $row['questionNum'];
             $data['answer'] = $row['answer'];
-            $data['category'] = $row['category'];
+            if($_SESSION["lang"] == 'English')
+                $data['category'] = $row['category_en'];
+            else
+                $data['category'] = $row['category_nl'];
             //$data['timestampStart']= substr($row['timestampStart'],0,16);
             $data['timestampStart'] = $row['timestampStart'];
             //echo json_encode($bothData);
