@@ -12,7 +12,7 @@ class MultiLanguageSwitcher extends CI_Controller
     function switcher($language = "") {
         $language = ($language != "") ? $language : "english";
         $this->session->set_userdata('site_lang', $language);
-        redirect($_SERVER['HTTP_REFERER']);
+        redirect('Homepage_controller/residentHome/'.$_SESSION['id']);
     }
 }
 ?>

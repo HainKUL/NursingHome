@@ -78,11 +78,6 @@ class Homepage_controller extends CI_Controller
             $rows           = $result->result();
             $_SESSION['id'] = $rows[0]->idResidents;
 
-            //$lang = $rows[0]->preferences;
-            //$lang->bindColumn(1,$lang,PDO::PARAM_LOB);
-            //$_SESSION['lang']=$lang;
-
-
             // get language
             $sql = "SELECT preferences FROM Residents "
                 ."WHERE name = $name AND firstname = $firstname LIMIT 1";
@@ -102,8 +97,8 @@ class Homepage_controller extends CI_Controller
                 $this->session->set_userdata($data);
                 $_SESSION["resident"]="yes";
                 if($lang == 'English') $lang="english";
-                echo "<script>window.location.href='".base_url()."MultiLanguageSwitcher/switcher/'".$lang.";</script>";
-                redirect('Homepage_controller/residentHome/'.$_SESSION['id']); // Has something to do with not being able to remove index.php in url
+                echo "<script>window.location.href='".base_url()."MultiLanguageSwitcher/switcher/".$lang."';</script>";
+                //redirect('Homepage_controller/residentHome/'.$_SESSION['id']); // Has something to do with not being able to remove index.php in url
 
             } else {
                 $success = "Login failed: wrong password";
@@ -124,6 +119,6 @@ class Homepage_controller extends CI_Controller
         $lang=$_SESSION['lang'];
          //TODO remove this circumvent (and fix the bug it avoids)
         if($lang == 'English') $lang='english';
-        echo "<script>window.location.href='".base_url()."index.php/MultiLanguageSwitcher/switcher/'".$lang.";</script>";
+        echo "<script>window.location.href='".base_url()."index.php/MultiLanguageSwitcher/switcher/".$lang."';</script>";
     }
 }
