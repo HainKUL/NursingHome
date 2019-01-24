@@ -37,7 +37,7 @@
                     <div class="row" >
                         <div class="col-2"> </div>
                         <div class="col-8" style="align-content: end;">
-                            <p style="padding-top: 10%; font-size: 32px; padding-right: 12px; padding-left: 7px;"><?php echo $this->lang->line('login_password'); ?>:</p>
+                            <p style="padding-top: 15%; font-size: 32px; padding-right: 12px; padding-left: 7px;"><?php echo $this->lang->line('login_password'); ?>:</p>
                             <p style="padding-right: 12px; padding-left: 7px;"><input  style="line-height: 32px; padding-left: 7px; width: 15vw;" type="password" oninput="checkInput(this.id)" name="password" id="password" class="form-control" name="password" /></p>
                         </div>
                         <div class="col-2"> </div>
