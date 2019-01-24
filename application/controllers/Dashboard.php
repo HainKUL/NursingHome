@@ -162,6 +162,9 @@ class Dashboard extends CI_Controller
         $query = "SELECT email FROM Caregivers WHERE Caregivers.idCaregivers = $currentID;";
         $data['email'] = $this->db->query($query);
 
+        $query = "SELECT firstName FROM Caregivers WHERE $currentID = Caregivers.idCaregivers;";
+        $data['firstNameCaregiver']= $this->db->query($query);
+
         $this->load->view('dashboard', $data);
     }
 
