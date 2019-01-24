@@ -166,8 +166,6 @@ class Dashboard extends CI_Controller
             $name           = $this->db->escape($_POST['name']);
             $firstname      = $this->db->escape($_POST['firstname']);
             $birth_day      = $this->db->escape($_POST['birthDay']);
-
-            $_SESSION['date']=$birth_day;
             $roomNumber     = $this->db->escape($_POST['Room_Id']);
             $bedNumber      = $this->db->escape($_POST['Bed_Id']);
             $Pin_Code       = $_POST['Pin_Code'];

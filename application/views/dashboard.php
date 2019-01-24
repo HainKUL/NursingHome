@@ -263,40 +263,8 @@ $residentsFirstname = $this->db->query($query);
                                 <tr>
                                     <td><?php echo $this->lang->line('birth'); ?>:</td>
                                     <td>
-                                    <p><input type="date" id="birthday" name="birthDay"></p></td>
-                                    <!--<td>
-                                        <select name="Birthday_day" id="Birthday_day" style="width: 29%" >
-                                            <option value="-1"><?php echo $this->lang->line('day'); ?></option>
-                                            <?php
-                                                for($i = 1; $i < 31; $i++) { //TODO DATEPICKER!!
-                                                    echo '<option value = "'.$i.'">'.$i.'</option>';
-                                                }
-                                            ?>
-                                        </select>
-                                        <select id="Birthday_Month" name="Birthday_Month" style="width: 35%" >
-                                            <option value="-1"><?php echo $this->lang->line('month'); ?></option>
-                                            <option value="January"><?php echo $this->lang->line('januari_register'); ?></option>
-                                            <option value="February"><?php echo $this->lang->line('februari_register'); ?></option>
-                                            <option value="March"><?php echo $this->lang->line('march_register'); ?></option>
-                                            <option value="April"><?php echo $this->lang->line('april_register'); ?></option>
-                                            <option value="May"><?php echo $this->lang->line('may_register'); ?></option>
-                                            <option value="June"><?php echo $this->lang->line('june_register'); ?></option>
-                                            <option value="July"><?php echo $this->lang->line('july_register'); ?></option>
-                                            <option value="August"><?php echo $this->lang->line('august_register'); ?></option>
-                                            <option value="September"><?php echo $this->lang->line('september_register'); ?></option>
-                                            <option value="October"><?php echo $this->lang->line('october_register'); ?></option>
-                                            <option value="November"><?php echo $this->lang->line('november_register'); ?></option>
-                                            <option value="December"><?php echo $this->lang->line('december_register'); ?></option>
-                                        </select>
-                                        <select name="Birthday_Year" id="Birthday_Year" style="width: 30%" >
-                                            <option value="-1"><?php echo $this->lang->line('year'); ?></option>
-                                            <?php
-                                            for($i = 2000; $i > 1900; $i--) { //TODO DATEPICKER!!
-                                                echo '<option value = "'.$i.'">'.$i.'</option>';
-                                            }
-                                            ?>
-                                        </select>
-                                    </td>-->
+                                    <p><input type="date" id="birthday" name="birthDay" placeholder="dd-mm-yyyy"></p></td>
+
 
                                 </tr>
                                 <tr>
