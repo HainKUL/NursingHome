@@ -17,6 +17,7 @@ $lang['bed'] = 'BEDNUMMER';
 $lang['privileges'] = 'EVENTUELE PRIVILEGES';
 $lang['preferences'] = 'EVENTUELE VOORKEUREN';
 $lang['language'] = 'TAAL VOORKEUR';
+$lang['lang'] = 'Taalvoorkeur';
 $lang['dutch'] = 'Nederlands';
 $lang['english'] = 'Engels';
 $lang['french'] = 'Frans';
@@ -26,7 +27,11 @@ $lang['floor1'] = 'Gelijkvloers';
 $lang['floor2'] = 'Verdiep 1';
 $lang['floor3'] = 'Verdiep 2';
 $lang['floor4'] = 'Verdiep 3';
+$lang['password'] = 'Wachtwoord';
+$lang['email'] = 'Email';
+$lang['pass_confirm'] = 'Herhaal wachtwoord';
+$lang['care_form'] = 'REGISTRATIE FORMULIER VERZORGER';
 
 /*registration caregiver*/
 
-$lang['title'] = 'ELDERLY REGISTRATION FORM';
+$lang['title'] = 'REGISTRATIE FORMULIER INWONER';
