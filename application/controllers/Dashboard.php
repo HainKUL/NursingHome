@@ -31,8 +31,6 @@ class Dashboard extends CI_Controller
                ON Questions.idQuestions=Responses.questionNum)
                INNER JOIN Submissions
                ON Submissions.idSubmissions=Responses.submission)
-               INNER JOIN Categories
-               ON Categories.idCategories=Questions.categoryID)
                WHERE completed = '1' AND idResident = '$residentID' AND submission IN (
                #SELECT max(idSubmissions) as submission
                SELECT idSubmissions as submission
