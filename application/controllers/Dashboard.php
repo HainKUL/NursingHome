@@ -99,7 +99,10 @@ class Dashboard extends CI_Controller
 
         foreach ($query1->result_array() as $row) {
             $data['categoryID'] = $row['categoryID'];
-            $data['question'] = $row['nl'];
+            if($_SESSION["lang"] == 'English')
+                $data['question'] = $row['question_en'];
+            else
+                $data['question'] = $row['question_nl'];
             //$data['questionNum'] = $row['questionNum'];
             $data['answer'] = $row['answer'];
             $data['category'] = $row['category'];
