@@ -92,7 +92,7 @@ class Homepage_controller extends CI_Controller
             }
 
             $hash = $rows[0]->pinHash;
-            if(password_verify($_POST['pincode'], $hash)) { //TODO deduplicate?
+            if(password_verify($_POST['pincode'], $hash)) {
                 $_SESSION["resident"]="yes";
                 if($lang == 'English') $lang="english";
                 echo "<script>window.location.href='".base_url()."MultiLanguageSwitcher/switcher/".$lang."';</script>";

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: martijn
- * Date: 08/11/2018
- * Time: 16:41
- */
 session_start();
 
 // initializing variables
@@ -31,11 +25,10 @@ if (isset($_POST['reg_user'])) {
         $errorstring = "";
         foreach($errors as $err) $errorstring = $errorstring.$err.".   ";
         $this->session->set_flashdata('flash_data', $errorstring);
-        redirect('Caregiver_controller/change_password'); //TODO keep form data after refresh
+        redirect('Caregiver_controller/change_password');
     }
 
     $sql = "SELECT passwordHash, idCaregivers, email FROM Caregivers WHERE email = $email LIMIT 1;";
-    //TODO! deduplicate with login
     $result = $this->db->query($sql);
 
     if($result->num_rows() === 0)   {

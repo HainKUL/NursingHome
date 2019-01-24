@@ -12,7 +12,6 @@ class Questionnaire_controller extends CI_Controller{
 
 
 	public function questionnaire_start($userID){
-        $_SESSION["user_id"] = $userID;
 	    //make/find submission to start/resume
         $sql = "SELECT idSubmissions FROM Submissions WHERE idResident = $userID AND completed <> 1 LIMIT 1";
         $result = $this->db->query($sql);
@@ -52,7 +51,6 @@ class Questionnaire_controller extends CI_Controller{
         $data2 = $this->Question_model->get_question($question);
         $data = array_merge($data1, $data2);//merge two array
 
-
         $data['user_id'] = $_SESSION["user_id"];
         $data['question_id'] = $question;
 
@@ -77,8 +75,6 @@ class Questionnaire_controller extends CI_Controller{
     {
         $idSubmission = $_SESSION["idSubmission"];
         $question = $_SESSION["Current_Question"];
-        //$userID = $_SESSION["idUser"];
-        $userID = 1; //TODO remove override once session is fixed
 
         //send confimation to db;
         $submit = 1;
@@ -89,7 +85,6 @@ class Questionnaire_controller extends CI_Controller{
         else if(isset($_GET['always']))     $this->Question_model->send_confirmation($question, 5, $idSubmission);
         else if(isset($_GET['vorige_vraag']))   {$this->question($question - 1); return;}
         else $submit = 0;
-        //TODO extract method and deduplicate
         $sql =
             "SELECT idQuestions FROM Questions WHERE NOT EXISTS "
             ."(SELECT idResponses FROM Responses WHERE Questions.idQuestions = Responses.questionNum AND submission = '$idSubmission');";
