@@ -117,7 +117,7 @@ if(!isset($_SESSION['caregiver'])) {
 </head>
 
 
-<body>
+<body onload="highlightCurrent();">
 
 <?php
 //TODO probably move queries to controller?
@@ -644,6 +644,13 @@ $residentsFirstname = $this->db->query($query);
 
 
 </body>
+
+<script>
+    function highlightCurrent(){
+        var id = window.location.href.substr(window.location.href.lastIndexOf('/')+1)
+        document.getElementById(id).classList.add("btn-active");
+    }
+</script>
 
 
 
