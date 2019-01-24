@@ -44,10 +44,7 @@ class Dashboard extends CI_Controller
 
         foreach ($query->result_array() as $row)
         {
-            if($_SESSION["lang"] == 'English')
-                $data['category'] = $row['category_en'];
-            else
-                $data['category'] = $row['category_nl'];
+            $data['category'] = $row['category'];
             if((time()+3600)-strtotime($row['timestampStart']) < 86400)
             {
                 $data['timestampStart']= substr($row['timestampStart'],11,5);
@@ -108,10 +105,7 @@ class Dashboard extends CI_Controller
                 $data['question'] = $row['question_nl'];
             //$data['questionNum'] = $row['questionNum'];
             $data['answer'] = $row['answer'];
-            if($_SESSION["lang"] == 'English')
-                $data['category'] = $row['category_en'];
-            else
-                $data['category'] = $row['category_nl'];
+            $data['category'] = $row['category'];
             //$data['timestampStart']= substr($row['timestampStart'],0,16);
             $data['timestampStart'] = $row['timestampStart'];
             //echo json_encode($bothData);
