@@ -485,7 +485,11 @@ $residentsFirstname = $this->db->query($query);
                                     <p class="personal_text_2" style="padding-top: 0.5vh;"> <?php echo $this->lang->line('dash_email'); ?></p>
                                 </div>
                                 <div class="col-8">
-                                    <p class="personal_text_2" style="text-align: end;"> <?php echo $email;
+                                    <p class="personal_text_2" style="text-align: end;"> <?php if ($email->num_rows() > 0)
+                                        {
+                                            $row = $email->row();
+                                            echo $row->email;
+                                        }
                                     ?></p>
                                 </div>
                             </div>
