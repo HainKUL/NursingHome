@@ -51,7 +51,7 @@ class Questionnaire_controller extends CI_Controller{
         $data2 = $this->Question_model->get_question($question);
         $data = array_merge($data1, $data2);//merge two array
 
-        $data['user_id'] = $_SESSION["user_id"];
+        $data['user_id'] = $_SESSION["id"];
         $data['question_id'] = $question;
 
         // add information about previous answer given to this question

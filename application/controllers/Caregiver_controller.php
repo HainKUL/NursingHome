@@ -29,7 +29,6 @@ class Caregiver_controller extends CI_Controller{
             $hash = $rows[0]->passwordHash;
             $lang = $rows[0]->preferences;
             $_SESSION['lang']=$lang;
-
             /* check if email is registered. Show general message "email OR password is wrong" to discourage bruteforce */
             if($result->num_rows() === 0)   {
                 $this->session->set_flashdata('flash_data', 'Email or password incorrect!'); //TODO translate, add in layout somehow

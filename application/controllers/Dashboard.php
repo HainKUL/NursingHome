@@ -38,7 +38,7 @@ class Dashboard extends CI_Controller
 
         foreach ($query->result_array() as $row)
         {
-            if($_SESSION["lang"] == 'English')
+            if($_SESSION['lang'] == 'English')
                 $data['category'] = $row['category_en'];
             else
                 $data['category'] = $row['category_nl'];
@@ -91,12 +91,12 @@ class Dashboard extends CI_Controller
 
         foreach ($query1->result_array() as $row) {
             $data['categoryID'] = $row['categoryID'];
-            if($_SESSION["lang"] == 'English')
+            if($_SESSION['lang'] == 'English')
                 $data['question'] = $row['question_en'];
             else
                 $data['question'] = $row['question_nl'];
             $data['answer'] = $row['answer'];
-            if($_SESSION["lang"] == 'English')
+            if($_SESSION['lang'] == 'English')
                 $data['category'] = $row['category_en'];
             else
                 $data['category'] = $row['category_nl'];
