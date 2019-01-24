@@ -41,7 +41,7 @@ if(!isset($_SESSION["resident"]))
         </div>
         <div class="col-5 header-button" id ="test">
             <a class="button_back" href="<?=base_url()?>index.php/Homepage_controller/logout">
-                <p id="logout_text"><?php echo $this->lang->line('logout'); ?>
+                <p id="logout_text"><?php echo $this->lang->line('logout'); ?></p>
             </a>
         </div>
         <div class="col-1"></div>

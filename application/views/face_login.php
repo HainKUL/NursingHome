@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Camera</title>
     <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="../../assets/css/questionnaire.css"  media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="../../assets/css/questionnaire.css"  media="screen"/>
     <!--Import jQuery before materialize.js-->
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="../../assets/js/materialize.min.js"></script>
@@ -47,7 +47,7 @@
 
         <form method="post" action="<?=base_url()?>Homepage_controller/login">
 
-            <table align="center" cellpadding = "10">
+            <table >
 
                 <tr>
                     <td><label><?php echo $this->lang->line('register_firstname'); ?>: </label></td>

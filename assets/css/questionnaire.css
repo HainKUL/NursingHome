@@ -211,3 +211,10 @@ body{
     position: relative;
 
 }
+table{
+    align-content: center;
+
+}
+td{
+    padding:10px;
+}

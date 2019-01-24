@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="english">
 <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="<?=base_url()?>assets/photos/favicon3.ico" type="image/gif" sizes="16x16">
@@ -13,9 +13,9 @@
 
 </head>
 
-<body style="background-repeat:no-repeat;background-size: cover;" background="<?=base_url() ?>assets/photos/background_remy.png">
+<body  background="<?=base_url() ?>assets/photos/background_remy.png">
 <div class="row" style="padding-top: 15%"></div>
-<div class="container" style="width: 60% ;background-color: #F9F5F7/*fff6e0*/; box-shadow: 10px 10px #e7d6d5; opacity: 0.95; padding-top: 50px; padding-bottom: 50px; border-radius:12px">
+<div class="container container_box" >
 
     <div class = "row" >
 
@@ -39,23 +39,21 @@
         <div class = "col-md-3">
         </div>
         <div class = "col-md-3">
-            <a  href=<?=base_url()?>index.php/Face_Login_controller/face_login class="link1">
-                <button type="button" class="btn btn-default button1" >
+            <a  href=<?=base_url()?>index.php/Face_Login_controller/face_login class="btn btn-default button1">
+
                     <?php echo $this->lang->line('home_resident'); ?>
-                </button>
             </a>
         </div>
         <div class = "col-md-1">
         </div>
         <div class = "col-md-3">
-         <a  href=<?=base_url()?>index.php/Caregiver_controller/login class="link1">
-                <button type="button" class="btn btn-default button1" >
+         <a  href=<?=base_url()?>index.php/Caregiver_controller/login class="btn btn-default button1">
                 <?php echo $this->lang->line('home_caregiver'); ?>
-                </button>
          </a>
         </div>
 
     </div>
+</div>
 </body>
 
 </html>
