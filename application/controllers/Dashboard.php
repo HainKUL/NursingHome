@@ -26,7 +26,7 @@ class Dashboard extends CI_Controller
         $data2 = $this->Our_chart_model->get_avg();
         $data['data2'] = $data2;
 
-        $sql1 = "SELECT category,categoryID,submission,timestampStart,AVG(answer) AS answer FROM ((Questions
+        $sql1 = "SELECT category,category_nl,category_en,categoryID,submission,timestampStart,AVG(answer) AS answer FROM (((Questions
                INNER JOIN Responses
                ON Questions.idQuestions=Responses.questionNum)
                INNER JOIN Submissions
@@ -97,7 +97,10 @@ class Dashboard extends CI_Controller
 
         foreach ($query1->result_array() as $row) {
             $data['categoryID'] = $row['categoryID'];
-            $data['question'] = $row['question'];
+            if($_SESSION["lang"] == 'English')
+                $data['question'] = $row['question_en'];
+            else
+                $data['question'] = $row['question_nl'];
             //$data['questionNum'] = $row['questionNum'];
             $data['answer'] = $row['answer'];
             $data['category'] = $row['category'];
