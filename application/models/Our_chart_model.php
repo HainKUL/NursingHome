@@ -15,7 +15,7 @@ class Our_chart_model extends CI_Model
     public function get_avg()
     {
         $query=$this->db->
-        query("SELECT category,categoryID,submission,timestampStart,AVG(answer) AS answer FROM ((Questions
+        query("SELECT category,category_nl,category_en,categoryID,submission,timestampStart,AVG(answer) AS answer FROM ((Questions
                INNER JOIN Responses
                ON Questions.idQuestions=Responses.questionNum)
                INNER JOIN Submissions
@@ -34,7 +34,10 @@ class Our_chart_model extends CI_Model
 
         foreach ($query->result_array() as $row)
         {
-            $data['category'] = $row['category'];
+            if($_SESSION["lang"] == 'English')
+                $data['category'] = $row['category_en'];
+            else
+                $data['category'] = $row['category_nl'];
             if((time()+3600)-strtotime($row['timestampStart']) < 86400)
             {
                 $data['timestampStart']= substr($row['timestampStart'],11,5);
