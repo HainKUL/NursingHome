@@ -11,7 +11,7 @@ if(!isset($_SESSION['caregiver'])) {
 <meta charset="UTF-8">
 <html>
 <head>
-    <title>CAREGIVER REGISTRATION FORM</title>
+    <title><?php echo $this->lang->line('care_for'); ?></title>
     <!-- Custom CSS-->
     <link href="<?=base_url()?>assets/css/caregiver_login.css" rel="stylesheet" type="text/css"/>
     <link rel="icon" href="<?=base_url()?>assets/photos/favicon3.ico" type="image/gif" sizes="16x16">

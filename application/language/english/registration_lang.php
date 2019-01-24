@@ -36,3 +36,4 @@ $lang['password'] = 'Password';
 $lang['email'] = 'Email';
 $lang['pass_confirm'] = 'Repeat password';
 $lang['care_form'] = 'CAREGIVER REGISTRATION FORM';
+$lang['care_for'] = 'Caregiver registration';

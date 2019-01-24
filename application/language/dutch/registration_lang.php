@@ -31,6 +31,7 @@ $lang['password'] = 'Wachtwoord';
 $lang['email'] = 'Email';
 $lang['pass_confirm'] = 'Herhaal wachtwoord';
 $lang['care_form'] = 'REGISTRATIE FORMULIER VERZORGER';
+$lang['care_for'] = 'Registratie verzorger';
 
 /*registration caregiver*/
 
