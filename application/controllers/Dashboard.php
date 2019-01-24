@@ -26,7 +26,7 @@ class Dashboard extends CI_Controller
         $data2 = $this->Our_chart_model->get_avg();
         $data['data2'] = $data2;
 
-        $sql1 = "SELECT category,catergoryID,submission,timestampStart,AVG(answer) AS answer FROM ((Questions
+        $sql1 = "SELECT category,categoryID,submission,timestampStart,AVG(answer) AS answer FROM ((Questions
                INNER JOIN Responses
                ON Questions.idQuestions=Responses.questionNum)
                INNER JOIN Submissions
@@ -36,8 +36,8 @@ class Dashboard extends CI_Controller
                SELECT idSubmissions as submission
                FROM Submissions
                WHERE completed = '1' AND idResident = '$residentID' )
-               GROUP BY  category,catergoryID,timestampStart,submission
-               ORDER BY submission DESC,catergoryID";
+               GROUP BY  category,categoryID,timestampStart,submission
+               ORDER BY submission DESC,categoryID";
         $query = $this->db->query($sql1);
 
         foreach ($query->result_array() as $row)
@@ -95,7 +95,7 @@ class Dashboard extends CI_Controller
         $query1 = $this->db->get();
 
         foreach ($query1->result_array() as $row) {
-            $data['catergoryID'] = $row['catergoryID'];
+            $data['categoryID'] = $row['categoryID'];
             $data['question'] = $row['question'];
             //$data['questionNum'] = $row['questionNum'];
             $data['answer'] = $row['answer'];

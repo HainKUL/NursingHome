@@ -291,8 +291,6 @@ $residentsFirstname = $this->db->query($query);
                                         <?php echo $this->lang->line('dutch'); ?>
                                             <input type="radio" name="Radio" value="English" >
                                         <?php echo $this->lang->line('english'); ?>
-                                            <input type="radio" name="Radio" value="French">
-                                        <?php echo $this->lang->line('french'); ?>
                                     </td>
                                 </tr>
                                 <tr>
@@ -886,7 +884,7 @@ $residentsFirstname = $this->db->query($query);
         if(category !== 'all') {
             var data = [];
             for (var i = 0; i < bothData.length; i++) {
-                if (bothData[i]["catergoryID"] == category) data.push(bothData[i]);
+                if (bothData[i]["categoryID"] == category) data.push(bothData[i]);
             }
             update(data, false);
         } else update(bothData, true);
@@ -920,7 +918,7 @@ $residentsFirstname = $this->db->query($query);
             })
             .attr("width", barWidth - 1)
             .attr("fill", function (d) {
-                switch (d.catergoryID) {
+                switch (d.categoryID) {
                     case "0" : return "rgb(216,230,173)";
                     case "1" : return "rgb(173,216,230)";
                     case "2" : return "rgb(230,187,173)";
