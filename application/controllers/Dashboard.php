@@ -26,11 +26,13 @@ class Dashboard extends CI_Controller
         $data2 = $this->Our_chart_model->get_avg();
         $data['data2'] = $data2;
 
-        $sql1 = "SELECT category,categoryID,submission,timestampStart,AVG(answer) AS answer FROM ((Questions
+        $sql1 = "SELECT category,categoryID,submission,timestampStart,AVG(answer) AS answer FROM (((Questions
                INNER JOIN Responses
                ON Questions.idQuestions=Responses.questionNum)
                INNER JOIN Submissions
                ON Submissions.idSubmissions=Responses.submission)
+               INNER JOIN Categories
+               ON Categories.idCategories=Questions.categoryID)
                WHERE completed = '1' AND idResident = '$residentID' AND submission IN (
                #SELECT max(idSubmissions) as submission
                SELECT idSubmissions as submission
@@ -86,17 +88,18 @@ class Dashboard extends CI_Controller
         $data['data1'] = $data1;
 
 
-        $where = "idResident ='$residentID' AND completed = '1'";
+        $where = "idResident ='$residentID' AND completed = '1' ";
         $this->db->select('*,idResident');
         $this->db->from('Questions,Submissions');
         $this->db->where($where);
         $this->db->where('Submissions.idSubmissions=Responses.submission');
         $this->db->join('Responses', 'Questions.idQuestions=Responses.questionNum');
+        $this->db->join('Categories', 'Categories.idCategories=Questions.categoryID');
         $query1 = $this->db->get();
 
         foreach ($query1->result_array() as $row) {
             $data['categoryID'] = $row['categoryID'];
-            $data['question'] = $row['question'];
+            $data['question'] = $row['nl'];
             //$data['questionNum'] = $row['questionNum'];
             $data['answer'] = $row['answer'];
             $data['category'] = $row['category'];
@@ -173,8 +176,6 @@ class Dashboard extends CI_Controller
             $lang           = $this->db->escape($_POST['Radio']);
             $floor          = $this->db->escape($_POST['floor']);
             $nr             = $this->db->escape($_POST['Mobile_Number']);
-            $pref_array     = array($lang,$floor,$nr);
-            $pref           = serialize($pref_array);
 
             // form validation: ensure that the form is correctly filled ...
             // by adding (array_push()) corresponding error unto $errors array

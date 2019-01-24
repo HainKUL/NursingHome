@@ -25,11 +25,13 @@ class Caregiver_controller extends CI_Controller{
         if($_POST) {
             /* get credentials from database */
             $email = $this->db->escape($_POST['email']);
-            $query = "SELECT passwordHash, idCaregivers, email FROM Caregivers WHERE email = $email LIMIT 1;";
+            $query = "SELECT passwordHash, idCaregivers, email, preferences FROM Caregivers WHERE email = $email LIMIT 1;";
             $result = $this->db->query($query);
             $rows = $result->result();
             $hash = $rows[0]->passwordHash;
-
+            $lang = $rows[0]->preferences;
+            $_SESSION['lang']=$lang;
+            echo "<script>window.location.href='".base_url()."MultiLanguageSwitcher/switcher/".$lang."';</script>";
             /* check if email is registered. Show general message "email OR password is wrong" to discourage bruteforce */
             if($result->num_rows() === 0)   {
                 $this->session->set_flashdata('flash_data', 'Email or password incorrect!'); //TODO translate, add in layout somehow
@@ -47,7 +49,8 @@ class Caregiver_controller extends CI_Controller{
             $this->session->set_userdata($data);
             $_SESSION["caregiver"]="yes";
             $_SESSION['id']=$rows[0]->idCaregivers;
-            redirect('Dashboard/dashboard'); //reject login: redirect back to login page
+
+            redirect('Dashboard/dashboard');
         }
         $this->load->view("caregiver_login_view");
     }
@@ -97,7 +100,7 @@ class Caregiver_controller extends CI_Controller{
             $name = $this->db->escape($_POST['name']);
             $firstname = $this->db->escape($_POST['firstname']);
             $email = $this->db->escape($_POST['email']);
-            //
+            $lang           = $this->db->escape($_POST['Radio']);
             $password_1 = $_POST['password_1'];
             $password_2 = $_POST['password_2'];
 
@@ -131,7 +134,7 @@ class Caregiver_controller extends CI_Controller{
             // pass in the password, the number of rounds, and the salt
             $passhash =  crypt($password_1, sprintf('$6$rounds=%d$%s$', $rounds, $salt));
 
-            $query = "INSERT INTO Caregivers (name, firstName, email, passwordHash) VALUES($name, $firstname, $email, '$passhash')";
+            $query = "INSERT INTO Caregivers (name, firstName, email, passwordHash,preferences) VALUES($name, $firstname, $email, '$passhash',$lang)";
             if(!($this->db->query($query))) {
                 //TODO errorcheck
             }

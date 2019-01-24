@@ -62,7 +62,7 @@
                 </tr>
                 <tr>
 
-                    <td><label>Pincode:</label></td>
+                    <td><label><?php echo $this->lang->line('pin'); ?>:</label></td>
                     <td><input type="password" oninput="checkInput(this.id)" pattern="[0-9]{1,4}" name="pincode" id="pincode" class="form-control"  /></td>
                 </tr>
             </table>

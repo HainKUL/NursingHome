@@ -185,7 +185,9 @@ $residentsFirstname = $this->db->query($query);
             <div style="height:5%;"></div>
             <h2 class="floornumber" style="padding:15px"><?php echo $this->lang->line('polls');?></h2>
             <a href="#" style="padding:10%">
-                <button class="btn btn-primary btn-lg" type="button" style="width:80%;background-color:#00675F;border:none;color:#DEEAE9">
+                <button class="btn btn-primary btn-lg" type="button" style="
+
+                width:80%;background-color:#00675F;border:none;color:#DEEAE9">
                     <?php echo $this->lang->line('add_poll'); ?>
                 </button>
             </a>
@@ -217,7 +219,7 @@ $residentsFirstname = $this->db->query($query);
             <h2 class="floornumber" style="padding:15px"><?php echo $this->lang->line('personal');?></h2>
             <div style="overflow-y:scroll;max-height:70vh;">
                 <div class="btn-group-vertical btn-group-lg" role="group" style="width:100%;">
-                    <button class="btn btn-primary btn-resident " id="settings1" type="button" onclick="settingsButton(this.id)">
+                    <button class="btn btn-primary btn-resident " id="settings11" type="button" onclick="settingsButton(this.id)">
                         <div class="resident-button">
                             <img class="profilePic" src="<?=base_url() ?>assets/photos/setting.png" alt="Avatar">
                             <span style="font-weight:100">
@@ -226,7 +228,7 @@ $residentsFirstname = $this->db->query($query);
                         </div>
                     </button>
 
-                    <button class="btn btn-primary btn-resident  btn-info btn-lg" id="settings2" type="button" onclick="settingsButton(this.id);"data-toggle="modal" data-target="#myModal2">
+                    <button class="btn btn-primary btn-resident  btn-info btn-lg" id="settings22" type="button" onclick="settingsButton(this.id);"data-toggle="modal" data-target="#myModal2">
                         <div class="resident-button">
                             <img class="profilePic" src="<?=base_url() ?>assets/photos/add.png" alt="Avatar">
                             <span style="font-weight:100">
@@ -291,6 +293,7 @@ $residentsFirstname = $this->db->query($query);
                                         <?php echo $this->lang->line('dutch'); ?>
                                             <input type="radio" name="Radio" value="English" >
                                         <?php echo $this->lang->line('english'); ?>
+
                                     </td>
                                 </tr>
                                 <tr>
@@ -417,10 +420,10 @@ $residentsFirstname = $this->db->query($query);
                                                 </select>
                                             </div>
                                             <script type="text/javascript">
-                                                var bothData = <?php echo json_encode($one); ?>;;
+                                                var bothData = <?php echo json_encode($one); ?>;
                                             </script>
 
-                                            <div class = "category"; style="float:right;">
+                                            <div class = "category" style="float:right;">
                                                 <select onchange="change('0',this.value);"  name = "cate" id = "cate" class="input">
                                                     <option disabled selected><?php echo $this->lang->line('dash_select_cat'); ?></option>
                                                     <option value="0" ><?php echo $this->lang->line('category_0'); ?></option>
@@ -452,7 +455,7 @@ $residentsFirstname = $this->db->query($query);
                     </div>
                     <div class="tab-pane" role="tabpanel" id="tab-3">
                         <div class="container" >
-                            <div class="row" style="padding-top: 40px";>
+                            <div class="row" style="padding-top: 40px">
                                 <div class="col-8">
                                     <p class="personal_text"> <?php echo $this->lang->line('hello'); if ($firstName->num_rows() > 0)
                                         {
@@ -728,14 +731,14 @@ $residentsFirstname = $this->db->query($query);
                 onclick="loadResident(this.id)">
                 <div class="resident-button">
                     <img class="profilePic" src="<?= base_url() ?>assets/photos/id.png" alt="Avatar">
-                    <span class="resident-nameage">
+                    <div class="resident-nameage">
                         <div class="button-name">
                             <?php echo $row['firstName']." ".$row['name']; ?>
                         </div>
                         <div class="button-age">
                             <?php echo $row['age'] ?>
                         </div>
-                    </span>
+                    </div>
                 </div>
             </button><?php
         }

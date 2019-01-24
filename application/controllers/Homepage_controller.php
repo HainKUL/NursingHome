@@ -93,11 +93,12 @@ class Homepage_controller extends CI_Controller
 
             $hash = $rows[0]->pinHash;
             if(password_verify($_POST['pincode'], $hash)) { //TODO deduplicate?
-                $data = array('id_Residents' => $rows[0]->idResidents, 'name' => $rows[0]->name);
-                $this->session->set_userdata($data);
                 $_SESSION["resident"]="yes";
                 if($lang == 'English') $lang="english";
                 echo "<script>window.location.href='".base_url()."MultiLanguageSwitcher/switcher/".$lang."';</script>";
+                $data = array('id_Residents' => $rows[0]->idResidents, 'name' => $rows[0]->name);
+                $this->session->set_userdata($data);
+
                 //redirect('Homepage_controller/residentHome/'.$_SESSION['id']); // Has something to do with not being able to remove index.php in url
 
             } else {

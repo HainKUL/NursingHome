@@ -19,11 +19,12 @@ class Bar_chart_model extends CI_Model
         $this->db->where($where);
         $this->db->where('Submissions.idSubmissions=Responses.submission');
         $this->db->join('Responses', 'Questions.idQuestions=Responses.questionNum');
+        $this->db->join('Categories', 'Categories.idCategories=Questions.categoryID');
         $query = $this->db->get();
 
         foreach ($query->result_array() as $row) {
             $data['categoryID'] = $row['categoryID'];
-            $data['question'] = $row['question'];
+            $data['question'] = $row['nl'];
             //$data['questionNum'] = $row['questionNum'];
             $data['answer'] = $row['answer'];
             $data['category'] = $row['category'];
@@ -60,11 +61,12 @@ class Bar_chart_model extends CI_Model
         $this->db->where($where);
         $this->db->where('Submissions.idSubmissions=Responses.submission');
         $this->db->join('Responses', 'Questions.idQuestions=Responses.questionNum');
+        $this->db->join('Categories', 'Categories.idCategories=Questions.categoryID');
         $query = $this->db->get();
 
         foreach ($query->result_array() as $row) {
             $data['categoryID'] = $row['categoryID'];
-            $data['question'] = $row['question'];
+            $data['question'] = $row['nl'];
             //$data['questionNum'] = $row['questionNum'];
             $data['answer'] = $row['answer'];
             $data['category'] = $row['category'];

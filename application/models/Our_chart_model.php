@@ -19,7 +19,9 @@ class Our_chart_model extends CI_Model
                INNER JOIN Responses
                ON Questions.idQuestions=Responses.questionNum)
                INNER JOIN Submissions
-               ON Submissions.idSubmissions=Responses.submission)
+               ON Submissions.idSubmissions=Responses.submission
+               INNER JOIN Categories
+               ON Categories.idCategories=Questions.categoryID)
                WHERE completed = '1' AND idResident = '190' AND submission IN (
                #SELECT max(idSubmissions) as submission
                SELECT idSubmissions as submission
