@@ -169,6 +169,16 @@ class Dashboard extends CI_Controller
         $query = "SELECT firstName FROM Caregivers WHERE $currentID = Caregivers.idCaregivers;";
         $data['firstNameCaregiver']= $this->db->query($query);
 
+        $query = "SELECT firstName, name FROM Residents ORDER BY firstName;";
+        $data['residentsFirstname'] = $this->db->query($query);
+
+        $query = "SELECT firstName, name, idResidents, YEAR(CURRENT_TIMESTAMP) - YEAR(dateOfBirth) - (RIGHT(CURRENT_TIMESTAMP, 5) < RIGHT(dateOfBirth, 5)) as age FROM Residents ORDER BY firstName;";
+        $data['residents'] = $this->db->query($query);
+
+        $query = "SELECT Notes.noteText, Notes.author, Notes.timestamp, Caregivers.firstName FROM Notes ".
+            "INNER JOIN Caregivers on Notes.author = Caregivers.idCaregivers ORDER BY Notes.timestamp DESC;";
+        $data['result'] = $this->db->query($query);
+
         $this->load->view('dashboard', $data);
     }
 

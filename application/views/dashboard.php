@@ -119,23 +119,6 @@ if(!isset($_SESSION['caregiver'])) {
 
 <body onload="highlightCurrent();">
 
-<?php
-//TODO probably move queries to controller?
-$currentID = $_SESSION['id'];
-$this->load->database();
-$query = "SELECT Notes.noteText, Notes.author, Notes.timestamp, Caregivers.firstName FROM Notes ".
-            "INNER JOIN Caregivers on Notes.author = Caregivers.idCaregivers ORDER BY Notes.timestamp DESC;";
-$result = $this->db->query($query);
-$query = "SELECT firstName, name, idResidents, YEAR(CURRENT_TIMESTAMP) - YEAR(dateOfBirth) - (RIGHT(CURRENT_TIMESTAMP, 5) < RIGHT(dateOfBirth, 5)) as age FROM Residents ORDER BY firstName;";
-$residents = $this->db->query($query);
-//$query = "SELECT firstName FROM Caregivers WHERE $currentID = Caregivers.idCaregivers;";
-//$firstName = $this->db->query($query);
-//$query = "SELECT email FROM Caregivers WHERE Caregivers.idCaregivers = $currentID;";
-//$email = $this->db->query($query);
-$query = "SELECT firstName, name FROM Residents ORDER BY firstName;";
-$residentsFirstname = $this->db->query($query);
-?>
-
 
 <script>
     $(function() {
