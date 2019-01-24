@@ -2,14 +2,14 @@
 class Question_model extends CI_Model{
 
     public function get_question($question) {
-        $query=$this->db->query("SELECT en, nl, categoryID, idQuestions FROM a18ux04.Questions WHERE idQuestions = $question");
+        $query=$this->db->query("SELECT question_en, question_nl, categoryID, idQuestions FROM a18ux04.Questions WHERE idQuestions = $question");
         if(count($query->result_array()) == 0) return 0;
         $result = $query->result_array();
         $row = $result[0];
         if($_SESSION["lang"] == 'English')
-            $data['question'] = $row['en'];
+            $data['question'] = $row['question_en'];
         else
-            $data['question'] = $row['nl'];
+            $data['question'] = $row['question_nl'];
         $data['category'] = $row['categoryID'];
         $data['progress'] = $row['idQuestions'];
         return $data;
