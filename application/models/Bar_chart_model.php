@@ -22,7 +22,7 @@ class Bar_chart_model extends CI_Model
         $query = $this->db->get();
 
         foreach ($query->result_array() as $row) {
-            $data['catergoryID'] = $row['catergoryID'];
+            $data['categoryID'] = $row['categoryID'];
             $data['question'] = $row['question'];
             //$data['questionNum'] = $row['questionNum'];
             $data['answer'] = $row['answer'];
@@ -63,7 +63,7 @@ class Bar_chart_model extends CI_Model
         $query = $this->db->get();
 
         foreach ($query->result_array() as $row) {
-            $data['catergoryID'] = $row['catergoryID'];
+            $data['categoryID'] = $row['categoryID'];
             $data['question'] = $row['question'];
             //$data['questionNum'] = $row['questionNum'];
             $data['answer'] = $row['answer'];
@@ -92,7 +92,7 @@ class Bar_chart_model extends CI_Model
    /* public function get_average()
     {
         $query=$this->db->
-        query("SELECT category,catergoryID,submission,timestampStart,AVG(answer) AS answer FROM ((Questions
+        query("SELECT category,categoryID,submission,timestampStart,AVG(answer) AS answer FROM ((Questions
                INNER JOIN Responses
                ON Questions.idQuestions=Responses.questionNum)
                INNER JOIN Submissions
@@ -102,12 +102,12 @@ class Bar_chart_model extends CI_Model
                SELECT idSubmissions as submission
                FROM Submissions
                WHERE completed = '1' AND idResident = '1' )
-               GROUP BY  category,catergoryID,timestampStart,submission
-               ORDER BY submission DESC,catergoryID;");
+               GROUP BY  category,categoryID,timestampStart,submission
+               ORDER BY submission DESC,categoryID;");
         // $this->db->query($query);
 
         foreach ($query->result_array() as $row) {
-            $data['catergoryID'] = $row['catergoryID'];
+            $data['categoryID'] = $row['categoryID'];
             //$data['question'] = $row['question'];
             //$data['questionNum'] = $row['questionNum'];
             $data['answer'] = $row['answer'];
