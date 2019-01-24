@@ -18,25 +18,19 @@
 <nav>
     <div class="nav-wrapper">
         <h1><?php echo $this->lang->line('login_welcome'); ?></h1>
-
     </div>
 </nav>
-
 
 <div class="container">
     <div class="card center">
         <div class="card-content">
             <div class="card-action">
                 <div class="card-action">
-
                     <table align="center" cellpadding = "10">
                         <tr>
                             <h2 align="center"><?php echo $this->lang->line('login_face'); ?></h2>
                         </tr>
                         <tr>
-<!--                            <td>-->
-<!--                                <button class="button_logout" onclick="startWebcam();">--><?php //echo $this->lang->line('login_start'); ?><!--</button>-->
-<!--                            </td>-->
                             <td>
                                 <button class="button_logout" onclick="snapshot();"><?php echo $this->lang->line('login_capture'); ?></button>
                             </td>
@@ -50,14 +44,10 @@
                 <canvas  id="myCanvas" width="400" height="300"></canvas>
             </div>
         </div>
-        <!--<audio id="myAudio">-->
-        <!--<source src="success.wav" type="audio/wav">-->
-        <!--</audio>-->
-
     </div>
 </div>
-<form method="post" action="<?=base_url()?>Homepage_controller/login">
 
+<form method="post" action="<?=base_url()?>Homepage_controller/login">
     <table align="center" cellpadding = "10">
         <tr>
             <h2 align="center"><?php echo $this->lang->line('alternative'); ?></h2>
@@ -67,21 +57,17 @@
         <td><input type="text" oninput="checkInput(this.id)" pattern="[a-z A-Z'éèëï-]{1,20}" name="firstname" id="firstname" class="form-control"  /></td>
     </tr>
     <tr>
-
         <td><label><?php echo $this->lang->line('register_lastname'); ?>: </label></td>
         <td><input type="text" oninput="checkInput(this.id)" pattern="[a-z A-Z'éèëï-]{1,20}" name="name" id="name" class="form-control"  /></td>
     </tr>
     <tr>
-
         <td><label>Pincode:</label></td>
         <td><input type="password" oninput="checkInput(this.id)" pattern="[0-9]{1,4}" name="pincode" id="pincode" class="form-control"  /></td>
     </tr>
 
     <tr>
         <td>
-
-             <input class="button_logout" type="submit" id="submit" value="<?php echo $this->lang->line('login_button'); ?>" />
-
+            <input class="button_logout" type="submit" id="submit" value="<?php echo $this->lang->line('login_button'); ?>" />
         </td>
     </tr>
     </table>
@@ -98,5 +84,3 @@
     }
 </script>
 </html>
-
-
