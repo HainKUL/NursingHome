@@ -36,20 +36,20 @@
                     <div class="row"style="padding-bottom: 10px" >
                         <div class="col-2">
                         </div>
-                        <div class="col-2">
+                        <div class="col-3">
 
                             <label><?php echo $this->lang->line('register_firstname'); ?>:</label>
                         </div>
                         <div class="col-6">
                                 <input style="line-height: 32px;" type="text" name="firstname" id="firstname" class="form-control" name="firstname" maxlength="30"/>
                         </div>
-                        <div class="col-2">
+                        <div class="col-1">
                         </div>
                     </div>
                     <div class="row" style="padding-bottom: 10px">
                         <div class="col-2">
                         </div>
-                        <div class="col-2">
+                        <div class="col-3">
 
 
                                 <label><?php echo $this->lang->line('register_lastname'); ?>:</label>
@@ -59,13 +59,13 @@
 
 
                         </div>
-                        <div class="col-2">
+                        <div class="col-1">
                         </div>
                     </div>
                     <div class="row"  style="padding-bottom: 10px">
                         <div class="col-2">
                         </div>
-                        <div class="col-2">
+                        <div class="col-3">
 
                                 <label><?php echo $this->lang->line('email'); ?>:</label>
                         </div>
@@ -73,13 +73,13 @@
                                 <input style="line-height: 32px;" type="email" name="email" id="email" class="form-control" name="email" maxlength="30" />
 
                         </div>
-                        <div class="col-2">
+                        <div class="col-1">
                         </div>
                     </div>
                     <div class="row" style="padding-bottom: 10px">
                         <div class="col-2">
                         </div>
-                        <div class="col-2">
+                        <div class="col-3">
 
 
                                 <label><?php echo $this->lang->line('password'); ?>:</label>
@@ -89,13 +89,13 @@
 
 
                         </div>
-                        <div class="col-2">
+                        <div class="col-1">
                         </div>
                     </div>
                     <div class="row" style="padding-bottom: 10px">
                         <div class="col-2">
                         </div>
-                        <div class="col-2">
+                        <div class="col-3">
 
 
                                 <label><?php echo $this->lang->line('pass_confirm'); ?>:</label>
@@ -105,13 +105,13 @@
 
 
                         </div>
-                        <div class="col-2">
+                        <div class="col-1">
                         </div>
                     </div>
                     <div class="row" style="padding-bottom: 10px">
                         <div class="col-2">
                         </div>
-                        <div class="col-2">
+                        <div class="col-3">
 
 
                             <label><?php echo $this->lang->line('lang'); ?>:</label>
@@ -124,7 +124,7 @@
 
 
                         </div>
-                        <div class="col-2">
+                        <div class="col-1">
                         </div>
                     </div>
 
