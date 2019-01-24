@@ -123,6 +123,7 @@ class Homepage_controller extends CI_Controller
             ."WHERE idResidents = $userId LIMIT 1";
         $result = $this->db->query($sql);
         $lang = $result->result_array()[0]["preferences"];
+        $_SESSION['lang']=$lang;
 
          //TODO remove this circumvent (and fix the bug it avoids)
         if($lang == 'English') $lang='english';
