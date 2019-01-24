@@ -61,7 +61,7 @@ function snapshot_login() {
         let m = response;
         //if user verified
         if(JSON.stringify(m).indexOf("success") > -1) {
-            Materialize.toast('User Identfied. ID : ' +JSON.stringify(m.images[0].candidates[0].subject_id), 6000);
+            //Materialize.toast('User Identfied. ID : ' +JSON.stringify(m.images[0].candidates[0].subject_id), 6000);
             //show the id returned from the cloud
             console.log(m.images[0].candidates[0].subject_id);
             //switch to user page
