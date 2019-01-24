@@ -6,7 +6,7 @@ if(!isset($_SESSION['id']))
     exit();
 
 }
-
+echo $_SESSION['date'];
 ?>
 
 <!DOCTYPE html>

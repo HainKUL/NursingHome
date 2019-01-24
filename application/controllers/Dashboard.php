@@ -165,11 +165,9 @@ class Dashboard extends CI_Controller
             // receive all input values from the form
             $name           = $this->db->escape($_POST['name']);
             $firstname      = $this->db->escape($_POST['firstname']);
-            $birth_day      = $this->db->escape($_POST['Birthday_day']);
-            $birth_month    = $this->db->escape($_POST['Birthday_Month']);
-            $birth_year     = $this->db->escape($_POST['Birthday_Year']);
-            $dateOfbirth    = $birth_year.'-'.$birth_month.'-'.$birth_day;
-            $dateOfBirth    = date("Y-m-d",strtotime($dateOfbirth));
+            $birth_day      = $this->db->escape($_POST['birthDay']);
+
+            $_SESSION['date']=$birth_day;
             $roomNumber     = $this->db->escape($_POST['Room_Id']);
             $bedNumber      = $this->db->escape($_POST['Bed_Id']);
             $Pin_Code       = $_POST['Pin_Code'];
@@ -184,7 +182,7 @@ class Dashboard extends CI_Controller
             // by adding (array_push()) corresponding error unto $errors array
             if (empty($name))                array_push($errors, "Name is required");
             if (empty($firstname))           array_push($errors, "Firstname is required"); //TODO remove this restriction!
-            if (empty($dateOfBirth))         array_push($errors, "Date of birth is required");
+            if (empty($birth_day))         array_push($errors, "Date of birth is required");
             if (empty($roomNumber))          array_push($errors, "Roomnumber is required");
             if (empty($bedNumber))           array_push($errors, "Bednumber is required");
             if (empty($_POST['Pin_Code']))   array_push($errors, "Pincode is required");
@@ -203,7 +201,7 @@ class Dashboard extends CI_Controller
             // Finally, register user if there are no errors in the form
             if (count($errors) == 0) {
                 $query = "INSERT INTO Residents (name, firstName,dateOfBirth,roomNumber,bedNumber,pinHash,pinSalt,preferences) "
-                ."VALUES($name, $firstname,'$dateOfBirth',$roomNumber,$bedNumber,'$pinhash','$salt',$lang)";
+                ."VALUES($name, $firstname,$birth_day,$roomNumber,$bedNumber,'$pinhash','$salt',$lang)";
                 $this->db->query($query);
                 $query2 = "SELECT idResidents FROM a18ux04.Residents ORDER BY idResidents DESC LIMIT 1;";
                 $result2 = $this->db->query($query2)->result_array()[0]["idResidents"];
