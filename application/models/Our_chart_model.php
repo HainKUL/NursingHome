@@ -4,11 +4,9 @@
 class Our_chart_model extends CI_Model
 {
     function __construct(){
-
         parent::__construct();
         $this->load->database();
         $this->load->library('session');
-       // $this->load->library('session');
     }
 
 
@@ -29,8 +27,6 @@ class Our_chart_model extends CI_Model
                WHERE completed = '1' AND idResident = '190' )
                GROUP BY  category,categoryID,timestampStart,submission
                ORDER BY submission DESC,categoryID;");
-       // $this->db->query($query);
-
 
         foreach ($query->result_array() as $row)
         {
@@ -47,11 +43,8 @@ class Our_chart_model extends CI_Model
                 $data['timestampStart']= substr($row['timestampStart'],5,11);
             }
             $data['answer'] = $row['answer'];
-            //echo(json_encode($query));
             $rawdata[]=$data;
-            //echo(json_encode($data));
         }
-        //change_array_key( $rawdata, $old_key, $new_key)
 
         foreach ($rawdata as $value)
        {
@@ -69,7 +62,6 @@ class Our_chart_model extends CI_Model
         }
         $sliced_array = array_slice($data22, 0, 3);
         return $sliced_array;
-        //echo(json_encode($bothData);
     }
 
     function __destruct() {

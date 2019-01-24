@@ -17,12 +17,6 @@ class Dashboard extends CI_Controller
     public function dashboard($residentID = -1)
     {
         /*graphs*/
-       // $data_each1 = $this->Bar_chart_model->get_each();
-        //$data['data_each1'] = $data_each1;
-        //$data_one = $this->Bar_chart_model->get_one();
-        //$data['one'] =   $data_one;
-        //$data_avg = $this->Bar_chart_model->get_average();
-        //$data['data_avg'] =  $data_avg;
         $data2 = $this->Our_chart_model->get_avg();
         $data['data2'] = $data2;
 
@@ -57,9 +51,7 @@ class Dashboard extends CI_Controller
                 $data['timestampStart']= substr($row['timestampStart'],5,11);
             }
             $data['answer'] = $row['answer'];
-            //echo(json_encode($query));
             $data4[]=$data;
-            //echo(json_encode($data));
         }
 
         if (empty($data4))
@@ -67,9 +59,6 @@ class Dashboard extends CI_Controller
             $data1 = null;
         }
         else{
-
-            //change_array_key( $rawdata, $old_key, $new_key)
-
             foreach ($data4 as $value)
             {
                 $time= $value['timestampStart'];
@@ -106,17 +95,13 @@ class Dashboard extends CI_Controller
                 $data['question'] = $row['question_en'];
             else
                 $data['question'] = $row['question_nl'];
-            //$data['questionNum'] = $row['questionNum'];
             $data['answer'] = $row['answer'];
             if($_SESSION["lang"] == 'English')
                 $data['category'] = $row['category_en'];
             else
                 $data['category'] = $row['category_nl'];
-            //$data['timestampStart']= substr($row['timestampStart'],0,16);
             $data['timestampStart'] = $row['timestampStart'];
-            //echo json_encode($bothData);
             $rawdata1[]=$data;
-            //print_r(json_encode($bothData));
         }
 
 
