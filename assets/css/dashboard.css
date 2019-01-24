@@ -87,6 +87,10 @@ html, body {
       padding-bottom: 5px;
 }
 
+.note-box:hover{
+      background-color:#ebf5c1;
+}
+
 
 .note-heading{
       text-align: left;
@@ -314,10 +318,35 @@ tab-content{
 
 }
 
+.btn-lg{
+    min-width: 100%;
+    background-color: #009489;
+    border:none;
+}
+
+.btn-lg:hover{
+    background-color: #009e94;
+}
+
+
 .btn-fullscreen{
     color: #009489;
     float:right;
     margin:10px;
+}
+
+.btn-logout{
+    color: #009489;
+    float:right;
+    margin:10px;
+}
+
+.btn-logout:hover{
+    color: #47b3ab;
+}
+
+.btn-fullscreen:hover{
+    color: #47b3ab;
 }
 
 @-webkit-keyframes rotating /* Safari and Chrome */ {

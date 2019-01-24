@@ -497,10 +497,11 @@ if(!isset($_SESSION['caregiver'])) {
             <div style="height:5%;">
                 <span id="openfullscreen" class="fa fa-expand btn-fullscreen" onclick="openFullscreen()"></span>
                 <span id="closefullscreen" class="fa fa-compress btn-fullscreen hiddendiv" onclick="closeFullscreen()"></span>
+                <span id="logout" class="fa fa-sign-out btn-logout" onclick="logOut()"></span>
             </div>
             <div class="searchdiv" style="text-align:center;margin:15px;">
                 <h2 class="notes-title"><?php echo $this->lang->line('dash_notes'); ?></h2>
-                <button class="btn btn-primary btn-lg" type="button" style="min-width:100%;background-color:#009489;border:none;" data-toggle="modal" data-target="#myModal"><?php echo $this->lang->line('dash_add'); ?></button>
+                <button class="btn btn-primary btn-lg" type="button" data-toggle="modal" data-target="#myModal"><?php echo $this->lang->line('dash_add'); ?></button>
                 <!--Modal-->
                 <form method="post" action="<?= site_url('Caregiver_controller/add_note') ?>">
                     <div id="myModal" class="modal fade" role="dialog">
@@ -614,13 +615,6 @@ if(!isset($_SESSION['caregiver'])) {
                         </div>
                     </div>
                 </div>
-                <div style="margin-top: 5%">
-                    <a href="<?=base_url()?>index.php/Dashboard/logout" style="padding:20% 10%;">
-                        <button class="btn btn-primary btn-lg" type="button" style="width:80%;background-color:#009489;;border:none;">
-                            <?php echo $this->lang->line('dash_logout'); ?>
-                        </button>
-                    </a>
-                </div>
             </div>
         </div>
     </div>
@@ -644,7 +638,11 @@ if(!isset($_SESSION['caregiver'])) {
     }
 </script>
 
-
+<script>
+    function logOut()   {
+        window.location.replace("<?=base_url()?>index.php/Dashboard/logout");
+    }
+</script>
 
 <script>
     /* Get the documentElement (<html>) to display the page in fullscreen */
