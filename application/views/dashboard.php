@@ -406,7 +406,7 @@ if(!isset($_SESSION['caregiver'])) {
 
 
         <div class="col-3" style="background-color:#c7de6e;padding:0;">
-            <div style="height:5%;">
+            <div style="height:5%;font-size:20px;">
                 <span id="openfullscreen" class="fa fa-expand btn-fullscreen" onclick="openFullscreen()"></span>
                 <span id="closefullscreen" class="fa fa-compress btn-fullscreen hiddendiv" onclick="closeFullscreen()"></span>
                 <span id="logout" class="fa fa-sign-out btn-logout" onclick="logOut()"></span>
