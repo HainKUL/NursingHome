@@ -10,7 +10,7 @@ class Dashboard extends CI_Controller
         $this->load->helper('url');
         $this->load->helper('string');
         $this->load->model("Our_chart_model");
-        $this->load->model("Bar_chart_model");
+        //$this->load->model("Bar_chart_model");
     }
 
 
