@@ -18,7 +18,7 @@ if(!isset($_SESSION["resident"]))
     <meta charset="UTF-8" />
     <link rel="icon" href="<?=base_url()?>assets/photos/favicon3.ico" type="image/gif" sizes="16x16">
 
-    <title><?php echo $this->lang->line('title'); ?></title>
+    <title><?php echo $this->lang->line('weather'); ?></title>
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link href="<?=base_url() ?>assets/css/questionnaire.css" rel="stylesheet" type="text/css"/>

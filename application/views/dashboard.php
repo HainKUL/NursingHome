@@ -333,7 +333,7 @@ if(!isset($_SESSION['caregiver'])) {
 
                                             <div class = "category" style="float:right;">
                                                 <select onchange="change('0',this.value);"  name = "cate" id = "cate" class="input">
-                                                    <option disabled selected><?php echo $this->lang->line('dash_select_cat'); ?></option>
+                                                    <option value="all"  ><?php echo $this->lang->line('category_all'); ?></option>
                                                     <option value="0"    ><?php echo $this->lang->line('category_0'); ?></option>
                                                     <option value="1"    ><?php echo $this->lang->line('category_1'); ?></option>
                                                     <option  value="2"   ><?php echo $this->lang->line('category_2'); ?></option>
@@ -345,7 +345,7 @@ if(!isset($_SESSION['caregiver'])) {
                                                     <option  value="8"   ><?php echo $this->lang->line('category_8'); ?></option>
                                                     <option value="9"    ><?php echo $this->lang->line('category_9'); ?></option>
                                                     <option  value="10"  ><?php echo $this->lang->line('category_10'); ?></option>
-                                                    <option  value="all" ><?php echo $this->lang->line('category_all'); ?></option>
+
                                                 </select>
                                             </div>
                                             <br>
