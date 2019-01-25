@@ -31,83 +31,6 @@ if(!isset($_SESSION['caregiver'])) {
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!--    <script src="--><?//= base_url()?><!--assets/js/trail.js"></script>-->
 
-    <!-- TODO move to some css file!-->
-    <style>
-        body {
-            font-family: "Helvetica Neue";
-            font-size: 11px;
-            font-weight: 300;
-            fill: #242424;
-            text-align: center;
-            cursor: default;
-        }
-
-        .bar:hover{
-            fill: red;
-        }
-
-        .radio{
-            text-align: end;
-        }
-
-        .form-radio
-        {
-            -webkit-appearance: none;
-            -moz-appearance: none;
-            appearance: none;
-            display: inline-block;
-            position: relative;
-            background-color: #f1f1f1;
-            color: #666;
-            top: 10px;
-            height: 30px;
-            width: 30px;
-            border: 0;
-            border-radius: 50px;
-            cursor: pointer;
-            margin-right: 7px;
-            outline: none;
-        }
-
-        .form-radio:checked::before
-        {
-            position: absolute;
-            font: 13px/1 'Avenir Next Condensed';
-            left: 11px;
-            top: 7px;
-            content: '\02143';
-            transform: rotate(40deg);
-        }
-
-        .form-radio:hover
-        {
-            background-color: #f7f7f7;
-        }
-
-        .form-radio:checked
-        {
-            background-color: #f1f1f1;
-        }
-
-        .category{
-            margin: 0 0 0 80px;
-            width: 210px;
-        }
-
-        select {
-            font-family:  "Helvetica Neue";
-            font-size: 30px;
-            background: none repeat scroll 0 0 #FFFFFF;
-            border: 1px solid #E5E5E5;
-            border-radius: 5px 5px 5px 5px;
-            box-shadow: 0 0 10px #E8E8E8 inset;
-            height: 40px;
-            padding: 8px;
-            width: 210px;
-            margin-left:100px;
-        }
-    </style>
-
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -410,7 +333,7 @@ if(!isset($_SESSION['caregiver'])) {
 
                                             <div class = "category" style="float:right;">
                                                 <select onchange="change('0',this.value);"  name = "cate" id = "cate" class="input">
-                                                    <option disabled selected><?php echo $this->lang->line('dash_select_cat'); ?></option>
+                                                    <option value="all"  ><?php echo $this->lang->line('category_all'); ?></option>
                                                     <option value="0"    ><?php echo $this->lang->line('category_0'); ?></option>
                                                     <option value="1"    ><?php echo $this->lang->line('category_1'); ?></option>
                                                     <option  value="2"   ><?php echo $this->lang->line('category_2'); ?></option>
@@ -422,12 +345,12 @@ if(!isset($_SESSION['caregiver'])) {
                                                     <option  value="8"   ><?php echo $this->lang->line('category_8'); ?></option>
                                                     <option value="9"    ><?php echo $this->lang->line('category_9'); ?></option>
                                                     <option  value="10"  ><?php echo $this->lang->line('category_10'); ?></option>
-                                                    <option  value="all" ><?php echo $this->lang->line('category_all'); ?></option>
+
                                                 </select>
                                             </div>
                                             <br>
                                             <br>
-                                        <svg class='chart' viewBox="0 0 530 400"
+                                        <svg class='chart' viewBox="0 0 550 400"
                                              perserveAspectRatio="xMinYMid"> </svg>
                                     </div>
                                 </div>
@@ -822,8 +745,8 @@ if(!isset($_SESSION['caregiver'])) {
 
 <script type="text/javascript">
     //set up chart
-    var margin = {top: 10, right:0, bottom: 280, left: 25};
-    var width = 490;
+    var margin = {top: 10, right:40, bottom: 280, left: 25};
+    var width = 520;
     var height = 200;
 
     var chart = d3.select(".chart")

@@ -27,7 +27,7 @@
             </a>
         </div>
 
-<!--        <div class="col-3"></div>-->
+
     </div>
     <div class = "col-12 info">
         <?php echo $this->lang->line('login_face'); ?>
