@@ -36,7 +36,7 @@
 
     </div>
     <div class="row">
-        <div class = "col-md-3">
+        <div class = "col-md-2">
         </div>
         <div class = "col-md-3">
             <a  href=<?=base_url()?>index.php/Face_Login_controller/face_login class="btn btn-default button1">
@@ -44,12 +44,14 @@
                     <?php echo $this->lang->line('home_resident'); ?>
             </a>
         </div>
-        <div class = "col-md-1">
+        <div class = "col-md-2">
         </div>
         <div class = "col-md-3">
          <a  href=<?=base_url()?>index.php/Caregiver_controller/login class="btn btn-default button1">
                 <?php echo $this->lang->line('home_caregiver'); ?>
          </a>
+        </div>
+        <div class = "col-md-2">
         </div>
 
     </div>
