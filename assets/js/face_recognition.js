@@ -60,10 +60,10 @@ function snapshot_login() {
     $.ajax(settings).done(function (response) {
         let m = response;
         //if user verified
-        if(JSON.stringify(m).indexOf("success") > -1) {
+        if(JSON.stringify(m).indexOf("success") > -1) {//converts a JavaScript object or value to a JSON string
             //Materialize.toast('User Identfied. ID : ' +JSON.stringify(m.images[0].candidates[0].subject_id), 6000);
             //show the id returned from the cloud
-            console.log(m.images[0].candidates[0].subject_id);
+            console.log(m.images[0].candidates[0].subject_id);//by default returns 10 images/candidates sorted by similarity
             //switch to user page
             let base_url = window.location.origin.concat("/a18ux04");
             //check localhost or server

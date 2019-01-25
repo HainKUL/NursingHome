@@ -29,16 +29,18 @@ body {
     align-items: center;
     display: flex;
     flex-direction: column;
-    border-radius:12px
+    border-radius:12px;
+    box-shadow: 0px 0px 40px 10px rgba(0,0,0,0.2);
+    opacity: 0.95;;
 }
 
-#submit {
-    font-size: 20px;
-    font-family: Helvetica, Arial;
-    background-color: #d1c0bf;
-    box-shadow: 5px 5px #e7d6d5;
-    padding: 15px;
-    border-radius: 4px;
+#submit{
+    background-color: #D65637;
+    border:none;
+    font-size:30pt;
+    border-radius: 10px;
     width:100%;
+    color:whitesmoke;
+    box-shadow: 0px 3px 0px 0px rgba(168,149,142,1);
 }
 
