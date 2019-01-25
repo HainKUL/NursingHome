@@ -90,8 +90,6 @@ class Caregiver_controller extends CI_Controller{
     {
         $data['page_title'] = 'registration_caregiver';
         $errors = array();
-
-        //TODO show ***** for password in form in stead of plaintext
         if ($_POST) {
             /* receive & sanitize all input values from the form
             passwords are not sanitized. This is safe since they go directly to the hash function.
@@ -107,8 +105,9 @@ class Caregiver_controller extends CI_Controller{
             if (empty($_POST['name']))       array_push($errors, "name is required");
             if (empty($_POST['firstname']))  $firstname = ''; //first name is not required (some people don't two names)
             if (empty($_POST['email']))      array_push($errors, "Email is required");
-            if (empty($_POST['password_1'])) array_push($errors, "Password is required"); //TODO enforce minimum password strength
+            if (empty($_POST['password_1'])) array_push($errors, "Password is required");
             if ($password_1 != $password_2)  array_push($errors, "Passwords do not match");
+            $this->session->set_flashdata('post', $_POST);
             if (count($errors) !== 0)   {
                 $errorstring = "";
                 foreach($errors as $err)    {
@@ -119,7 +118,7 @@ class Caregiver_controller extends CI_Controller{
             }
 
             /* check the database to make sure  a user does not already exist with the same username and/or email */
-            $query = "SELECT * FROM Caregivers WHERE email = $email LIMIT 1;";
+            $query = "SELECT idCaregivers FROM Caregivers WHERE email = $email LIMIT 1;";
             $result = $this->db->query($query);
             if($result->num_rows() > 0) {
                 $this->session->set_flashdata('flash_data', 'Email is already registered');
@@ -137,10 +136,8 @@ class Caregiver_controller extends CI_Controller{
             if(!($this->db->query($query))) {
                 //TODO errorcheck
             }
-            $_SESSION['username'] = $email; //TODO redirect where??
-            //TODO security (now everyone can register and log in with full access to website)
+            $_SESSION['username'] = $email;
             $_SESSION['success'] = "You are now logged in";
-            //redirect('Dashboard/dashboard');
         }
         $this->parser->parse('registration_caregiver', $data);
     }
