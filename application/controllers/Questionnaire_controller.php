@@ -27,8 +27,6 @@ class Questionnaire_controller extends CI_Controller{
 
         //update session and launch questionnaire
         $_SESSION["idSubmission"] = $idSubmission;
-
-    //TODO extract method and deduplicate
         $sql =
             "SELECT idQuestions FROM Questions WHERE NOT EXISTS "
            ."(SELECT idResponses FROM Responses WHERE Questions.idQuestions = Responses.questionNum AND submission = '$idSubmission');";

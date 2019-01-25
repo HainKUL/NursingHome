@@ -59,7 +59,7 @@ class Caregiver_controller extends CI_Controller{
 
     public function forgot()
     {
-        $data['page_title']     = 'Wachtwoord Vergeten';    //TODO translate
+        $data['page_title']     = 'Wachtwoord Vergeten';
         $data['head_message']   = 'Wachtwoord vergeten?';
         $data['first_sentence'] = "Geen probleem! Geef uw e-mail adres in en er zal u een nieuw wachtwoord opgestuurd worden";
         $data['button_text']    = "<button id='button'>Verstuur e-mail!</button>";
@@ -69,7 +69,7 @@ class Caregiver_controller extends CI_Controller{
 
     public function add_note()
     {
-        $data['page_title'] = 'add note';   //TODO translate
+        $data['page_title'] = 'add note';
         if ($_POST) {
             /* receive all input values from the form */
             $userid = $_SESSION['id'];
@@ -77,9 +77,7 @@ class Caregiver_controller extends CI_Controller{
             /* form validation */
             if (!empty($note)) {
                 $query = "INSERT INTO Notes (noteText, author, context) VALUES(".$note.", '$userid', '0')";
-                if(!($this->db->query($query)))    {
-                    //TODO deal with error
-                }
+                $this->db->query($query);
             }
             header('location: index.php');
             redirect('Dashboard/dashboard');
@@ -135,9 +133,7 @@ class Caregiver_controller extends CI_Controller{
             $passhash =  crypt($password_1, sprintf('$6$rounds=%d$%s$', $rounds, $salt));
 
             $query = "INSERT INTO Caregivers (name, firstName, email, passwordHash,preferences) VALUES($name, $firstname, $email, '$passhash',$lang)";
-            if(!($this->db->query($query))) {
-                //TODO errorcheck
-            }
+            $this->db->query($query);
             $_SESSION['username'] = $email;
             $_SESSION['success'] = "You are now logged in";
             redirect('Dashboard/dashboard');
