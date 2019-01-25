@@ -112,7 +112,7 @@ class Homepage_controller extends CI_Controller
         redirect('Homepage_controller/home');
     }
 
-    private function successlogin($userId){
+    public function successlogin($userId){
         $_SESSION['resident']="yes";
         $this->residentHome($userId);
         $sql = "SELECT preferences FROM Residents "
