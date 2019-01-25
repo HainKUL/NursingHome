@@ -21,7 +21,7 @@ if(!isset($_SESSION["resident"]))
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <link href="<?=base_url() ?>assets/css/questionnaire.css" rel="stylesheet" type="text/css"/>
 
-    <title><?php echo $this->lang->line('title_sport'); ?></title>
+    <title><?php echo $this->lang->line('content_sport'); ?></title>
 
 </head>
 
