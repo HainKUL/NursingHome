@@ -71,6 +71,7 @@ $lang['pin']="PIN CODE";
 $lang['confirm']="PIN CODE CONFIRM";
 $lang['food']="Food";
 $lang['activities']="Activities";
+$lang['priv']="Optional privileges";
 
 $lang['password_forgot_title'] = "Forgot Password";
 $lang['password_forgot_head'] = "Forgot Password?";
