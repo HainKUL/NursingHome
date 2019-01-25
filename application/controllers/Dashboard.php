@@ -120,10 +120,10 @@ class Dashboard extends CI_Controller
 
         /*resident info*/
         if($residentID == -1) // default, show first resident
-            $sql = "SELECT firstName, name, dateOfBirth, roomNumber, bedNumber FROM Residents "
+            $sql = "SELECT firstName, name, dateOfBirth, roomNumber, bedNumber,privileges FROM Residents "
                   ."ORDER BY firstName LIMIT 1";
         else
-            $sql = "SELECT firstName, name, dateOfBirth, roomNumber, bedNumber FROM Residents "
+            $sql = "SELECT firstName, name, dateOfBirth, roomNumber, bedNumber, privileges FROM Residents "
                   ."WHERE idResidents = $residentID LIMIT 1";
         $result = $this->db->query($sql);
         $data['theFirstName'] = $result->result_array()[0]["firstName"];
@@ -131,6 +131,8 @@ class Dashboard extends CI_Controller
         $data['dateOfBirth']  = $result->result_array()[0]["dateOfBirth"];
         $data['roomNumber']   = $result->result_array()[0]["roomNumber"];
         $data['bedNumber']    = $result->result_array()[0]["bedNumber"];
+        $data['privileges']    = $result->result_array()[0]["privileges"];
+
 
         // queries that used to be in view
         $currentID = $_SESSION['id'];
@@ -169,6 +171,11 @@ class Dashboard extends CI_Controller
             $lang           = $this->db->escape($_POST['Radio']);
             $floor          = $this->db->escape($_POST['floor']);
             $nr             = $this->db->escape($_POST['Mobile_Number']);
+            $privileges     = $this->db->escape($_POST['Privileges']);
+            if(!$privileges)
+            {
+                $privileges="geen privileges";
+            }
 
             // form validation: ensure that the form is correctly filled ...
             // by adding (array_push()) corresponding error unto $errors array
@@ -192,8 +199,8 @@ class Dashboard extends CI_Controller
 
             // Finally, register user if there are no errors in the form
             if (count($errors) == 0) {
-                $query = "INSERT INTO Residents (name, firstName,dateOfBirth,roomNumber,bedNumber,pinHash,preferences) "
-                ."VALUES($name, $firstname,$birth_day,$roomNumber,$bedNumber,'$pinhash',$lang)";
+                $query = "INSERT INTO Residents (name, firstName,dateOfBirth,roomNumber,bedNumber,pinHash,preferences,privileges ) "
+                ."VALUES($name, $firstname,$birth_day,$roomNumber,$bedNumber,'$pinhash',$lang,$privileges)";
                 $this->db->query($query);
                 $query2 = "SELECT idResidents FROM a18ux04.Residents ORDER BY idResidents DESC LIMIT 1;";
                 $result2 = $this->db->query($query2)->result_array()[0]["idResidents"];

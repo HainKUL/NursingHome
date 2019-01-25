@@ -367,7 +367,7 @@ if(!isset($_SESSION['caregiver'])) {
                                     <div class="card-birthdate"><?php echo $this->lang->line('birthday'); ?><span id="card-birthdate"> <?php echo $dateOfBirth ?> </span></div>
                                     <div class="card-room"><?php echo $this->lang->line('roomnum'); ?><span id="card-room"> <?php echo $roomNumber ?> </span></div>
                                     <div class="card-bed"><?php echo $this->lang->line('bednum'); ?><span id="card-bed"> <?php echo $bedNumber ?> </span></div>
-                                    <div class="card-privileges"><?php echo $this->lang->line('privileges'); ?><span id="card-privileges">: can go outside</span></div>
+                                    <div class="card-privileges"><?php echo $this->lang->line('priv'); ?><span id="card-privileges">: <?php echo $privileges ?></span></div>
                                 </div>
 
 
