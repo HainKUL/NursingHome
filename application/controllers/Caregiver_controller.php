@@ -11,8 +11,8 @@ class Caregiver_controller extends CI_Controller{
         $this->load->library('parser');
         $this->load->helper('url');
         $this->load->model("login_model","caregiver_login_view");
-        $this->load->model("Our_chart_model");
-        $this->load->model("Bar_chart_model");
+        //$this->load->model("Our_chart_model");
+        //$this->load->model("Bar_chart_model");
         $this->load->database();
         $this->load->library('session');
     }

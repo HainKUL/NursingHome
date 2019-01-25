@@ -10,7 +10,7 @@ class Dashboard extends CI_Controller
         $this->load->helper('url');
         $this->load->helper('string');
         $this->load->model("Our_chart_model");
-        $this->load->model("Bar_chart_model");
+        //$this->load->model("Bar_chart_model");
     }
 
 
@@ -40,10 +40,10 @@ class Dashboard extends CI_Controller
         foreach ($query->result_array() as $row) {
             if($_SESSION['lang'] == 'English') $data['category'] = $row['category_en'];
             else                               $data['category'] = $row['category_nl'];
-            if((time()+3600)-strtotime($row['timestampStart']) < 86400)
-                $data['timestampStart']= substr($row['timestampStart'],11,5);
-            else
-                $data['timestampStart']= substr($row['timestampStart'],5,11);
+            // if((time()+3600)-strtotime($row['timestampStart']) < 86400)
+
+            $data['timestampStart']= substr($row['timestampStart'],5,11);
+
             $data['answer'] = $row['answer'];
             $data4[]=$data;
         }
