@@ -1,11 +1,11 @@
 body{
     height: 100vh;
-    /*background: #ebf1fa; !* Old browsers *!*/
-    /*background: -moz-linear-gradient(top,  #ebf1fa 50.9%, #ffffff 51%); !* FF3.6-15 *!*/
-    /*background: -webkit-linear-gradient(top,  #ebf1fa 50.9%,#ffffff 51%); !* Chrome10-25,Safari5.1-6 *!*/
-    /*background: linear-gradient(to bottom,  #ebf1fa 50.9%,#ffffff 51%); !* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ *!*/
-    /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ebf1fa', endColorstr='#ffffff',GradientType=0 ); !* IE6-9 *!*/
-    font-family: "Avenir Next Condensed";
+    font-family: "Helvetica Neue";
+    font-size: 11px;
+    font-weight: 300;
+    fill: #242424;
+    text-align: center;
+    cursor: default;
 }
 
 .header{
@@ -217,4 +217,69 @@ table{
 }
 td{
     padding:10px;
+}
+
+.bar:hover{
+    fill: red;
+}
+
+.radio{
+    text-align: end;
+}
+
+.form-radio
+{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    display: inline-block;
+    position: relative;
+    background-color: #f1f1f1;
+    color: #666;
+    top: 10px;
+    height: 30px;
+    width: 30px;
+    border: 0;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-right: 7px;
+    outline: none;
+}
+
+.form-radio:checked::before
+{
+    position: absolute;
+    font: 13px/1 'Avenir Next Condensed';
+    left: 11px;
+    top: 7px;
+    content: '\02143';
+    transform: rotate(40deg);
+}
+
+.form-radio:hover
+{
+    background-color: #f7f7f7;
+}
+
+.form-radio:checked
+{
+    background-color: #f1f1f1;
+}
+
+.category{
+    margin: 0 0 0 80px;
+    width: 210px;
+}
+
+select {
+    font-family:  "Helvetica Neue";
+    font-size: 30px;
+    background: none repeat scroll 0 0 #FFFFFF;
+    border: 1px solid #E5E5E5;
+    border-radius: 5px 5px 5px 5px;
+    box-shadow: 0 0 10px #E8E8E8 inset;
+    height: 40px;
+    padding: 8px;
+    width: 210px;
+    margin-left:100px;
 }
