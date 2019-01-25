@@ -36,38 +36,27 @@ class Dashboard extends CI_Controller
                ORDER BY submission DESC,categoryID";
         $query = $this->db->query($sql1);
 
-        foreach ($query->result_array() as $row)
-        {
-            if($_SESSION['lang'] == 'English')
-                $data['category'] = $row['category_en'];
-            else
-                $data['category'] = $row['category_nl'];
+        foreach ($query->result_array() as $row) {
+            if($_SESSION['lang'] == 'English') $data['category'] = $row['category_en'];
+            else                               $data['category'] = $row['category_nl'];
             if((time()+3600)-strtotime($row['timestampStart']) < 86400)
-            {
                 $data['timestampStart']= substr($row['timestampStart'],11,5);
-            }
             else
-            {
                 $data['timestampStart']= substr($row['timestampStart'],5,11);
-            }
             $data['answer'] = $row['answer'];
             $data4[]=$data;
         }
 
-        if (empty($data4))
-        {
+        if (empty($data4)) {
             $data1 = null;
-        }
-        else{
-            foreach ($data4 as $value)
-            {
+        } else {
+            foreach ($data4 as $value) {
                 $time= $value['timestampStart'];
-                $x[$time][]= $value;
+                $x[$time][]= $value;;
             }
             $bothData= $x;
 
-            foreach ($bothData as $key =>$v)
-            {
+            foreach ($bothData as $key =>$v) {
                 $data11["key"] = $key;
                 $data11["values"] = $v;
                 $data22[]=$data11;
@@ -76,9 +65,7 @@ class Dashboard extends CI_Controller
             $sliced_array = array_slice($data22, 0, 3);
             $data1 = $sliced_array;
         }
-
         $data['data1'] = $data1;
-
 
         $where = "idResident ='$residentID' AND completed = '1' ";
         $this->db->select('*,idResident');
@@ -91,45 +78,36 @@ class Dashboard extends CI_Controller
 
         foreach ($query1->result_array() as $row) {
             $data['categoryID'] = $row['categoryID'];
-            if($_SESSION['lang'] == 'English')
+            if($_SESSION['lang'] == 'English') {
                 $data['question'] = $row['question_en'];
-            else
-                $data['question'] = $row['question_nl'];
-            $data['answer'] = $row['answer'];
-            if($_SESSION['lang'] == 'English')
                 $data['category'] = $row['category_en'];
-            else
+            } else    {
+                $data['question'] = $row['question_nl'];
                 $data['category'] = $row['category_nl'];
+            }
+            $data['answer'] = $row['answer'];
             $data['timestampStart'] = $row['timestampStart'];
             $rawdata1[]=$data;
         }
 
-
-        if (empty($rawdata1))
-        {
+        if (empty($rawdata1)) {
             $data_one = null;
             $data_each1=null;
-        }
-        else{
-            foreach ($rawdata1 as $value)
-            {
+        } else {
+            foreach ($rawdata1 as $value) {
                 $time= $value['timestampStart'];
                 $x1[$time][]= $value;
             }
             $bothData= $x1;
-
             $sliced_array1 = array_slice($bothData, 0, 1);
 
             foreach($sliced_array1 as $v)
-            {
                 $target1 = $v;
-            }
 
             $data_one = $target1;
             $data['one'] =   $data_one;
 
-            foreach ($bothData as $key =>$v)
-            {
+            foreach ($bothData as $key =>$v) {
                 $data111["key"] = $key;
                 $data111["values"] = $v;
                 $data222[]=$data111;
@@ -138,7 +116,6 @@ class Dashboard extends CI_Controller
 
             $data_each1=$data222;
             $data['data_each1'] = $data_each1;
-
         }
 
         /*resident info*/

@@ -31,7 +31,6 @@ if(!isset($_SESSION['caregiver'])) {
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <!--    <script src="--><?//= base_url()?><!--assets/js/trail.js"></script>-->
 
-
     <!-- TODO move to some css file!-->
     <style>
         body {
@@ -42,6 +41,7 @@ if(!isset($_SESSION['caregiver'])) {
             text-align: center;
             cursor: default;
         }
+
         .bar:hover{
             fill: red;
         }
@@ -68,6 +68,7 @@ if(!isset($_SESSION['caregiver'])) {
             margin-right: 7px;
             outline: none;
         }
+
         .form-radio:checked::before
         {
             position: absolute;
@@ -77,14 +78,17 @@ if(!isset($_SESSION['caregiver'])) {
             content: '\02143';
             transform: rotate(40deg);
         }
+
         .form-radio:hover
         {
             background-color: #f7f7f7;
         }
+
         .form-radio:checked
         {
             background-color: #f1f1f1;
         }
+
         .category{
             margin: 0 0 0 80px;
             width: 210px;
@@ -100,7 +104,8 @@ if(!isset($_SESSION['caregiver'])) {
             height: 40px;
             padding: 8px;
             width: 210px;
-            margin-left:100px;}
+            margin-left:100px;
+        }
     </style>
 
     <!-- Required meta tags -->
@@ -131,7 +136,6 @@ if(!isset($_SESSION['caregiver'])) {
         $( "#tags" ).autocomplete( {source: availableTags } );
     });
 </script>
-
 
 
 <div class="container-fluid">
@@ -261,8 +265,6 @@ if(!isset($_SESSION['caregiver'])) {
                                     <td><?php echo $this->lang->line('birth'); ?>:</td>
                                     <td>
                                     <p><input type="date" id="birthday" name="birthDay" placeholder="dd-mm-yyyy"></p></td>
-
-
                                 </tr>
                                 <tr>
                                     <td><?php echo $this->lang->line('contact'); ?>: </td>
@@ -288,7 +290,6 @@ if(!isset($_SESSION['caregiver'])) {
                                         <?php echo $this->lang->line('dutch'); ?>
                                             <input type="radio" name="Radio" value="English" >
                                         <?php echo $this->lang->line('english'); ?>
-
                                     </td>
                                 </tr>
                                 <tr>
@@ -343,7 +344,6 @@ if(!isset($_SESSION['caregiver'])) {
         </form>
 
 
-
         <div class="col-3 hiddendiv" id="div4" style="background-color:#009489;padding:0;"></div>
         <div class="col-6" style="background-color:#f9f9f9;padding:0;">
             <div style="width:100%;">
@@ -369,6 +369,8 @@ if(!isset($_SESSION['caregiver'])) {
                                     <div class="card-bed"><?php echo $this->lang->line('bednum'); ?><span id="card-bed"> <?php echo $bedNumber ?> </span></div>
                                     <div class="card-privileges"><?php echo $this->lang->line('privileges'); ?><span id="card-privileges">: can go outside</span></div>
                                 </div>
+
+
                                 <div class="radarChart"></div>
                                 <script src="<?=base_url() ?>assets/js/radarChart.js"></script>
                                 <script type="text/javascript">
@@ -376,14 +378,7 @@ if(!isset($_SESSION['caregiver'])) {
                                     var data2 = <?php echo json_encode($data2); ?>;
                                 </script>
                                 <script>
-                                    if(data !== null && data !== '')
-                                    {
-                                        RadarChart(".radarChart", data);
-                                    }
-                                    else
-                                    {
-                                        RadarChart1(".radarChart", data2);
-                                    }
+                                    if(data !== null && data !== '') RadarChart(".radarChart", data);
                                 </script>
                             </div>
                         </div>
@@ -397,47 +392,41 @@ if(!isset($_SESSION['caregiver'])) {
 
                                 <div class='container'>
                                     <div class='row'>
-                                        <div class='radio'>
+                                            <script type="text/javascript">
+                                                var bothData = <?php echo json_encode($one); ?>;
+                                            </script>
                                             <br>
                                             <div class = "date" style="float:left;">
                                                 <select onchange="change(this.value,'all');"  name = "date" id = "date" class="input">
                                                     <option disabled selected><?php echo $this->lang->line('dash_select_date'); ?></option>
                                                     <?php
-                                                    if(isset($one))
-                                                    {
-                                                        foreach($data_each1 as $row)
-                                                        {
-                                                            echo '<option value="'.$row['key'].'">'.$row['key'].'</option>';
+                                                        if(isset($one)) {
+                                                            foreach($data_each1 as $row)
+                                                                echo '<option value="'.$row['key'].'">'.$row['key'].'</option>';
                                                         }
-                                                    }
-
                                                     ?>
                                                 </select>
                                             </div>
-                                            <script type="text/javascript">
-                                                var bothData = <?php echo json_encode($one); ?>;
-                                            </script>
 
                                             <div class = "category" style="float:right;">
                                                 <select onchange="change('0',this.value);"  name = "cate" id = "cate" class="input">
                                                     <option disabled selected><?php echo $this->lang->line('dash_select_cat'); ?></option>
-                                                    <option value="0" ><?php echo $this->lang->line('category_0'); ?></option>
-                                                    <option value="1" ><?php echo $this->lang->line('category_1'); ?></option>
-                                                    <option  value="2" ><?php echo $this->lang->line('category_2'); ?></option>
-                                                    <option  value="3" ><?php echo $this->lang->line('category_3'); ?></option>
-                                                    <option  value="4" ><?php echo $this->lang->line('category_4'); ?></option>
-                                                    <option  value="5" ><?php echo $this->lang->line('category_5'); ?></option>
-                                                    <option  value="6" ><?php echo $this->lang->line('category_6'); ?></option>
-                                                    <option  value="7" ><?php echo $this->lang->line('category_7'); ?></option>
-                                                    <option  value="8" ><?php echo $this->lang->line('category_8'); ?></option>
-                                                    <option value="9" ><?php echo $this->lang->line('category_9'); ?></option>
-                                                    <option  value="10" ><?php echo $this->lang->line('category_10'); ?></option>
+                                                    <option value="0"    ><?php echo $this->lang->line('category_0'); ?></option>
+                                                    <option value="1"    ><?php echo $this->lang->line('category_1'); ?></option>
+                                                    <option  value="2"   ><?php echo $this->lang->line('category_2'); ?></option>
+                                                    <option  value="3"   ><?php echo $this->lang->line('category_3'); ?></option>
+                                                    <option  value="4"   ><?php echo $this->lang->line('category_4'); ?></option>
+                                                    <option  value="5"   ><?php echo $this->lang->line('category_5'); ?></option>
+                                                    <option  value="6"   ><?php echo $this->lang->line('category_6'); ?></option>
+                                                    <option  value="7"   ><?php echo $this->lang->line('category_7'); ?></option>
+                                                    <option  value="8"   ><?php echo $this->lang->line('category_8'); ?></option>
+                                                    <option value="9"    ><?php echo $this->lang->line('category_9'); ?></option>
+                                                    <option  value="10"  ><?php echo $this->lang->line('category_10'); ?></option>
                                                     <option  value="all" ><?php echo $this->lang->line('category_all'); ?></option>
                                                 </select>
                                             </div>
                                             <br>
                                             <br>
-                                        </div>
                                         <svg class='chart' viewBox="0 0 530 400"
                                              perserveAspectRatio="xMinYMid"> </svg>
                                     </div>

@@ -114,7 +114,7 @@ class Caregiver_controller extends CI_Controller{
                     $errorstring = $errorstring.$err.".   ";
                 }
                 $this->session->set_flashdata('flash_data', $errorstring);
-                redirect('Caregiver_controller/registration_caregiver'); //TODO keep form data after refresh
+                redirect('Caregiver_controller/registration_caregiver');
             }
 
             /* check the database to make sure  a user does not already exist with the same username and/or email */

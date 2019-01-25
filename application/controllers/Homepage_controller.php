@@ -100,9 +100,6 @@ class Homepage_controller extends CI_Controller
                 echo "<script>window.location.href='".base_url()."MultiLanguageSwitcher/switcher/".$lang."';</script>";
                 $data = array('id_Residents' => $rows[0]->idResidents, 'name' => $rows[0]->name);
                 $this->session->set_userdata($data);
-
-                //redirect('Homepage_controller/residentHome/'.$_SESSION['id']); // Has something to do with not being able to remove index.php in url
-
             } else {
                 $success = "Login failed: wrong password";
                 echo "<script> alert('".$success."'); window.location.href='".base_url()."index.php/Face_Login_controller/face_login'; </script>";
@@ -122,11 +119,9 @@ class Homepage_controller extends CI_Controller
         $sql = "SELECT preferences FROM Residents "
             ."WHERE idResidents = $userId LIMIT 1";
         $result = $this->db->query($sql);
-        $lang = $result->result_array()[0]["preferences"];
+        $lang = strtolower($result->result_array()[0]["preferences"]);
         $_SESSION['lang']=$lang;
 
-         //TODO remove this circumvent (and fix the bug it avoids)
-        if($lang == 'English') $lang='english';
         echo "<script>window.location.href='".base_url()."index.php/MultiLanguageSwitcher/switcher/".$lang."';</script>";
     }
 }
