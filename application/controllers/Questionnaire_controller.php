@@ -13,6 +13,7 @@ class Questionnaire_controller extends CI_Controller{
 
 	public function questionnaire_start($userID){
 	    //make/find submission to start/resume
+	    $this->checkSession($userID);
         $sql = "SELECT idSubmissions FROM Submissions WHERE idResident = $userID AND completed <> 1 LIMIT 1";
         $result = $this->db->query($sql);
         if($result->num_rows() === 0) { // no submission to resume, start new one
@@ -45,6 +46,7 @@ class Questionnaire_controller extends CI_Controller{
 
 
 	public function question($question){
+		$this->checkSession();
         $data1['jslibs_to_load'] = array('jquery-3.3.1.min.js');
         $_SESSION["Current_Question"] = $question;
         //load data(question info) to the controller
@@ -73,6 +75,7 @@ class Questionnaire_controller extends CI_Controller{
 
 	public function update()
     {
+        $this->checkSession();
         $idSubmission = $_SESSION["idSubmission"];
         $question = $_SESSION["Current_Question"];
 
@@ -99,14 +102,6 @@ class Questionnaire_controller extends CI_Controller{
     }
 
 
-    public function forgot(){
-        $data['page_title']     = 'Wachtwoord Vergeten';
-        $data['head_message']   = 'Wachtwoord vergeten?';
-        $data['first_sentence'] = "Geen probleem! Geef uw e-mail adres in en er zal u een nieuw wachtwoord opgestuurd worden";
-        $data['button_text']    = "<button id='button'>Verstuur e-mail!</button>";
-        $this->parser->parse('password_forgot', $data);
-    }
-
     public function done(){
         $data['page_title']     = 'Klaar!';
         $data['head_message']   = 'Goed gedaan! 😊';
@@ -125,5 +120,16 @@ class Questionnaire_controller extends CI_Controller{
         $data['fifth']      = "Het weer";
         $data['logout']     = "Afmelden";
         $this->parser->parse('olderadultmenu', $data);
+    }
+
+    public function checkSession($userID = -1)
+    {
+        if( !isset($_SESSION["resident"]) || (($userID != -1 && $_SESSION["id"] != $userID))     ) { // kick you out if not logged in
+            session_destroy();
+            echo "<script>
+                    window.location.href='".base_url()."index.php/Face_Login_controller/face_login';
+                  </script>";
+            exit();
+        }
     }
 }

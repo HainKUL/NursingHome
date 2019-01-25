@@ -13,13 +13,12 @@ class Homepage_controller extends CI_Controller
 
     public function home()
     {
-        $data['page_title'] = 'homepage';
         session_destroy();
+        $data['page_title'] = 'homepage';
         $this->parser->parse('Homepage_view', $data);
-
     }
 
-    public function residentHome($userID)
+    public function residentHome($userID = -1)
     {
         $data['content'] = 'content';
         $data['user_id'] = $userID;
@@ -113,7 +112,7 @@ class Homepage_controller extends CI_Controller
         redirect('Homepage_controller/home');
     }
 
-    public function successlogin($userId){
+    private function successlogin($userId){
         $_SESSION['resident']="yes";
         $this->residentHome($userId);
         $sql = "SELECT preferences FROM Residents "

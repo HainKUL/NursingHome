@@ -16,6 +16,7 @@ class Dashboard extends CI_Controller
 
     public function dashboard($residentID = -1)
     {
+        $this->checkSession();
         /*graphs*/
         $data2 = $this->Our_chart_model->get_avg();
         $data['data2'] = $data2;
@@ -158,6 +159,7 @@ class Dashboard extends CI_Controller
 
     public function dashboard_reg()
     {
+        checkSession();
         $errors = array();
         if ($_POST) {
             // receive all input values from the form
@@ -217,13 +219,6 @@ class Dashboard extends CI_Controller
     }
 
 
-    public function dashboard_register()
-    {
-        $data = 'oeps';
-        $this->load->view('dashboard_register', $data);
-    }
-
-
     public function logout()
     {
         session_destroy();
@@ -235,10 +230,17 @@ class Dashboard extends CI_Controller
     {
         $_SESSION['resident']="yes";
         redirect('/Dashboard/dashboard');
-
     }
 
 
-
-
+    public function checkSession()
+    {
+        if(!isset($_SESSION['caregiver'])) { // kick you out if not logged in
+            echo "<script>
+                    alert('You are not logged in!');
+                    window.location.href='".base_url()."Caregiver_controller/login';
+                  </script>";
+            exit();
+        }
+    }
 }
