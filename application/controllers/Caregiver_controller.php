@@ -25,16 +25,18 @@ class Caregiver_controller extends CI_Controller{
             $email = $this->db->escape($_POST['email']);
             $query = "SELECT passwordHash, idCaregivers, email, preferences FROM Caregivers WHERE email = $email LIMIT 1;";
             $result = $this->db->query($query);
-            $rows = $result->result();
-            $hash = $rows[0]->passwordHash;
-            $lang = $rows[0]->preferences;
-            $_SESSION['lang']=$lang;
+
             /* check if email is registered. Show general message "email OR password is wrong" to discourage bruteforce */
             if($result->num_rows() === 0)   {
                 $success = "Login failed: wrong password or email";
                 echo "<script> alert('".$success."'); window.location.href='".base_url()."index.php/Caregiver_controller/login'; </script>";
 
             }
+
+            $rows = $result->result();
+            $hash = $rows[0]->passwordHash;
+            $lang = $rows[0]->preferences;
+            $_SESSION['lang']=$lang;
 
             /* check submitted password vs the hash in the database */
             if(! password_verify($_POST['password'], $hash)) {
