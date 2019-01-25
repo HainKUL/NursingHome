@@ -116,9 +116,9 @@ if(!isset($_SESSION['caregiver'])) {
                         <div class="col-2">
                         </div>
                         <div class="col-8">
-                            <a href="<?=base_url()?>index.php/Dashboard/dashboard" >
+
                                 <input type="submit" id="submit" value="Submit" />
-                             </a>
+
                         </div>
                         <div class="col-2"></div>
                     </div>

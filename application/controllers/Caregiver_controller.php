@@ -138,6 +138,7 @@ class Caregiver_controller extends CI_Controller{
             }
             $_SESSION['username'] = $email;
             $_SESSION['success'] = "You are now logged in";
+            redirect('Dashboard/dashboard');
         }
         $this->parser->parse('registration_caregiver', $data);
     }

@@ -5,7 +5,7 @@
  * Date: 11/16/18
  * Time: 22:22
  */
-$lang['login_title'] = 'Verzorger inloggen';
+$lang['login_title'] = 'Login verzorger';
 $lang['login_button'] = 'Inloggen';
 $lang['login_username'] = 'Gebruikersnaam';
 $lang['login_password'] = 'Wachtwoord';
