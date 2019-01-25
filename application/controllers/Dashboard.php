@@ -159,7 +159,7 @@ class Dashboard extends CI_Controller
 
     public function dashboard_reg()
     {
-        checkSession();
+        $this->checkSession();
         $errors = array();
         if ($_POST) {
             // receive all input values from the form
