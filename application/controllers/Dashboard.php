@@ -10,12 +10,13 @@ class Dashboard extends CI_Controller
         $this->load->helper('url');
         $this->load->helper('string');
         $this->load->model("Our_chart_model");
-        $this->load->model("Bar_chart_model");
+        //$this->load->model("Bar_chart_model");
     }
 
 
     public function dashboard($residentID = -1)
     {
+        $this->checkSession();
         /*graphs*/
         $data2 = $this->Our_chart_model->get_avg();
         $data['data2'] = $data2;
@@ -36,38 +37,27 @@ class Dashboard extends CI_Controller
                ORDER BY submission DESC,categoryID";
         $query = $this->db->query($sql1);
 
-        foreach ($query->result_array() as $row)
-        {
-            if($_SESSION['lang'] == 'English')
-                $data['category'] = $row['category_en'];
-            else
-                $data['category'] = $row['category_nl'];
-            if((time()+3600)-strtotime($row['timestampStart']) < 86400)
-            {
-                $data['timestampStart']= substr($row['timestampStart'],11,5);
-            }
-            else
-            {
-                $data['timestampStart']= substr($row['timestampStart'],5,11);
-            }
+        foreach ($query->result_array() as $row) {
+            if($_SESSION['lang'] == 'English') $data['category'] = $row['category_en'];
+            else                               $data['category'] = $row['category_nl'];
+            // if((time()+3600)-strtotime($row['timestampStart']) < 86400)
+
+            $data['timestampStart']= substr($row['timestampStart'],5,11);
+
             $data['answer'] = $row['answer'];
             $data4[]=$data;
         }
 
-        if (empty($data4))
-        {
+        if (empty($data4)) {
             $data1 = null;
-        }
-        else{
-            foreach ($data4 as $value)
-            {
+        } else {
+            foreach ($data4 as $value) {
                 $time= $value['timestampStart'];
-                $x[$time][]= $value;
+                $x[$time][]= $value;;
             }
             $bothData= $x;
 
-            foreach ($bothData as $key =>$v)
-            {
+            foreach ($bothData as $key =>$v) {
                 $data11["key"] = $key;
                 $data11["values"] = $v;
                 $data22[]=$data11;
@@ -76,9 +66,7 @@ class Dashboard extends CI_Controller
             $sliced_array = array_slice($data22, 0, 3);
             $data1 = $sliced_array;
         }
-
         $data['data1'] = $data1;
-
 
         $where = "idResident ='$residentID' AND completed = '1' ";
         $this->db->select('*,idResident');
@@ -91,45 +79,36 @@ class Dashboard extends CI_Controller
 
         foreach ($query1->result_array() as $row) {
             $data['categoryID'] = $row['categoryID'];
-            if($_SESSION['lang'] == 'English')
+            if($_SESSION['lang'] == 'English') {
                 $data['question'] = $row['question_en'];
-            else
-                $data['question'] = $row['question_nl'];
-            $data['answer'] = $row['answer'];
-            if($_SESSION['lang'] == 'English')
                 $data['category'] = $row['category_en'];
-            else
+            } else    {
+                $data['question'] = $row['question_nl'];
                 $data['category'] = $row['category_nl'];
+            }
+            $data['answer'] = $row['answer'];
             $data['timestampStart'] = $row['timestampStart'];
             $rawdata1[]=$data;
         }
 
-
-        if (empty($rawdata1))
-        {
+        if (empty($rawdata1)) {
             $data_one = null;
             $data_each1=null;
-        }
-        else{
-            foreach ($rawdata1 as $value)
-            {
+        } else {
+            foreach ($rawdata1 as $value) {
                 $time= $value['timestampStart'];
                 $x1[$time][]= $value;
             }
             $bothData= $x1;
-
             $sliced_array1 = array_slice($bothData, 0, 1);
 
             foreach($sliced_array1 as $v)
-            {
                 $target1 = $v;
-            }
 
             $data_one = $target1;
             $data['one'] =   $data_one;
 
-            foreach ($bothData as $key =>$v)
-            {
+            foreach ($bothData as $key =>$v) {
                 $data111["key"] = $key;
                 $data111["values"] = $v;
                 $data222[]=$data111;
@@ -138,15 +117,14 @@ class Dashboard extends CI_Controller
 
             $data_each1=$data222;
             $data['data_each1'] = $data_each1;
-
         }
 
         /*resident info*/
         if($residentID == -1) // default, show first resident
-            $sql = "SELECT firstName, name, dateOfBirth, roomNumber, bedNumber FROM Residents "
+            $sql = "SELECT firstName, name, dateOfBirth, roomNumber, bedNumber,privileges FROM Residents "
                   ."ORDER BY firstName LIMIT 1";
         else
-            $sql = "SELECT firstName, name, dateOfBirth, roomNumber, bedNumber FROM Residents "
+            $sql = "SELECT firstName, name, dateOfBirth, roomNumber, bedNumber, privileges FROM Residents "
                   ."WHERE idResidents = $residentID LIMIT 1";
         $result = $this->db->query($sql);
         $data['theFirstName'] = $result->result_array()[0]["firstName"];
@@ -154,6 +132,8 @@ class Dashboard extends CI_Controller
         $data['dateOfBirth']  = $result->result_array()[0]["dateOfBirth"];
         $data['roomNumber']   = $result->result_array()[0]["roomNumber"];
         $data['bedNumber']    = $result->result_array()[0]["bedNumber"];
+        $data['privileges']    = $result->result_array()[0]["privileges"];
+
 
         // queries that used to be in view
         $currentID = $_SESSION['id'];
@@ -179,6 +159,7 @@ class Dashboard extends CI_Controller
 
     public function dashboard_reg()
     {
+        checkSession();
         $errors = array();
         if ($_POST) {
             // receive all input values from the form
@@ -192,6 +173,11 @@ class Dashboard extends CI_Controller
             $lang           = $this->db->escape($_POST['Radio']);
             $floor          = $this->db->escape($_POST['floor']);
             $nr             = $this->db->escape($_POST['Mobile_Number']);
+            $privileges     = $this->db->escape($_POST['Privileges']);
+            if(!$privileges)
+            {
+                $privileges="geen privileges";
+            }
 
             // form validation: ensure that the form is correctly filled ...
             // by adding (array_push()) corresponding error unto $errors array
@@ -215,8 +201,8 @@ class Dashboard extends CI_Controller
 
             // Finally, register user if there are no errors in the form
             if (count($errors) == 0) {
-                $query = "INSERT INTO Residents (name, firstName,dateOfBirth,roomNumber,bedNumber,pinHash,preferences) "
-                ."VALUES($name, $firstname,$birth_day,$roomNumber,$bedNumber,'$pinhash',$lang)";
+                $query = "INSERT INTO Residents (name, firstName,dateOfBirth,roomNumber,bedNumber,pinHash,preferences,privileges ) "
+                ."VALUES($name, $firstname,$birth_day,$roomNumber,$bedNumber,'$pinhash',$lang,$privileges)";
                 $this->db->query($query);
                 $query2 = "SELECT idResidents FROM a18ux04.Residents ORDER BY idResidents DESC LIMIT 1;";
                 $result2 = $this->db->query($query2)->result_array()[0]["idResidents"];
@@ -233,13 +219,6 @@ class Dashboard extends CI_Controller
     }
 
 
-    public function dashboard_register()
-    {
-        $data = 'oeps';
-        $this->load->view('dashboard_register', $data);
-    }
-
-
     public function logout()
     {
         session_destroy();
@@ -251,10 +230,17 @@ class Dashboard extends CI_Controller
     {
         $_SESSION['resident']="yes";
         redirect('/Dashboard/dashboard');
-
     }
 
 
-
-
+    public function checkSession()
+    {
+        if(!isset($_SESSION['caregiver'])) { // kick you out if not logged in
+            echo "<script>
+                    alert('You are not logged in!');
+                    window.location.href='".base_url()."Caregiver_controller/login';
+                  </script>";
+            exit();
+        }
+    }
 }

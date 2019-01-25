@@ -28,22 +28,22 @@
 
                     </div>
                     <div class="row" >
-                        <div class="col-1"> </div>
-                        <div class="col-4">
-                            <p style=" font-size: 32px; "><?php echo $this->lang->line('email'); ?>:</p>
+
+                        <div class="col-5" >
+                            <p style=" font-size: 32px;  "><?php echo $this->lang->line('email'); ?>:</p>
                         </div>
                         <div class="col-6">
-                            <input pattern="[@.a-z A-Z'éèëï-]{1,50}" style="line-height: 32px; padding-left: 7px; width: 15vw;" type="text" oninput="checkInput(this.id)" name="email" id="email" class="form-control" name="email" />
+                            <input pattern="[@.a-z A-Z'éèëï-]{1,50}" style="line-height: 32px;  width: 15vw;" type="text" oninput="checkInput(this.id)" name="email" id="email" class="form-control" name="email" />
                         </div>
                         <div class="col-1"> </div>
                     </div>
                     <div class="row" >
-                        <div class="col-1"> </div>
-                        <div class="col-4" >
+
+                        <div class="col-5" >
                             <p style=" font-size: 32px; "><?php echo $this->lang->line('login_password'); ?>:</p>
                         </div>
                         <div class="col-6">
-                            <input  style="line-height: 32px; padding-left: 7px; width: 15vw;" type="password" oninput="checkInput(this.id)" name="password" id="password" class="form-control" name="password" />
+                            <input  style="line-height: 32px;  width: 15vw;" type="password" oninput="checkInput(this.id)" name="password" id="password" class="form-control" name="password" />
                         </div>
                         <div class="col-1"> </div>
                     </div>

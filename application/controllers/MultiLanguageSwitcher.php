@@ -18,9 +18,17 @@ class MultiLanguageSwitcher extends CI_Controller
         }
         else if(isset($_SESSION['caregiver']))
         {
+            $id = $_SESSION['id'];
+            $query = "UPDATE `a18ux04`.`Caregivers` SET `preferences` = '$language' ".
+            "WHERE (idCaregivers='$id');";
+            if(!($this->db->query($query))) {
+                //TODO errorcheck
+            }
             redirect('Dashboard/dashboard');
         }
-        
     }
 }
 ?>
+
+
+            $_SESSION['id']=$rows[0]->idCaregivers;

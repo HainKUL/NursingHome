@@ -78,6 +78,7 @@ $lang['pin']="PIN CODE";
 $lang['confirm']="PIN CODE BEVESTIGEN";
 $lang['food']="Eten";
 $lang['activities']="Activiteiten";
+$lang['priv']="Eventuele privileges";
 
 $lang['password_forgot_title'] = "Wachtwoord Vergeten";
 $lang['password_forgot_head'] = "Wachtwoord vergeten?";
