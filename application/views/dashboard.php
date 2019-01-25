@@ -174,7 +174,7 @@ if(!isset($_SESSION['caregiver'])) {
             <a href="#" style="padding:10%">
                 <button class="btn btn-primary btn-lg" type="button" style="
 
-                width:80%;background-color:#00675F;border:none;color:#DEEAE9">
+                width:70%;background-color:#00675F;border:none;color:#DEEAE9">
                     <?php echo $this->lang->line('add_poll'); ?>
                 </button>
             </a>

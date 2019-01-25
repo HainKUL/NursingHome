@@ -18,8 +18,13 @@
 <div class="container-fluid menu_container">
     <div class="row header " >
         <div class="col-5"></div>
-        <div class="col-4 header-title">
+        <div class="col-2 header-title">
             <p><?php echo $this->lang->line('login_welcome'); ?></p>
+        </div>
+        <div class="col-4 header-button" id ="test">
+            <a class="button_back" href="<?=base_url()?>index.php/Homepage_controller/logout">
+                <p id="logout_text"><?php echo $this->lang->line('buttonBack'); ?></p>
+            </a>
         </div>
 
         <div class="col-3"></div>
