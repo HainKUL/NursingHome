@@ -1,9 +1,9 @@
 .frame {
-    -ms-transform: scale(0.60);
-    -moz-transform: scale(0.60);
-    -o-transform: scale(0.60);
-    -webkit-transform: scale(0.60);
-    transform: scale(0.60);
+    -ms-transform: scale(0.80);
+    -moz-transform: scale(0.80);
+    -o-transform: scale(0.80);
+    -webkit-transform: scale(0.80);
+    transform: scale(0.80);
 
     -ms-transform-origin: 0 0;
     -moz-transform-origin: 0 0;
