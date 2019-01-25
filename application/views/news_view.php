@@ -62,7 +62,7 @@ if(!isset($_SESSION["resident"]))
                     <img id="menu_icon" src="<?=base_url()?>assets/photos/nieuwsblad.jpg"  class="image1">
                 </div>
                 <div class="col-6">
-                    <a href="<?=base_url()?>/Homepage_controller/nieuwsblad">
+                    <a href="<?=base_url()?>Homepage_controller/nieuwsblad">
                         <button type = "button" class="button_menu button_margin">
                             <?php echo $this->lang->line('buttonClickHere'); ?>
                         </button>
