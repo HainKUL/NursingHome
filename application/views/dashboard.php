@@ -427,7 +427,7 @@ if(!isset($_SESSION['caregiver'])) {
                                             </div>
                                             <br>
                                             <br>
-                                        <svg class='chart' viewBox="0 0 530 400"
+                                        <svg class='chart' viewBox="0 0 550 400"
                                              perserveAspectRatio="xMinYMid"> </svg>
                                     </div>
                                 </div>
@@ -822,8 +822,8 @@ if(!isset($_SESSION['caregiver'])) {
 
 <script type="text/javascript">
     //set up chart
-    var margin = {top: 10, right:0, bottom: 280, left: 25};
-    var width = 490;
+    var margin = {top: 10, right:40, bottom: 280, left: 25};
+    var width = 520;
     var height = 200;
 
     var chart = d3.select(".chart")
