@@ -94,10 +94,10 @@ class Caregiver_controller extends CI_Controller{
             /* receive & sanitize all input values from the form
             passwords are not sanitized. This is safe since they go directly to the hash function.
             having special characters in a password is a GOOD thing so we leave them in!*/
-            $name = $this->db->escape($_POST['name']);
-            $firstname = $this->db->escape($_POST['firstname']);
-            $email = $this->db->escape($_POST['email']);
-            $lang           = $this->db->escape($_POST['Radio']);
+            $name       = $this->db->escape($_POST['name']);
+            $firstname  = $this->db->escape($_POST['firstname']);
+            $email      = $this->db->escape($_POST['email']);
+            $lang       = $this->db->escape($_POST['Radio']);
             $password_1 = $_POST['password_1'];
             $password_2 = $_POST['password_2'];
 
