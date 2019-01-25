@@ -34,14 +34,10 @@ class Our_chart_model extends CI_Model
                 $data['category'] = $row['category_en'];
             else
                 $data['category'] = $row['category_nl'];
-            if((time()+3600)-strtotime($row['timestampStart']) < 86400)
-            {
-                $data['timestampStart']= substr($row['timestampStart'],11,5);
-            }
-            else
-            {
+           // if((time()+3600)-strtotime($row['timestampStart']) < 86400)
+
                 $data['timestampStart']= substr($row['timestampStart'],5,11);
-            }
+
             $data['answer'] = $row['answer'];
             $rawdata[]=$data;
         }
